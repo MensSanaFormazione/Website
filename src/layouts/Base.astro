@@ -71,7 +71,7 @@ const current = Astro.url.pathname;
     <header class="site-header" id="site-header">
       <div class="container site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Mens Sana Formazione, home">
-          <img src="/logo.png" alt="Mens Sana Formazione" width="181" height="52" />
+          <img src="/logo.png" alt="Mens Sana Formazione" width="222" height="64" />
         </a>
         <nav class="site-nav" id="site-nav" aria-label="Navigazione principale">
           {nav.map((item) => (
@@ -287,15 +287,16 @@ const current = Astro.url.pathname;
         transition: padding var(--transition);
       }
       .site-header__brand img {
-        /* 25/08: da 44 a 52 px su richiesta di Nicola, "leggermente piu'
-           grande". La barra cresce di conseguenza, il resto non cambia. */
-        height: 52px;
+        /* 25/08: da 44 a 64 px, in due passaggi su richiesta di Nicola.
+           Scorrendo scende a 44, cosi' la barra si fa piu' compatta quando
+           serve spazio per leggere. */
+        height: 64px;
         width: auto;
         transition: height var(--transition);
       }
       .site-header.is-scrolled { box-shadow: var(--shadow-md); }
       .site-header.is-scrolled .site-header__inner { padding-block: 0.45rem; }
-      .site-header.is-scrolled .site-header__brand img { height: 42px; }
+      .site-header.is-scrolled .site-header__brand img { height: 44px; }
 
       .site-nav {
         display: flex;

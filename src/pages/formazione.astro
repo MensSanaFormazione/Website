@@ -156,7 +156,13 @@ const haImmagine = (slug) =>
 </Base>
 
 <style>
-  .catalogo-apertura { padding-top: clamp(2.5rem, 6vw, 4rem); }
+  .catalogo-apertura {
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    /* ⛔ Sopra la fascia dell'indice c'erano 104 px e sotto 48: lo stesso
+       valore della fascia scura che segue, cosi' l'indice ha la stessa aria
+       da tutte e quattro le parti. */
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
   /* La fascia dell'indice contiene una riga sola quando e' chiusa: con lo
      spazio pieno delle altre sezioni sembrava mezza vuota. */
   .indice-fascia { padding-block: clamp(2rem, 4vw, 3rem); }
