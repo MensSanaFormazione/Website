@@ -85,15 +85,17 @@ const haImmagine = (slug) =>
   </section>
 
   <!-- INDICE COMPLETO -->
-  <section class="section section--tinted" id="catalogo">
+  <section class="section section--tinted indice-fascia" id="catalogo">
     <div class="container">
       <!-- ⛔ L'indice e' chiuso all'arrivo: con 22 corsi, aperto occupava piu'
            schermate e spingeva in fondo tutto il resto. `<details>` e' nativo,
            quindi funziona anche senza JavaScript. -->
       <details class="indice-tutto reveal">
         <summary>
-          <span class="eyebrow">Indice</span>
-          <h2>Tutti i {nCorsi} corsi</h2>
+          <span class="indice-tutto__testo">
+            <span class="indice-tutto__eti">Indice</span>
+            <span class="indice-tutto__titolo">Tutti i {nCorsi} corsi, in una pagina sola</span>
+          </span>
           <span class="indice-tutto__stato"><Freccia /></span>
         </summary>
 
@@ -155,6 +157,9 @@ const haImmagine = (slug) =>
 
 <style>
   .catalogo-apertura { padding-top: clamp(2.5rem, 6vw, 4rem); }
+  /* La fascia dell'indice contiene una riga sola quando e' chiusa: con lo
+     spazio pieno delle altre sezioni sembrava mezza vuota. */
+  .indice-fascia { padding-block: clamp(2rem, 4vw, 3rem); }
   .catalogo-testa { max-width: 44rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
   .catalogo-testa__sub {
     margin-top: 1.2rem;
@@ -244,38 +249,70 @@ const haImmagine = (slug) =>
   }
   .su-richiesta strong { color: var(--rosso); margin-right: 0.3rem; }
 
-  /* --- Indice completo, apribile ----------------------------------------- */
+  /* --- Indice completo, apribile -----------------------------------------
+     ⛔ 25/08: la barra chiusa era una riga di testo che galleggiava in mezzo
+     a una fascia vuota, e l'anello di messa a fuoco le girava attorno per
+     tutta la larghezza. Adesso e' una riga come quelle della home: fondo
+     bianco, filetto rosso a sinistra, e si muove quando ci passi sopra, cosi'
+     si capisce che si puo' premere. */
   .indice-tutto > summary {
     display: flex;
-    align-items: baseline;
-    gap: 0.9rem;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     cursor: pointer;
     list-style: none;
-    padding-block: 0.4rem;
+    padding: 1rem 1.25rem;
+    background: var(--bianco);
+    border: 1px solid var(--grigio-100);
+    border-left: 5px solid var(--rosso);
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
   }
   .indice-tutto > summary::-webkit-details-marker { display: none; }
-  .indice-tutto > summary h2 { font-size: var(--fs-700); }
-  .indice-tutto > summary .eyebrow { margin-bottom: 0; }
-  .indice-tutto > summary:hover h2 { color: var(--rosso); }
-  .indice-tutto > summary:focus-visible { outline: 2px solid var(--rosso); outline-offset: 6px; }
+  @media (hover: hover) {
+    .indice-tutto > summary:hover {
+      transform: translateX(0.35rem);
+      box-shadow: var(--shadow-md);
+    }
+  }
+  /* La messa a fuoco resta visibile ma dentro il bordo, non come una cornice
+     rossa larga quanto la pagina. */
+  .indice-tutto > summary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 32, 47, 0.35);
+  }
+  .indice-tutto__testo { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+  .indice-tutto__eti {
+    font-size: var(--fs-200);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grigio-500);
+  }
+  .indice-tutto__titolo {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-600);
+    font-weight: 900;
+    color: var(--nero);
+    letter-spacing: -0.015em;
+  }
   .indice-tutto__stato {
-    margin-left: auto;
+    flex: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     font-size: var(--fs-300);
     font-weight: 700;
     color: var(--rosso);
   }
   .indice-tutto__stato::before { content: 'Apri'; }
   .indice-tutto[open] .indice-tutto__stato::before { content: 'Chiudi'; }
-  /* La freccia del marchio fa da segno: verso il basso quando e' chiuso,
-     verso l'alto quando e' aperto. */
   .indice-tutto__stato .freccia { transform: rotate(90deg); transition: transform var(--transition); }
   .indice-tutto[open] .indice-tutto__stato .freccia { transform: rotate(-90deg); }
   .indice-tutto__nota {
-    margin-block: 1rem 2rem;
+    margin-block: 1.6rem 2rem;
     max-width: 40rem;
     color: var(--grigio-700);
     font-size: var(--fs-300);
