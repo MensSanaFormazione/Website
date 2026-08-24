@@ -71,7 +71,7 @@ const current = Astro.url.pathname;
     <header class="site-header" id="site-header">
       <div class="container site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Mens Sana Formazione, home">
-          <img src="/logo.png" alt="Mens Sana Formazione" width="170" height="48" />
+          <img src="/logo.png" alt="Mens Sana Formazione" width="181" height="52" />
         </a>
         <nav class="site-nav" id="site-nav" aria-label="Navigazione principale">
           {nav.map((item) => (
@@ -125,7 +125,7 @@ const current = Astro.url.pathname;
     <footer class="site-footer">
       <div class="container site-footer__grid">
         <div>
-          <img src="/logo.png" alt="Mens Sana Formazione" width="180" class="site-footer__logo" />
+          <img src="/logo.png" alt="Mens Sana Formazione" width="264" height="76" class="site-footer__logo" />
           <p>
             Formazione Legal &amp; Compliance per enti, imprese e professionisti.
             Corsi in videolezione e percorsi costruiti su misura, dal 2017 a
@@ -287,13 +287,15 @@ const current = Astro.url.pathname;
         transition: padding var(--transition);
       }
       .site-header__brand img {
-        height: 44px;
+        /* 25/08: da 44 a 52 px su richiesta di Nicola, "leggermente piu'
+           grande". La barra cresce di conseguenza, il resto non cambia. */
+        height: 52px;
         width: auto;
         transition: height var(--transition);
       }
       .site-header.is-scrolled { box-shadow: var(--shadow-md); }
       .site-header.is-scrolled .site-header__inner { padding-block: 0.45rem; }
-      .site-header.is-scrolled .site-header__brand img { height: 36px; }
+      .site-header.is-scrolled .site-header__brand img { height: 42px; }
 
       .site-nav {
         display: flex;
@@ -443,9 +445,10 @@ const current = Astro.url.pathname;
         padding-bottom: 2.5rem;
       }
       .site-footer__logo {
-        height: 40px;
+        /* Nel piede lo spazio c'e' davvero: da 40 a 76 px. */
+        height: 76px;
         width: auto;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
         filter: brightness(0) invert(1);
       }
       .site-footer h3 {
