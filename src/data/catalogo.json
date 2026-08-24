@@ -7,7 +7,10 @@
     "B": "Organismi di Controllo",
     "C": "Contrattualistica",
     "D": "Credit Management",
-    "E": "Finance & Fiscale"
+    "E": "Finance & Fiscale",
+    "F": "Compliance",
+    "G": "Business Coaching",
+    "H": "Digitalizzazione PA"
   },
   "corsi": [
     {
@@ -991,22 +994,507 @@
         }
       ],
       "plus": "Approccio quantitativo con casi numerici: ogni strumento viene mostrato in applicazione, non solo definito."
-    }
-  ],
-  "areeSuRichiesta": [
-    {
-      "sigla": "F",
-      "nome": "Compliance"
     },
     {
-      "sigla": "G",
-      "nome": "Business Coaching"
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "E3",
+      "slug": "e3-economia-e-finanza-impresa",
+      "area": "E",
+      "areaNome": "Finance & Fiscale",
+      "titolo": "Principi di Economia e Finanza d'Impresa",
+      "sottotitolo": "Leggere il bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare i costi e misurare i risultati.",
+      "prezzo": 1200,
+      "durataVideo": "21 ore di videolezione",
+      "descrizione": [
+        "Il Corso, che rientra nell'ambito più generale del Diritto Finanziario, ha ad oggetto la disamina degli strumenti che consentono di comprendere e utilizzare i dati di bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare e controllare i costi, misurare e controllare i risultati utilizzando l'analisi di bilancio, gestire le commesse ed i progetti, produrre una reportistica efficace. Il Corso può avere una durata superiore laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
+      ],
+      "programma": [
+        {
+          "sezione": "Comprendere e utilizzare i dati di bilancio",
+          "voci": [
+            "Analisi, interpretazione e utilizzo dei dati economici, patrimoniali e finanziari",
+            "Riclassificazione del conto economico",
+            "Focus sul reddito operativo",
+            "Analisi della struttura dello stato patrimoniale",
+            "Focus sul capitale circolante",
+            "La composizione del capitale e la leva finanziaria",
+            "Analisi della dinamica dei flussi di cassa"
+          ]
+        },
+        {
+          "sezione": "Collegare le decisioni operative ai risultati economici e finanziari",
+          "voci": [
+            "Definizione del prezzo",
+            "La leva di prezzo",
+            "Valutare l'elasticità della domanda",
+            "La leva operativa",
+            "La struttura dei costi",
+            "Collegare scontistica, volume e margine di contribuzione",
+            "Calcolare il punto di pareggio"
+          ]
+        },
+        {
+          "sezione": "Calcolare e controllare i costi",
+          "voci": [
+            "Calcolare il costo del prodotto o del servizio",
+            "I costi diretti",
+            "L'allocazione dei costi indiretti",
+            "Cenni - Activity Based Costing"
+          ]
+        },
+        {
+          "sezione": "Misurare e controllare i risultati utilizzando l'analisi di bilancio",
+          "voci": [
+            "Analisi per indici",
+            "Analisi per flussi"
+          ]
+        },
+        {
+          "sezione": "Gestire le commesse ed i progetti",
+          "voci": [
+            "Calcolare il costo del capitale",
+            "Valutare il ritorno sul capitale impiegato",
+            "Metodi economici",
+            "Metodi finanziari"
+          ]
+        },
+        {
+          "sezione": "Produrre una reportistica efficace",
+          "voci": [
+            "La reportistica come supporto alla gestione"
+          ]
+        }
+      ],
+      "durataStudio": "80 ore di studio individuale",
+      "destinatari": [
+        "Responsabili di unità operativa o di centro di profitto",
+        "Responsabili di Budget o di Controllo",
+        "Manager non \"finance\" che intendano approfondire i temi economico-finanziari della gestione"
+      ]
     },
     {
-      "sigla": "H",
-      "nome": "Digitalizzazione PA"
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "E4",
+      "slug": "e4-project-management",
+      "area": "E",
+      "areaNome": "Finance & Fiscale",
+      "titolo": "Project Management",
+      "sottotitolo": "Analisi, monitoraggio e gestione di un progetto: fattibilità, costi, rischi e strumenti per controllare lo stato di avanzamento dei lavori.",
+      "prezzo": 1200,
+      "durataVideo": "21 ore di videolezione",
+      "descrizione": [
+        "Il Corso, che rientra nell'ambito più generale del Diritto Finanziario, ha ad oggetto l'analisi, il monitoraggio e la gestione di un Progetto nonché degli Strumenti volti alla realizzazione del Progetto stesso al fine di controllare il suo stato di avanzamento lavori. Il Corso può avere una durata superiore laddove sorgesse l'esigenza di analizzare ed approfondire specifici ambiti di particolare interesse."
+      ],
+      "programma": [
+        {
+          "sezione": "La gestione di un Progetto Complesso: come valutare e collegare le azioni ai risultati",
+          "voci": [
+            "Quali sono i parametri per valutare la fattibilità e il successo di un progetto complesso?",
+            "Quali sono gli strumenti per monitorare il progetto e controllare lo stato di avanzamento lavori?"
+          ]
+        },
+        {
+          "sezione": "Analisi di fattibilità del Progetto",
+          "voci": [
+            "Le «performance obligation» di progetto",
+            "Le competenze delle risorse umane necessarie",
+            "La formazione del team",
+            "Le risorse materiali e finanziarie necessarie",
+            "La definizione dei tempi di realizzazione"
+          ]
+        },
+        {
+          "sezione": "Analisi dei costi di Progetto",
+          "voci": [
+            "Budget di progetto: la stima dei costi del progetto",
+            "Analisi di profittabilità del progetto",
+            "Valutazione economica e finanziaria",
+            "Il costo del capitale impiegato e il ritorno sul capitale investito"
+          ]
+        },
+        {
+          "sezione": "Analisi di progetti Make or Buy",
+          "voci": [
+            "Come valutare la fattibilità?",
+            "Come calcolare il ritorno sull'investimento?"
+          ]
+        },
+        {
+          "sezione": "Analisi di progetti per il miglioramento dei processi",
+          "voci": [
+            "Come valutare la fattibilità?",
+            "Come calcolare il ritorno sull'investimento?"
+          ]
+        },
+        {
+          "sezione": "Analisi di progetti per la gestione del rischio (Project Risk Management)",
+          "voci": [
+            "Definizione di rischio",
+            "Identificazione e valutazione dei rischi di progetto",
+            "Gestione dei rischi di progetto"
+          ]
+        },
+        {
+          "sezione": "Gli strumenti per monitorare il Progetto e controllare lo stato di avanzamento lavori",
+          "voci": [
+            "Cosa dobbiamo fare? WBS",
+            "Chi fa cosa? OBS, Tasks assignment",
+            "Quanto costa? CBS",
+            "Qual è la sequenza delle attività? PDM, CPM, Fast Traking",
+            "Qual è il modello di progetto? Pert, Gantt",
+            "Come controllare? Milestone, Chek point",
+            "Tecnica del Earned Value e controllo dell'avanzamento del progetto",
+            "Scostamenti di avanzamento, costo, tempo",
+            "Analisi delle cause dello scostamento",
+            "Programma di recupero",
+            "Stima dei tempi e dei costi a finire"
+          ]
+        }
+      ],
+      "durataStudio": "80 ore di studio individuale",
+      "destinatari": [
+        "Responsabili di Progetto di nuova nomina",
+        "Responsabili di Progetto che abbiano un'esperienza iniziale e che desiderino confrontarsi e formalizzare le proprie conoscenze",
+        "Responsabili di servizi aziendali coinvolti nella realizzazione di progetti",
+        "Responsabili di Progetto EDP",
+        "Tutti coloro coinvolti in azienda nella gestione di un Progetto più o meno complesso"
+      ]
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "F1",
+      "slug": "f1-gdpr-e-dpo",
+      "area": "F",
+      "areaNome": "Compliance",
+      "titolo": "Regolamento Europeo Privacy (GDPR) e Data Protection Officer",
+      "sottotitolo": "Il Regolamento UE 2016/679 dai principi alle sanzioni, con la figura del DPO: accountability, registri dei trattamenti, data breach e diritti degli interessati.",
+      "prezzo": 1200,
+      "durataVideo": "21 ore di videolezione",
+      "descrizione": [
+        "Il Corso, che rientra nell'ambito più generale del Diritto alla Privacy, ha ad oggetto la disamina dei principali aspetti normativi sottesi al nuovo Regolamento dell'Unione Europea 2016/679 (GDPR).",
+        "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
+        {
+          "elenco": [
+            "disposizioni generali del GDPR e suoi principi informatori",
+            "gli attori del Regolamento",
+            "i diritti degli interessati",
+            "il nuovo diritto all'oblio",
+            "la portabilità dei dati",
+            "il principio di accountability",
+            "il responsabile della protezione dei dati (DPO)",
+            "il data breach; il sistema sanzionatorio",
+            "rapporti tra il GDPR e il Codice della Privacy"
+          ]
+        },
+        "Il Corso può avere una durata diversa laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse. Durante il Corso verranno simulate talune possibili vicende della vita professionale e privata che impattano con la nuova normativa europea e verrà fornita la soluzione migliore per la loro regolamentazione."
+      ],
+      "programma": [
+        {
+          "sezione": "Argomenti trattati",
+          "voci": [
+            "Le Principali novità contenute nel Regolamento rispetto al Codice della Privacy",
+            "Il Periodo Transitorio",
+            "Le Disposizioni generali ed i suoi Principi",
+            "Gli Attori del Regolamento",
+            "Quali sono i Diritti degli interessati?",
+            "La nuova figura del Diritto all'Oblio",
+            "La Portabilità dei Dati e la Profilazione on line",
+            "Garanzie per la Sicurezza dei Dati",
+            "Privacy by design e Privacy by default",
+            "Il Principio dell'accountability",
+            "I Corresponsabili del Trattamento",
+            "L‘Esecuzione del Regolamento",
+            "Il DPO (Data Protection Officer)",
+            "I Registri delle attività di Trattamento",
+            "La Sicurezza dei Dati e valutazione dei Rischi",
+            "Il Comitato Europeo per la protezione dei Dati",
+            "Data breach",
+            "I Codici di condotta e certificazione",
+            "Il trasferimento dei Dati verso l‘estero",
+            "I Controlli: l‘Autorità di Controllo",
+            "I Ricorsi, Responsabilità, Risarcimento",
+            "Il Sistema sanzionatorio: quali adeguamenti per le Imprese per non incorrervi",
+            "Il Trattamento dei Dati specifici",
+            "I Social network e i minori: quali nuove tutele?",
+            "L'analisi della recentissima normativa nazionale (Decreto legislativo 10 agosto 2018, n. 101) concernente l'adeguamento della normativa nazionale D.Lgs. 196/03 alle disposizioni del Regolamento"
+          ]
+        }
+      ],
+      "durataStudio": "80 ore di studio individuale"
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "F2",
+      "slug": "f2-responsabilita-enti-231",
+      "area": "F",
+      "areaNome": "Compliance",
+      "titolo": "Responsabilità Amministrativa degli Enti (D.Lgs. 231/01)",
+      "sottotitolo": "Modelli organizzativi, codice etico, deleghe di funzioni e Organismo di Vigilanza, con gli aggiornamenti dei D.Lgs. 156/2022, 19/2023 e 105/2023.",
+      "prezzo": 1050,
+      "durataVideo": "16 ore di videolezione",
+      "descrizione": [
+        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2001.",
+        "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
+        {
+          "elenco": [
+            "le fonti normative della responsabilità amministrativa degli enti",
+            "la responsabilità degli enti",
+            "i modelli organizzativi",
+            "il codice etico",
+            "le deleghe di funzioni",
+            "l'Organismo di Vigilanza",
+            "le policy aziendali",
+            "i reati previsti dal D.Lgs. 231/2001",
+            "il sistema sanzionatorio",
+            "i procedimenti penali"
+          ]
+        },
+        "Il Corso su richiesta del Cliente, può avere una durata diversa laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
+      ],
+      "programma": [
+        {
+          "sezione": "Argomenti trattati",
+          "voci": [
+            "Le Fonti normative della Responsabilità Amministrativa degli Enti",
+            "Il D.Lgs. 231/01 con focus sugli aggiornamenti normativi introdotti dai Decreti Legislativi 156/2022, 19/2023 e 105/2023",
+            "La Responsabilità degli Enti",
+            "L'analisi delle principali fattispecie di Reati contro la Pubblica Amministrazione: art. 24 e 25 del Decreto",
+            "L'analisi di taluni sempi di attività sensibili e spunti per la costruzione di Protocolli comportamentali di prevenzione",
+            "I Reati di ricettazione, riciclaggio e autoriciclaggio: art. 25 octies del Decreto",
+            "Il Sistema sanzionatorio",
+            "I Procedimenti penali",
+            "I Modelli Organizzativi",
+            "Il Codice Etico; Le deleghe di funzioni",
+            "L'Organismo di Vigilanza",
+            "Le Policy aziendali"
+          ]
+        }
+      ],
+      "durataStudio": "60 ore di studio individuale"
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "F3",
+      "slug": "f3-antiriciclaggio",
+      "area": "F",
+      "areaNome": "Compliance",
+      "titolo": "L'Antiriciclaggio (D.Lgs. 231/2007)",
+      "sottotitolo": "Fonti nazionali e sovranazionali, destinatari e autorità, obblighi di adeguata verifica e segnalazione delle operazioni sospette, sistema sanzionatorio.",
+      "prezzo": 1050,
+      "durataVideo": "16 ore di videolezione",
+      "descrizione": [
+        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2007.",
+        {
+          "elenco": [
+            "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
+            "fonti normative nazionali e sovranazionali",
+            "la nozione di antiriciclaggio; i destinatari e le autorità; obblighi in tema di antiriciclaggio",
+            "il sistema sanzionatorio"
+          ]
+        },
+        "Il Corso può avere una durata diversa laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
+      ],
+      "programma": [
+        {
+          "sezione": "Le fonti normative nazionali e sovranazionali",
+          "voci": [
+            "La normativa europea antiriciclaggio",
+            "La normativa nazionale antiriciclaggio"
+          ]
+        },
+        {
+          "sezione": "La nozione di antiriciclaggio",
+          "voci": [
+            "La nozione di riciclaggio",
+            "Riciclaggio e reati tributari: la figura dei reati presupposti",
+            "I principi fondamentali antiriciclaggio"
+          ]
+        },
+        {
+          "sezione": "Destinatari ed autorità",
+          "voci": [
+            "I liberi professionisti",
+            "Gli intermediari finanziari",
+            "I revisori contabili",
+            "Il MEF La UIF",
+            "Le Autorità di Controllo, vigilanza ed ispezione"
+          ]
+        },
+        {
+          "sezione": "Gli obblighi dei professionisti",
+          "voci": [
+            "l'adeguata verifica della clientela",
+            "la registrazione e la conservazione dei dati",
+            "la segnalazione delle operazioni sospette",
+            "la formazione",
+            "le limitazioni all'uso del contante e dei titoli al portatore"
+          ]
+        },
+        {
+          "sezione": "Il sistema sanzionatorio",
+          "voci": [
+            "Le principali sanzioni amministrative e penali",
+            "Le attività ed i poteri di verifica, accesso ed ispezione della Guardia di Finanza"
+          ]
+        }
+      ],
+      "durataStudio": "60 ore di studio individuale"
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "G1",
+      "slug": "g1-conversazioni-di-coaching",
+      "area": "G",
+      "areaNome": "Business Coaching",
+      "titolo": "Making it Substainable: conversazioni di coaching per i manager",
+      "sottotitolo": "Cinque incontri virtuali a cadenza settimanale per sviluppare resilienza e tenuta manageriale nei momenti di cambiamento improvviso.",
+      "prezzo": null,
+      "durataVideo": "5 incontri virtuali",
+      "descrizione": [
+        "La Nostra offerta di Coaching per i manager e le aziende",
+        "L'obiettivo dei percorsi è quello di consentire alla Persona ed all'azienda di:",
+        {
+          "elenco": [
+            "Facilitare il raggiungimento di risultati specifici condivisi (comportamenti, skills relazionali, dinamiche di team, efficacia nella comunicazione, gestione delle priorità e risultati di business)",
+            "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
+            "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
+            "Migliorare il benessere individuale ed organizzativo",
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+          ]
+        },
+        "MAKING IT SUBSTAINABLE: \"CONVERSAZIONI DI COACHING PER I MANAGER IN UN PERIODO INTENSO\"",
+        "Incontri virtuali con cadenza settimanale",
+        "Obiettivo:",
+        {
+          "elenco": [
+            "Sviluppare la resilienza tramite il potenziamento delle soft skills in situazioni di improvviso cambiamento",
+            "Favorire la capacità di mantenere una gestione efficace in una situazione di incertezza",
+            "Supportare la motivazione e l'ingaggio in particolari circostanze di instabilità"
+          ]
+        },
+        "5 incontri in totale; (incluso incontro con la committenza per definire i KPI sui quale focalizzare il percorso)"
+      ],
+      "programma": []
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "G2",
+      "slug": "g2-la-vision-e-lo-scopo",
+      "area": "G",
+      "areaNome": "Business Coaching",
+      "titolo": "La Vision e lo Scopo",
+      "sottotitolo": "Una sessione individuale a distanza per lavorare sullo scopo personale o di gruppo e sulla vision, soprattutto nei momenti di transizione.",
+      "prezzo": null,
+      "durataVideo": "Una sessione individuale a distanza",
+      "descrizione": [
+        "La Nostra offerta di Coaching per i manager e le aziende",
+        "L'obiettivo dei percorsi è quello di consentire alla Persona ed all'azienda di:",
+        {
+          "elenco": [
+            "Facilitare il raggiungimento di risultati specifici condivisi (comportamenti, skills relazionali, dinamiche di team, efficacia nella comunicazione, gestione delle priorità e risultati di business)",
+            "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
+            "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
+            "Migliorare il benessere individuale ed organizzativo",
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+          ]
+        },
+        "LA VISION E LO SCOPO",
+        "Il coaching come un strumento per lavorare sullo scopo individuale o di Gruppo e sulla Vision.",
+        "Questo è ancora più importante nei momenti di difficoltà o transizione",
+        "Lavorare sullo scopo permette alla persona di:",
+        {
+          "elenco": [
+            "Fare le proprie scelte con consapevolezza",
+            "Superare i momenti di difficoltà",
+            "Trovare le sfide giornaliere per mantenere la coerenza con i propri obiettivi",
+            "Durata; una sessione a distanza individuale"
+          ]
+        },
+        "Costo: (Da dedurre per chi vuole, eventualmente proseguire nel percorso di Success Coaching)",
+        "Follow up: eventuale 200 euro"
+      ],
+      "programma": []
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "G3",
+      "slug": "g3-success-coaching",
+      "area": "G",
+      "areaNome": "Business Coaching",
+      "titolo": "Success Coaching",
+      "sottotitolo": "Otto incontri a distanza per raggiungere i risultati concordati con la committenza, valorizzando le potenzialità e il benessere della persona.",
+      "prezzo": 4000,
+      "durataVideo": "Otto incontri a distanza di circa due ore",
+      "descrizione": [
+        "La Nostra offerta di Coaching per i manager e le aziende",
+        "L'obiettivo dei percorsi è quello di consentire alla Persona ed all'azienda di:",
+        {
+          "elenco": [
+            "Facilitare il raggiungimento di risultati specifici condivisi (comportamenti, skills relazionali, dinamiche di team, efficacia nella comunicazione, gestione delle priorità e risultati di business)",
+            "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
+            "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
+            "Migliorare il benessere individuale ed organizzativo",
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+          ]
+        },
+        "SUCCESS COACHING",
+        "E' un programma di coaching che lavora con la persona per il raggiungimento dei risultati in coerenza con il proprio benessere, la valorizzazione delle potenzialità e dell'impatto con i propri stakeholder rilevanti",
+        "Come lavoriamo",
+        "Il processo prevede:",
+        {
+          "elenco": [
+            "La definzione dei \"risultati attesi\" dal cliente (committente e persona)",
+            "L'accompagnamento al raggiungimento dei risultati (Otto incontri a distanza della durata di due ore circa, ogni 3 settimane/un mese)",
+            "Lavoro a distanza (Negli incontri verrà definito un piano di azione e gli \"allenamenti\" dal svolgere tra un incontro e l'altro)"
+          ]
+        }
+      ],
+      "programma": []
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "H1",
+      "slug": "h1-documento-informatico",
+      "area": "H",
+      "areaNome": "Digitalizzazione PA",
+      "titolo": "Ciclo di Vita del Documento Informatico",
+      "sottotitolo": "La gestione del ciclo di vita del documento informatico alla luce delle Linee guida del 10 settembre 2020.",
+      "prezzo": 1200,
+      "durataVideo": "21 ore di videolezione",
+      "durataStudio": "80 ore di studio individuale",
+      "descrizione": [
+        "Il Corso ha ad oggetto la gestione del ciclo di vita del documento informatico, che ha trovato una nuova disciplina nelle recenti Linee guida del 10 settembre 2020."
+      ],
+      "programma": []
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": true,
+      "cod": "H2",
+      "slug": "h2-transizione-digitale-pa",
+      "area": "H",
+      "areaNome": "Digitalizzazione PA",
+      "titolo": "La Transizione Digitale nella Pubblica Amministrazione",
+      "sottotitolo": "Strumenti e aspetti giuridici del processo di transizione digitale prefigurato dal PNRR.",
+      "prezzo": 1050,
+      "durataVideo": "16 ore di videolezione",
+      "durataStudio": "60 ore di studio individuale",
+      "descrizione": [
+        "Il Corso rappresenta una guida per le pubbliche amministrazioni nella comprensione del processo di transizione digitale prefigurato dal PNRR."
+      ],
+      "programma": []
     }
   ],
+  "areeSuRichiesta": [],
   "consulenze": [
     {
       "titolo": "Privacy & GDPR con DPO",

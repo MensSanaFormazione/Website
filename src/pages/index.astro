@@ -1,63 +1,65 @@
 ---
 import Base from '../layouts/Base.astro';
+import Freccia from '../components/Freccia.astro';
 import { aree, LINKEDIN_URL } from '../data/corsi.js';
 
 const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
 ---
 
 <Base
-  title="Mens Sana Formazione | Corsi e consulenza Legal & Compliance | Milano"
-  description="Corsi e consulenza Legal & Compliance per enti, imprese e professionisti: diritto societario, compliance, contratti, credito, fisco. Milano, dal 2017."
+  title="Mens Sana Formazione | Corsi Legal & Compliance per imprese | Milano"
+  description="22 corsi Legal & Compliance per enti, imprese e professionisti: diritto societario, organismi di controllo, contratti, credito, fisco, compliance. Milano, dal 2017."
 >
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-    <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
     <div class="container hero__inner">
-      <p class="eyebrow rise" style="--r: 0">Milano · dal 2017</p>
-      <h1 class="rise" style="--r: 1">
-        La competenza legale che forma.<br />
-        <span class="text-rosso"
-          >Il sapere che fa <span class="flip-word" id="flip-word">decidere</span>.</span
-        >
-      </h1>
-      <p class="hero__sub rise" style="--r: 2">
-        Mens Sana Formazione affianca enti, imprese e professionisti con corsi e
-        consulenza <strong>Legal &amp; Compliance</strong>: diritto societario,
-        organismi di controllo, contrattualistica, credit management, finance e
-        fiscale. Videolezioni con studio guidato ed edizioni aziendali su misura.
-      </p>
-      <div class="hero__actions rise" style="--r: 3">
-        <a href="/formazione/#catalogo" class="btn btn--primary">Scopri i corsi</a>
-        <a href="/formazione/#consulenza" class="btn btn--ghost">Consulenza per le imprese</a>
+      <div class="hero__testo">
+        <p class="eyebrow rise" style="--r: 0">Milano · dal 2017</p>
+        <h1 class="rise" style="--r: 1">
+          La competenza legale che forma.<br />
+          <span class="text-rosso"
+            >Il sapere che fa <span class="firma"><span class="flip-mask" id="flip-mask"><span class="flip-word" id="flip-word">decidere</span></span><svg
+              class="firma__tratto" id="firma-tratto" viewBox="0 0 200 12" preserveAspectRatio="none"
+              aria-hidden="true"
+            ><path d="M2 8.4C34 3.6 74 2.2 116 3.4c28 .8 54 2.6 82 5.2" /></svg></span><span
+            class="punto" id="punto">.</span></span
+          >
+        </h1>
+        <p class="hero__sub rise" style="--r: 2">
+          Ventidue corsi <strong>Legal &amp; Compliance</strong> per enti, imprese e
+          professionisti: diritto societario, organismi di controllo,
+          contrattualistica, credit management, finance e fiscale, compliance.
+          Videolezioni con studio guidato ed edizioni aziendali su misura.
+        </p>
+        <div class="hero__actions rise" style="--r: 3">
+          <a href="/formazione/" class="btn btn--primary">Scopri i corsi</a>
+          <a href="/su-misura/" class="btn btn--ghost">Un corso su misura</a>
+        </div>
+        <ul class="hero__stats rise" style="--r: 4">
+          <li><strong data-count={nCorsi}>0</strong><span>corsi a catalogo</span></li>
+          <li><strong data-count={aree.length}>0</strong><span>aree tematiche</span></li>
+          <li><strong data-count="9">0</strong><span>anni al fianco delle imprese</span></li>
+        </ul>
       </div>
-      <ul class="hero__stats rise" style="--r: 4">
-        <li><strong data-count={nCorsi}>0</strong><span>corsi a catalogo</span></li>
-        <li><strong data-count="8">0</strong><span>aree tematiche</span></li>
-        <li><strong data-count="9">0</strong><span>anni al fianco delle imprese</span></li>
-      </ul>
+
+      <!-- La pila: le aree del catalogo disegnate come dorsi di volumi.
+           Non e' decorazione, e' la scorciatoia al catalogo. -->
+      <div class="hero__pila">
+        <p class="pila__eti rise" style="--r: 2">Il catalogo, per aree</p>
+        <ul class="pila">
+          {aree.map((area, i) => (
+            <li class="pila__voce" style={`--i: ${i}`}>
+              <a href={`/formazione/${area.slug}/`}>
+                <span class="pila__sigla">{area.sigla}</span>
+                <span class="pila__nome">{area.nome}</span>
+                <span class="pila__n">{area.corsi.length}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
-
-  <!-- MARQUEE AREE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      {[0, 1].map(() => (
-        <>
-          <span class="marquee__item">Diritto Societario</span>
-          <span class="marquee__item">Internal Auditing</span>
-          <span class="marquee__item">Risk Management</span>
-          <span class="marquee__item">Compliance</span>
-          <span class="marquee__item">Contrattualistica</span>
-          <span class="marquee__item">Credit Management</span>
-          <span class="marquee__item">Finance &amp; Fiscale</span>
-          <span class="marquee__item">GDPR &amp; Privacy</span>
-          <span class="marquee__item">Appalti Pubblici</span>
-          <span class="marquee__item">Transfer Pricing</span>
-        </>
-      ))}
-    </div>
-  </div>
 
   <!-- I DUE MODI DI LAVORARE INSIEME -->
   <section class="section">
@@ -66,13 +68,13 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
         <p class="eyebrow">Cosa facciamo</p>
         <h2>Due modi di lavorare insieme</h2>
         <p>
-          Scegli il percorso che ti riguarda: formarti su una materia con un
-          corso strutturato, oppure farti affiancare direttamente
-          sull'operatività.
+          Scegli il percorso che ti riguarda: un corso già pronto, scelto fra
+          i 22 del catalogo, oppure un percorso costruito da zero sulle
+          esigenze della tua organizzazione.
         </p>
       </div>
       <div class="grid grid--2">
-        <a href="/formazione/#catalogo" class="ramo card reveal spot">
+        <a href="/formazione/" class="ramo card reveal spot">
           <span class="badge">Formazione</span>
           <h3>Corsi a catalogo ed edizioni aziendali</h3>
           <p>
@@ -80,17 +82,17 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
             contrattualistica, credit management e fisco. Programmi modulabili
             ed edizioni dedicate al tuo team.
           </p>
-          <span class="ramo__cta">Esplora il catalogo →</span>
+          <span class="ramo__cta">Esplora il catalogo <Freccia /></span>
         </a>
-        <a href="/formazione/#consulenza" class="ramo card reveal spot" style="--d: .12s">
-          <span class="badge">Consulenza</span>
-          <h3>Affiancamento su GDPR, contratti e transfer pricing</h3>
+        <a href="/su-misura/" class="ramo card reveal spot" style="--d: .12s">
+          <span class="badge">Su misura</span>
+          <h3>Il corso costruito sulla vostra azienda</h3>
           <p>
-            Quando non serve un corso ma una mano esperta subito: adeguamento
-            privacy con DPO esterno, contrattualistica nazionale e
-            internazionale, documentazione di transfer price.
+            Quando il catalogo non basta: partiamo dal problema, scriviamo il
+            programma, lavoriamo sui vostri contratti e sulle vostre procedure.
+            Durata, taglio e formato li decidete voi.
           </p>
-          <span class="ramo__cta">Scopri la consulenza →</span>
+          <span class="ramo__cta">Come funziona <Freccia /></span>
         </a>
       </div>
     </div>
@@ -137,7 +139,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   </section>
 
   <!-- VALORI -->
-  <section class="section section--tinted">
+  <section class="section">
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">Perché noi</p>
@@ -145,7 +147,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
       </div>
       <div class="grid grid--2">
         <div class="card reveal spot">
-          <h3>Team giovane, radici solide</h3>
+          <h3>La materia la pratichiamo, non solo la insegniamo</h3>
           <p>
             Professionisti con background giuridico e internazionale, abituati a
             parlare la lingua delle imprese, non solo quella dei codici.
@@ -156,6 +158,21 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
           <p>
             Ogni corso parte dalle tue esigenze specifiche: durata, taglio e
             casi pratici. Il catalogo è la base, la personalizzazione è la regola.
+          </p>
+        </div>
+        <div class="card reveal spot" style="--d: .24s">
+          <h3>Risposte in tempi da impresa</h3>
+          <p>
+            Chi scrive riceve una risposta vera, con programma e proposta
+            economica, non un modulo di ricontatto. Le decisioni aziendali non
+            aspettano.
+          </p>
+        </div>
+        <div class="card reveal spot" style="--d: .36s">
+          <h3>Aggiornati alla norma di oggi</h3>
+          <p>
+            I programmi si riscrivono quando cambia la legge, non a fine anno:
+            il diritto d'impresa si muove più in fretta dei cataloghi.
           </p>
         </div>
       </div>
@@ -169,7 +186,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
         href={LINKEDIN_URL}
         target="_blank"
         rel="noopener"
-        class="linkedin-banner spot spot--dark reveal"
+        class="linkedin-banner spot reveal"
       >
         <div class="linkedin-banner__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
@@ -181,37 +198,76 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
             seguici e resta aggiornato dove lavori ogni giorno.
           </p>
         </div>
-        <span class="btn btn--light linkedin-banner__cta">Segui Mens Sana Formazione</span>
+        <span class="btn btn--primary linkedin-banner__cta">Segui Mens Sana Formazione</span>
       </a>
     </div>
   </section>
 
-  <!-- CTA FINALE -->
-  <section class="section cta-final">
-    <div class="container reveal">
-      <h2>Parliamo del tuo progetto</h2>
-      <p>
-        Un corso per il tuo team o una consulenza su un tema specifico:
-        raccontaci di cosa hai bisogno, ti rispondiamo in fretta.
-      </p>
-      <a href="/contatti/" class="btn btn--primary">Contattaci ora</a>
+  <!-- CHIUSURA
+       ⛔ 25/08: questa fascia era color panna, e la panna sulla home compariva
+       QUI e basta. Un tono che appare una volta sola non sembra un sistema,
+       sembra un errore (segnalato da Nicola). Adesso la home chiude con lo
+       stesso blocco scuro che chiude il catalogo e le pagine area: un solo
+       gesto di chiusura, riconoscibile ovunque nel sito. -->
+  <section class="section section--dark">
+    <div class="container spot spot--rosso blocco-vivo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Parliamone</p>
+        <h2>Raccontaci cosa vi serve</h2>
+        <p>
+          Un corso a catalogo o un percorso costruito su di voi. Ti rispondiamo
+          entro un giorno lavorativo, con un programma e una proposta scritti.
+        </p>
+      </div>
+      <a href="/contatti/" class="btn btn--light">Scrivici</a>
     </div>
   </section>
 </Base>
 
 <script>
+  /* La parola del titolo: esce verso l'alto, la nuova entra da sotto dentro
+     una mascherina, e il riquadro si allarga insieme a lei. ⛔ Le larghezze si
+     misurano una volta sola all'avvio: se cambiassero durante l'animazione la
+     riga sotto ballerebbe. */
   const words = ['decidere', 'prevenire', 'controllare', 'crescere'];
   const el = document.getElementById('flip-word');
-  if (el && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const mask = document.getElementById('flip-mask');
+  const tratto = document.getElementById('firma-tratto');
+  const punto = document.getElementById('punto');
+
+  if (el && mask && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const larghezze = words.map((w) => {
+      el.textContent = w;
+      return el.getBoundingClientRect().width;
+    });
     let i = 0;
+    el.textContent = words[0];
+    mask.style.width = larghezze[0] + 'px';
+
+    /* Il tratto rosso segue la parola invece di restare fermo: si ritira
+       mentre la parola esce, e si ridisegna quando quella nuova si e'
+       fermata. Non parte insieme alla parola, perche' sottolineare qualcosa
+       che sta ancora entrando sembra un errore di sincronia. */
+    const traccia = () => tratto && tratto.classList.add('is-tracciata');
+    const ritira = () => tratto && tratto.classList.remove('is-tracciata');
+    setTimeout(traccia, 700);
+
     setInterval(() => {
       el.classList.add('is-out');
+      if (punto) punto.classList.add('is-out');
+      ritira();
       setTimeout(() => {
         i = (i + 1) % words.length;
         el.textContent = words[i];
+        mask.style.width = larghezze[i] + 'px';
         el.classList.remove('is-out');
-      }, 300);
-    }, 2600);
+        el.classList.add('is-in');
+        void el.getBoundingClientRect();
+        el.classList.remove('is-in');
+        if (punto) punto.classList.remove('is-out');
+        setTimeout(traccia, 260);
+      }, 320);
+    }, 3000);
   }
 </script>
 
@@ -219,42 +275,133 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   .hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--carta), var(--bianco));
-    padding-block: clamp(4rem, 10vw, 8rem);
+    background: var(--carta);
+    padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5rem);
+    border-bottom: 1px solid var(--grigio-100);
   }
-  .hero__blob {
+  /* ⛔ Le due macchie sfocate che vagavano sono state tolte il 24/08: non
+     dicevano niente e occupavano proprio lo spazio dove ora c'e' la pila. */
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 62rem) {
+    /* ⛔ 25/08: la pila stava troppo addosso al titolo. Lo spazio fra le due
+       colonne e' cresciuto e la pila si e' spostata a destra, dove c'era
+       spazio libero. */
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 30rem);
+      gap: clamp(3rem, 8vw, 7rem);
+    }
+  }
+  .hero__testo { max-width: 42rem; }
+  /* La firma: il tratto rosso si ridisegna a ogni parola nuova. */
+  .firma { position: relative; display: inline-block; }
+  /* ⛔ 25/08: il punto restava fermo mentre la parola spariva, e sembrava un
+     difetto invece che una scelta. Fa parte della frase, quindi fa parte
+     dell'animazione. Sta FUORI dalla mascherina di proposito: dentro, il
+     tratto rosso gli passerebbe sotto. */
+  .punto { display: inline-block; transition: opacity 0.32s ease; }
+  .punto.is-out { opacity: 0; }
+  .firma__tratto {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.55;
-    pointer-events: none;
+    left: -2%;
+    bottom: -0.16em;
+    width: 104%;
+    height: 0.34em;
+    overflow: visible;
+    fill: none;
+    stroke: var(--rosso);
+    stroke-width: 6;
+    stroke-linecap: round;
+    opacity: 0.85;
+    stroke-dasharray: 210;
+    stroke-dashoffset: 0;
   }
-  .hero__blob--1 {
-    width: 34rem;
-    height: 34rem;
-    right: -10rem;
-    top: -12rem;
-    background: radial-gradient(circle, rgba(200, 32, 47, 0.28), transparent 65%);
-    animation: blob-drift 14s ease-in-out infinite alternate;
+  /* La linea si nasconde SOLO se il JavaScript gira: senza, resta disegnata
+     invece di sparire per sempre. */
+  html.con-js .firma__tratto {
+    stroke-dashoffset: 210;
+    transition: stroke-dashoffset 0.26s ease-in;
   }
-  .hero__blob--2 {
-    width: 26rem;
-    height: 26rem;
-    left: -12rem;
-    bottom: -14rem;
-    background: radial-gradient(circle, rgba(23, 24, 28, 0.16), transparent 65%);
-    animation: blob-drift 18s ease-in-out infinite alternate-reverse;
+  /* Tracciata: parte da sinistra e arriva sotto l'ultima lettera. Si ritira
+     piu' in fretta di quanto si disegni, come un gesto vero. */
+  html.con-js .firma__tratto.is-tracciata {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.62s cubic-bezier(0.22, 0.7, 0.3, 1);
   }
-  @keyframes blob-drift {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-3.5rem, 2.5rem) scale(1.15); }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .hero__blob { animation: none; }
+    html.con-js .firma__tratto { stroke-dashoffset: 0; transition: none; }
   }
 
-  .hero__inner { position: relative; max-width: 46rem; }
+  /* --- La pila delle aree ------------------------------------------------ */
+  .pila__eti {
+    font-size: var(--fs-200);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grigio-500);
+    margin-bottom: 0.9rem;
+    padding-left: 0.4rem;
+  }
+  .pila { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pila__voce {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise-in 0.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+    animation-delay: calc(0.35s + var(--i) * 0.07s);
+    /* ⛔ Qui le righe avevano larghezze diverse, a scalare, per far sembrare
+       una pila di volumi. Nicola le ha lette come "storte", non come una
+       pila: l'effetto non arrivava e restava solo il disallineamento.
+       Tolto il 25/08. Se un'intenzione non si legge, non esiste. */
+  }
+  .pila__voce a {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.7rem 1rem 0.7rem 0.5rem;
+    background: var(--bianco);
+    border: 1px solid var(--grigio-100);
+    border-left: 5px solid var(--nero);
+    border-radius: 5px;
+    box-shadow: var(--shadow-sm);
+    color: var(--nero);
+    transition: transform var(--transition), box-shadow var(--transition),
+      border-color var(--transition);
+  }
+  .pila__voce:first-child a { border-left-color: var(--rosso); }
+  .pila__voce a:hover {
+    transform: translateX(0.5rem);
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--rosso);
+  }
+  .pila__sigla {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-600);
+    font-weight: 900;
+    text-align: center;
+    color: var(--grigio-300);
+    transition: color var(--transition);
+  }
+  .pila__voce a:hover .pila__sigla { color: var(--rosso); }
+  .pila__nome { font-weight: 700; font-size: var(--fs-300); }
+  .pila__n {
+    font-size: var(--fs-200);
+    font-weight: 700;
+    color: var(--grigio-500);
+    background: var(--grigio-100);
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pila__voce { opacity: 1; transform: none; animation: none; }
+    .firma__tratto { animation: none; stroke-dashoffset: 0; }
+  }
+
   .hero__sub {
     margin-top: 1.5rem;
     font-size: var(--fs-500);
@@ -291,33 +438,39 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
 
 
   .metodo {
-    border-top: 2px solid var(--grigio-900);
+    border-top: 2px solid var(--grigio-700);
     padding-top: 1.25rem;
   }
   .metodo__num {
+    font-family: var(--font-titoli);
     font-size: var(--fs-700);
-    font-weight: 800;
-    color: var(--rosso);
+    font-weight: 900;
+    color: var(--rosso-chiaro);
     letter-spacing: -0.02em;
   }
   .metodo h3 { margin-block: 0.5rem; font-size: var(--fs-500); }
   .metodo p { color: var(--grigio-300); font-size: var(--fs-300); }
 
+  /* ⛔ Era un blocco azzurro in sfumatura, l'unica cosa fredda di una pagina
+     tutta calda: sembrava incollata da un altro sito. Adesso il riquadro e'
+     della famiglia del sito e l'azzurro resta solo nella mattonella
+     dell'icona, che e' il segno con cui LinkedIn si riconosce. */
   .linkedin-banner {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: clamp(1.2rem, 3vw, 2.2rem);
-    background: linear-gradient(120deg, #0a66c2, #084d92 55%, var(--nero));
-    color: rgba(255, 255, 255, 0.85);
+    background: var(--bianco);
+    color: var(--grigio-700);
+    border: 1px solid var(--grigio-100);
     border-radius: var(--radius-lg);
     padding: clamp(1.6rem, 4vw, 2.6rem) clamp(1.4rem, 4vw, 3rem);
-    box-shadow: 0 16px 44px rgba(10, 102, 194, 0.35);
+    box-shadow: var(--shadow-md);
     transition: transform var(--transition), box-shadow var(--transition);
   }
   .linkedin-banner:hover {
     transform: translateY(-3px);
-    box-shadow: 0 22px 54px rgba(10, 102, 194, 0.45);
+    box-shadow: var(--shadow-lg);
   }
   .linkedin-banner__icon {
     display: grid;
@@ -325,26 +478,20 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     width: 3.6rem;
     height: 3.6rem;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.14);
+    background: #0a66c2;
     color: #fff;
   }
   .linkedin-banner__text h2 {
-    color: #fff;
+    color: var(--nero);
     font-size: var(--fs-600);
     margin-bottom: 0.35rem;
   }
-  .linkedin-banner__text p { font-size: var(--fs-300); max-width: 34rem; }
+  .linkedin-banner__text p { font-size: var(--fs-300); max-width: 34rem; color: var(--grigio-700); }
   .linkedin-banner__cta { white-space: nowrap; }
   @media (max-width: 760px) {
     .linkedin-banner { grid-template-columns: 1fr; text-align: left; }
     .linkedin-banner__cta { justify-self: start; }
   }
 
-  .cta-final { text-align: center; }
-  .cta-final .container { max-width: 42rem; }
-  .cta-final p {
-    margin-block: 1rem 2rem;
-    color: var(--grigio-700);
-    font-size: var(--fs-500);
-  }
+
 </style>

@@ -1,0 +1,197 @@
+---
+import Base from '../layouts/Base.astro';
+import { aree } from '../data/corsi.js';
+
+const passi = [
+  {
+    n: '01',
+    titolo: 'Ci raccontate il problema',
+    testo:
+      "Non partiamo da un catalogo ma da una domanda: cosa deve saper fare la vostra squadra dopo il corso, e cosa oggi non riesce a fare. Basta una telefonata o una mail.",
+  },
+  {
+    n: '02',
+    titolo: 'Vi mandiamo il programma',
+    testo:
+      "Ricevete un programma scritto, con argomenti, durata, docente e proposta economica. Se non va bene si cambia: fino a quel momento non avete impegnato nulla.",
+  },
+  {
+    n: '03',
+    titolo: 'Il corso si svolge sui vostri casi',
+    testo:
+      "Le esercitazioni si costruiscono sui vostri contratti, sulle vostre procedure e sui vostri fornitori, non su esempi da manuale.",
+  },
+  {
+    n: '04',
+    titolo: 'Restiamo raggiungibili dopo',
+    testo:
+      "Finito il corso il rapporto non si chiude: quando la norma cambia o arriva il caso vero, il docente è ancora raggiungibile.",
+  },
+];
+
+const leve = [
+  { titolo: 'La durata', testo: "Da una mezza giornata al percorso lungo diviso in moduli. Le ore le decide il programma, non il listino." },
+  { titolo: 'Il taglio', testo: "Lo stesso argomento cambia a seconda di chi ascolta: un consiglio di amministrazione, un ufficio legale, la rete commerciale." },
+  { titolo: 'I casi pratici', testo: "Portate i vostri documenti: contratti, modelli organizzativi, procedure interne. Si lavora su quelli." },
+  { titolo: 'Il formato', testo: "Videolezione con studio guidato, incontri a distanza, oppure in presenza nella vostra sede." },
+  { titolo: 'I materiali', testo: "Slide, check list e modelli restano a voi, e restano utilizzabili anche dopo il corso." },
+  { titolo: 'Il tema', testo: "Se serve un argomento che a catalogo non c'è, si costruisce da zero: il catalogo è il punto di partenza, non il confine." },
+];
+---
+
+<Base
+  title="Formazione su misura per aziende ed enti | Mens Sana Formazione"
+  description="Costruiamo il corso sulle vostre esigenze: durata, taglio, casi pratici e formato. Programma e proposta economica scritti, senza impegno. Milano, dal 2017."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Su misura</p>
+      <h1>Il corso che vi serve<br />non è a catalogo?<br /><span class="text-rosso">Lo costruiamo.</span></h1>
+      <p class="page-hero__sub">
+        Il catalogo è la base, la personalizzazione è la regola. Partiamo dalle
+        caratteristiche e dai bisogni della vostra organizzazione e scriviamo un
+        programma dedicato, con il docente giusto per quella materia.
+      </p>
+      <a href="/contatti/" class="btn btn--primary">Raccontaci cosa vi serve</a>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Come funziona</p>
+        <h2>Quattro passaggi, nessun impegno fino alla firma</h2>
+      </div>
+      <div class="grid grid--2">
+        {passi.map((p, i) => (
+          <div class="passo reveal" style={`--d: ${i * 0.1}s`}>
+            <span class="passo__n">{p.n}</span>
+            <h3>{p.titolo}</h3>
+            <p>{p.testo}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA SI MODULA -->
+  <section class="section section--tinted">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Cosa si modula</p>
+        <h2>Sei cose che cambiamo per voi</h2>
+        <p>
+          Un'edizione aziendale non è lo stesso corso spostato di sede: cambia
+          quello che serve, e resta quello che funziona.
+        </p>
+      </div>
+      <div class="grid grid--3">
+        {leve.map((l, i) => (
+          <div class="card reveal spot" style={`--d: ${i * 0.08}s`}>
+            <h3>{l.titolo}</h3>
+            <p>{l.testo}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DA DOVE SI PARTE -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Da dove si parte</p>
+        <h2>Le materie che trattiamo</h2>
+        <p>
+          Ogni area del catalogo può diventare un percorso dedicato. E se il tema
+          non è in elenco, si progetta.
+        </p>
+      </div>
+      <ul class="materie reveal">
+        {aree.map((a) => (
+          <li>
+            <a href={`/formazione/${a.slug}/`}>
+              <span class="materie__sigla">{a.sigla}</span>
+              <span>{a.nome}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-final">
+    <div class="container reveal">
+      <h2>Partiamo dal vostro problema</h2>
+      <p>
+        Scriveteci cosa deve saper fare la vostra squadra dopo il corso: vi
+        rispondiamo con un programma e una proposta chiara, senza sorprese.
+      </p>
+      <a href="/contatti/" class="btn btn--primary">Richiedi una proposta</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    background: var(--carta);
+    border-bottom: 1px solid var(--grigio-100);
+    padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
+  }
+  .page-hero__sub {
+    margin-block: 1.5rem 2rem;
+    font-size: var(--fs-500);
+    color: var(--grigio-700);
+    max-width: 44rem;
+  }
+
+  .passo {
+    border-top: 2px solid var(--grigio-900);
+    padding-top: 1.1rem;
+  }
+  .passo__n {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-700);
+    font-weight: 900;
+    color: var(--rosso);
+  }
+  .passo h3 { margin-block: 0.4rem 0.5rem; font-size: var(--fs-600); }
+  .passo p { color: var(--grigio-700); }
+
+  .materie {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .materie a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius);
+    color: var(--bianco);
+    font-weight: 700;
+    font-size: var(--fs-300);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .materie a:hover { border-color: var(--rosso-chiaro); transform: translateX(0.35rem); }
+  .materie__sigla {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-600);
+    font-weight: 900;
+    color: var(--rosso-chiaro);
+    min-width: 1.4rem;
+  }
+
+  .cta-final { text-align: center; }
+  .cta-final .container { max-width: 42rem; }
+  .cta-final p {
+    margin-block: 1rem 2rem;
+    color: var(--grigio-700);
+    font-size: var(--fs-500);
+  }
+</style>

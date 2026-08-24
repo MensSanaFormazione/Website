@@ -1,230 +1,327 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import Base from '../layouts/Base.astro';
-import { aree, areeSuRichiesta, consulenze, mostraPrezzo } from '../data/corsi.js';
+import Freccia from '../components/Freccia.astro';
+import { aree, areeSuRichiesta, mostraPrezzo } from '../data/corsi.js';
 
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const conCorsi = aree.filter((a) => a.corsi.length > 0);
+const nCorsi = conCorsi.reduce((n, a) => n + a.corsi.length, 0);
+
+/* Ogni area mostra la sua grafica appena il file compare in `public/aree/`.
+   Finche' non c'e' si vede la lettera: niente immagini rotte.
+   ⛔ Il percorso parte da `process.cwd()`, NON da `import.meta.url`: in build
+   Astro compila la pagina in `dist/.prerender/chunks/`, quindi un percorso
+   relativo al modulo finisce a cercare in `dist/public/` e non trova mai
+   niente. Sbagliato in silenzio: le immagini c'erano e restava il segnaposto. */
+const haImmagine = (slug) =>
+  fs.existsSync(path.join(process.cwd(), 'public', 'aree', `${slug}.webp`));
 ---
 
 <Base
-  title="Formazione & Consulenza Legal e Compliance | Mens Sana Formazione"
-  description="Catalogo corsi in videolezione: diritto societario, compliance, contrattualistica, credit management, finance e fiscale. Consulenza GDPR, contratti e transfer pricing."
+  title="Catalogo corsi Legal & Compliance | Mens Sana Formazione"
+  description="Ventidue corsi in otto aree: diritto societario, organismi di controllo, contrattualistica, credit management, finance e fiscale, compliance, business coaching, digitalizzazione PA."
 >
-  <!-- INTRO -->
-  <section class="page-hero">
+  <!-- ⛔ Qui c'erano DUE introduzioni in fila, ognuna con il suo titolone in
+       serif e il suo paragrafo grigio: "Ventidue corsi in otto aree" e subito
+       dopo "Da dove vuoi partire?". Si leggevano due volte le stesse cose
+       prima di vedere un corso. Fuse in una sola il 25/08, su segnalazione di
+       Nicola: titolo, una riga, e subito le aree. -->
+  <section class="section catalogo-apertura" id="aree">
     <div class="container">
-      <p class="eyebrow">Il cuore storico</p>
-      <h1>Formazione &amp; Consulenza<br />Legal / Compliance</h1>
-      <p class="page-hero__sub">
-        Corsi in videolezione con studio guidato, pensati per chi in azienda
-        deve decidere, controllare e firmare. E consulenza operativa dove serve
-        una mano esperta subito.
-      </p>
-    </div>
-  </section>
-
-  <!-- CATALOGO -->
-  <section class="section" id="catalogo">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Catalogo corsi</p>
-        <h2>Scegli la tua area</h2>
-        <p>
-          Tutti i corsi sono erogati in formato videolezione + studio
-          individuale. Prezzi IVA esclusa. Possibilità di edizioni aziendali su
-          misura.
+      <div class="catalogo-testa">
+        <p class="eyebrow">Il catalogo</p>
+        <h1>Ventidue corsi<br />in otto aree</h1>
+        <p class="catalogo-testa__sub">
+          Ogni area è un mestiere diverso: apri quella che ti riguarda e trovi
+          solo i suoi corsi. Ognuno può diventare un'edizione aziendale
+          costruita sulle vostre esigenze.
         </p>
       </div>
 
-      <div class="filtri reveal">
-        <button class="chip is-active" data-filter="all">Tutte le aree</button>
-        {aree.map((area) => (
-          <button class="chip" data-filter={area.sigla}>
-            {area.sigla} · {area.nome}
-          </button>
-        ))}
-      </div>
-
-      <div class="grid grid--3 catalogo-grid reveal" id="catalogo-grid">
-        {aree.map((area) =>
-          area.corsi.map((corso) => (
-            <a href={`/corsi/${corso.slug}/`} class="card corso spot" data-area={area.sigla}>
-              <div class="corso__top">
-                <span class="badge">{corso.cod}</span>
-                <span class="corso__area">{area.nome}</span>
-              </div>
-              <h4>{corso.titolo}</h4>
-              <p class="corso__sotto">{corso.sottotitolo}</p>
-              <p class="corso__prezzo">
-                {mostraPrezzo(corso) ? (
-                  <>{fmtPrezzo(corso.prezzo)} € <small>+ IVA</small></>
-                ) : (
-                  <small>Quota su richiesta</small>
-                )}
+      <div class="aree-griglia">
+        {conCorsi.map((area, i) => (
+          <a
+            href={`/formazione/${area.slug}/`}
+            class="area-card reveal spot"
+            style={`--d: ${i * 0.06}s`}
+          >
+            <div class="area-card__figura">
+              {haImmagine(area.slug) ? (
+                <img src={`/aree/${area.slug}.webp`} alt="" width="640" height="480" loading="lazy" />
+              ) : (
+                <div class="area-card__segno" aria-hidden="true">{area.sigla}</div>
+              )}
+            </div>
+            <div class="area-card__testo">
+              <p class="area-card__eti">
+                Area {area.sigla}
+                <span>{area.corsi.length} {area.corsi.length === 1 ? 'corso' : 'corsi'}</span>
               </p>
-              <span class="corso__link">Scopri il corso →</span>
-            </a>
-          ))
-        )}
-      </div>
-
-      <div class="su-richiesta reveal">
-        <h3>Altre aree su richiesta</h3>
-        <p>
-          Progettiamo percorsi dedicati anche in queste aree: contattaci per
-          un programma su misura:
-        </p>
-        <ul>
-          {areeSuRichiesta.map((a) => (
-            <li><strong>{a.sigla}</strong> {a.nome}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONSULENZA -->
-  <section class="section section--dark" id="consulenza">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Consulenza</p>
-        <h2>Quando serve chi lo fa di mestiere</h2>
-        <p>
-          Oltre alla formazione, affianchiamo le imprese direttamente
-          sull'operatività legale e di compliance.
-        </p>
-      </div>
-      <div class="grid grid--3">
-        {consulenze.map((c) => (
-          <div class="consulenza reveal">
-            <h3>{c.titolo}</h3>
-            <p>{c.testo}</p>
-          </div>
+              <h3>{area.nome}</h3>
+              <p class="area-card__occhiello">{area.occhiello}</p>
+              <span class="area-card__cta">Vedi i corsi <Freccia /></span>
+            </div>
+          </a>
         ))}
       </div>
+
+      {areeSuRichiesta.length > 0 && (
+        <div class="su-richiesta reveal">
+          <h3>Altre aree su richiesta</h3>
+          <p>
+            Progettiamo percorsi dedicati anche in queste aree: contattaci per
+            un programma su misura.
+          </p>
+          <ul>
+            {areeSuRichiesta.map((a) => (
+              <li><strong>{a.sigla}</strong> {a.nome}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section--tinted cta-form">
-    <div class="container reveal">
-      <h2>Formazione su misura per la tua azienda?</h2>
-      <p>
-        Raccontaci esigenze, numeri e tempi: costruiamo il percorso giusto e ti
-        mandiamo una proposta chiara, senza sorprese.
-      </p>
-      <a href="/contatti/" class="btn btn--primary">Richiedi una proposta</a>
+  <!-- INDICE COMPLETO -->
+  <section class="section section--tinted" id="catalogo">
+    <div class="container">
+      <!-- ⛔ L'indice e' chiuso all'arrivo: con 22 corsi, aperto occupava piu'
+           schermate e spingeva in fondo tutto il resto. `<details>` e' nativo,
+           quindi funziona anche senza JavaScript. -->
+      <details class="indice-tutto reveal">
+        <summary>
+          <span class="eyebrow">Indice</span>
+          <h2>Tutti i {nCorsi} corsi</h2>
+          <span class="indice-tutto__stato"><Freccia /></span>
+        </summary>
+
+        <p class="indice-tutto__nota">
+          Prezzi IVA esclusa, riferiti al singolo partecipante. Le edizioni
+          aziendali si valutano caso per caso.
+        </p>
+
+      {conCorsi.map((area) => (
+        <div class="indice">
+          <h3 class="indice__area">
+            <a href={`/formazione/${area.slug}/`}>
+              <span class="indice__sigla">{area.sigla}</span>{area.nome}
+            </a>
+          </h3>
+          <ul>
+            {area.corsi.map((corso) => (
+              <li>
+                <a href={`/corsi/${corso.slug}/`}>
+                  <span class="indice__cod">{corso.cod}</span>
+                  <span class="indice__titolo">{corso.titolo}</span>
+                  <span class="indice__durata">{corso.durataVideo}</span>
+                  <span class="indice__prezzo">
+                    {mostraPrezzo(corso) ? `${fmtPrezzo(corso.prezzo)} €` : 'Su richiesta'}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      </details>
     </div>
   </section>
+
+  <!-- SU MISURA -->
+  <section class="section section--dark" id="consulenza">
+    <div class="container spot spot--rosso blocco-vivo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Su misura</p>
+        <h2>Nessuno di questi corsi è quello che vi serve?</h2>
+        <p>
+          Il catalogo è il punto di partenza. Durata, taglio, casi pratici e
+          formato si costruiscono sulla vostra organizzazione, e se il tema non
+          è in elenco si progetta da zero.
+        </p>
+      </div>
+      <a href="/su-misura/" class="btn btn--light">Come funziona un corso su misura</a>
+    </div>
+  </section>
+
+  <!-- ⛔ Qui c'era una seconda chiamata all'azione, "Un corso per la tua
+       squadra?" con il pulsante "Richiedi una proposta". Tolta il 25/08 su
+       richiesta di Nicola: arrivava subito dopo il blocco scuro "Su misura",
+       che finisce gia' con un pulsante, quindi erano due inviti in fila e il
+       secondo indeboliva il primo. Il testo, se dovesse servire, sta nel log
+       della sessione. -->
 </Base>
 
-<script>
-  const chips = document.querySelectorAll<HTMLButtonElement>('.chip[data-filter]');
-  const cards = document.querySelectorAll<HTMLElement>('.corso[data-area]');
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      chips.forEach((c) => c.classList.remove('is-active'));
-      chip.classList.add('is-active');
-      const f = chip.dataset.filter;
-      cards.forEach((card) => {
-        const show = f === 'all' || card.dataset.area === f;
-        card.classList.remove('pop-in');
-        if (show) {
-          card.style.display = '';
-          void card.offsetWidth; // riavvia l'animazione
-          card.classList.add('pop-in');
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
-
 <style>
-  .filtri {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
-  }
-  .catalogo-grid { margin-bottom: 2.5rem; }
-  .corso__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-  .corso__area {
-    font-size: var(--fs-200);
-    font-weight: 600;
-    color: var(--grigio-500);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    text-align: right;
-  }
-
-  .page-hero {
-    background:
-      radial-gradient(ellipse 55% 60% at 90% 0%, rgba(200, 32, 47, 0.08), transparent),
-      var(--carta);
-    padding-block: clamp(3.5rem, 8vw, 6rem);
-  }
-  .page-hero__sub {
-    margin-top: 1.25rem;
-    max-width: 38rem;
+  .catalogo-apertura { padding-top: clamp(2.5rem, 6vw, 4rem); }
+  .catalogo-testa { max-width: 44rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
+  .catalogo-testa__sub {
+    margin-top: 1.2rem;
     font-size: var(--fs-500);
     color: var(--grigio-700);
   }
 
-  .corso { display: flex; flex-direction: column; gap: 0.7rem; color: inherit; }
-  .corso h4 { font-size: var(--fs-400); }
-  .corso__sotto {
-    font-size: var(--fs-300);
-    color: var(--grigio-500);
-    flex-grow: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  /* --- Le otto aree ------------------------------------------------------ */
+  .aree-griglia {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .aree-griglia { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 64rem) {
+    .aree-griglia { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  .area-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bianco);
+    border: 1px solid var(--grigio-100);
+    border-radius: var(--radius);
     overflow: hidden;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition),
+      border-color var(--transition);
   }
-  .corso__prezzo {
-    font-size: var(--fs-600);
-    font-weight: 800;
-    color: var(--nero);
-    letter-spacing: -0.01em;
+  .area-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--grigio-300);
   }
-  .corso__prezzo small {
+  .area-card__figura { position: relative; aspect-ratio: 4 / 3; background: var(--carta); }
+  .area-card__figura img { width: 100%; height: 100%; object-fit: cover; }
+  .area-card__segno {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-titoli);
+    font-size: clamp(3.5rem, 9vw, 5rem);
+    font-weight: 900;
+    color: var(--grigio-300);
+    background-color: var(--grigio-100);
+    background-image: linear-gradient(135deg, var(--grigio-100), var(--carta) 65%);
+  }
+  .area-card__testo { display: flex; flex-direction: column; gap: 0.45rem; padding: 1.2rem; flex-grow: 1; }
+  .area-card__eti {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6rem;
     font-size: var(--fs-200);
-    font-weight: 600;
-    color: var(--grigio-500);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rosso);
   }
-  .corso__link { font-weight: 700; font-size: var(--fs-300); }
+  .area-card__eti span { color: var(--grigio-500); letter-spacing: 0.04em; }
+  .area-card h3 { font-size: var(--fs-500); }
+  .area-card__occhiello { font-size: var(--fs-300); color: var(--grigio-700); flex-grow: 1; }
+  .area-card__cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--fs-300);
+    font-weight: 700;
+    color: var(--rosso);
+  }
 
   .su-richiesta {
-    margin-top: 1rem;
-    padding: 1.75rem;
-    border: 1.5px dashed var(--grigio-300);
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border: 1px dashed var(--grigio-300);
     border-radius: var(--radius);
-    background: var(--carta);
   }
-  .su-richiesta h3 { margin-bottom: 0.4rem; }
-  .su-richiesta ul {
-    list-style: none;
+  .su-richiesta h3 { font-size: var(--fs-500); margin-bottom: 0.4rem; }
+  .su-richiesta p { color: var(--grigio-700); font-size: var(--fs-300); }
+  .su-richiesta ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
+  .su-richiesta li {
+    background: var(--grigio-100);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    font-size: var(--fs-300);
+  }
+  .su-richiesta strong { color: var(--rosso); margin-right: 0.3rem; }
+
+  /* --- Indice completo, apribile ----------------------------------------- */
+  .indice-tutto > summary {
     display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
     flex-wrap: wrap;
-    gap: 0.6rem 1.8rem;
-    margin-top: 0.8rem;
+    cursor: pointer;
+    list-style: none;
+    padding-block: 0.4rem;
   }
-  .su-richiesta strong { color: var(--rosso); }
-
-  .consulenza {
-    border-top: 2px solid var(--rosso);
-    padding-top: 1.2rem;
+  .indice-tutto > summary::-webkit-details-marker { display: none; }
+  .indice-tutto > summary h2 { font-size: var(--fs-700); }
+  .indice-tutto > summary .eyebrow { margin-bottom: 0; }
+  .indice-tutto > summary:hover h2 { color: var(--rosso); }
+  .indice-tutto > summary:focus-visible { outline: 2px solid var(--rosso); outline-offset: 6px; }
+  .indice-tutto__stato {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-300);
+    font-weight: 700;
+    color: var(--rosso);
   }
-  .consulenza h3 { font-size: var(--fs-500); margin-bottom: 0.5rem; }
-  .consulenza p { color: var(--grigio-300); font-size: var(--fs-300); }
+  .indice-tutto__stato::before { content: 'Apri'; }
+  .indice-tutto[open] .indice-tutto__stato::before { content: 'Chiudi'; }
+  /* La freccia del marchio fa da segno: verso il basso quando e' chiuso,
+     verso l'alto quando e' aperto. */
+  .indice-tutto__stato .freccia { transform: rotate(90deg); transition: transform var(--transition); }
+  .indice-tutto[open] .indice-tutto__stato .freccia { transform: rotate(-90deg); }
+  .indice-tutto__nota {
+    margin-block: 1rem 2rem;
+    max-width: 40rem;
+    color: var(--grigio-700);
+    font-size: var(--fs-300);
+  }
 
-  .cta-form { text-align: center; }
-  .cta-form .container { max-width: 42rem; }
-  .cta-form p { margin-block: 1rem 2rem; color: var(--grigio-700); }
+  .indice { margin-bottom: 2.2rem; }
+  .indice__area { font-size: var(--fs-600); margin-bottom: 0.7rem; }
+  .indice__area a { color: var(--nero); display: inline-flex; align-items: baseline; }
+  .indice__area a:hover { color: var(--rosso); }
+  .indice__sigla {
+    color: var(--rosso);
+    margin-right: 0.6rem;
+    font-family: var(--font-titoli);
+  }
+  .indice ul { list-style: none; border-top: 1px solid var(--grigio-300); }
+  .indice li { border-bottom: 1px solid var(--grigio-300); }
+  .indice li a {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    align-items: baseline;
+    gap: 0.3rem 0.9rem;
+    padding: 0.7rem 0.4rem;
+    color: var(--nero);
+    transition: background var(--transition), padding-left var(--transition);
+  }
+  .indice li a:hover { background: var(--bianco); padding-left: 0.9rem; }
+  .indice__cod {
+    font-size: var(--fs-200);
+    font-weight: 700;
+    color: var(--grigio-500);
+    grid-row: span 2;
+  }
+  .indice__titolo { font-weight: 700; font-size: var(--fs-300); }
+  .indice__durata { font-size: var(--fs-200); color: var(--grigio-500); grid-column: 2; }
+  .indice__prezzo {
+    font-size: var(--fs-300);
+    font-weight: 700;
+    color: var(--nero);
+    grid-column: 2;
+    justify-self: start;
+  }
+  @media (min-width: 48rem) {
+    .indice li a { grid-template-columns: 2.6rem minmax(0, 1fr) 12rem 7rem; }
+    .indice__durata { grid-column: auto; }
+    .indice__prezzo { grid-column: auto; justify-self: end; }
+  }
+
+
 </style>

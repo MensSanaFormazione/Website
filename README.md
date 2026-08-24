@@ -86,3 +86,29 @@ l'invito a scrivere direttamente a info@. Antispam: campo honeypot invisibile.
   vecchio sito** (controllato il 06/08: il footer ha solo indirizzo, telefoni,
   email, PEC e P.IVA), quindi vanno presi dalla visura. Vedi `CLAUDE.md`,
   voce 31-bis.
+
+## Caratteri (dal 24/08/2026)
+
+⛔ **Fino al 24/08 il sito non aveva un carattere suo.** `global.css` dichiarava
+`"Inter"` ma non lo caricava: nessun `@font-face`, nessun file. Ogni visitatore
+lo vedeva col carattere del proprio sistema, quindi San Francisco su Mac e
+iPhone, Segoe UI su Windows, Roboto su Android.
+
+Ora sono **self-hostati in `public/fonts/`**, sottoinsiemi `latin` e
+`latin-ext`, con le regole `@font-face` in cima a `src/styles/global.css`:
+
+- **Fraunces** (variabile, 600-900) per i titoli, `--font-titoli`
+- **Inter** (variabile, 400-800) per il testo, `--font-testo`
+
+⛔ **Nessuna chiamata a Google Fonts:** il sito resta a zero terze parti e zero
+cookie, che è la condizione per non avere il banner.
+
+**Per cambiare carattere ai titoli** basta `--font-titoli` in `global.css`, più
+`font-variation-settings` nella regola `h1, h2, h3, h4` (le impostazioni sono di
+Fraunces e vanno tolte se si cambia famiglia).
+
+**Per rigenerare i file:** si scarica il CSS di Google Fonts con uno user agent
+da browser, si tengono solo i blocchi `latin` e `latin-ext`, si scaricano i
+`woff2` in `public/fonts/` e si riscrivono gli `src` con i percorsi locali.
+⚠️ I due `<link rel="preload">` in `Base.astro` puntano ai file `latin`: se
+cambiano nome vanno aggiornati.

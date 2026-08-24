@@ -1,0 +1,9 @@
+# Mens Sana Formazione
+# L'area riservata non va indicizzata: le sue pagine dichiarano gia' noindex,
+# qui si evita anche la visita.
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://www.mensanaformazione.com/sitemap.xml

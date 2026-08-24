@@ -1,9 +1,80 @@
-# Rimandi dagli indirizzi del vecchio sito Drupal (18/08/2026).
+# Rimandi dagli indirizzi del vecchio sito Drupal.
 # Google ha ancora in indice gli URL /it/... e /en/..., che qui non esistono:
 # senza questi rimandi chi arriva dai risultati di ricerca finisce sulla 404.
-# Le regole piu' specifiche vanno PRIMA di quelle generiche.
+# ⛔ Le regole piu' specifiche vanno PRIMA di quelle generiche, e un 301 resta
+# memorizzato dal browser: si scrivono bene la prima volta.
+#
+# 24/08: prima le 22 pagine corso e le 8 pagine area finivano tutte sulla
+# pagina generica del catalogo. Ora ognuna arriva a casa sua. I percorsi
+# vecchi sono stati letti sull'archivio di web.archive.org, non indovinati.
 
+# --- Le 22 schede corso, ognuna sulla sua ---
+/it/corsi/diritto-societario/a1-gli-organi-societari-ed-i-modelli-organizzativi  /corsi/a1-organi-societari-e-modelli-organizzativi/  301
+/en/corsi/diritto-societario/a1-gli-organi-societari-ed-i-modelli-organizzativi  /corsi/a1-organi-societari-e-modelli-organizzativi/  301
+/it/corsi/organismi-di-controllo/b1-la-funzione-di-internal-auditing  /corsi/b1-internal-auditing/  301
+/en/corsi/organismi-di-controllo/b1-la-funzione-di-internal-auditing  /corsi/b1-internal-auditing/  301
+/it/corsi/organismi-di-controllo/b2-la-funzione-di-risk-management  /corsi/b2-risk-management/  301
+/en/corsi/organismi-di-controllo/b2-la-funzione-di-risk-management  /corsi/b2-risk-management/  301
+/it/corsi/organismi-di-controllo/b3-la-funzione-di-compliance-e-lanticorruption  /corsi/b3-compliance-e-anticorruption/  301
+/en/corsi/organismi-di-controllo/b3-la-funzione-di-compliance-e-lanticorruption  /corsi/b3-compliance-e-anticorruption/  301
+/it/corsi/contrattualistica/c1-contratti-nazionali-dimpresa  /corsi/c1-contratti-nazionali-impresa/  301
+/en/corsi/contrattualistica/c1-contratti-nazionali-dimpresa  /corsi/c1-contratti-nazionali-impresa/  301
+/it/corsi/contrattualistica/c2-contratti-internazionali  /corsi/c2-contratti-internazionali/  301
+/en/corsi/contrattualistica/c2-contratti-internazionali  /corsi/c2-contratti-internazionali/  301
+/it/corsi/contrattualistica/c3-contratti-pubblici  /corsi/c3-contratti-pubblici/  301
+/en/corsi/contrattualistica/c3-contratti-pubblici  /corsi/c3-contratti-pubblici/  301
+/it/corsi/credit-management/d1-recupero-dei-crediti-i-normativa-e-aspetti-legali  /corsi/d1-recupero-crediti-legale/  301
+/en/corsi/credit-management/d1-recupero-dei-crediti-i-normativa-e-aspetti-legali  /corsi/d1-recupero-crediti-legale/  301
+/it/corsi/credit-management/d2-recupero-dei-crediti-ii-la-fase-giudiziale-ed-esecutiva  /corsi/d2-recupero-crediti-giudiziale/  301
+/en/corsi/credit-management/d2-recupero-dei-crediti-ii-la-fase-giudiziale-ed-esecutiva  /corsi/d2-recupero-crediti-giudiziale/  301
+/it/corsi/credit-management/d3-la-gestione-del-credito-commerciale  /corsi/d3-credito-commerciale/  301
+/en/corsi/credit-management/d3-la-gestione-del-credito-commerciale  /corsi/d3-credito-commerciale/  301
+/it/corsi/finance-e-fiscale/e1-diritto-tributario-e-contenzioso-tributario  /corsi/e1-diritto-tributario/  301
+/en/corsi/finance-e-fiscale/e1-diritto-tributario-e-contenzioso-tributario  /corsi/e1-diritto-tributario/  301
+/it/corsi/finance-e-fiscale/e2-i-controlli-di-gestione-impresa  /corsi/e2-controlli-di-gestione/  301
+/en/corsi/finance-e-fiscale/e2-i-controlli-di-gestione-impresa  /corsi/e2-controlli-di-gestione/  301
+/it/corsi/finance-e-fiscale/e3-principi-di-economia-e-finanza-dimpresa  /corsi/e3-economia-e-finanza-impresa/  301
+/en/corsi/finance-e-fiscale/e3-principi-di-economia-e-finanza-dimpresa  /corsi/e3-economia-e-finanza-impresa/  301
+/it/corsi/finance-e-fiscale/e4-project-management  /corsi/e4-project-management/  301
+/en/corsi/finance-e-fiscale/e4-project-management  /corsi/e4-project-management/  301
+/it/corsi/compliance/f1-regolamento-europeo-ambito-privacy-gdpr-il-data-protection-officer  /corsi/f1-gdpr-e-dpo/  301
+/en/corsi/compliance/f1-regolamento-europeo-ambito-privacy-gdpr-il-data-protection-officer  /corsi/f1-gdpr-e-dpo/  301
+/it/corsi/compliance/f2-responsabilita-amministrativa-degli-enti-ed-i-reati-amministrativi-dlgs-23101  /corsi/f2-responsabilita-enti-231/  301
+/en/corsi/compliance/f2-responsabilita-amministrativa-degli-enti-ed-i-reati-amministrativi-dlgs-23101  /corsi/f2-responsabilita-enti-231/  301
+/it/corsi/compliance/f3-lantiriciclaggio-ex-dlgs-2312007  /corsi/f3-antiriciclaggio/  301
+/en/corsi/compliance/f3-lantiriciclaggio-ex-dlgs-2312007  /corsi/f3-antiriciclaggio/  301
+/it/corsi/business-coaching/g1-making-it-substainable  /corsi/g1-conversazioni-di-coaching/  301
+/en/corsi/business-coaching/g1-making-it-substainable  /corsi/g1-conversazioni-di-coaching/  301
+/it/corsi/business-coaching/g2-la-vision-e-lo-scopo  /corsi/g2-la-vision-e-lo-scopo/  301
+/en/corsi/business-coaching/g2-la-vision-e-lo-scopo  /corsi/g2-la-vision-e-lo-scopo/  301
+/it/corsi/business-coaching/g3-success-coaching  /corsi/g3-success-coaching/  301
+/en/corsi/business-coaching/g3-success-coaching  /corsi/g3-success-coaching/  301
+/it/corsi/digitalizzazione-della-pubblica-amministrazione/h1-ciclo-di-vita-del-documento-informatico  /corsi/h1-documento-informatico/  301
+/en/corsi/digitalizzazione-della-pubblica-amministrazione/h1-ciclo-di-vita-del-documento-informatico  /corsi/h1-documento-informatico/  301
+/it/corsi/digitalizzazione-della-pubblica-amministrazione/h2-la-transizione-digitale-nella-pubblica  /corsi/h2-transizione-digitale-pa/  301
+/en/corsi/digitalizzazione-della-pubblica-amministrazione/h2-la-transizione-digitale-nella-pubblica  /corsi/h2-transizione-digitale-pa/  301
+
+# --- Le 8 aree ---
+/it/corsi/diritto-societario  /formazione/diritto-societario/  301
+/en/corsi/diritto-societario  /formazione/diritto-societario/  301
+/it/corsi/organismi-di-controllo  /formazione/organismi-di-controllo/  301
+/en/corsi/organismi-di-controllo  /formazione/organismi-di-controllo/  301
+/it/corsi/contrattualistica  /formazione/contrattualistica/  301
+/en/corsi/contrattualistica  /formazione/contrattualistica/  301
+/it/corsi/credit-management  /formazione/credit-management/  301
+/en/corsi/credit-management  /formazione/credit-management/  301
+/it/corsi/finance-e-fiscale  /formazione/finance-e-fiscale/  301
+/en/corsi/finance-e-fiscale  /formazione/finance-e-fiscale/  301
+/it/corsi/compliance  /formazione/compliance/  301
+/en/corsi/compliance  /formazione/compliance/  301
+/it/corsi/business-coaching  /formazione/business-coaching/  301
+/en/corsi/business-coaching  /formazione/business-coaching/  301
+/it/corsi/digitalizzazione-della-pubblica-amministrazione  /formazione/digitalizzazione-pa/  301
+/en/corsi/digitalizzazione-della-pubblica-amministrazione  /formazione/digitalizzazione-pa/  301
+
+# --- Generiche, dopo le specifiche ---
 /it/corsi/iscrizione-ai-corsi  /contatti/    301
+/en/corsi/iscrizione-ai-corsi  /contatti/    301
 /it/contatti                   /contatti/    301
 /en/contatti                   /contatti/    301
 /it/corsi                      /formazione/  301

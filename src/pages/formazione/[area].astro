@@ -1,0 +1,227 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../../layouts/Base.astro';
+import Freccia from '../../components/Freccia.astro';
+import { aree, mostraPrezzo } from '../../data/corsi.js';
+
+export function getStaticPaths() {
+  return aree
+    .filter((a) => a.corsi.length > 0)
+    .map((area) => ({ params: { area: area.slug }, props: { area } }));
+}
+
+const { area } = Astro.props;
+const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+/* La grafica dell'area compare da sola quando il file esiste in
+   `public/aree/`. ⛔ Finche' non c'e' si vede il segnaposto con la lettera:
+   nessuna immagine rotta, e nessuna riga di codice da cambiare il giorno in
+   cui la si aggiunge.
+   ⛔ Il percorso parte da `process.cwd()`, NON da `import.meta.url`: in build
+   Astro compila la pagina in `dist/.prerender/chunks/` e un percorso relativo
+   al modulo cercherebbe dentro `dist/public/`, senza trovare mai niente. */
+const haImmagine = fs.existsSync(
+  path.join(process.cwd(), 'public', 'aree', `${area.slug}.webp`)
+);
+---
+
+<Base
+  title={`${area.nome}: ${area.corsi.length} corsi | Mens Sana Formazione`}
+  description={`${area.occhiello} ${area.corsi.length} corsi in videolezione con studio guidato, anche in edizione aziendale su misura.`}
+  image={haImmagine ? `/aree/${area.slug}.webp` : '/og-default.png'}
+>
+  <section class="area-hero">
+    <div class="container area-hero__inner">
+      <div class="area-hero__testo">
+        <a href="/formazione/" class="back rise" style="--r: 0">
+          <Freccia verso="indietro" />Tutte le aree
+        </a>
+        <p class="eyebrow rise" style="--r: 1">Area {area.sigla}</p>
+        <h1 class="rise" style="--r: 2">{area.nome}</h1>
+        <p class="area-hero__sub rise" style="--r: 3">{area.intro}</p>
+        <p class="area-hero__conto rise" style="--r: 4">
+          <strong>{area.corsi.length}</strong>
+          {area.corsi.length === 1 ? 'corso a catalogo' : 'corsi a catalogo'}
+        </p>
+      </div>
+      <div class="area-hero__figura rise" style="--r: 2">
+        {haImmagine ? (
+          <img src={`/aree/${area.slug}.webp`} alt="" width="720" height="540" />
+        ) : (
+          <div class="segnaposto" aria-hidden="true"><span>{area.sigla}</span></div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--3">
+        {area.corsi.map((corso) => (
+          <a href={`/corsi/${corso.slug}/`} class="card corso spot">
+            <div class="corso__top">
+              <span class="badge">{corso.cod}</span>
+              <span class="corso__area">{corso.durataVideo}</span>
+            </div>
+            <h4>{corso.titolo}</h4>
+            <p class="corso__sotto">{corso.sottotitolo}</p>
+            <p class="corso__prezzo">
+              {mostraPrezzo(corso) ? (
+                <>{fmtPrezzo(corso.prezzo)} € <small>+ IVA</small></>
+              ) : (
+                <small>Quota su richiesta</small>
+              )}
+            </p>
+            <span class="corso__link">Scopri il corso <Freccia /></span>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ⛔ Questo invito era un riquadro sottile in fondo alla lista dei corsi e
+       passava inosservato. Dal 25/08 e' il blocco che chiude la pagina, con lo
+       stesso trattamento che ha sul catalogo: cosi' l'invito al su misura si
+       riconosce sempre allo stesso modo, in qualunque punto del sito. -->
+  <section class="section section--dark">
+    <div class="container spot spot--rosso blocco-vivo">
+      <div class="section-head reveal">
+        <p class="eyebrow">Su misura</p>
+        <h2>Serve questa materia,<br />ma tagliata sulla vostra azienda?</h2>
+        <p>
+          Ognuno di questi corsi diventa un'edizione dedicata: durata, taglio e
+          casi pratici si costruiscono sui vostri documenti, non su esempi da
+          manuale.
+        </p>
+      </div>
+      <a href="/su-misura/" class="btn btn--light">Come funziona</a>
+    </div>
+  </section>
+
+  <!-- ⛔ Qui c'era "Le altre aree / Il resto del catalogo", ripetuta identica
+       in fondo a tutte e otto le pagine area. Tolta il 25/08 su richiesta di
+       Nicola: allungava ogni pagina per dire una cosa che il collegamento
+       "Tutte le aree" in cima, e il piede, dicono gia'. -->
+</Base>
+
+<style>
+  .area-hero {
+    background: var(--carta);
+    border-bottom: 1px solid var(--grigio-100);
+    padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4rem);
+  }
+  .area-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+  @media (min-width: 62rem) {
+    .area-hero__inner { grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr); }
+  }
+  /* ⛔ `display: inline-flex` rendeva in linea anche il paragrafo successivo,
+     quindi "Tutte le aree" e l'etichetta dell'area finivano sulla stessa riga.
+     Serve un elemento di blocco largo quanto il suo contenuto. */
+  .back {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    font-size: var(--fs-300);
+    font-weight: 700;
+    color: var(--grigio-500);
+    margin-bottom: 1.2rem;
+  }
+  .back:hover { color: var(--rosso); }
+  .area-hero__sub {
+    margin-top: 1.2rem;
+    font-size: var(--fs-500);
+    color: var(--grigio-700);
+    max-width: 38rem;
+  }
+  .area-hero__conto {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--grigio-100);
+    color: var(--grigio-500);
+    font-size: var(--fs-300);
+  }
+  .area-hero__conto strong {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-700);
+    color: var(--nero);
+    margin-right: 0.4rem;
+  }
+  .area-hero__figura img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  /* Segnaposto finche' la grafica dell'area non c'e': la lettera dell'area su
+     carta, col taglio rosso in diagonale. */
+  .segnaposto {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-lg);
+    background-color: var(--grigio-100);
+    background-image: linear-gradient(135deg, var(--grigio-100), var(--carta) 60%);
+    border: 1px solid var(--grigio-100);
+    overflow: hidden;
+  }
+  .segnaposto::after {
+    content: '';
+    position: absolute;
+    inset: auto -10% -30% -10%;
+    height: 45%;
+    background: var(--rosso);
+    opacity: 0.1;
+    transform: rotate(-8deg);
+  }
+  .segnaposto span {
+    font-family: var(--font-titoli);
+    font-size: clamp(6rem, 18vw, 11rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--grigio-300);
+  }
+
+  .corso { display: flex; flex-direction: column; gap: 0.6rem; color: inherit; }
+  .corso__top { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+  .corso__area { font-size: var(--fs-200); color: var(--grigio-500); text-align: right; }
+  .corso h4 { font-size: var(--fs-500); }
+  .corso__sotto {
+    color: var(--grigio-700);
+    font-size: var(--fs-300);
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .corso__prezzo {
+    font-family: var(--font-titoli);
+    font-size: var(--fs-600);
+    font-weight: 900;
+    color: var(--nero);
+  }
+  .corso__prezzo small {
+    font-family: var(--font-testo);
+    font-size: var(--fs-200);
+    color: var(--grigio-500);
+    font-weight: 400;
+  }
+  .corso__link {
+    font-size: var(--fs-300);
+    font-weight: 700;
+    color: var(--rosso);
+    display: inline-flex;
+    align-items: center;
+  }
+
+
+
+
+</style>

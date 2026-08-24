@@ -5,12 +5,29 @@ import { LINKEDIN_URL, INSTAGRAM_URL } from '../data/corsi.js';
 interface Props {
   title: string;
   description: string;
+  /* Immagine per le anteprime dei link (LinkedIn, WhatsApp, Facebook).
+     Percorso relativo alla radice del sito: viene reso assoluto qui sotto,
+     perche' i social NON accettano percorsi relativi. */
+  image?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, image = '/og-default.png' } = Astro.props;
+
+/* ⛔ Indirizzo canonico. Oggi apex e www rispondono TUTTI E DUE 200 senza
+   rimando, quindi per Google sono due siti gemelli: il canonico dice quale
+   dei due vale. Il dominio di riferimento e' quello in astro.config.mjs. */
+const canonico = new URL(Astro.url.pathname, Astro.site).href;
+const ogImmagine = new URL(image, Astro.site).href;
+/* ⛔ "Contatti" e' stato tolto dalla barra il 25/08: portava esattamente
+   dove porta il pulsante "Parliamone", quindi erano due voci per la stessa
+   pagina e l'occhio doveva scegliere fra due cose identiche. Il collegamento
+   resta nel piede, dove si cercano i recapiti.
+   ⛔ Il 25/08 e' uscita anche "Su misura": non e' un ramo a se', e' un modo di
+   erogare i corsi, quindi sta dentro "Corsi". La pagina NON e' orfana, ci si
+   arriva da sei punti (i due inviti della home, la fascia in fondo al
+   catalogo, la fascia di ogni pagina area, il piede). */
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/formazione/', label: 'Formazione & Consulenza' },
-  { href: '/contatti/', label: 'Contatti' },
+  { href: '/formazione/', label: 'Corsi' },
 ];
 const current = Astro.url.pathname;
 ---
@@ -22,14 +39,34 @@ const current = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="canonical" href={canonico} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/logo.png" />
+    <meta property="og:url" content={canonico} />
+    <meta property="og:site_name" content="Mens Sana Formazione" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content={ogImmagine} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mens Sana Formazione, corsi Legal e Compliance per enti e imprese" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImmagine} />
   </head>
   <body>
+    <script is:inline>
+      /* ⛔ Marca la pagina come "con JavaScript" PRIMA che venga disegnata.
+         Serve a tenere nascoste solo le cose che poi un'animazione mostra: se
+         lo script non gira, quelle cose restano visibili invece di sparire.
+         Stesso difetto gia' visto sui siti dei locali (ZAV, Selva Urbana). */
+      document.documentElement.classList.add('con-js');
+    </script>
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <header class="site-header" id="site-header">
       <div class="container site-header__inner">
@@ -90,9 +127,9 @@ const current = Astro.url.pathname;
         <div>
           <img src="/logo.png" alt="Mens Sana Formazione" width="180" class="site-footer__logo" />
           <p>
-            Formazione e consulenza Legal &amp; Compliance per enti, imprese e
-            professionisti. Corsi in videolezione e percorsi su misura, dal 2017
-            a Milano.
+            Formazione Legal &amp; Compliance per enti, imprese e professionisti.
+            Corsi in videolezione e percorsi costruiti su misura, dal 2017 a
+            Milano.
           </p>
         </div>
         <div>
@@ -117,7 +154,7 @@ const current = Astro.url.pathname;
                 class="site-footer__tondo"
                 aria-label="Seguici su Instagram"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
               </a>
             )}
           </div>
@@ -130,7 +167,8 @@ const current = Astro.url.pathname;
           </ul>
           <h3>Esplora</h3>
           <ul>
-            <li><a href="/formazione/">Formazione &amp; Consulenza</a></li>
+            <li><a href="/formazione/">Corsi a catalogo</a></li>
+            <li><a href="/su-misura/">Corsi su misura</a></li>
             <li><a href="/digital/">Mens Sana Digital</a></li>
             <li><a href="/contatti/">Contatti</a></li>
             <li><a href="/privacy/">Informativa Privacy e Cookie</a></li>
@@ -163,12 +201,23 @@ const current = Astro.url.pathname;
         },
         { threshold: 0.12 }
       );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      const daMostrare = document.querySelectorAll('.reveal');
+      daMostrare.forEach((el) => observer.observe(el));
+
+      /* ⛔ Rete di sicurezza. Dentro un iframe (le anteprime dei link) Chrome
+         non emette eventi di scorrimento e l'osservatore non scatta mai:
+         senza questa riga l'anteprima del sito esce vuota. Otto secondi, non
+         tre: a tre si accende tutto prima che il lettore ci arrivi. */
+      const mostraTutto = () => daMostrare.forEach((el) => el.classList.add('is-visible'));
+      if (window.self !== window.top) mostraTutto();
+      else setTimeout(mostraTutto, 8000);
 
       // Barra di avanzamento + header compatto durante lo scroll
       const bar = document.getElementById('scroll-progress');
       const header = document.getElementById('site-header');
       const onScroll = () => {
+        const testata = document.getElementById('site-header');
+        if (testata) testata.classList.toggle('is-scesa', window.scrollY > 8);
         const max = document.documentElement.scrollHeight - window.innerHeight;
         if (bar) bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
         header?.classList.toggle('is-scrolled', window.scrollY > 40);
@@ -215,10 +264,19 @@ const current = Astro.url.pathname;
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--grigio-100);
+        /* Carta velata, non bianco: sopra un'apertura color carta un pannello
+           bianco si vede come una fascia estranea. */
+        background: rgba(250, 247, 243, 0.88);
+        backdrop-filter: blur(14px) saturate(1.1);
+        -webkit-backdrop-filter: blur(14px) saturate(1.1);
+        border-bottom: 1px solid transparent;
+        transition: border-color var(--transition), box-shadow var(--transition);
+      }
+      /* Il bordo compare solo quando la pagina e' stata scorsa: fermi in cima
+         la barra non deve sembrare staccata dall'apertura. */
+      .site-header.is-scesa {
+        border-bottom-color: var(--grigio-100);
+        box-shadow: var(--shadow-sm);
       }
       .site-header__inner {
         display: flex;
@@ -361,12 +419,23 @@ const current = Astro.url.pathname;
         }
       }
 
+      /* ⛔ Il passaggio al piede era un taglio secco da carta a quasi nero.
+         Adesso e' una cucitura voluta: filetto rosso del marchio, e sotto una
+         sfumatura corta che entra nel nero invece di sbatterci contro. */
       .site-footer {
-        background: var(--nero);
+        /* ⛔ Il colore pieno sotto la sfumatura non e' ridondante: se la
+           sfumatura non viene disegnata, il testo chiaro resterebbe su fondo
+           chiaro. Trovato misurando i contrasti, dove il piede risultava a
+           1,59 su 4,5 proprio perche' il fondo dichiarato era trasparente. */
+        background-color: var(--nero);
+        background-image: linear-gradient(180deg, var(--grigio-900), var(--nero) 14rem);
         color: var(--grigio-300);
         padding-block: clamp(3rem, 6vw, 4.5rem) 0;
         font-size: var(--fs-300);
+        border-top: 3px solid var(--rosso);
       }
+      .site-footer a:not(.btn) { color: var(--grigio-300); }
+      .site-footer a:not(.btn):hover { color: var(--rosso-chiaro); }
       .site-footer__grid {
         display: grid;
         gap: 2.5rem;
@@ -430,8 +499,18 @@ const current = Astro.url.pathname;
       .site-footer__legal {
         border-top: 1px solid var(--grigio-900);
         padding-block: 1.25rem;
-        color: var(--grigio-500);
-        font-size: var(--fs-200);
+        /* ⛔ Era grigio-500 e sul fondo scuro stava a 3,30 su 4,5: misurato,
+           non stimato. La riga dei dati societari deve essere leggibile. */
+        color: var(--grigio-300);
+        /* ⛔ 25/08: andava a capo lasciando "Condizioni generali" da sola.
+           Il corpo scende quel tanto che basta perche' su schermo da computer
+           stia tutta su una riga; sotto i 1100 px torna a capo, ed e' giusto
+           cosi', su un telefono una riga sola sarebbe illeggibile. */
+        font-size: 0.72rem;
+        letter-spacing: -0.005em;
+      }
+      @media (min-width: 90rem) {
+        .site-footer__legal { font-size: var(--fs-200); }
       }
     </style>
   </body>
