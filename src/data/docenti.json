@@ -1,0 +1,47 @@
+{
+  "_nota": [
+    "STRUTTURA PRONTA, NESSUN DOCENTE VERO DENTRO. Preparata il 25/08/2026 su",
+    "indicazione di Nicola, che ha mostrato lo stile a cui ispirarsi: foto a",
+    "tutta scheda, nome e ruolo in alto sull'immagine, in basso la riga",
+    "'Ha lavorato con' e i loghi.",
+    "Il file non e' ancora collegato a nessuna pagina: serve a sapere COME",
+    "faremo le schede quando arrivano i dati veri.",
+    "⛔ Questo repo e' pubblico: qui dentro non ci vanno dati personali veri",
+    "(indirizzi, telefoni privati, compensi). Solo cio' che il docente accetta",
+    "di mostrare in vetrina.",
+    "⛔ I loghi delle aziende sono marchi altrui: prima di pubblicarli serve",
+    "l'ok di chi li possiede, o si scrive il nome in testo e basta."
+  ],
+  "_campi": {
+    "slug": "identificativo per l'indirizzo della pagina, minuscolo e con i trattini",
+    "nome": "solo il nome se si vuole il tono della scheda di esempio, nome e cognome se serve autorevolezza",
+    "ruolo": "una riga sola, quella che sta sotto il nome sull'immagine",
+    "foto": "file dentro /public/docenti/, formato verticale 3:4, e il punto su cui tenere il volto quando la scheda si accorcia",
+    "haLavoratoCon": "la riga in basso: se il logo non si puo' usare, si lascia solo il nome",
+    "aree": "sigle delle aree del catalogo che il docente copre (A, B, C...)",
+    "corsi": "slug dei corsi che tiene, per collegare scheda docente e scheda corso nei due sensi",
+    "bio": "due o tre righe, non un curriculum: la scheda vende il docente, non lo archivia",
+    "pubblicato": "false finche' il docente non ha dato l'ok scritto alla foto e al testo"
+  },
+  "docenti": [
+    {
+      "slug": "esempio-cognome",
+      "nome": "Nome",
+      "ruolo": "Avvocato, diritto societario e compliance",
+      "foto": {
+        "file": "/docenti/esempio-cognome.webp",
+        "alt": "Ritratto di Nome Cognome",
+        "fuoco": "50% 30%"
+      },
+      "haLavoratoCon": [
+        { "nome": "Nome azienda", "logo": "/docenti/loghi/azienda.svg", "logoAutorizzato": false },
+        { "nome": "Altra azienda", "logo": null, "logoAutorizzato": false }
+      ],
+      "aree": ["A", "C"],
+      "corsi": ["a1-organi-societari-e-modelli-organizzativi"],
+      "bio": "Due o tre righe che dicono cosa fa oggi e perche' la materia la pratica, non solo la insegna.",
+      "linkedin": null,
+      "pubblicato": false
+    }
+  ]
+}

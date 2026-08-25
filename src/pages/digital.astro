@@ -36,29 +36,32 @@ const servizi = [
     icona: 'palette',
     titolo: 'Grafica e materiali',
     testo:
-      'Loghi, biglietti da visita, locandine e materiali coordinati con il sito: un\'immagine sola, riconoscibile ovunque.',
+      'Biglietti da visita, locandine e materiali coordinati con il sito: un\'immagine sola, riconoscibile ovunque.',
   },
 ];
 
 // ⛔ Nessun prezzo e nessun riferimento a listini: il ramo digitale non
 // pubblica cifre finché non arriva il parere della commercialista.
 // I tre livelli descrivono solo l'ampiezza dell'intervento.
+// ⛔ 25/08 sera, deciso da Nicola: i tre livelli hanno nomi inglesi.
+// Essential e Table li ha scelti lui; Hospitality, proposto per il secondo,
+// e' stato scartato. Ognuno dei tre dice COSA fa invece di dire quanto e'
+// grande: esserci, il tavolo, l'immagine.
 const livelli = [
   {
-    nome: 'Essenziale',
+    nome: 'Essential',
     per: 'Per esserci, e farlo bene',
     include: [
-      'Sito vetrina di una pagina, pensato per il telefono',
-      'Dominio e attivazione online seguiti da noi',
-      'Profilo Google dell\'attività sistemato',
+      'Sito vetrina di una pagina',
+      'Ti gestiamo noi la messa online del sito: registrazione del dominio, hosting, certificato di sicurezza e rinnovi annuali. Non devi entrare in nessun pannello di controllo né parlare con nessun fornitore.',
     ],
     featured: false,
   },
   {
-    nome: 'Locali',
+    nome: 'Table',
     per: 'Pensato per bar e ristoranti',
     include: [
-      'Tutto quello dell\'Essenziale',
+      'Tutto quello di Essential',
       'Menu digitale con QR code brandizzato',
       'Più pagine: menu, galleria, eventi',
       'QR pronti da stampare per tavoli e vetrina',
@@ -66,11 +69,11 @@ const livelli = [
     featured: true,
   },
   {
-    nome: 'Completo',
+    nome: 'Brand',
     per: 'Quando serve rifare tutta l\'immagine',
     include: [
-      'Tutto quello del livello Locali',
-      'Logo e immagine coordinata',
+      'Tutto quello di Table',
+      'Ci dici come vuoi essere visto e costruiamo l\'immagine su quello: la decidi tu, noi la portiamo su tutto quello che il locale mostra.',
       'Materiali per la stampa: biglietti, locandine',
       'Impostazione dei social e template per i post',
     ],
@@ -106,7 +109,16 @@ const livelli = [
   <!-- SERVIZI -->
   <section class="section" id="servizi">
     <div class="container">
-      <div class="section-head reveal">
+      <!-- ⛔ 25/08 sera, richiesta di Nicola: "più essenziale". Erano quattro
+           schede bianche col bordo, l'ombra e l'icona dentro una piastrella
+           rosa: tre contenitori uno dentro l'altro per dire quattro cose
+           corte. Adesso restano il segno, il titolo e la riga di testo, e le
+           quattro voci sono divise da un filetto. Le icone restano perché
+           dicono QUALE servizio è (globo, QR, mappa, tavolozza), la
+           piastrella no: era decorazione attorno alla decorazione.
+           ⛔ Testa di sezione a due colonne come nel resto del sito: il
+           titolo su due righe lasciava vuota la metà destra dello schermo. -->
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Di cosa ci occupiamo</p>
         <h2>Chi ti cerca, ti cerca prima dal telefono</h2>
         <p>
@@ -114,63 +126,112 @@ const livelli = [
           altrove. È lì che interveniamo, in modo semplice e comprensibile.
         </p>
       </div>
-      <div class="grid grid--2 grid--servizi">
+      <ul class="servizi">
         {servizi.map((s, i) => (
-          <div class="card servizio reveal spot" style={`--d: ${i * 0.08}s`}>
-            <span class="servizio__icona" aria-hidden="true" set:html={icone[s.icona]} />
-            <div>
-              <h3>{s.titolo}</h3>
-              <p>{s.testo}</p>
-            </div>
-          </div>
+          <li class="servizio reveal" style={`--d: ${i * 0.06}s`}>
+            <h3>
+              <span class="servizio__icona" aria-hidden="true" set:html={icone[s.icona]} />
+              {s.titolo}
+            </h3>
+            <p>{s.testo}</p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
-  <!-- PRIMA / DOPO -->
+  <!-- PRIMA / DOPO
+       ⛔ 25/08 sera, rifatto su richiesta di Nicola ("mi piace ma e' troppo
+       semplice"). Il difetto vero non era la semplicita': i due finti siti
+       erano IMPAGINATI DIVERSI, quindi tagliandoli a meta' con il cursore si
+       vedevano due pezzi che non combaciavano e il lato destro sembrava
+       rotto, non migliore. ⛔ Adesso i due pannelli hanno la STESSA identica
+       struttura riga per riga (barra, marchio, titolo, immagine, testo,
+       azione, piede): scorrendo il cursore ogni elemento si trasforma nel suo
+       corrispondente, ed e' li' che si vede la differenza.
+       ⛔ E il confronto ora si muove DA SOLO la prima volta che entra nello
+       schermo: fermo, nessuno capisce che si puo' trascinare. -->
   <section class="section section--dark">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Esempio illustrativo</p>
-        <h2>La differenza si vede. Trascina e guarda.</h2>
+        <h2>La differenza si vede.<br />Trascina e guarda.</h2>
         <p>
-          Sposta il cursore: a sinistra un sito datato, a destra l'idea di sito
-          verso cui lavoriamo. Sono due schermate di esempio, disegnate per
-          questa pagina.
+          Stessa attività, stessa pagina, due modi di presentarla. Sposta il
+          cursore e guarda cambiare una riga alla volta: sono due schermate di
+          esempio, disegnate per questa pagina.
         </p>
       </div>
       <div class="ba reveal" id="ba" style="--pos: 50%">
-        <!-- DOPO (sotto, a destra) -->
+        <!-- DOPO (sotto, a destra)
+             ⛔ 25/08 sera, richiesta di Nicola: qui dentro devono esserci le
+             cose che si vedono davvero nella prima schermata di un sito, non
+             un titolo e basta. Barra di navigazione col marchio e il pulsante
+             di prenotazione, titolo, riga di presentazione, foto, la riga con
+             recensioni e orario, l'azione, i recapiti in fondo.
+             ⛔ Ogni riga ha la sua GEMELLA nel pannello "prima": stessa
+             posizione, stessa altezza, contenuto d'epoca. E' quello che fa
+             funzionare il taglio del cursore. -->
         <div class="ba__pane ba__dopo" aria-hidden="true">
           <div class="mock mock--new">
-            <div class="mock__bar mock__bar--new"><span class="mock__dot"></span>iltuolocale.it</div>
-            <div class="mock__body-new">
-              <div class="mock__logo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h.01M11 15h.01M16 16h.01M2 16l20 6-6-20A20 20 0 0 0 2 16"/><path d="M5.71 17.11a17.04 17.04 0 0 1 11.4-11.4"/></svg> Il Tuo Locale</div>
-              <div class="mock__h1">Il nome della tua<br />attività, ben visibile</div>
-              <div class="mock__cta">Guarda il menu</div>
-              <div class="mock__cards">
-                <span></span><span></span><span></span>
+            <div class="mock__bar">
+              <svg class="mock__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span class="mock__url">iltuolocale.it</span>
+            </div>
+            <div class="mock__corpo">
+              <div class="mock__nav">
+                <span class="mock__marchio">Il Tuo Locale</span>
+                <span class="mock__voci"><span>Menu</span><span>Dove siamo</span><span>Contatti</span></span>
+                <span class="mock__pillola">Prenota</span>
               </div>
+              <div class="mock__titolo">Il nome della tua attività, ben visibile</div>
+              <div class="mock__sotto">Cucina di mare e forno a legna, nel centro di Cagliari.</div>
+              <div class="mock__foto"></div>
+              <div class="mock__info">
+                <span class="mock__stelle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.4l6.1-.9z"/></svg>
+                  <b>4,8</b> su Google
+                </span>
+                <span class="mock__punto">Aperto fino alle 24</span>
+                <span class="mock__punto">070 123 456</span>
+              </div>
+              <div class="mock__azione">Guarda il menu</div>
+              <div class="mock__piede">Via Roma 1, Cagliari · Chiuso il lunedì</div>
             </div>
           </div>
         </div>
         <!-- PRIMA (sopra, ritagliato a sinistra) -->
         <div class="ba__pane ba__prima" aria-hidden="true">
           <div class="mock mock--old">
-            <div class="mock__bar">www.iltuolocale-sitovecchio.it</div>
-            <div class="mock__body-old">
-              <div class="mock__title-old">~*~ Benvenuti nel Nostro Sito ~*~</div>
-              <div class="mock__img-old">[ foto in caricamento… ]</div>
-              <div class="mock__text-old">
-                <span></span><span></span><span></span><span></span>
+            <div class="mock__bar">
+              <svg class="mock__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>
+              <span class="mock__url">www.iltuolocale-sitovecchio.it</span>
+              <span class="mock__nota">Non sicuro</span>
+            </div>
+            <div class="mock__corpo">
+              <div class="mock__nav">
+                <span class="mock__marchio">~*~ Il Tuo Locale ~*~</span>
+                <span class="mock__voci"><span>Home</span><span>Chi siamo</span><span>Guestbook</span></span>
+                <span class="mock__pillola">Entra</span>
               </div>
-              <div class="mock__link-old">Clicca QUI per il menu (PDF, 14 MB)</div>
-              <div class="mock__counter">Visite: 000481 | Ultimo aggiornamento: 2019</div>
+              <div class="mock__titolo">Benvenuti nel Nostro Sito</div>
+              <div class="mock__sotto">Questo sito è ottimizzato per Internet Explorer 1024x768.</div>
+              <div class="mock__foto"><span>[ foto in caricamento… ]</span></div>
+              <div class="mock__info">
+                <span class="mock__stelle">Tel/Fax 070.123456</span>
+                <span class="mock__punto">P.IVA 00000000000</span>
+                <span class="mock__punto">Best viewed 800x600</span>
+              </div>
+              <div class="mock__azione">Clicca QUI per il menu (PDF, 14 MB)</div>
+              <div class="mock__piede">Visite: 000481 | Ultimo aggiornamento: 2019</div>
             </div>
           </div>
         </div>
-        <div class="ba__divider" aria-hidden="true"><span class="ba__knob">⇄</span></div>
+        <div class="ba__divider" aria-hidden="true">
+          <span class="ba__knob">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5"/><path d="M15 7l5 5-5 5"/></svg>
+          </span>
+        </div>
         <input
           type="range"
           class="ba__range"
@@ -203,7 +264,7 @@ const livelli = [
               {p.include.map((voce) => <li>{voce}</li>)}
             </ul>
             <a href="/contatti/" class:list={['btn', p.featured ? 'btn--primary' : 'btn--ghost']}>
-              Chiedi un preventivo
+              Richiedi un preventivo
             </a>
           </article>
         ))}
@@ -320,11 +381,68 @@ const livelli = [
 </Base>
 
 <script>
+  /* Confronto prima/dopo.
+     ⛔ 25/08: fermo al 50% non si capiva che si potesse trascinare, e chi non
+     ci passava sopra vedeva due mezze schermate senza capire il perche'.
+     Adesso la prima volta che entra nello schermo il cursore si muove da
+     solo: scopre il sito vecchio, poi scivola a mostrare quello nuovo e si
+     ferma poco oltre la meta'. Al primo tocco la dimostrazione si annulla e
+     comanda solo la mano di chi guarda. */
   const ba = document.getElementById('ba');
   const range = ba?.querySelector<HTMLInputElement>('.ba__range');
-  range?.addEventListener('input', () => {
-    ba?.style.setProperty('--pos', `${range.value}%`);
-  });
+
+  if (ba && range) {
+    const metti = (v: number) => {
+      ba.style.setProperty('--pos', `${v}%`);
+      range.value = String(Math.round(v));
+    };
+
+    let dimostrazione = 0;
+    const fermaDimostrazione = () => {
+      if (dimostrazione) cancelAnimationFrame(dimostrazione);
+      dimostrazione = 0;
+      ba.classList.add('ba--toccato');
+    };
+
+    range.addEventListener('input', () => {
+      fermaDimostrazione();
+      ba.style.setProperty('--pos', `${range.value}%`);
+    });
+    ba.addEventListener('pointerdown', fermaDimostrazione);
+
+    const pochoMoto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* Tappe: dove andare e in quanto tempo. La prima e' lenta perche' e'
+       quella che dice "questo si muove", le altre accompagnano. */
+    const tappe: [number, number][] = [[88, 900], [18, 1400], [54, 900]];
+
+    function corri(i: number) {
+      if (i >= tappe.length) { dimostrazione = 0; return; }
+      const [meta, durata] = tappe[i];
+      const partenza = parseFloat(range.value);
+      const t0 = performance.now();
+      const passo = (t: number) => {
+        const k = Math.min(1, (t - t0) / durata);
+        /* Partenza e arrivo morbidi: un cursore che parte di scatto sembra
+           un difetto, non un invito. */
+        const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+        metti(partenza + (meta - partenza) * e);
+        if (k < 1) { dimostrazione = requestAnimationFrame(passo); }
+        else { dimostrazione = requestAnimationFrame(() => corri(i + 1)); }
+      };
+      dimostrazione = requestAnimationFrame(passo);
+    }
+
+    if (!pochoMoto) {
+      const osservatore = new IntersectionObserver((voci) => {
+        voci.forEach((v) => {
+          if (!v.isIntersecting) return;
+          osservatore.disconnect();
+          if (!ba.classList.contains('ba--toccato')) setTimeout(() => corri(0), 350);
+        });
+      }, { threshold: 0.45 });
+      osservatore.observe(ba);
+    }
+  }
 </script>
 
 <style>
@@ -342,6 +460,13 @@ const livelli = [
   }
   @media (max-width: 640px) {
     .ba { aspect-ratio: 4 / 5; }
+  }
+  /* ⛔ Su schermo stretto le voci del menu e la riga di presentazione si
+     tolgono da TUTTI E DUE i pannelli insieme: se sparissero solo da uno, le
+     righe non combacerebbero piu' e il confronto perderebbe il senso. */
+  @media (max-width: 30rem) {
+    .mock__voci,
+    .mock__sotto { display: none; }
   }
   .ba__pane { position: absolute; inset: 0; }
   .ba__prima { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
@@ -368,9 +493,27 @@ const livelli = [
     color: var(--rosso);
     display: grid;
     place-items: center;
-    font-size: 1.15rem;
-    font-weight: 800;
     box-shadow: var(--shadow-md);
+  }
+  .ba__knob svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* Il polso che invita: pulsa finche' nessuno ha ancora toccato il cursore,
+     e smette per sempre al primo tocco. ⛔ Niente pulsazione se chi guarda ha
+     chiesto meno animazioni. */
+  .ba:not(.ba--toccato) .ba__knob { animation: ba-invito 2.4s ease-in-out infinite; }
+  @keyframes ba-invito {
+    0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(255, 255, 255, 0.5); }
+    50% { box-shadow: var(--shadow-md), 0 0 0 12px rgba(255, 255, 255, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ba:not(.ba--toccato) .ba__knob { animation: none; }
   }
   .ba__range {
     position: absolute;
@@ -395,102 +538,171 @@ const livelli = [
     border-radius: 999px;
     pointer-events: none;
   }
-  .ba__tag--prima { left: 0.9rem; background: rgba(0, 0, 0, 0.55); color: #fff; }
+  .ba__tag--prima { left: 0.9rem; background: rgba(20, 16, 14, 0.82); color: #fff; }
   .ba__tag--dopo { right: 0.9rem; background: var(--rosso); color: #fff; }
 
-  /* Mockup "prima": il sito datato */
-  .mock { position: absolute; inset: 0; display: flex; flex-direction: column; }
-  .mock__bar {
-    background: #d5d1c8;
-    color: #555;
-    font-size: 0.72rem;
-    padding: 0.45rem 0.9rem;
-    font-family: 'Courier New', monospace;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .mock--old { background: #efe9da; }
-  .mock__body-old {
-    flex: 1;
-    padding: clamp(0.8rem, 3vw, 1.8rem);
-    font-family: 'Times New Roman', Times, serif;
-    color: #333;
+  /* --- I due finti siti --------------------------------------------------
+     ⛔ Struttura IDENTICA nei due pannelli: le misure stanno sulle classi
+     `.mock__*` e valgono per tutti e due, il colore e il carattere cambiano
+     solo nelle varianti. E' l'unico modo perche' il taglio verticale del
+     cursore faccia combaciare le righe: prima i due mockup erano impaginati
+     diversi e a meta' corsa sembravano due schermate rotte. */
+  .mock {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+  .mock__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.9rem;
+    font-size: clamp(0.6rem, 1.6vw, 0.72rem);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .mock__ico { width: 0.85em; height: 0.85em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .mock__url { overflow: hidden; text-overflow: ellipsis; }
+  .mock__nota { margin-left: auto; font-weight: 700; }
+  .mock__corpo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: clamp(0.35rem, 1.4vw, 0.7rem);
+    padding: clamp(0.7rem, 2.6vw, 1.5rem) clamp(0.9rem, 3vw, 2rem);
   }
-  .mock__title-old {
-    font-size: clamp(0.95rem, 2.6vw, 1.5rem);
-    font-weight: bold;
-    color: #7b0000;
+  /* La barra di navigazione: marchio a sinistra, voci al centro, azione a
+     destra. E' la riga che fa capire in un colpo d'occhio che si sta
+     guardando un sito e non un'immagine. */
+  .mock__nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: clamp(0.3rem, 1.2vw, 0.6rem);
+    /* ⛔ Altezza FISSA, non minima: il carattere del sito vecchio (Times) e
+       quello di oggi hanno interlinee diverse e la barra usciva sfalsata di
+       6 px, con tutte le righe sotto trascinate dietro. Misurato sul vivo. */
+    height: clamp(1.9rem, 5vw, 2.6rem);
   }
-  .mock__img-old {
-    width: min(60%, 16rem);
-    aspect-ratio: 4 / 2.1;
-    border: 2px dashed #999;
-    background: #e2dccb;
+  .mock__marchio { font-size: clamp(0.62rem, 1.8vw, 0.85rem); font-weight: 800; white-space: nowrap; }
+  .mock__voci { display: flex; gap: clamp(0.4rem, 1.6vw, 0.9rem); font-size: clamp(0.5rem, 1.5vw, 0.7rem); }
+  .mock__pillola {
+    font-size: clamp(0.5rem, 1.4vw, 0.68rem);
+    font-weight: 700;
+    padding: 0.35em 0.9em;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .mock__sotto { font-size: clamp(0.55rem, 1.6vw, 0.75rem); max-width: 26em; }
+  .mock__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.35rem, 1.6vw, 0.9rem);
+    font-size: clamp(0.52rem, 1.5vw, 0.7rem);
+    min-height: clamp(0.9rem, 3vw, 1.2rem);
+  }
+  .mock__stelle { display: inline-flex; align-items: center; gap: 0.3em; }
+  .mock__stelle svg { width: 1em; height: 1em; }
+  .mock__titolo {
+    font-size: clamp(0.95rem, 3vw, 1.7rem);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+  .mock__foto {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
     display: grid;
     place-items: center;
-    color: #888;
-    font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+    font-size: clamp(0.55rem, 1.6vw, 0.75rem);
   }
-  .mock__text-old { width: 80%; display: flex; flex-direction: column; gap: 0.45rem; }
-  .mock__text-old span { height: 6px; background: #cfc8b4; }
-  .mock__text-old span:last-child { width: 62%; margin-inline: auto; }
-  .mock__link-old {
+  .mock__righe { width: 88%; display: flex; flex-direction: column; gap: 0.4rem; }
+  .mock__righe span { height: 6px; border-radius: 3px; }
+  .mock__righe span:last-child { width: 64%; margin-inline: auto; }
+  /* ⛔ Stessa altezza nei due pannelli anche se uno e' un link sottolineato e
+     l'altro un pulsante con l'imbottitura: se le due righe non stanno alla
+     stessa quota, a meta' corsa il cursore le mostra sfalsate di 13 px e il
+     confronto perde il senso. Misurato sul vivo. */
+  .mock__azione {
+    display: grid;
+    place-items: center;
+    min-height: clamp(1.7rem, 4.4vw, 2.3rem);
+    font-size: clamp(0.62rem, 1.8vw, 0.85rem);
+  }
+  .mock__piede { font-size: clamp(0.55rem, 1.5vw, 0.7rem); }
+
+  /* Il sito datato */
+  .mock--old { background: #efe9da; color: #333; font-family: 'Times New Roman', Times, serif; }
+  .mock--old .mock__bar { background: #d5d1c8; color: #6b6257; font-family: 'Courier New', monospace; }
+  .mock--old .mock__nota { color: #9a3412; }
+  .mock--old .mock__nav { border-bottom: 1px dotted #b8b0a0; }
+  .mock--old .mock__marchio { color: #7b0000; letter-spacing: 0.04em; }
+  .mock--old .mock__voci { color: #0000cc; text-decoration: underline; }
+  .mock--old .mock__pillola {
     color: #0000cc;
     text-decoration: underline;
-    font-size: clamp(0.7rem, 2vw, 0.95rem);
+    border-radius: 0;
+    padding: 0;
+    font-weight: 400;
   }
-  .mock__counter {
-    font-size: clamp(0.58rem, 1.6vw, 0.72rem);
-    color: #777;
-    font-family: 'Courier New', monospace;
+  .mock--old .mock__sotto { color: #6b6257; font-style: italic; }
+  .mock--old .mock__info { color: #6b6257; font-family: 'Courier New', monospace; }
+  .mock--old .mock__titolo { color: #7b0000; font-weight: 700; }
+  .mock--old .mock__foto {
+    border: 2px dashed #a9a293;
+    background: #e2dccb;
+    color: #8a8272;
   }
+  .mock--old .mock__righe span { background: #cfc8b4; }
+  .mock--old .mock__azione { color: #0000cc; text-decoration: underline; }
+  .mock--old .mock__piede { color: #8a8272; font-family: 'Courier New', monospace; }
 
-  /* Mockup "dopo": il sito moderno */
-  .mock--new { background: var(--nero); }
-  .mock__bar--new { background: #101014; color: #9a9da6; }
-  .mock__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rosso); }
-  .mock__body-new {
-    flex: 1;
-    padding: clamp(0.9rem, 3vw, 2rem);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.6rem, 2.2vw, 1.1rem);
-    align-items: center;
+  /* Il sito di oggi */
+  .mock--new { background: var(--nero); color: #d8dae0; }
+  .mock--new .mock__bar { background: #101014; color: #9a9da6; }
+  .mock--new .mock__corpo {
+    background: radial-gradient(ellipse 60% 55% at 85% 0%, rgba(200, 32, 47, 0.28), transparent);
     justify-content: center;
-    text-align: center;
+  }
+  .mock--new .mock__nav { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .mock--new .mock__marchio { color: #fff; }
+  .mock--new .mock__voci { color: #9a9da6; }
+  .mock--new .mock__pillola { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.18); }
+  .mock--new .mock__sotto { color: #b9bcc4; }
+  .mock--new .mock__info { color: #b9bcc4; }
+  .mock--new .mock__stelle svg { fill: #f3b64b; }
+  .mock--new .mock__stelle b { color: #fff; }
+  .mock--new .mock__punto { position: relative; }
+  .mock--new .mock__punto + .mock__punto::before,
+  .mock--new .mock__stelle + .mock__punto::before {
+    content: '·';
+    margin-right: 0.55em;
+    color: rgba(255, 255, 255, 0.35);
+  }
+  .mock--new .mock__titolo { color: #fff; letter-spacing: -0.02em; }
+  .mock--new .mock__foto {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     background:
-      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(200, 32, 47, 0.25), transparent);
+      radial-gradient(ellipse 70% 90% at 20% 10%, rgba(200, 32, 47, 0.35), transparent),
+      linear-gradient(160deg, #2a2320, #17130f);
   }
-  .mock__logo { color: #fff; font-weight: 800; font-size: clamp(0.8rem, 2.2vw, 1rem); }
-  .mock__h1 {
-    color: #fff;
-    font-weight: 800;
-    font-size: clamp(1.05rem, 3.4vw, 1.9rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-  .mock__cta {
+  .mock--new .mock__righe span { background: rgba(255, 255, 255, 0.16); }
+  .mock--new .mock__azione {
     background: var(--rosso);
     color: #fff;
     font-weight: 700;
-    font-size: clamp(0.65rem, 1.9vw, 0.85rem);
     padding: 0.5em 1.3em;
     border-radius: 999px;
   }
-  .mock__cards { display: flex; gap: 0.6rem; width: 100%; margin-top: auto; }
-  .mock__cards span {
-    flex: 1;
-    height: clamp(2rem, 7vw, 3.4rem);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
+  .mock--new .mock__piede { color: #9a9da6; }
 
   /* --- FAQ ---------------------------------------------------------------- */
   .faq-wrap { max-width: 46rem; }
@@ -571,25 +783,34 @@ const livelli = [
      `auto-fit`, e su schermo largo ci fa stare tre colonne: la quarta card
      resta sola in fondo e la sezione sembra incompiuta. Qui le colonne sono
      fissate a due. */
-  .grid--servizi { grid-template-columns: 1fr; }
-  @media (min-width: 48rem) {
-    .grid--servizi { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .servizio { display: flex; gap: 1.1rem; align-items: flex-start; }
-  .servizio__icona {
+  /* --- I quattro servizi: elenco, non schede ---------------------------- */
+  .servizi {
+    list-style: none;
     display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2.25rem) clamp(2.5rem, 6vw, 5rem);
+  }
+  @media (min-width: 48rem) {
+    .servizi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .servizio {
+    padding-top: clamp(1rem, 2vw, 1.35rem);
+    border-top: 1px solid var(--grigio-100);
+  }
+  .servizio h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-600);
+  }
+  .servizio__icona {
+    display: inline-grid;
     place-items: center;
-    width: 3.2rem;
-    height: 3.2rem;
     flex-shrink: 0;
-    border-radius: 12px;
-    background: var(--rosso-tenue);
     color: var(--rosso);
   }
-  .servizio__icona :global(.ico) { width: 1.6rem; height: 1.6rem; }
-  .servizio h3 { margin-bottom: 0.35rem; }
-  .servizio p { color: var(--grigio-700); font-size: var(--fs-300); }
+  .servizio__icona :global(.ico) { width: 1.35rem; height: 1.35rem; }
+  .servizio p { margin-top: 0.55rem; color: var(--grigio-700); }
 
   .livelli { align-items: stretch; }
   .livello {

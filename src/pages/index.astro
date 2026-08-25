@@ -242,7 +242,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
        diverse per due sole azioni erano il motivo per cui non si capiva qual
        era la cosa da fare. -->
   <section class="section section--dark">
-    <div class="container spot spot--rosso blocco-vivo">
+    <div class="container">
       <div class="invito">
         <div class="reveal">
           <div class="section-head">
@@ -547,7 +547,10 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     transition: transform var(--transition), box-shadow var(--transition),
       border-color var(--transition);
   }
-  .pila__voce:first-child a { border-left-color: var(--rosso); }
+  /* ⛔ 25/08 sera, tolto su richiesta di Nicola: la prima voce della pila
+     nasceva col dorso rosso. Sembrava un'area GIA' SCELTA, e in un elenco
+     dove il rosso dice "sei qui sopra" un rosso fisso e' un'informazione
+     falsa. Il rosso resta solo al passaggio del puntatore. */
   .pila__voce a:hover {
     transform: translateX(0.5rem);
     box-shadow: var(--shadow-md);

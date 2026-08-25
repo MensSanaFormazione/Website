@@ -86,7 +86,6 @@ const eAttiva = (item) =>
          Stesso difetto gia' visto sui siti dei locali (ZAV, Selva Urbana). */
       document.documentElement.classList.add('con-js');
     </script>
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <header class="site-header" id="site-header">
       <div class="container site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Mens Sana Formazione, home">
@@ -245,21 +244,27 @@ const eAttiva = (item) =>
       if (window.self !== window.top) mostraTutto();
       else setTimeout(mostraTutto, 8000);
 
-      // Barra di avanzamento + header compatto durante lo scroll
-      const bar = document.getElementById('scroll-progress');
+      /* Header compatto durante lo scroll.
+         ⛔ 25/08 sera, tolta su richiesta di Nicola: la barra rossa di
+         avanzamento lettura in cima a ogni pagina. E' una cosa da articolo
+         lungo, non da sito di sei pagine: qui diceva a chi guarda quanto
+         manca alla fine, cioe' una misura che non gli serve, e in cima allo
+         schermo si sommava alla riga rossa gia' presente sotto la testata.
+         ⛔ Se un giorno la si rivuole, sta nella cronologia di questo file e
+         del `global.css`. */
       const header = document.getElementById('site-header');
       const onScroll = () => {
         const testata = document.getElementById('site-header');
         if (testata) testata.classList.toggle('is-scesa', window.scrollY > 8);
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        if (bar) bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
         header?.classList.toggle('is-scrolled', window.scrollY > 40);
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Spotlight: il bagliore segue il mouse sulle card .spot
-      document.querySelectorAll('.spot').forEach((el) => {
+      // Spotlight: il bagliore segue il mouse sulle card .spot e su OGNI
+      // blocco nero del sito (`.section--dark > .container`), che il CSS
+      // tratta come uno spot rosso senza bisogno di classi in pagina.
+      document.querySelectorAll('.spot, .section--dark > .container').forEach((el) => {
         el.addEventListener('pointermove', (e) => {
           const r = el.getBoundingClientRect();
           (el as HTMLElement).style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -547,10 +552,19 @@ const eAttiva = (item) =>
         transition: transform var(--transition), background var(--transition),
           border-color var(--transition), color var(--transition);
       }
+      /* ⛔ 25/08 sera, richiesta di Nicola: al passaggio del puntatore questo
+         pulsante si accende del BLU LinkedIn, non del rosso. Il pulsante dice
+         "Seguici su LinkedIn": l'azione porta fuori dal sito, e il blu e' il
+         segno con cui la piattaforma si riconosce a colpo d'occhio. E' anche
+         quello che fa gia' l'icona LinkedIn in testata, quindi il piede ora
+         si comporta come la testata invece di contraddirla.
+         ⛔ Il pulsante A RIPOSO resta neutro: il colore compare solo al
+         passaggio, quindi il piede non torna ad avere due macchie fredde
+         addosso, che era il motivo per cui il blu era stato tolto. */
       .site-footer__linkedin:hover {
         transform: translateY(-2px);
-        background: var(--rosso);
-        border-color: var(--rosso);
+        background: #0a66c2;
+        border-color: #0a66c2;
         color: var(--bianco) !important;
       }
       .site-footer__legal {

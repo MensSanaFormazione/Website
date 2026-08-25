@@ -12,6 +12,12 @@ const correlati = corsi.filter((c) => c.area === corso.area && c.cod !== corso.c
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 ---
 
+<!-- ⛔ 25/08 sera, deciso da Nicola: le ore di studio individuale ("60 ore
+     di studio individuale", "80 ore...") NON si mostrano piu' in nessuna
+     scheda corso. Erano in due punti, la riga sotto il titolo e la scheda
+     laterale del prezzo. ⛔ Il dato resta nel `catalogo.json` e nel modulo
+     dell'area riservata: si e' tolta la vetrina, non il dato, quindi se un
+     giorno lo si rivuole basta rimettere le due righe. -->
 <Base
   title={`${corso.cod} · ${corso.titolo} | Mens Sana Formazione`}
   description={corso.sottotitolo}
@@ -28,16 +34,13 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       <p class="scheda-hero__sub rise" style="--r: 3">{corso.sottotitolo}</p>
       <ul class="scheda-hero__meta rise" style="--r: 4">
         <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 13 5.22-3.11a.5.5 0 0 1 .78.42v3.38a.5.5 0 0 1-.78.42L16 11"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg> {corso.durataVideo}</li>
-        {corso.durataStudio && (
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> {corso.durataStudio}</li>
-        )}
         <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg> Anche in edizione aziendale su misura</li>
       </ul>
     </div>
   </section>
 
   <!-- CORPO -->
-  <section class="section">
+  <section class="section scheda-corpo">
     <div class="container scheda-grid">
       <div class="scheda-main">
         <div class="reveal">
@@ -113,7 +116,6 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
           )}
           <ul class="side-card__meta">
             <li>{corso.durataVideo}</li>
-            {corso.durataStudio && <li>{corso.durataStudio}</li>}
             <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
           </ul>
           <a href="/contatti/" class="btn btn--primary side-card__cta">Richiedi informazioni</a>
@@ -442,7 +444,19 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   .correlato__prezzo small { font-weight: 600; color: var(--grigio-500); font-size: var(--fs-200); }
   .correlato__cta { font-weight: 700; font-size: var(--fs-300); color: var(--rosso); }
 
-  .cta-scheda { text-align: center; }
+  /* ⛔ 25/08 sera, difetto visto da Nicola: sopra "Vuoi iscriverti" c'era un
+     vuoto che non finiva piu'. Misurato: 104 px di testa della sezione sopra
+     gli 88 di coda di quella prima, con in mezzo un blocco centrato e stretto
+     che non li riempie. Un invito finale vuole respiro, non una schermata
+     bianca: adesso 56 sopra e 72 sotto. */
+  .cta-scheda {
+    text-align: center;
+    padding-block: clamp(1.5rem, 3vw, 2.25rem) clamp(2.5rem, 5vw, 4.5rem);
+  }
+  /* ⛔ Il vuoto sopra l'invito finale non era tutto suo: 104 px arrivavano
+     dalla CODA di questa sezione, che finisce con la colonna laterale in
+     alto a destra e sotto non ha piu' niente. Si accorcia qui, non solo la'. */
+  .scheda-corpo { padding-bottom: clamp(2rem, 4vw, 3rem); }
   .cta-scheda .container { max-width: 42rem; }
   .cta-scheda p { margin-block: 1rem 2rem; color: var(--grigio-700); font-size: var(--fs-500); }
 </style>

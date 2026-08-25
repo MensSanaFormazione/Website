@@ -387,26 +387,25 @@ html.con-js .rise {
   to { opacity: 1; transform: none; }
 }
 
-/* --- Barra avanzamento scroll ------------------------------------------- */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  transform-origin: left;
-  transform: scaleX(0);
-  background: linear-gradient(90deg, var(--rosso), #ff5a68);
-  z-index: 100;
-  pointer-events: none;
-}
+/* ⛔ 25/08 sera: la barra rossa di avanzamento lettura (`.scroll-progress`)
+   e' stata TOLTA da tutto il sito su richiesta di Nicola. Regola e motivo
+   nel `Base.astro`, dove stavano l'elemento e lo script. */
 
-/* --- Spotlight sulle card (segue il mouse) ------------------------------- */
-.spot {
+/* --- Spotlight sulle card (segue il mouse) -------------------------------
+   ⛔ 25/08 sera, richiesta di Nicola: l'alone che segue il puntatore stava su
+   UN solo blocco nero, l'invito della home. Un effetto che c'e' in un posto
+   solo non si legge come cura, si legge come dimenticanza in tutti gli altri.
+   Adesso vale per OGNI blocco nero del sito, e vale ALLA RADICE, sul selettore
+   `.section--dark > .container`: chi aggiunge domani una sezione scura se lo
+   trova gia' addosso, senza doversi ricordare una classe. Le sezioni scure
+   oggi sono sette, in cinque pagine diverse. */
+.spot,
+.section--dark > .container {
   position: relative;
   overflow: hidden;
 }
-.spot::before {
+.spot::before,
+.section--dark > .container::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -420,25 +419,42 @@ html.con-js .rise {
   transition: opacity 0.35s ease;
   pointer-events: none;
 }
-.spot:hover::before { opacity: 1; }
+.spot:hover::before,
+.section--dark > .container:hover::before { opacity: 1; }
 /* Bagliore caldo per i blocchi scuri: segue il puntatore ed e' del rosso del
    marchio, non un bianco generico. ⛔ Ha senso solo dove c'e' un puntatore:
    al tocco non succede niente e va bene cosi'. */
-.spot--rosso::before {
+.spot--rosso::before,
+.section--dark > .container::before {
   background: radial-gradient(
     520px circle at var(--mx, 50%) var(--my, 50%),
     rgba(200, 32, 47, 0.28),
     transparent 62%
   );
 }
-.blocco-vivo {
-  transition: transform var(--transition), box-shadow var(--transition);
+/* ⛔ 25/08 sera, deciso da Nicola: il sollevamento al passaggio del mouse
+   vale per OGNI blocco nero, non solo per i tre di invito. Prima l'avevano
+   in tre su sette, e la differenza non la capiva nessuno: o un blocco nero e'
+   una superficie viva o non lo e'. Sta alla radice come l'alone e la freccia,
+   quindi le tre cose si accendono insieme e sulle sezioni future arrivano da
+   sole. ⛔ Solo dove c'e' un puntatore: al tocco non deve succedere niente. */
+.blocco-vivo,
+.section--dark > .container {
+  transition: transform var(--transition), box-shadow var(--transition),
+    opacity var(--transition);
 }
 @media (hover: hover) {
-  .blocco-vivo:hover {
+  .blocco-vivo:hover,
+  .section--dark > .container:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blocco-vivo,
+  .section--dark > .container { transition: none; }
+  .blocco-vivo:hover,
+  .section--dark > .container:hover { transform: none; }
 }
 
 .spot--dark::before {
@@ -448,7 +464,42 @@ html.con-js .rise {
     transparent 65%
   );
 }
-.spot > * { position: relative; z-index: 1; }
+.spot > *,
+.section--dark > .container > * { position: relative; z-index: 1; }
+
+/* --- La freccia del marchio su ogni blocco nero --------------------------
+   ⛔ 25/08 sera, richiesta di Nicola: la filigrana che sta nella fascia rossa
+   va su TUTTI i blocchi neri del sito, e si schiarisce quando ci passi sopra.
+   Due motivi perche' ha ragione: e' l'unico segno di proprieta' che abbiamo,
+   e un blocco nero senza niente dentro e' una superficie muta.
+   ⛔ E' disegnata qui come immagine di sfondo, non come tag SVG in pagina:
+   cosi' vale per le sezioni scure che esistono e per quelle che verranno,
+   senza dover ricordare di incollare una figura in sette file.
+   ⛔ Il triangolo e' lo STESSO del componente `Freccia.astro`, misurato sul
+   logo (vertici 5.77/3.84, 23/12, 1/20.16 su un riquadro di 24): se un giorno
+   cambia il marchio, cambiano tutti e due, non uno solo. */
+.section--dark > .container::after {
+  content: '';
+  position: absolute;
+  right: -6%;
+  bottom: -32%;
+  width: min(48rem, 70%);
+  aspect-ratio: 24 / 24;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.77 3.84 L23 12 L1 20.16 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom right;
+  opacity: 0.05;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Al passaggio del puntatore si schiarisce: la stessa mano che accende
+   l'alone rosso fa emergere la freccia. */
+.section--dark > .container:hover::after { opacity: 0.11; }
+@media (prefers-reduced-motion: reduce) {
+  .section--dark > .container::after { transition: none; }
+}
 
 /* ⛔ La striscia scorrevole delle aree e' stata TOLTA il 24/08 su richiesta
    di Nicola: "ormai ce l'hanno tutti i siti". Le aree si vedono gia' nella
