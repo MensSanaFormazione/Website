@@ -30,7 +30,7 @@ const haImmagine = (slug) =>
        Nicola: titolo, una riga, e subito le aree. -->
   <section class="section catalogo-apertura" id="aree">
     <div class="container">
-      <div class="catalogo-testa">
+      <div class="catalogo-testa catalogo-testa--riga">
         <p class="eyebrow">Il catalogo</p>
         <h1>Ventidue corsi<br />in otto aree</h1>
         <p class="catalogo-testa__sub">
@@ -134,7 +134,7 @@ const haImmagine = (slug) =>
   <!-- SU MISURA -->
   <section class="section section--dark" id="consulenza">
     <div class="container spot spot--rosso blocco-vivo">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Su misura</p>
         <h2>Nessuno di questi corsi è quello che vi serve?</h2>
         <p>
@@ -166,18 +166,79 @@ const haImmagine = (slug) =>
   /* La fascia dell'indice contiene una riga sola quando e' chiusa: con lo
      spazio pieno delle altre sezioni sembrava mezza vuota. */
   .indice-fascia { padding-block: clamp(2rem, 4vw, 3rem); }
+  /* ⛔ 25/08, deciso da Nicola guardandolo sul telefono: l'indice dei 22 corsi
+     NON si mostra sotto i 48rem. Ogni riga e' fatta di quattro colonne
+     (codice, titolo, durata, prezzo) e su uno schermo stretto non e' piu' una
+     tabella, e' una poltiglia di righe che vanno a capo dove capita.
+     ⛔ Nessuna pagina resta orfana e non si perde nessun dato: le schede dei
+     22 corsi sono raggiungibili dalle otto pagine area qui sopra, e i prezzi
+     stanno su ogni scheda. I collegamenti restano comunque nell'HTML, quindi
+     i motori di ricerca li vedono lo stesso.
+     ⚠️ Se un giorno lo si rivuole sul telefono, la strada NON e' rimetterlo
+     com'e': e' rifare la riga come due righe, codice piu' titolo sopra e
+     durata piu' prezzo sotto. */
+  @media (max-width: 47.99rem) {
+    .indice-fascia { display: none; }
+  }
   .catalogo-testa { max-width: 44rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
   .catalogo-testa__sub {
     margin-top: 1.2rem;
     font-size: var(--fs-500);
     color: var(--grigio-700);
   }
+  /* ⛔ 25/08: "Ventidue corsi in otto aree" occupava la meta' sinistra e la
+     destra restava vuota per tutta l'altezza dell'apertura. Stesso rimedio
+     delle teste di sezione della home: il titolo a sinistra e la riga di
+     spiegazione a destra, appoggiati sulla stessa base. */
+  @media (min-width: 62rem) {
+    .catalogo-testa--riga {
+      max-width: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+      grid-template-rows: auto auto;
+      column-gap: clamp(2.5rem, 7vw, 6rem);
+      align-items: end;
+    }
+    .catalogo-testa--riga > .eyebrow { grid-column: 1; grid-row: 1; }
+    .catalogo-testa--riga > h1 { grid-column: 1; grid-row: 2; }
+    .catalogo-testa--riga > .catalogo-testa__sub {
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 0;
+      padding-bottom: 0.5rem;
+    }
+  }
 
   /* --- Le otto aree ------------------------------------------------------ */
+  /* ⛔ 25/08, deciso da Nicola guardandolo sul telefono: le otto schede vanno
+     DUE A DUE anche sullo schermo stretto. A una colonna ogni scheda era alta
+     circa 700 px (l'immagine da sola ne prende 292 a 390 px di larghezza), e
+     otto schede facevano quasi 5.600 px di scorrimento per vedere un elenco
+     di otto voci. Affiancate, si dimezza.
+     ⛔ Sotto i 22rem (352 px) si torna a una colonna: piu' stretto di cosi'
+     la scheda scende sotto i 145 px e il titolo si spezza in tre righe.
+     ⚠️ La soglia era 23rem e lasciava fuori i 360 px, che e' una delle
+     larghezze piu' diffuse: misurato, e corretto. */
   .aree-griglia {
     display: grid;
     gap: 1.25rem;
     grid-template-columns: 1fr;
+  }
+  @media (min-width: 22rem) {
+    .aree-griglia { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem; }
+  }
+  @media (min-width: 48rem) {
+    .aree-griglia { gap: 1.25rem; }
+  }
+  /* Sulle due colonne strette il testo va rifiatato, se no la scheda diventa
+     un muro: l'occhiello va su due righe invece che ai due lati, e il corpo
+     scende di un gradino. */
+  @media (max-width: 47.99rem) {
+    .area-card__testo { padding: 0.9rem; gap: 0.35rem; }
+    .area-card__eti { flex-direction: column; gap: 0.15rem; }
+    .area-card h3 { font-size: 1.05rem; line-height: 1.2; }
+    .area-card__occhiello { font-size: var(--fs-200); }
+    .area-card__cta { font-size: var(--fs-200); }
   }
   @media (min-width: 40rem) {
     .aree-griglia { grid-template-columns: repeat(2, minmax(0, 1fr)); }

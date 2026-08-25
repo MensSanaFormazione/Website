@@ -44,7 +44,7 @@ const leve = [
   description="Costruiamo il corso sulle vostre esigenze: durata, taglio, casi pratici e formato. Programma e proposta economica scritti, senza impegno. Milano, dal 2017."
 >
   <section class="page-hero">
-    <div class="container">
+    <div class="container page-hero__centro">
       <p class="eyebrow">Su misura</p>
       <h1>Il corso che vi serve<br />non è a catalogo?<br /><span class="text-rosso">Lo costruiamo.</span></h1>
       <p class="page-hero__sub">
@@ -52,7 +52,7 @@ const leve = [
         caratteristiche e dai bisogni della vostra organizzazione e scriviamo un
         programma dedicato, con il docente giusto per quella materia.
       </p>
-      <a href="/contatti/" class="btn btn--primary">Raccontaci cosa vi serve</a>
+      <a href="/contatti/" class="btn btn--primary">Parliamone</a>
     </div>
   </section>
 
@@ -78,7 +78,7 @@ const leve = [
   <!-- COSA SI MODULA -->
   <section class="section section--tinted">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Cosa si modula</p>
         <h2>Sei cose che cambiamo per voi</h2>
         <p>
@@ -100,7 +100,7 @@ const leve = [
   <!-- DA DOVE SI PARTE -->
   <section class="section section--dark">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Da dove si parte</p>
         <h2>Le materie che trattiamo</h2>
         <p>
@@ -129,12 +129,21 @@ const leve = [
         Scriveteci cosa deve saper fare la vostra squadra dopo il corso: vi
         rispondiamo con un programma e una proposta chiara, senza sorprese.
       </p>
-      <a href="/contatti/" class="btn btn--primary">Richiedi una proposta</a>
+      <a href="/contatti/" class="btn btn--primary">Parliamone</a>
     </div>
   </section>
 </Base>
 
 <style>
+  /* ⛔ 25/08: apertura centrata. Prima il testo stava a sinistra e la meta'
+     destra dello schermo restava vuota su ogni pagina del sito, che a schermo
+     largo non si legge come eleganza ma come pagina non finita. */
+  .page-hero__centro {
+    max-width: 54rem;
+    text-align: center;
+  }
+  .page-hero__centro .eyebrow { justify-content: center; }
+  .page-hero__centro .page-hero__sub { margin-inline: auto; }
   .page-hero {
     background: var(--carta);
     border-bottom: 1px solid var(--grigio-100);

@@ -22,7 +22,14 @@ import Freccia from '../components/Freccia.astro';
         <ul class="promesse">
           <li>
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <span><strong>Risposta entro un giorno lavorativo</strong>, non "ti ricontatteremo".</span>
+            <!-- ⛔ 25/08: qui c'era ', non "ti ricontatteremo".' Nicola l'ha
+                 fraintesa lui stesso alla prima lettura, ed e' la prova che
+                 non funziona: l'occhio scavalca le virgolette e legge "non ti
+                 ricontatteremo", cioe' l'esatto contrario della promessa.
+                 ⛔ In una pagina che serve a rassicurare, una frase che si
+                 puo' leggere al rovescio non si difende, si cambia. Adesso il
+                 confronto e' con un tempo, non con una formula. -->
+            <span><strong>Risposta entro un giorno lavorativo</strong>, non entro una settimana.</span>
           </li>
           <li>
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>

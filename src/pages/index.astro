@@ -18,11 +18,10 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
         <h1 class="rise" style="--r: 1">
           La competenza legale che forma.<br />
           <span class="text-rosso"
-            >Il sapere che fa <span class="firma"><span class="flip-mask" id="flip-mask"><span class="flip-word" id="flip-word">decidere</span></span><svg
+            >Il sapere che fa <span class="firma"><span class="flip-mask" id="flip-mask"><span class="flip-pista" id="flip-pista"><span class="flip-word" id="flip-a">decidere.</span><span class="flip-word flip-word--sotto" id="flip-b" aria-hidden="true">prevenire.</span></span></span><svg
               class="firma__tratto" id="firma-tratto" viewBox="0 0 200 12" preserveAspectRatio="none"
               aria-hidden="true"
-            ><path d="M2 8.4C34 3.6 74 2.2 116 3.4c28 .8 54 2.6 82 5.2" /></svg></span><span
-            class="punto" id="punto">.</span></span
+            ><path pathLength="1" d="M2 8.4C34 3.6 74 2.2 116 3.4c28 .8 54 2.6 82 5.2" /></svg></span></span
           >
         </h1>
         <p class="hero__sub rise" style="--r: 2">
@@ -35,11 +34,20 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
           <a href="/formazione/" class="btn btn--primary">Scopri i corsi</a>
           <a href="/su-misura/" class="btn btn--ghost">Un corso su misura</a>
         </div>
-        <ul class="hero__stats rise" style="--r: 4">
-          <li><strong data-count={nCorsi}>0</strong><span>corsi a catalogo</span></li>
-          <li><strong data-count={aree.length}>0</strong><span>aree tematiche</span></li>
-          <li><strong data-count="9">0</strong><span>anni al fianco delle imprese</span></li>
-        </ul>
+        <!-- ⛔ 25/08: qui c'era la riga "22 corsi a catalogo / 8 aree
+             tematiche / 9 anni al fianco delle imprese". TOLTA, decisa da
+             Nicola dopo averla guardata. Tre motivi, e il terzo e' il piu'
+             grave: (a) due numeri su tre erano un doppione di cose scritte
+             nella STESSA schermata, il paragrafo qui sopra apre con
+             "Ventidue corsi" e la pila a destra elenca le otto aree con i
+             conteggi; "9 anni" lo dice gia' l'occhiello "Milano · dal 2017";
+             (b) misuravano il nostro listino, non un risultato del cliente,
+             cioe' erano il dato meno persuasivo che avevamo; (c) il testo a
+             sinistra diventava piu' alto della pila, e sotto "Digitalizzazione
+             PA" restavano circa 260 px di vuoto, la stessa meta' destra vuota
+             che il 25/08 e' stata tolta da tutte le altre sezioni.
+             ⛔ Se un giorno tornano, che siano numeri di risultato (persone
+             formate, aziende servite), non di catalogo. -->
       </div>
 
       <!-- La pila: le aree del catalogo disegnate come dorsi di volumi.
@@ -64,7 +72,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   <!-- I DUE MODI DI LAVORARE INSIEME -->
   <section class="section">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Cosa facciamo</p>
         <h2>Due modi di lavorare insieme</h2>
         <p>
@@ -101,7 +109,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   <!-- METODO -->
   <section class="section section--dark">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Il metodo</p>
         <h2>Before / During / After</h2>
         <p>
@@ -138,29 +146,43 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     </div>
   </section>
 
-  <!-- VALORI -->
-  <section class="section">
+  <!-- VALORI
+       ⛔ 25/08: era la quarta sezione di fila fatta allo stesso modo (titolo a
+       sinistra e quattro schede bianche col bordo grigio), e le schede avevano
+       pure il titolo attaccato al paragrafo. Adesso e' LA fascia rossa del
+       sito, l'unica, e l'unica a tutta larghezza: il rosso del marchio si
+       prende una superficie invece di comparire solo su bottoni ed etichette,
+       e il ritmo della pagina si rompe sul colore e sulla forma insieme.
+       ⛔ I quattro testi NON sono stati toccati: cambia il trattamento, non
+       quello che diciamo. -->
+  <section class="section section--rosso">
+    <svg class="filigrana" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5.77 3.84 L23 12 L1 20.16 Z" />
+    </svg>
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head section-head--largo reveal">
         <p class="eyebrow">Perché noi</p>
-        <h2>Competenza, concretezza, velocità, risultato</h2>
+        <h2>Competenza, concretezza,<br />velocità, risultato</h2>
       </div>
-      <div class="grid grid--2">
-        <div class="card reveal spot">
+      <div class="punti">
+        <div class="punto-n reveal">
+          <span class="punto-n__n">01</span>
           <h3>La materia la pratichiamo, non solo la insegniamo</h3>
           <p>
             Professionisti con background giuridico e internazionale, abituati a
             parlare la lingua delle imprese, non solo quella dei codici.
           </p>
         </div>
-        <div class="card reveal spot" style="--d: .12s">
+        <div class="punto-n reveal" style="--d: .12s">
+          <span class="punto-n__n">02</span>
           <h3>Su misura, sempre</h3>
           <p>
             Ogni corso parte dalle tue esigenze specifiche: durata, taglio e
             casi pratici. Il catalogo è la base, la personalizzazione è la regola.
           </p>
         </div>
-        <div class="card reveal spot" style="--d: .24s">
+        <div class="punto-n reveal" style="--d: .24s">
+          <span class="punto-n__n">03</span>
           <h3>Risposte in tempi da impresa</h3>
           <p>
             Chi scrive riceve una risposta vera, con programma e proposta
@@ -168,7 +190,8 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
             aspettano.
           </p>
         </div>
-        <div class="card reveal spot" style="--d: .36s">
+        <div class="punto-n reveal" style="--d: .36s">
+          <span class="punto-n__n">04</span>
           <h3>Aggiornati alla norma di oggi</h3>
           <p>
             I programmi si riscrivono quando cambia la legge, non a fine anno:
@@ -209,17 +232,50 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
        sembra un errore (segnalato da Nicola). Adesso la home chiude con lo
        stesso blocco scuro che chiude il catalogo e le pagine area: un solo
        gesto di chiusura, riconoscibile ovunque nel sito. -->
+  <!-- ⛔ CODA DEL 25/08: questo blocco aveva il testo su meta' riquadro e
+       l'altra meta' nera e vuota, quasi il 45% di un blocco alto mezzo
+       schermo. Adesso la colonna di destra porta i recapiti veri, che stavano
+       solo nel piede: chi e' gia' pronto a chiamare non deve scorrere fino in
+       fondo per trovare un numero.
+       ⛔ E il pulsante non dice piu' "Scrivici": in tutto il sito l'azione di
+       conversione si chiama "Parliamone", come in testata. Sette formule
+       diverse per due sole azioni erano il motivo per cui non si capiva qual
+       era la cosa da fare. -->
   <section class="section section--dark">
     <div class="container spot spot--rosso blocco-vivo">
-      <div class="section-head reveal">
-        <p class="eyebrow">Parliamone</p>
-        <h2>Raccontaci cosa vi serve</h2>
-        <p>
-          Un corso a catalogo o un percorso costruito su di voi. Ti rispondiamo
-          entro un giorno lavorativo, con un programma e una proposta scritti.
-        </p>
+      <div class="invito">
+        <div class="reveal">
+          <div class="section-head">
+            <p class="eyebrow">Parliamone</p>
+            <h2>Raccontaci cosa vi serve</h2>
+            <p>
+              Un corso a catalogo o un percorso costruito su di voi. Ti rispondiamo
+              entro un giorno lavorativo, con un programma e una proposta scritti.
+            </p>
+          </div>
+          <div class="invito__azione">
+            <a href="/contatti/" class="btn btn--light">Parliamone</a>
+          </div>
+        </div>
+        <ul class="invito__recapiti reveal" style="--d: .12s">
+          <li>
+            <span class="invito__eti">Telefono</span>
+            <span class="invito__val"><a href="tel:+390281558505">(+39) 02 8155 8505</a></span>
+          </li>
+          <li>
+            <span class="invito__eti">Cellulare</span>
+            <span class="invito__val"><a href="tel:+393519013820">(+39) 351 901 3820</a></span>
+          </li>
+          <li>
+            <span class="invito__eti">Posta</span>
+            <span class="invito__val"><a href="mailto:info@mensanaformazione.com">info@mensanaformazione.com</a></span>
+          </li>
+          <li>
+            <span class="invito__eti">Dove siamo</span>
+            <span class="invito__nota">Via San Francesco d'Assisi 13, 20122 Milano<br />Lun-Ven 9:00-18:00, Sabato 9:00-12:00</span>
+          </li>
+        </ul>
       </div>
-      <a href="/contatti/" class="btn btn--light">Scrivici</a>
     </div>
   </section>
 </Base>
@@ -229,45 +285,102 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
      una mascherina, e il riquadro si allarga insieme a lei. ⛔ Le larghezze si
      misurano una volta sola all'avvio: se cambiassero durante l'animazione la
      riga sotto ballerebbe. */
+  /* ⛔ 25/08, QUARTA riscrittura di questo blocco in una mattina, e l'unica
+     che toglie la causa invece dei sintomi. Le tre prima erano rimedi: il
+     punto staccato di dieci pixel, il punto su una riga da solo, il punto in
+     alto mentre la parola saliva ancora. Ogni volta il difetto tornava
+     diverso, e il motivo e' che il rullo aveva UN SOLO elemento: la parola
+     usciva in alto in 320 ms e solo DOPO la stessa parola veniva rimessa in
+     basso e riportata su, quindi per circa 640 ms la riga era vuota o quasi.
+     ⛔ Un rullo con un elemento solo non puo' esistere: mentre la vecchia esce
+     ci deve gia' essere la nuova che entra. Adesso dentro la mascherina ci
+     sono DUE parole, una in vista e una parcheggiata appena sotto il bordo, e
+     a scorrere e' la pista che le contiene entrambe. La riga non e' mai vuota
+     perche' c'e' sempre almeno una delle due dentro il ritaglio.
+     ⛔ Il punto e' testo della parola, non un elemento a se': non c'e' piu'
+     niente da tenere sincronizzato. */
   const words = ['decidere', 'prevenire', 'controllare', 'crescere'];
-  const el = document.getElementById('flip-word');
   const mask = document.getElementById('flip-mask');
+  const pista = document.getElementById('flip-pista');
+  const a = document.getElementById('flip-a');   // quella che si vede
+  const b = document.getElementById('flip-b');   // quella parcheggiata sotto
   const tratto = document.getElementById('firma-tratto');
-  const punto = document.getElementById('punto');
 
-  if (el && mask && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const larghezze = words.map((w) => {
-      el.textContent = w;
-      return el.getBoundingClientRect().width;
+  const DURATA = 420;   // deve combaciare con la transizione di .flip-pista
+
+  let larghezze = [];
+  let i = 0;
+
+  /* ⛔ Le larghezze si misurano col carattere VERO: misurate prima che
+     Fraunces sia arrivato sarebbero quelle di Georgia, e la mascherina
+     uscirebbe piu' larga della parola. Si rimisura anche dopo un
+     ridimensionamento, perche' il corpo del titolo e' fluido. */
+  const misura = () => {
+    if (!a || !mask) return;
+    const tenere = a.textContent;
+    larghezze = words.map((w) => {
+      a.textContent = w + '.';
+      return a.getBoundingClientRect().width;
     });
-    let i = 0;
-    el.textContent = words[0];
-    mask.style.width = larghezze[0] + 'px';
+    a.textContent = tenere;
+    mask.style.width = larghezze[i] + 'px';
+  };
 
-    /* Il tratto rosso segue la parola invece di restare fermo: si ritira
-       mentre la parola esce, e si ridisegna quando quella nuova si e'
-       fermata. Non parte insieme alla parola, perche' sottolineare qualcosa
-       che sta ancora entrando sembra un errore di sincronia. */
-    const traccia = () => tratto && tratto.classList.add('is-tracciata');
-    const ritira = () => tratto && tratto.classList.remove('is-tracciata');
+  const traccia = () => tratto && tratto.classList.add('is-tracciata');
+  const ritira = () => tratto && tratto.classList.remove('is-tracciata');
+
+  const avvia = () => {
+    if (!a || !b || !mask || !pista) return;
+    i = 0;
+    a.textContent = words[0] + '.';
+    misura();
     setTimeout(traccia, 700);
 
     setInterval(() => {
-      el.classList.add('is-out');
-      if (punto) punto.classList.add('is-out');
+      const prossimo = (i + 1) % words.length;
+      /* La parola nuova si prepara sotto il bordo e la mascherina comincia
+         subito ad allargarsi verso la sua misura: le due cose viaggiano
+         insieme, se no per un attimo si vedrebbe la parola tagliata. */
+      b.textContent = words[prossimo] + '.';
+      mask.style.width = larghezze[prossimo] + 'px';
       ritira();
+      pista.classList.add('is-scorre');
+
       setTimeout(() => {
-        i = (i + 1) % words.length;
-        el.textContent = words[i];
-        mask.style.width = larghezze[i] + 'px';
-        el.classList.remove('is-out');
-        el.classList.add('is-in');
-        void el.getBoundingClientRect();
-        el.classList.remove('is-in');
-        if (punto) punto.classList.remove('is-out');
-        setTimeout(traccia, 260);
-      }, 320);
+        /* Finito lo scorrimento si rimette tutto al punto di partenza SENZA
+           che si veda: si spegne la transizione, si riporta la pista a zero e
+           si sposta il testo nuovo nella parola in vista. ⛔ Il
+           `getBoundingClientRect` in mezzo non e' decorativo: obbliga il
+           browser a fare i conti prima che la transizione torni attiva, se no
+           la pista scivolerebbe indietro davanti agli occhi. */
+        i = prossimo;
+        pista.style.transition = 'none';
+        pista.classList.remove('is-scorre');
+        a.textContent = words[i] + '.';
+        void pista.getBoundingClientRect();
+        pista.style.transition = '';
+        setTimeout(traccia, 60);
+      }, DURATA);
     }, 3000);
+  };
+
+  if (a && b && mask && pista && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(avvia).catch(avvia);
+    } else {
+      avvia();
+    }
+
+    /* Si rimisura a finestra ferma, e mai durante uno scorrimento: rimisurare
+       a meta' cambio farebbe ballare la riga sotto. */
+    let attesa;
+    window.addEventListener('resize', () => {
+      clearTimeout(attesa);
+      attesa = setTimeout(() => {
+        if (pista.classList.contains('is-scorre')) return;
+        misura();
+      }, 200);
+    }, { passive: true });
   }
 </script>
 
@@ -276,9 +389,20 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     position: relative;
     overflow: hidden;
     background: var(--carta);
-    padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5rem);
-    border-bottom: 1px solid var(--grigio-100);
+    /* ⛔ 25/08, difetto visto da Nicola e causato da me: qui c'era
+       `border-bottom: 1px solid var(--grigio-100)`, e il 25/08 ho aggiunto un
+       filetto anche sopra le teste di sezione. Risultato: DUE righe
+       orizzontali a 145 px l'una dall'altra con niente in mezzo, cioe' una
+       fascia vuota che si legge come un errore di impaginazione.
+       Due segni che fanno lo stesso lavoro sono uno di troppo: resta quello
+       della testa di sezione, che almeno ha un contenuto attaccato sotto.
+       ⛔ E lo spazio si e' stretto: l'apertura chiudeva con 80 px di aria e la
+       sezione dopo ne apriva altri 104. */
+    padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(2rem, 4vw, 3rem);
   }
+  /* La prima sezione dopo l'apertura non ha bisogno dello spazio pieno: sopra
+     di lei c'e' gia' l'aria di chiusura dell'apertura. */
+  .hero + .section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
   /* ⛔ Le due macchie sfocate che vagavano sono state tolte il 24/08: non
      dicevano niente e occupavano proprio lo spazio dove ora c'e' la pila. */
 
@@ -286,7 +410,10 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     position: relative;
     display: grid;
     gap: clamp(2.5rem, 6vw, 4rem);
-    align-items: center;
+    /* ⛔ Era `center`: la pila galleggiava a mezz'aria e lasciava il vuoto
+       sotto l'ultima area. Tolti i numeri, le due colonne hanno quasi la
+       stessa altezza e allineate in cima chiudono insieme. */
+    align-items: start;
   }
   @media (min-width: 62rem) {
     /* ⛔ 25/08: la pila stava troppo addosso al titolo. Lo spazio fra le due
@@ -299,13 +426,24 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   }
   .hero__testo { max-width: 42rem; }
   /* La firma: il tratto rosso si ridisegna a ogni parola nuova. */
+  /* ⛔ 25/08, e questa e' la terza correzione dello STESSO punto in una
+     mattina: le prime due erano rimedi ai sintomi, questa toglie la causa.
+     Il punto era un elemento a se', fuori dalla mascherina, con una sua
+     animazione di opacita'. Da li' sono usciti tre difetti in fila, tutti
+     trovati da Nicola guardando: il punto staccato di dieci pixel (le
+     larghezze misurate prima che arrivasse Fraunces), il punto SU UNA RIGA DA
+     SOLO sotto "controllare" (fra due elementi in linea il browser puo'
+     sempre andare a capo), e il punto in alto a destra mentre la parola
+     saliva ancora dal basso (la mascherina prende subito la larghezza nuova,
+     il punto la segue, la parola no).
+     ⛔ La lezione: due pezzi che devono muoversi insieme non si sincronizzano,
+     si fondono. Adesso il punto E' la parola: `decidere.` sta tutto dentro la
+     mascherina, esce ed entra come una cosa sola, e non c'e' piu' niente da
+     tenere allineato.
+     ⚠️ Il prezzo, voluto: il tratto rosso adesso passa anche sotto il punto.
+     Su una sottolineatura fatta a pennello e' il gesto naturale. Se non
+     convince, si accorcia il tratto qui sotto e basta. */
   .firma { position: relative; display: inline-block; }
-  /* ⛔ 25/08: il punto restava fermo mentre la parola spariva, e sembrava un
-     difetto invece che una scelta. Fa parte della frase, quindi fa parte
-     dell'animazione. Sta FUORI dalla mascherina di proposito: dentro, il
-     tratto rosso gli passerebbe sotto. */
-  .punto { display: inline-block; transition: opacity 0.32s ease; }
-  .punto.is-out { opacity: 0; }
   .firma__tratto {
     position: absolute;
     left: -2%;
@@ -318,26 +456,54 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     stroke-width: 6;
     stroke-linecap: round;
     opacity: 0.85;
-    stroke-dasharray: 210;
+    /* ⛔ 25/08, difetto trovato guardando il sito vivo: la lunghezza del
+       tratteggio era fissa a 210 unita', ma il tracciato viene STIRATO in
+       orizzontale (`preserveAspectRatio="none"`) e la sua lunghezza vera
+       cambia con la larghezza della parola. Su "controllare" la linea non
+       arrivava in fondo, su "crescere" si chiudeva prima e sbordava.
+       Con `pathLength="1"` sul tracciato la lunghezza vale 1 qualunque sia la
+       parola, e il tratteggio e' sempre esatto. */
+    stroke-dasharray: 1;
     stroke-dashoffset: 0;
   }
   /* La linea si nasconde SOLO se il JavaScript gira: senza, resta disegnata
      invece di sparire per sempre. */
+  /* ⛔ 25/08: ritirandosi il tratto lasciava UN PALLINO ROSSO a mezz'aria, e
+     con la riga della parola vuota sembrava un puntino sospeso sul niente.
+     Non era un difetto di tempi: `stroke-linecap: round` disegna un cerchio
+     grande quanto lo spessore ANCHE quando la lunghezza visibile e' zero.
+     Rimedio: il tratto sfuma nell'ultima parte del ritiro, cosi' il cerchio
+     finale non si vede mai; e quando si ridisegna l'opacita' torna piena
+     all'istante, quindi l'effetto del pennello che traccia resta intatto. */
   html.con-js .firma__tratto {
-    stroke-dashoffset: 210;
-    transition: stroke-dashoffset 0.26s ease-in;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    transition: stroke-dashoffset 0.26s ease-in, opacity 0.16s ease-in 0.1s;
   }
   /* Tracciata: parte da sinistra e arriva sotto l'ultima lettera. Si ritira
      piu' in fretta di quanto si disegni, come un gesto vero. */
   html.con-js .firma__tratto.is-tracciata {
     stroke-dashoffset: 0;
-    transition: stroke-dashoffset 0.62s cubic-bezier(0.22, 0.7, 0.3, 1);
+    opacity: 0.85;
+    transition: stroke-dashoffset 0.62s cubic-bezier(0.22, 0.7, 0.3, 1), opacity 0s;
   }
   @media (prefers-reduced-motion: reduce) {
     html.con-js .firma__tratto { stroke-dashoffset: 0; transition: none; }
   }
 
   /* --- La pila delle aree ------------------------------------------------ */
+  /* ⛔ 25/08, deciso da Nicola guardando il telefono: la pila NON si mostra
+     sotto i 62rem. Su schermo largo occupa una colonna che altrimenti
+     resterebbe vuota, quindi e' spazio guadagnato; sul telefono non affianca
+     piu' niente, si impila sotto il testo e sono circa 960 px di scorrimento
+     prima della prima sezione, per portare a otto pagine che stanno gia'
+     dietro il pulsante "Scopri i corsi". Costo alto, guadagno zero.
+     ⛔ Nessuna pagina resta orfana: le otto aree sono linkate da
+     `/formazione/`, dove il pulsante porta. */
+  @media (max-width: 61.99rem) {
+    .hero__pila { display: none; }
+  }
+
   .pila__eti {
     font-size: var(--fs-200);
     font-weight: 700;
@@ -348,7 +514,15 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     padding-left: 0.4rem;
   }
   .pila { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .pila__voce {
+  /* ⛔ 25/08, difetto della stessa famiglia gia' pagata due volte (ZAV e Selva
+     Urbana) e sfuggita qui: queste otto righe partivano da `opacity: 0` SENZA
+     essere sotto `html.con-js`. Senza JavaScript, e dentro un iframe che
+     Chrome non dipinge (le anteprime dei link), l'animazione non arriva mai a
+     destinazione e le otto aree del catalogo restano INVISIBILI. Non e' una
+     decorazione che sparisce: e' la scorciatoia al catalogo.
+     Adesso la regola vale solo se lo script gira, e la rete di sicurezza di
+     `Base.astro` le accende comunque. */
+  html.con-js .pila__voce {
     opacity: 0;
     transform: translateY(18px);
     animation: rise-in 0.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
@@ -384,7 +558,11 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     font-size: var(--fs-600);
     font-weight: 900;
     text-align: center;
-    color: var(--grigio-300);
+    /* ⛔ 25/08, misurato non stimato: era `--grigio-300` su bianco, cioe'
+       contrasto 1,70. La lettera dell'area non e' un ornamento, e' il codice
+       con cui il catalogo la chiama ovunque nel sito, e li' non si leggeva.
+       Con `--grigio-500` sale a 5,43 e resta comunque un segno tenue. */
+    color: var(--grigio-500);
     transition: color var(--transition);
   }
   .pila__voce a:hover .pila__sigla { color: var(--rosso); }
@@ -392,13 +570,15 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   .pila__n {
     font-size: var(--fs-200);
     font-weight: 700;
-    color: var(--grigio-500);
+    /* ⛔ Stessa passata: `--grigio-500` sulla pastiglia `--grigio-100` dava
+       4,24 contro il minimo di 4,5. Con `--grigio-700` sale a 6,58. */
+    color: var(--grigio-700);
     background: var(--grigio-100);
     border-radius: 999px;
     padding: 0.1rem 0.5rem;
   }
   @media (prefers-reduced-motion: reduce) {
-    .pila__voce { opacity: 1; transform: none; animation: none; }
+    html.con-js .pila__voce { opacity: 1; transform: none; animation: none; }
     .firma__tratto { animation: none; stroke-dashoffset: 0; }
   }
 
@@ -414,23 +594,6 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
     gap: 0.9rem;
     margin-top: 2.2rem;
   }
-  .hero__stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(1.5rem, 5vw, 3.5rem);
-    list-style: none;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--grigio-100);
-  }
-  .hero__stats li { display: flex; flex-direction: column; }
-  .hero__stats strong {
-    font-size: var(--fs-700);
-    color: var(--nero);
-    letter-spacing: -0.02em;
-  }
-  .hero__stats span { font-size: var(--fs-300); color: var(--grigio-500); }
-
   .ramo { display: flex; flex-direction: column; gap: 0.8rem; color: inherit; }
   .ramo h3 { font-size: var(--fs-600); }
   .ramo p { color: var(--grigio-700); flex-grow: 1; }

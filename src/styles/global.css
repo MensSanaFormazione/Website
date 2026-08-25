@@ -86,9 +86,14 @@
     Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-sans: var(--font-testo);
 
-  /* Scala tipografica fluida */
-  --fs-900: clamp(2.4rem, 5.5vw + 1rem, 4.2rem);
-  --fs-800: clamp(1.9rem, 3.5vw + 0.8rem, 3rem);
+  /* Scala tipografica fluida.
+     ⛔ Alzata il 25/08: i titoli di sezione arrivavano a 3rem su uno schermo
+     largo, cioe' poco piu' del doppio del testo corrente. Con un salto cosi'
+     corto la pagina non ha gerarchia, ha solo righe di dimensioni diverse, ed
+     e' una delle ragioni per cui il sito "non ha carattere". Adesso il titolo
+     di sezione arriva a 3,6rem e l'apertura a 4,6rem: il contrasto si vede. */
+  --fs-900: clamp(2.5rem, 6vw + 1rem, 4.6rem);
+  --fs-800: clamp(2rem, 4vw + 0.8rem, 3.6rem);
   --fs-700: clamp(1.5rem, 2vw + 0.7rem, 2.1rem);
   --fs-600: clamp(1.2rem, 1vw + 0.7rem, 1.4rem);
   --fs-500: 1.125rem;
@@ -313,6 +318,14 @@ main > section:last-of-type { padding-bottom: clamp(3.5rem, 7vw, 5.5rem); }
   box-shadow: var(--shadow-md);
   border-color: var(--grigio-300);
 }
+/* ⛔ Difetto visto sul vivo il 25/08: nelle schede di "Perche' noi" il titolo
+   e il paragrafo erano ATTACCATI, senza un filo di spazio, mentre in tutte le
+   altre schede del sito lo spazio c'era. Le schede con il titolo su due righe
+   sembravano un blocco di testo unico. La regola manca va qui, alla radice,
+   non nella singola pagina: vale per ogni scheda del sito. */
+.card > h3 + p,
+.card > h4 + p { margin-top: 0.55rem; }
+.card > p + p { margin-top: 0.7rem; }
 
 /* --- Griglie ----------------------------------------------------------- */
 .grid {
@@ -326,18 +339,37 @@ main > section:last-of-type { padding-bottom: clamp(3.5rem, 7vw, 5.5rem); }
 @media (min-width: 48rem) {
   .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+/* ⛔ 25/08: stesso difetto di `.grid--2`, che il 20/08 era stato corretto solo
+   per quella. `.grid--3` era `auto-fit`, e da quando il sito e' passato a
+   78rem apriva QUATTRO colonne: le sei schede di "Sei cose che cambiamo per
+   voi" uscivano 4+2, con due schede orfane sull'ultima riga. Colonne fissate:
+   una, poi due, poi tre. Le griglie da tre non ne aprono mai quattro. */
+.grid--3 { grid-template-columns: 1fr; }
+@media (min-width: 48rem) {
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 68rem) {
+  .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 
 /* --- Comparse allo scorrimento ------------------------------------------
    ⛔ Difetto vero trovato il 24/08: `.reveal` partiva da `opacity: 0` per
    tutti, quindi SENZA JavaScript la pagina restava vuota sotto la prima
    schermata. E' lo stesso difetto gia' visto sullo ZAV e sulla Selva Urbana.
    Ora la regola vale solo se lo script gira. */
+/* ⛔ SECONDO DIFETTO, trovato il 25/08 guardando il sito vivo: chi scorre in
+   fretta trova blocchi VUOTI. Ho preso una schermata in cui "Il metodo" era un
+   rettangolo nero e basta, e una del catalogo con le schede grigie senza
+   contenuto. Cause: 0,6s di dissolvenza, una cascata che arrivava a 0,36s, e
+   l'osservatore che scattava solo quando l'elemento era gia' entrato per il
+   12%. Adesso: 0,42s, cascata dimezzata qui (cosi' non tocco i `--d` scritti
+   in trenta punti del sito) e l'osservatore parte 240px PRIMA, in Base.astro.
+   Il movimento si vede ancora, ma non fa piu' in tempo a lasciare buchi. */
 html.con-js .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  transition-delay: var(--d, 0s);   /* cascata: style="--d: .15s" */
+  transform: translateY(20px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+  transition-delay: calc(var(--d, 0s) * 0.5);   /* cascata: style="--d: .15s" */
 }
 html.con-js .reveal.is-visible {
   opacity: 1;
@@ -429,21 +461,53 @@ html.con-js .rise {
    firma rossa sospesa sul niente. Ora la parola scorre dentro una mascherina:
    esce in alto, la nuova entra da sotto. La spaziatura in basso serve a non
    tagliare le discendenti (la p di "prevenire"). */
+/* ⛔ 25/08: qui lo spazio in basso stava sulla MASCHERINA, e da li' e' uscito
+   un difetto che si vedeva appena ma c'era: `overflow: hidden` ritaglia al
+   bordo del PADDING, non a quello del contenuto, quindi quello spazio era
+   area visibile e ci si intravedeva la cima della parola successiva, ferma in
+   attesa. Lo stesso spazio serve pero' a non tagliare la discendente della
+   "p" di "prevenire", quindi non si puo' togliere: si sposta sulla PISTA.
+   Cosi' fa ancora il suo lavoro (la pista e' alta parola piu' spazio, e la
+   discendente ci sta dentro), ma la parola in attesa, che sta al 100%
+   dell'altezza della pista, finisce fuori dal ritaglio.
+   ⛔ E lo scorrimento resta esatto: la pista trasla del 100% della PROPRIA
+   altezza, che e' la stessa distanza a cui e' parcheggiata la parola nuova. */
 .flip-mask {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  padding-bottom: 0.16em;
   margin-bottom: -0.16em;
-  transition: width 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.42s cubic-bezier(0.22, 0.8, 0.3, 1);
 }
+/* La pista porta le DUE parole e scorre di una riga esatta. ⛔ E' lei a
+   muoversi, non le parole: cosi' mentre la vecchia esce dal bordo alto la
+   nuova entra dal basso nello stesso istante, e il ritaglio non e' mai vuoto.
+   Il movimento vive solo se lo script gira: senza, la pista resta ferma e si
+   vede la prima parola, che e' quella scritta nell'HTML. */
+.flip-pista { display: block; position: relative; padding-bottom: 0.16em; }
+html.con-js .flip-pista {
+  transition: transform 0.42s cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+html.con-js .flip-pista.is-scorre { transform: translateY(-100%); }
+/* ⛔ 25/08: la parola usciva CON la dissolvenza oltre che scorrendo, quindi a
+   meta' del cambio la riga restava vuota, che e' esattamente il difetto che la
+   mascherina era stata costruita per togliere. Senza l'opacita' la parola
+   scorre e basta, e sparisce perche' la mascherina la TAGLIA: e' un rullo, e
+   la riga non resta mai vuota. */
 .flip-word {
-  display: inline-block;
-  min-width: 0;
-  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
+  display: block;
+  white-space: nowrap;
 }
-.flip-word.is-out { opacity: 0; transform: translateY(-110%); }
-.flip-word.is-in { transition: none; opacity: 0; transform: translateY(110%); }
+/* La parola in attesa sta appena sotto il bordo del ritaglio, quindi non si
+   vede e non conta per l'altezza della pista: la pista resta alta una riga.
+   ⛔ Senza JavaScript resta nascosta lo stesso, perche' a tagliarla e' la
+   mascherina e non lo script. */
+.flip-word--sotto {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+}
 
 /* --- La freccia del marchio ---------------------------------------------
    Un solo gesto ripetuto in tutto il sito: il triangolo della S che avanza.
@@ -528,4 +592,203 @@ a:hover .freccia--indietro,
   stroke-linejoin: round;
   vertical-align: -0.16em;
   flex-shrink: 0;
+}
+
+/* ==========================================================================
+   RITMO DELLA PAGINA — aggiunto il 25/08/2026
+   ⛔ Diagnosi che ha fatto nascere tutto questo blocco: guardando il sito
+   vivo con occhi esterni, ogni sezione di ogni pagina era costruita nello
+   stesso identico modo (etichetta rossa, titolo a sinistra, paragrafo,
+   griglia di schede bianche), ripetuta sette volte di fila. Il difetto non
+   era "e' troppo semplice": era che non cambia mai. E su ogni titolo di
+   sezione la META' DESTRA dello schermo restava vuota, che a schermo largo
+   non si legge come eleganza ma come pagina non finita.
+   Le tre cose che seguono servono a dare respiri diversi alla stessa pagina.
+   ========================================================================== */
+
+/* --- 1. Testa di sezione su due colonne ---------------------------------
+   Titolo a sinistra, paragrafo a destra, uniti da un filetto in alto.
+   Riempie la colonna vuota, accorcia la pagina e da' alla sezione un taglio
+   da rivista invece che da brochure. Sotto i 62rem torna incolonnata. */
+.section-head--riga {
+  max-width: none;
+  border-top: 1px solid var(--grigio-100);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+.section--dark .section-head--riga { border-top-color: var(--grigio-700); }
+.section--rosso .section-head--riga { border-top-color: rgba(255, 255, 255, 0.28); }
+
+@media (min-width: 62rem) {
+  .section-head--riga {
+    display: grid;
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+    grid-template-rows: auto auto;
+    column-gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: end;
+  }
+  .section-head--riga > .eyebrow { grid-column: 1; grid-row: 1; }
+  .section-head--riga > h2 { grid-column: 1; grid-row: 2; }
+  /* Il paragrafo si allinea alla BASE del titolo, non alla sua cima: due
+     blocchi di testo appesi in alto sembrano scollegati, appoggiati sulla
+     stessa linea sembrano una cosa sola. */
+  .section-head--riga > p {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* --- 2. La fascia rossa --------------------------------------------------
+   ⛔ Una volta sola in tutto il sito. Fino al 25/08 il rosso del marchio
+   compariva SOLO su pulsanti, etichette e sottolineature: il sito era carta
+   e nero con dei puntini rossi, e il marchio non lasciava impronta. Qui il
+   rosso si prende una superficie intera.
+   ⛔ Ed e' l'unica sezione a TUTTA LARGHEZZA: le altre fasce scure sono
+   riquadri con gli angoli tondi appoggiati sulla pagina. Cambiando forma,
+   oltre che colore, il ritmo si rompe davvero. Se diventassero due, non
+   sarebbe piu' un accento: sarebbe un fondo. */
+.section--rosso {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--rosso-scuro);
+  background-image: linear-gradient(152deg, var(--rosso) 0%, var(--rosso-scuro) 100%);
+  color: rgba(255, 255, 255, 0.9);
+  padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
+}
+.section--rosso h2,
+.section--rosso h3 { color: var(--bianco); }
+/* Contrasti misurati, non stimati: bianco pieno sul rosso chiaro della
+   sfumatura sta a 5,68 e il corpo al 90% a 5,0. Il minimo e' 4,5. */
+.section--rosso p { color: rgba(255, 255, 255, 0.9); }
+.section--rosso .eyebrow { color: var(--bianco); }
+.section--rosso .eyebrow::before { background: var(--bianco); }
+.section--rosso .section-head p { color: rgba(255, 255, 255, 0.9); }
+
+/* --- 3. La filigrana del marchio ----------------------------------------
+   La freccia della S, la stessa figura misurata sul logo che il sito usa
+   accanto ai collegamenti, ingrandita e quasi invisibile. Non e' un ornamento
+   generico: e' l'unico segno di proprieta' che abbiamo, e ripetuto grande
+   rende una superficie riconoscibile anche coprendo il logo. */
+.filigrana {
+  position: absolute;
+  right: -6%;
+  bottom: -32%;
+  width: min(48rem, 70%);
+  height: auto;
+  fill: currentColor;
+  color: var(--bianco);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+.section--rosso > .container { position: relative; z-index: 1; }
+
+/* --- 4. Punti numerati su fondo pieno ------------------------------------
+   Niente riquadri bianchi qui dentro: su una fascia di colore le schede
+   bianche la bucherebbero e si tornerebbe alla pagina di sempre. Dividono
+   dei filetti, e il peso lo porta il numero. */
+.punti {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  grid-template-columns: 1fr;
+  margin-top: clamp(2rem, 5vw, 3.25rem);
+}
+@media (min-width: 48rem) { .punti { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 72rem) { .punti { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.punto-n {
+  border-top: 1px solid rgba(255, 255, 255, 0.32);
+  padding-top: 1.1rem;
+}
+.punto-n__n {
+  display: block;
+  font-family: var(--font-titoli);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  /* ⛔ Misurato: al 42% il numero stava a 2,45 contro il minimo di 3 per il
+     testo grande. Non e' un ornamento, e' la numerazione dei quattro punti.
+     Al 58% sale a 3,5 e resta comunque piu' tenue del titolo accanto. */
+  color: rgba(255, 255, 255, 0.58);
+  margin-bottom: 0.6rem;
+}
+.punto-n h3 {
+  font-size: var(--fs-500);
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+.punto-n p { font-size: var(--fs-300); }
+
+/* --- 5. Blocco di chiusura su due colonne --------------------------------
+   ⛔ Il blocco scuro "Raccontaci cosa vi serve" aveva il testo su meta'
+   riquadro e l'altra meta' nera e vuota: quasi il 45% di un blocco alto
+   quanto mezzo schermo. Adesso la colonna di destra porta i recapiti veri,
+   che erano sepolti nel piede. Chi e' pronto a comprare non deve scorrere
+   fino in fondo per trovare un numero di telefono. */
+.invito {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+@media (min-width: 62rem) {
+  .invito { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+}
+.invito__azione { margin-top: clamp(1.5rem, 3vw, 2rem); }
+.invito__recapiti {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  list-style: none;
+  border-top: 1px solid var(--grigio-700);
+  padding-top: 1.4rem;
+}
+.section--rosso .invito__recapiti { border-top-color: rgba(255, 255, 255, 0.28); }
+.invito__recapiti li { display: flex; flex-direction: column; gap: 0.15rem; }
+.invito__eti {
+  font-size: var(--fs-200);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grigio-500);
+}
+.section--dark .invito__eti { color: var(--grigio-300); opacity: 0.75; }
+.invito__val {
+  font-family: var(--font-titoli);
+  font-size: var(--fs-600);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--bianco);
+}
+.section--dark .invito__val a,
+.section--rosso .invito__val a { color: var(--bianco); }
+.section--dark .invito__val a:hover { color: var(--rosso-chiaro); }
+.section--rosso .invito__val a:hover { color: rgba(255, 255, 255, 0.75); }
+.invito__nota { font-size: var(--fs-300); color: var(--grigio-300); }
+
+/* --- 6. Cifre che non ballano -------------------------------------------
+   ⛔ I contatori animati facevano cambiare larghezza alla riga a ogni
+   fotogramma, perche' in Inter le cifre hanno larghezze diverse. Con le
+   cifre tabellari il numero cresce restando fermo. */
+[data-count] { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* Testa di sezione larga: serve dove il titolo e' il protagonista e non c'e'
+   un paragrafo che riempia la colonna di destra (la fascia rossa). A 40rem il
+   titolo andava a capo tre volte e sembrava spinto in un angolo. */
+.section-head--largo { max-width: 52rem; }
+
+/* Dentro il blocco di chiusura la spinta in basso la da' il pulsante, non la
+   testa di sezione: se restasse quella, fra testo e pulsante si aprirebbe un
+   vuoto grande quanto una sezione. */
+.invito .section-head { margin-bottom: 0; }
+
+/* Rete di sicurezza delle entrate: la mette `Base.astro` quando decide che
+   l'attesa e' finita (subito dentro un iframe, dopo otto secondi altrove).
+   ⛔ Serve perche' `.rise` e le righe della pila sono animazioni CSS, e
+   un'animazione che non parte lascia l'elemento a `opacity: 0` per sempre. */
+html.entrate-finite .rise,
+html.entrate-finite .pila__voce {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
 }
