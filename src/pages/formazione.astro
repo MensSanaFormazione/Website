@@ -23,11 +23,11 @@ const haImmagine = (slug) =>
   title="Catalogo corsi Legal & Compliance | Mens Sana Formazione"
   description="Ventidue corsi in otto aree: diritto societario, organismi di controllo, contrattualistica, credit management, finance e fiscale, compliance, business coaching, digitalizzazione PA."
 >
-  <!-- ⛔ Qui c'erano DUE introduzioni in fila, ognuna con il suo titolone in
+  {/* ⛔ Qui c'erano DUE introduzioni in fila, ognuna con il suo titolone in
        serif e il suo paragrafo grigio: "Ventidue corsi in otto aree" e subito
        dopo "Da dove vuoi partire?". Si leggevano due volte le stesse cose
        prima di vedere un corso. Fuse in una sola il 25/08, su segnalazione di
-       Nicola: titolo, una riga, e subito le aree. -->
+       Nicola: titolo, una riga, e subito le aree. */}
   <section class="section catalogo-apertura" id="aree">
     <div class="container">
       <div class="catalogo-testa catalogo-testa--riga">
@@ -84,12 +84,12 @@ const haImmagine = (slug) =>
     </div>
   </section>
 
-  <!-- INDICE COMPLETO -->
+  {/* INDICE COMPLETO */}
   <section class="section section--tinted indice-fascia" id="catalogo">
     <div class="container">
-      <!-- ⛔ L'indice e' chiuso all'arrivo: con 22 corsi, aperto occupava piu'
-           schermate e spingeva in fondo tutto il resto. `<details>` e' nativo,
-           quindi funziona anche senza JavaScript. -->
+      {/* ⛔ L'indice e' chiuso all'arrivo: con 22 corsi, aperto occupava piu'
+           schermate e spingeva in fondo tutto il resto. '<details>' e' nativo,
+           quindi funziona anche senza JavaScript. */}
       <details class="indice-tutto reveal">
         <summary>
           <span class="indice-tutto__testo">
@@ -131,7 +131,7 @@ const haImmagine = (slug) =>
     </div>
   </section>
 
-  <!-- SU MISURA -->
+  {/* SU MISURA */}
   <section class="section section--dark" id="consulenza">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -147,12 +147,12 @@ const haImmagine = (slug) =>
     </div>
   </section>
 
-  <!-- ⛔ Qui c'era una seconda chiamata all'azione, "Un corso per la tua
+  {/* ⛔ Qui c'era una seconda chiamata all'azione, "Un corso per la tua
        squadra?" con il pulsante "Richiedi una proposta". Tolta il 25/08 su
        richiesta di Nicola: arrivava subito dopo il blocco scuro "Su misura",
        che finisce gia' con un pulsante, quindi erano due inviti in fila e il
        secondo indeboliva il primo. Il testo, se dovesse servire, sta nel log
-       della sessione. -->
+       della sessione. */}
 </Base>
 
 <style>

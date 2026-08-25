@@ -7,9 +7,9 @@ import Freccia from '../components/Freccia.astro';
   title="Contatti | Mens Sana Formazione Milano"
   description="Contatta Mens Sana Formazione: Via San Francesco d'Assisi 13, Milano. Tel 02 8155 8505, info@mensanaformazione.com. Preventivi gratuiti per corsi a catalogo ed edizioni aziendali su misura."
 >
-  <!-- ⛔ 25/08: apertura e modulo erano due sezioni separate, con fino a 200 px
+  {/* ⛔ 25/08: apertura e modulo erano due sezioni separate, con fino a 200 px
        di vuoto in mezzo. Ora sono una cosa sola: si legge il titolo e il
-       modulo e' subito li'. -->
+       modulo e' subito li'. */}
   <section class="section contatti">
     <div class="container">
       <div class="contatti-testa">
@@ -22,13 +22,13 @@ import Freccia from '../components/Freccia.astro';
         <ul class="promesse">
           <li>
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <!-- ⛔ 25/08: qui c'era ', non "ti ricontatteremo".' Nicola l'ha
+            {/* ⛔ 25/08: qui c'era ', non "ti ricontatteremo".' Nicola l'ha
                  fraintesa lui stesso alla prima lettura, ed e' la prova che
                  non funziona: l'occhio scavalca le virgolette e legge "non ti
                  ricontatteremo", cioe' l'esatto contrario della promessa.
                  ⛔ In una pagina che serve a rassicurare, una frase che si
                  puo' leggere al rovescio non si difende, si cambia. Adesso il
-                 confronto e' con un tempo, non con una formula. -->
+                 confronto e' con un tempo, non con una formula. */}
             <span><strong>Risposta entro un giorno lavorativo</strong>, non entro una settimana.</span>
           </li>
           <li>
@@ -43,7 +43,7 @@ import Freccia from '../components/Freccia.astro';
       </div>
 
       <div class="contatti-grid">
-      <!-- FORM -->
+      {/* FORM */}
       <form
         class="card contatti-form reveal"
         action="/api/contatto"
@@ -96,7 +96,7 @@ import Freccia from '../components/Freccia.astro';
         <button type="submit" class="btn btn--primary">Invia la richiesta</button>
       </form>
 
-      <!-- INFO -->
+      {/* INFO */}
       <div class="contatti-info reveal">
         <div class="dopo">
           <h3>Cosa succede dopo che scrivi</h3>

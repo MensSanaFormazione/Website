@@ -12,17 +12,17 @@ const correlati = corsi.filter((c) => c.area === corso.area && c.cod !== corso.c
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 ---
 
-<!-- ⛔ 25/08 sera, deciso da Nicola: le ore di studio individuale ("60 ore
+{/* ⛔ 25/08 sera, deciso da Nicola: le ore di studio individuale ("60 ore
      di studio individuale", "80 ore...") NON si mostrano piu' in nessuna
      scheda corso. Erano in due punti, la riga sotto il titolo e la scheda
-     laterale del prezzo. ⛔ Il dato resta nel `catalogo.json` e nel modulo
+     laterale del prezzo. ⛔ Il dato resta nel 'catalogo.json' e nel modulo
      dell'area riservata: si e' tolta la vetrina, non il dato, quindi se un
-     giorno lo si rivuole basta rimettere le due righe. -->
+     giorno lo si rivuole basta rimettere le due righe. */}
 <Base
   title={`${corso.cod} · ${corso.titolo} | Mens Sana Formazione`}
   description={corso.sottotitolo}
 >
-  <!-- HERO SCHEDA -->
+  {/* HERO SCHEDA */}
   <section class="scheda-hero">
     <div class="container">
       <a href="/formazione/" class="back rise" style="--r: 0"><Freccia verso="indietro" />Tutti i corsi</a>
@@ -39,7 +39,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </div>
   </section>
 
-  <!-- CORPO -->
+  {/* CORPO */}
   <section class="section scheda-corpo">
     <div class="container scheda-grid">
       <div class="scheda-main">
@@ -105,7 +105,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         )}
       </div>
 
-      <!-- SIDEBAR -->
+      {/* SIDEBAR */}
       <aside class="scheda-side reveal">
         <div class="side-card spot">
           <p class="side-card__label">Quota di iscrizione</p>
@@ -137,7 +137,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </div>
   </section>
 
-  <!-- CORRELATI -->
+  {/* CORRELATI */}
   {correlati.length > 0 && (
     <section class="section section--tinted">
       <div class="container">
@@ -165,7 +165,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </section>
   )}
 
-  <!-- CTA -->
+  {/* CTA */}
   <section class="section cta-scheda">
     <div class="container reveal">
       <h2>Vuoi iscriverti o saperne di più?</h2>
