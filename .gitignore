@@ -5,3 +5,9 @@ dist/
 
 # ⛔ Istruzioni interne di progetto: non devono finire sul sito pubblico
 CLAUDE.md
+
+# ⛔ Materiale di riferimento per la lavorazione (stile delle schede docenti):
+# contiene una foto personale e loghi di terzi, e questo repo e' PUBBLICO.
+# E' fuori da `src/` e da `public/`, quindi Astro non lo compila: non serve al
+# sito e non deve stare su GitHub. Stessa lezione del README della S.H.S.
+riferimenti/

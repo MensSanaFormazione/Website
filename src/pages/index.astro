@@ -278,6 +278,50 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
       </div>
     </div>
   </section>
+
+  {/* LAVORA CON NOI
+       ⛔ Chiesto da Nicola il 01/09: in home, dopo il blocco "Raccontaci cosa
+       vi serve", e VISIBILE. Sta qui e non piu' in alto perche' non e' un
+       argomento di vendita: chi compra un corso non deve incontrarlo prima
+       dell'offerta. Chi cerca lavoro invece scorre fino in fondo.
+
+       ⛔ IL TRATTAMENTO E' IL TERZO DEL SITO, e non e' un vezzo: il nero e' la
+       chiusura commerciale, il rosso a tutta larghezza e' "perche' noi", e
+       questo e' il format delle STORIE INSTAGRAM della ricerca docenti,
+       ripreso alla lettera: fondo chiaro e caldo, pastiglia rossa in alto,
+       velo rosso dietro alla figura e FASCIA ROSSA a vivo in fondo.
+       💡 La ragione: la pagina non sta in barra, quindi chi arriva dalle
+       storie deve riconoscere la stessa cosa a colpo d'occhio.
+       ⛔ E i piedi vanno appoggiati SOPRA la fascia, non dentro: e' la stessa
+       correzione fatta sulle storie il 01/09, dove la fascia tagliava la
+       figura a meta' polpaccio e sembrava un errore di impaginazione. */}
+  <section class="section reclutamento-fascia">
+    <div class="container">
+      <div class="reclutamento reveal">
+        <div class="reclutamento__testo">
+          <p class="pastiglia">Selezione docenti</p>
+          <h2>Insegnate quello che praticate</h2>
+          <p>
+            Cerchiamo professionisti che la materia la esercitano ogni giorno,
+            per i corsi delle otto aree del nostro catalogo. Sono incarichi a
+            collaboratori con partita IVA:
+            <strong>non stiamo cercando dipendenti.</strong>
+          </p>
+          <a href="/lavora-con-noi/" class="btn btn--primary">Lavora con noi</a>
+        </div>
+        <div class="reclutamento__figura" aria-hidden="true">
+          <img
+            src="/docente-lavora-con-noi.webp"
+            alt=""
+            width="592"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <script>
@@ -660,4 +704,128 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   }
 
 
+
+  /* --- LAVORA CON NOI ------------------------------------------------------
+     ⛔ Terzo trattamento del sito, e riprende il format delle storie Instagram
+     della ricerca docenti: fondo chiaro e caldo, pastiglia rossa, velo rosso
+     dietro alla figura, fascia rossa a vivo in fondo. Non somiglia al blocco
+     nero che lo precede ed e' voluto: quello chiude la vendita, questo apre
+     un discorso diverso, e chi arriva dalle storie deve riconoscerlo. */
+  .reclutamento-fascia { padding-block: clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 3.5rem); }
+  .reclutamento {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--panna);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: end;
+    /* ⛔ Lo spazio in fondo NON e' padding a caso: e' l'altezza della fascia
+       rossa (26 px) piu' l'aria sotto al testo. Se si tocca uno vanno toccati
+       tutti e due, se no il testo finisce dentro la fascia. */
+    padding: clamp(2rem, 5vw, 3.25rem) clamp(1.5rem, 4vw, 3rem) 0;
+  }
+  @media (min-width: 56rem) {
+    .reclutamento {
+      /* ⛔ La figura sta in 0,42fr e non in 0,62: chiesto da Nicola che
+         "Insegnate quello che praticate" stia su UNA riga, e con la colonna
+         larga il titolo non ci entrava a nessun corpo ragionevole. */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
+      column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+  }
+  /* La fascia rossa a vivo: attraversa tutto il riquadro, bordi compresi. */
+  .reclutamento::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 26px;
+    background: var(--rosso);
+  }
+  .reclutamento__testo {
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(2rem, 4vw, 2.75rem);
+    max-width: 42rem;
+  }
+  /* La pastiglia e' quella delle storie: rossa piena, maiuscoletto spaziato.
+     ⛔ Non e' l'occhiello del resto del sito, che e' un filetto piu' una
+     scritta rossa: qui deve saltare all'occhio come sulla storia. */
+  /* ⛔ Il colore va scritto su `.reclutamento .pastiglia`, non sulla sola
+     `.pastiglia`: a parita' di specificita' vinceva una regola piu' avanti
+     nel foglio e la scritta usciva GRIGIA su fondo rosso, cioe' illeggibile.
+     Visto sul vivo, non leggendo il codice. */
+  .reclutamento .pastiglia { color: var(--bianco); }
+  .pastiglia {
+    display: inline-block;
+    background: var(--rosso);
+    border-radius: 999px;
+    padding: 0.42rem 0.95rem;
+    font-size: var(--fs-200);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .reclutamento h2 {
+    margin-top: 1rem;
+    font-size: clamp(1.75rem, 3.1vw, 2.5rem);
+    line-height: 1.08;
+    color: var(--nero);
+  }
+  /* ⛔ Da 62rem in su il titolo NON va a capo: e' una richiesta esplicita di
+     Nicola. Il corpo e la larghezza della colonna qui sopra sono tarati per
+     farcelo stare; sotto i 62rem torna a capo, perche' li' non ci sta e
+     restringerlo ancora lo renderebbe piu' piccolo del testo che lo segue. */
+  @media (min-width: 62rem) {
+    .reclutamento h2 { white-space: nowrap; }
+  }
+  .reclutamento__testo > p {
+    margin-top: 0.9rem;
+    color: var(--grigio-700);
+    font-size: var(--fs-400);
+  }
+  .reclutamento__testo strong { color: var(--nero); }
+  .reclutamento .btn { margin-top: 1.5rem; }
+
+  /* --- La figura -----------------------------------------------------------
+     ⛔ Si adatta ad ALTEZZA e non a larghezza, come nelle storie: i ritagli
+     hanno proporzioni diverse a seconda di quanto sono aperte le braccia, e
+     adattandoli a larghezza le persone uscirebbero alte in modo diverso.
+     ⛔ E i piedi stanno SOPRA la fascia rossa (26 px), non dentro. */
+  .reclutamento__figura {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: clamp(13rem, 34vw, 17rem);
+    margin-bottom: 26px;
+  }
+  @media (min-width: 56rem) {
+    .reclutamento__figura { height: clamp(16rem, 24vw, 21rem); }
+  }
+  .reclutamento__figura::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 6%;
+    aspect-ratio: 1;
+    max-width: 20rem;
+    margin-inline: auto;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(200, 32, 47, 0.16) 0%,
+      rgba(200, 32, 47, 0.06) 45%,
+      transparent 70%
+    );
+  }
+  .reclutamento__figura img {
+    position: relative;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
 </style>
