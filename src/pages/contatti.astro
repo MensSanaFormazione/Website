@@ -77,6 +77,11 @@ import Freccia from '../components/Freccia.astro';
             <option value="">Scegli…</option>
             <option>Un corso a catalogo</option>
             <option>Formazione aziendale su misura</option>
+            {/* ⛔ 01/09: senza questa voce chi arriva da `/consulenza/` doveva
+                 scegliere "Altro", cioe' la casella che dice "non so dove
+                 mettervi". L'oggetto della mail che arriva su info@ e' proprio
+                 questo campo, quindi la voce serve anche a chi legge. */}
+            <option>Una consulenza su un caso specifico</option>
             <option>Mens Sana Digital: sito web o menu digitale</option>
             <option>Altro</option>
           </select>

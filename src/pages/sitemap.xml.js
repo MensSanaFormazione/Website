@@ -4,7 +4,10 @@
 // Fuori restano /admin, /api e la 404.
 import { corsi, aree } from '../data/corsi.js';
 
-const fisse = ['/', '/formazione/', '/su-misura/', '/contatti/', '/digital/', '/privacy/', '/termini/'];
+// ⛔ 01/09: aggiunta '/consulenza/'. Le pagine fisse sono l'unica parte di
+// questo file che NON si aggiorna da sola: una pagina nuova che non viene
+// scritta qui resta fuori dalla mappa e Google non sa che esiste.
+const fisse = ['/', '/formazione/', '/su-misura/', '/consulenza/', '/contatti/', '/digital/', '/privacy/', '/termini/'];
 
 export function GET({ site }) {
   const oggi = new Date().toISOString().slice(0, 10);

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import Freccia from '../components/Freccia.astro';
-import { aree, areeSuRichiesta, mostraPrezzo } from '../data/corsi.js';
+import { aree, areeSuRichiesta, mostraPrezzo, prezziAttivi } from '../data/corsi.js';
 
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const conCorsi = aree.filter((a) => a.corsi.length > 0);
@@ -99,13 +99,19 @@ const haImmagine = (slug) =>
           <span class="indice-tutto__stato"><Freccia /></span>
         </summary>
 
+        {/* ⛔ 01/09: la nota diceva "Prezzi IVA esclusa, riferiti al singolo
+             partecipante" anche a prezzi spenti, cioe' annunciava una colonna
+             che non c'era piu'. Adesso segue l'interruttore. */}
         <p class="indice-tutto__nota">
-          Prezzi IVA esclusa, riferiti al singolo partecipante. Le edizioni
-          aziendali si valutano caso per caso.
+          {prezziAttivi ? (
+            'Prezzi IVA esclusa, riferiti al singolo partecipante. Le edizioni aziendali si valutano caso per caso.'
+          ) : (
+            "Le quote non sono esposte: ogni richiesta si valuta caso per caso, sul numero di partecipanti e sul formato. Scriveteci e ricevete una proposta scritta."
+          )}
         </p>
 
       {conCorsi.map((area) => (
-        <div class="indice">
+        <div class:list={['indice', { 'indice--senza-prezzo': !prezziAttivi }]}>
           <h3 class="indice__area">
             <a href={`/formazione/${area.slug}/`}>
               <span class="indice__sigla">{area.sigla}</span>{area.nome}
@@ -118,9 +124,14 @@ const haImmagine = (slug) =>
                   <span class="indice__cod">{corso.cod}</span>
                   <span class="indice__titolo">{corso.titolo}</span>
                   <span class="indice__durata">{corso.durataVideo}</span>
-                  <span class="indice__prezzo">
-                    {mostraPrezzo(corso) ? `${fmtPrezzo(corso.prezzo)} €` : 'Su richiesta'}
-                  </span>
+                  {/* ⛔ 01/09: a prezzi spenti la colonna ripeteva "Su
+                       richiesta" ventidue volte di fila, cioe' una colonna
+                       intera che non distingue niente. La riga adesso resta a
+                       tre colonne e la cosa si dice una volta sola, nella nota
+                       qui sopra. */}
+                  {mostraPrezzo(corso) && (
+                    <span class="indice__prezzo">{`${fmtPrezzo(corso.prezzo)} €`}</span>
+                  )}
                 </a>
               </li>
             ))}
@@ -131,8 +142,12 @@ const haImmagine = (slug) =>
     </div>
   </section>
 
-  {/* SU MISURA */}
-  <section class="section section--dark" id="consulenza">
+  {/* SU MISURA
+       ⛔ 01/09: l'ancora si chiamava `id="consulenza"` ma la sezione parla
+       di corsi su misura, ed e' un residuo del vecchio sito. Dal 01/09 la
+       consulenza e' una pagina vera (`/consulenza/`): due cose diverse non
+       possono avere lo stesso nome, o il primo che cerca l'una trova l'altra. */}
+  <section class="section section--dark" id="su-misura">
     <div class="container">
       <div class="section-head section-head--riga reveal">
         <p class="eyebrow">Su misura</p>
@@ -438,6 +453,10 @@ const haImmagine = (slug) =>
     .indice li a { grid-template-columns: 2.6rem minmax(0, 1fr) 12rem 7rem; }
     .indice__durata { grid-column: auto; }
     .indice__prezzo { grid-column: auto; justify-self: end; }
+    /* ⛔ 01/09: senza la colonna del prezzo la riga deve tornare a TRE
+       colonne, altrimenti resta appesa una quarta colonna da 7rem vuota e la
+       durata smette di stare a destra come prima. */
+    .indice--senza-prezzo li a { grid-template-columns: 2.6rem minmax(0, 1fr) 12rem; }
   }
 
 

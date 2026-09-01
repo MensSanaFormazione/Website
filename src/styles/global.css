@@ -679,6 +679,23 @@ a:hover .freccia--indietro,
   }
   .section-head--riga > .eyebrow { grid-column: 1; grid-row: 1; }
   .section-head--riga > h2 { grid-column: 1; grid-row: 2; }
+  /* ⛔ 01/09, chiesto da Nicola su `/consulenza/`: quando la testa NON ha il
+     paragrafo di destra, il titolo si prende tutte e due le colonne e sta su
+     una riga sola. Prima restava chiuso in 1,28fr su 2, cioe' andava a capo
+     per lasciare spazio a una colonna vuota: "Non l'abbiamo deciso a
+     tavolino" e "Dalla richiesta all'incarico" uscivano spezzati in due senza
+     nessun motivo visibile a chi legge.
+     ⛔ La regola sta QUI e non nella pagina, come alone, filigrana e
+     sollevamento dei blocchi scuri: il trattamento vale per tutte le teste
+     fatte cosi', non per quella che si sta guardando. Oggi sono tre su
+     `/consulenza/` piu' "Come si arriva al corso" di `/su-misura/`, che era
+     gia' corta e non cambia.
+     ⛔ Trappola in cui sono cascato scrivendola: l'occhiello e' anche lui un
+     `<p>`, quindi `:has(> p)` era SEMPRE vero e la regola non scattava mai.
+     Il paragrafo di destra e' l'unico `p` che non e' `.eyebrow`.
+     ⚠️ `:has()` non e' supportato dai browser vecchi: li' il titolo resta
+     incolonnato come prima, che e' il comportamento di ieri. Niente si rompe. */
+  .section-head--riga:not(:has(> p:not(.eyebrow))) > h2 { grid-column: 1 / -1; }
   /* Il paragrafo si allinea alla BASE del titolo, non alla sua cima: due
      blocchi di testo appesi in alto sembrano scollegati, appoggiati sulla
      stessa linea sembrano una cosa sola. */

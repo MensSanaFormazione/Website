@@ -23,6 +23,13 @@ export function mostraPrezzo(corso) {
   return catalogo.impostazioni.mostraPrezzi !== false && corso.mostraPrezzo !== false;
 }
 
+// L'interruttore generale da solo. Serve alle pagine che devono cambiare il
+// TESTO, non solo il numero: l'indice del catalogo diceva "Prezzi IVA esclusa"
+// anche a prezzi spenti, cioe' annunciava una colonna che non c'era piu'.
+// ⛔ 01/09: spento su decisione di Nicola. Si riaccende dal pannello
+// dell'area riservata, scheda "Impostazioni", senza toccare il codice.
+export const prezziAttivi = catalogo.impostazioni.mostraPrezzi !== false;
+
 // Le schede delle aree stanno QUI e non in `catalogo.json`, di proposito:
 // quel file lo riscrive anche il pannello dell'area riservata, e una chiave che
 // il pannello non conosce rischia di sparire al primo salvataggio.

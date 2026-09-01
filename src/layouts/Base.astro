@@ -42,6 +42,14 @@ const nav = [
     label: 'Corsi',
     rami: ['/formazione/', '/su-misura/', '/corsi/'],
   },
+  /* ⛔ 01/09, chiesta dagli amministratori nella riunione del 31/08: la
+     consulenza torna sul sito e torna anche in barra. Non e' un ramo a se'
+     come "Corsi", e' un servizio che affianca la formazione, ma se non sta
+     qui l'unico modo di trovarla e' il piede: era esattamente il motivo per
+     cui la vecchia sezione non la vedeva nessuno.
+     ⛔ Con questa la barra passa da due voci a TRE, e sul telefono "Home" e'
+     gia' nascosta dal CSS: restano Corsi, Consulenza e il pulsante. */
+  { href: '/consulenza/', label: 'Consulenza' },
 ];
 /* ⛔ Normalizzato con la barra finale: se qualcuno arriva su `/su-misura`
    senza barra, il confronto deve funzionare lo stesso. */
@@ -189,6 +197,7 @@ const eAttiva = (item) =>
           <ul>
             <li><a href="/formazione/">Corsi a catalogo</a></li>
             <li><a href="/su-misura/">Corsi su misura</a></li>
+            <li><a href="/consulenza/">Consulenza</a></li>
             <li><a href="/digital/">Mens Sana Digital</a></li>
             <li><a href="/contatti/">Contatti</a></li>
             <li><a href="/privacy/">Informativa Privacy e Cookie</a></li>
@@ -453,13 +462,35 @@ const eAttiva = (item) =>
 
       /* ⛔ Sotto i 400 px i tre elementi non ci stavano piu' in una riga:
          misurato, a 360 px straripava. Il marchio scende, e il margine fra
-         "Corsi" e il pulsante si stringe. */
+         "Corsi" e il pulsante si stringe.
+         ⛔ 01/09, difetto introdotto e chiuso nella stessa sessione: con la
+         terza voce ("Consulenza") la riga non ci stava piu' nemmeno cosi', e
+         a cedere era il MARCHIO, che e' l'unica cosa che non puo' cedere.
+         Misurato: a 386 px il logo e' ancora largo i suoi 78 px, a 384 e' gia'
+         a 76, a 320 arriva a 12. Non era uno straripamento, quindi il
+         collaudo sul rientro nello schermo non lo vedeva: la barra restava
+         dentro i bordi e il marchio diventava una scheggia.
+         ⛔ Non c'e' larghezza a cui marchio, due voci e pulsante stiano su una
+         riga a 320 px: la somma minima fa 342 px. Quindi sotto i 400 px la
+         barra va a DUE righe, marchio e pulsante sopra, le voci sotto. Costa
+         circa 30 px di altezza sui telefoni piu' piccoli, e li' e' il prezzo
+         giusto: una voce che non si vede vale zero, un marchio schiacciato
+         vale meno di zero. */
       @media (max-width: 25rem) {
         .site-header__brand img,
         .site-header.is-scrolled .site-header__brand img { height: 36px; }
-        .site-nav { gap: 0.6rem; }
-        .site-header__azioni { margin-left: 0.6rem; }
         .site-nav__cta { padding: 0.55rem 0.85rem; }
+
+        .site-header__inner { flex-wrap: wrap; row-gap: 0.45rem; }
+        .site-header__brand { flex: none; }
+        .site-header__azioni { order: 2; margin-left: auto; }
+        .site-nav {
+          order: 3;
+          flex-basis: 100%;
+          margin-left: 0;
+          justify-content: flex-start;
+          gap: 1.4rem;
+        }
       }
 
       /* ⛔ Il passaggio al piede era un taglio secco da carta a quasi nero.
