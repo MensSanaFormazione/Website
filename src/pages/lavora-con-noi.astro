@@ -484,8 +484,12 @@ const passi = [
      l'immagine esce alla sua altezza naturale, 1000 px. Visto sul vivo alla
      prima prova: la figura sfondava sopra e sotto e la testa finiva dietro
      alla barra. */
+  /* ⛔ Stesso difetto della home, e qui bloccava "Vai al modulo" a 390 e 414
+     px: la figura e' decorativa e `aria-hidden`, quindi non deve MAI
+     intercettare un tocco. Vedi il commento lungo in `index.astro`. */
   .apertura__figura {
     position: relative;
+    pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -498,10 +502,13 @@ const passi = [
   .apertura__figura::before {
     content: '';
     position: absolute;
-    inset: auto 0 8%;
+    /* Legato all'altezza, non alla larghezza: vedi `index.astro`. */
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 92%;
+    width: auto;
     aspect-ratio: 1;
-    max-width: 26rem;
-    margin-inline: auto;
     border-radius: 50%;
     background: radial-gradient(
       circle at 50% 50%,

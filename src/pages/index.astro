@@ -793,9 +793,23 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
      hanno proporzioni diverse a seconda di quanto sono aperte le braccia, e
      adattandoli a larghezza le persone uscirebbero alte in modo diverso.
      ⛔ E i piedi stanno SOPRA la fascia rossa (26 px), non dentro. */
+  /* ⛔ DIFETTO VERO, segnalato da Nicola dal telefono il 01/09: il pulsante
+     "Lavora con noi" NON SI POTEVA PREMERE sotto i 600 px, mentre da computer
+     funzionava. Misurato con `elementFromPoint` sul centro del pulsante: a
+     360, 390 e 414 px il tocco lo prendeva QUESTO contenitore.
+     ⛔ Il perche': in colonna unica la figura sta sotto il testo, ma il suo
+     velo rosso e' un cerchio legato alla LARGHEZZA della colonna (320 px a
+     390 px di schermo) dentro un contenitore alto 208, quindi sbordava di
+     oltre 100 px verso l'alto e finiva sopra al pulsante. Stesso `z-index: 1`
+     del testo, ma piu' avanti nel DOM: vince lui.
+     ⛔ Due rimedi, e servono tutti e due. `pointer-events: none` e' la
+     garanzia: la figura e' decorativa e `aria-hidden`, nessuno ci deve
+     cliccare, e cosi' il difetto non puo' tornare cambiando le misure. Il
+     velo legato all'ALTEZZA invece che alla larghezza toglie la causa. */
   .reclutamento__figura {
     position: relative;
     z-index: 1;
+    pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -808,10 +822,15 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
   .reclutamento__figura::before {
     content: '';
     position: absolute;
-    inset: auto 0 6%;
+    /* ⛔ Legato all'ALTEZZA del contenitore, che e' definita, non alla
+       larghezza della colonna: cosi' il cerchio non puo' piu' sbordare
+       sopra al testo quando le colonne diventano una sola. */
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 92%;
+    width: auto;
     aspect-ratio: 1;
-    max-width: 20rem;
-    margin-inline: auto;
     border-radius: 50%;
     background: radial-gradient(
       circle at 50% 50%,
