@@ -10,7 +10,8 @@
     "E": "Finance & Fiscale",
     "F": "Compliance",
     "G": "Business Coaching",
-    "H": "Digitalizzazione PA"
+    "H": "Digitalizzazione PA",
+    "I": "Intelligenza Artificiale"
   },
   "corsi": [
     {
@@ -1460,7 +1461,7 @@
       "programma": []
     },
     {
-      "pubblicato": true,
+      "pubblicato": false,
       "mostraPrezzo": true,
       "cod": "H1",
       "slug": "h1-documento-informatico",
@@ -1492,6 +1493,67 @@
         "Il Corso rappresenta una guida per le pubbliche amministrazioni nella comprensione del processo di transizione digitale prefigurato dal PNRR."
       ],
       "programma": []
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "I1",
+      "slug": "i1-ai-act-uso-consapevole",
+      "area": "I",
+      "areaNome": "Intelligenza Artificiale",
+      "titolo": "AI Act e Uso Consapevole dell'IA",
+      "sottotitolo": "Gli obblighi che riguardano l'impresa oggi, come si rispettano e come si dimostra di averlo fatto.",
+      "prezzo": null,
+      "durataVideo": "8 ore in due giornate",
+      "durataStudio": "",
+      "descrizione": [
+        "Il corso risponde a una domanda concreta: la mia impresa utilizza sistemi di intelligenza artificiale, che cosa deve fare per essere in regola e per poterlo dimostrare.",
+        "Dal 2 agosto 2026 il Regolamento UE 2024/1689 è entrato nella sua fase generale di applicazione. In Italia il quadro è completato dalla Legge 132/2025 e dai decreti di adeguamento approvati il 4 agosto 2026, con la vigilanza affidata all'Agenzia per la cybersicurezza nazionale. Il Regolamento UE 2026/1744, in vigore dal 27 luglio 2026, ha poi sostituito il testo dell'articolo 4 e differito al 2 dicembre 2027 e al 2 agosto 2028 gli obblighi sui sistemi ad alto rischio.",
+        "L'obbligo di alfabetizzazione dell'articolo 4 non conosce soglie dimensionali: riguarda anche l'impresa i cui dipendenti usano strumenti generativi in modo occasionale. Nella formulazione in vigore è un obbligo di mezzi e non di risultato, quindi ciò che conta è che le misure siano proporzionate al ruolo e al rischio, e che siano documentate.",
+        "Per questa ragione il percorso si chiude con una verifica e con la consegna di materiali conservabili: attestato nominativo, registro delle presenze, esito della verifica, modello di policy aziendale e nota metodologica."
+      ],
+      "programma": [
+        {
+          "sezione": "Programma",
+          "voci": [
+            "Modulo 1 (2 ore). Il quadro normativo: distinguere gli obblighi che gravano oggi sull'organizzazione da quelli differiti",
+            "Modulo 2 (2 ore). Funzionamento e limiti dei sistemi generativi: dove nascono gli errori e quando la legge impone di dichiararne l'impiego",
+            "Modulo 3 (2 ore). L'uso quotidiano in azienda: che cosa può essere inserito in un prompt e con quali regole operative",
+            "Modulo 4 (1 ora e 30). Procedure interne e documentazione: quali strumenti organizzativi mancano e in che ordine adottarli",
+            "Verifica finale (30 minuti). Questionario a risposta chiusa e produzione dell'evidenza documentale del percorso"
+          ]
+        }
+      ]
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "I2",
+      "slug": "i2-responsabilita-intelligenza-artificiale",
+      "area": "I",
+      "areaNome": "Intelligenza Artificiale",
+      "titolo": "Chi Risponde Quando l'IA Sbaglia",
+      "sottotitolo": "Responsabilità civile, penale e amministrativa nell'uso dell'intelligenza artificiale.",
+      "prezzo": null,
+      "durataVideo": "8 ore in due giornate",
+      "durataStudio": "",
+      "descrizione": [
+        "Il corso affronta il tema che segue immediatamente quello della conformità: individuare chi risponde, e a quale titolo, quando l'impiego di un sistema di intelligenza artificiale produce un danno, un errore o una violazione.",
+        "Nel 2026 il quadro si è definito su tre fronti. Sono arrivate le prime decisioni dei giudici italiani sull'uso non verificato di sistemi generativi, con condanne quantificate fino alla Corte di cassazione. È stato approvato il pacchetto di adeguamento che introduce nel codice penale una fattispecie autonoma in materia di misure di sicurezza e amplia il catalogo dei reati presupposto della responsabilità degli enti. Ed è in scadenza il termine di recepimento della direttiva che qualifica il software come prodotto ai fini della responsabilità civile.",
+        "Da qui il corso trae le conseguenze operative per l'impresa: aggiornamento del Modello di organizzazione, gestione e controllo, contenuto dei contratti con i fornitori, disciplina delle decisioni che incidono sui lavoratori, documentazione da predisporre."
+      ],
+      "programma": [
+        {
+          "sezione": "Programma",
+          "voci": [
+            "Modulo 1 (2 ore). Le decisioni dei giudici italiani: i criteri con cui è stata imputata la responsabilità per l'uso non verificato di sistemi generativi",
+            "Modulo 2 (2 ore). Responsabilità penale e Modello 231: le modifiche da apportare al Modello di organizzazione, gestione e controllo",
+            "Modulo 3 (2 ore). Responsabilità civile e rapporti con i fornitori: il nuovo regime di responsabilità da prodotto e la contrattualistica da adeguare",
+            "Modulo 4 (1 ora e 30). Intelligenza artificiale e rapporto di lavoro: le decisioni che non possono essere automatizzate e le procedure per quelle ammesse",
+            "Modulo 5 (30 minuti). La documentazione a difesa dell'impresa: quali documenti, con quali responsabili e in quali tempi"
+          ]
+        }
+      ]
     }
   ],
   "areeSuRichiesta": [],

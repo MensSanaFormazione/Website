@@ -81,11 +81,37 @@ const SCHEDE_AREE = {
   },
   H: {
     slug: 'digitalizzazione-pa',
-    occhiello: 'Il documento informatico e la transizione digitale degli enti pubblici.',
+    occhiello: 'La transizione digitale degli enti pubblici.',
     intro:
-      "Ciclo di vita del documento informatico e processo di transizione digitale prefigurato dal PNRR: la materia di chi lavora dentro la pubblica amministrazione o insieme a lei.",
+      "Il processo di transizione digitale prefigurato dal PNRR: la materia di chi lavora dentro la pubblica amministrazione o insieme a lei.",
+  },
+  I: {
+    slug: 'intelligenza-artificiale',
+    occhiello: "Gli obblighi dell'AI Act e chi risponde se l'IA sbaglia.",
+    intro:
+      "Due percorsi di otto ore, indipendenti e componibili: il primo mette l'impresa in regola con il Regolamento UE 2024/1689 e ne documenta l'alfabetizzazione, il secondo ricostruisce chi risponde quando un sistema di intelligenza artificiale produce un danno o un errore.",
   },
 };
+
+// ⛔ QUANTI CORSI E QUANTE AREE: si CONTANO, non si scrivono a mano.
+// Il 04/09, aggiungendo l'area I, le pagine dicevano ancora "Ventidue corsi in
+// otto aree" in cinque punti diversi: e' lo stesso difetto dei prezzi spenti
+// dell'01/09, dove l'interruttore era stato girato ma le frasi scritte attorno
+// al dato erano rimaste. Da qui in avanti il numero lo fa il file.
+const NUMERI = ['zero', 'un', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette',
+  'otto', 'nove', 'dieci', 'undici', 'dodici', 'tredici', 'quattordici',
+  'quindici', 'sedici', 'diciassette', 'diciotto', 'diciannove', 'venti',
+  'ventuno', 'ventidue', 'ventitre', 'ventiquattro', 'venticinque', 'ventisei',
+  'ventisette', 'ventotto', 'ventinove', 'trenta'];
+
+export function inLettere(n) {
+  return NUMERI[n] ?? String(n);
+}
+
+export const numeroCorsi = corsi.length;
+export const numeroAree = new Set(corsi.map((c) => c.area)).size;
+export const corsiInLettere = inLettere(numeroCorsi);
+export const areeInLettere = inLettere(numeroAree);
 
 // Aree con i rispettivi corsi (per la home, la pagina catalogo e le pagine area)
 export const aree = Object.entries(catalogo.nomiAree).map(([sigla, nome]) => ({

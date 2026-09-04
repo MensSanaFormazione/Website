@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Freccia from '../components/Freccia.astro';
-import { consulenze } from '../data/corsi.js';
+import { consulenze, areeInLettere } from '../data/corsi.js';
 
 /* ⛔ Le materie NON sono scritte qui: arrivano dal blocco `consulenze` di
    `catalogo.json`, che e' lo stesso che il pannello dell'area riservata
@@ -141,7 +141,7 @@ const variabili = [
       <p class="materie-nota reveal">
         Se la vostra questione non rientra in queste materie, chiedete lo
         stesso: il perimetro è quello delle
-        <a href="/formazione/">otto aree del catalogo</a>, e se non abbiamo la
+        <a href="/formazione/">{areeInLettere} aree del catalogo</a>, e se non abbiamo la
         persona adatta ve lo diciamo subito.
       </p>
     </div>

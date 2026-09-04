@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Freccia from '../components/Freccia.astro';
-import { aree } from '../data/corsi.js';
+import { aree, areeInLettere } from '../data/corsi.js';
 
 /* PAGINA "LAVORA CON NOI", chiesta da Nicola il 01/09.
    ⛔ Non è una pagina di contorno: è il canale di ricerca docenti che oggi
@@ -86,7 +86,7 @@ const passi = [
 
 <Base
   title="Lavora con noi: cerchiamo docenti | Mens Sana Formazione"
-  description="Cerchiamo docenti per le otto aree del nostro catalogo Legal & Compliance: professionisti con esperienza vera sulla materia e partita IVA. Lezioni a distanza e in diretta, nessuna trasferta. Candidatevi dal modulo."
+  description={`Cerchiamo docenti per le ${areeInLettere} aree del nostro catalogo Legal & Compliance: professionisti con esperienza vera sulla materia e partita IVA. Lezioni a distanza e in diretta, nessuna trasferta. Candidatevi dal modulo.`}
 >
   {/* APERTURA
        ⛔ Due colonne di proposito: a sinistra il testo, a destra la figura.
@@ -98,7 +98,7 @@ const passi = [
         <p class="eyebrow">Lavora con noi</p>
         <h1>Insegnate quello che praticate<span class="text-rosso">.</span></h1>
         <p class="page-hero__sub">
-          Cerchiamo docenti per i corsi delle otto aree del nostro catalogo:
+          Cerchiamo docenti per i corsi delle {areeInLettere} aree del nostro catalogo:
           professionisti che la materia la esercitano ogni giorno, non solo la
           raccontano. Sono incarichi a collaboratori con partita IVA:
           <strong>non stiamo cercando dipendenti.</strong>

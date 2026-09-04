@@ -1,14 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import Freccia from '../components/Freccia.astro';
-import { aree, LINKEDIN_URL } from '../data/corsi.js';
+import { aree, LINKEDIN_URL, numeroCorsi, corsiInLettere, areeInLettere } from '../data/corsi.js';
 
 const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
 ---
 
 <Base
   title="Mens Sana Formazione | Corsi Legal & Compliance per imprese | Milano"
-  description="22 corsi Legal & Compliance per enti, imprese e professionisti: diritto societario, organismi di controllo, contratti, credito, fisco, compliance. Milano, dal 2017."
+  description={`${numeroCorsi} corsi Legal & Compliance per enti, imprese e professionisti: diritto societario, organismi di controllo, contratti, credito, fisco, compliance, intelligenza artificiale. Milano, dal 2017.`}
 >
   {/* HERO */}
   <section class="hero">
@@ -25,7 +25,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
           >
         </h1>
         <p class="hero__sub rise" style="--r: 2">
-          Ventidue corsi <strong>Legal &amp; Compliance</strong> per enti, imprese e
+          {corsiInLettere.charAt(0).toUpperCase() + corsiInLettere.slice(1)} corsi <strong>Legal &amp; Compliance</strong> per enti, imprese e
           professionisti: diritto societario, organismi di controllo,
           contrattualistica, credit management, finance e fiscale, compliance.
           Videolezioni con studio guidato ed edizioni aziendali su misura.
@@ -303,7 +303,7 @@ const nCorsi = aree.reduce((n, a) => n + a.corsi.length, 0);
           <h2>Insegnate quello che praticate</h2>
           <p>
             Cerchiamo professionisti che la materia la esercitano ogni giorno,
-            per i corsi delle otto aree del nostro catalogo. Sono incarichi a
+            per i corsi delle {areeInLettere} aree del nostro catalogo. Sono incarichi a
             collaboratori con partita IVA:
             <strong>non stiamo cercando dipendenti.</strong>
           </p>

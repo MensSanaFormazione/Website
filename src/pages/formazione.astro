@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import Freccia from '../components/Freccia.astro';
-import { aree, areeSuRichiesta, mostraPrezzo, prezziAttivi } from '../data/corsi.js';
+import { aree, areeSuRichiesta, mostraPrezzo, prezziAttivi, numeroCorsi, corsiInLettere, areeInLettere } from '../data/corsi.js';
 
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const conCorsi = aree.filter((a) => a.corsi.length > 0);
@@ -21,7 +21,7 @@ const haImmagine = (slug) =>
 
 <Base
   title="Catalogo corsi Legal & Compliance | Mens Sana Formazione"
-  description="Ventidue corsi in otto aree: diritto societario, organismi di controllo, contrattualistica, credit management, finance e fiscale, compliance, business coaching, digitalizzazione PA."
+  description={`${numeroCorsi} corsi in ${areeInLettere} aree: diritto societario, organismi di controllo, contrattualistica, credit management, finance e fiscale, compliance, business coaching, digitalizzazione PA, intelligenza artificiale.`}
 >
   {/* ⛔ Qui c'erano DUE introduzioni in fila, ognuna con il suo titolone in
        serif e il suo paragrafo grigio: "Ventidue corsi in otto aree" e subito
@@ -32,7 +32,7 @@ const haImmagine = (slug) =>
     <div class="container">
       <div class="catalogo-testa catalogo-testa--riga">
         <p class="eyebrow">Il catalogo</p>
-        <h1>Ventidue corsi<br />in otto aree</h1>
+        <h1>{corsiInLettere.charAt(0).toUpperCase() + corsiInLettere.slice(1)} corsi<br />in {areeInLettere} aree</h1>
         <p class="catalogo-testa__sub">
           Ogni area è un mestiere diverso: apri quella che ti riguarda e trovi
           solo i suoi corsi. Ognuno può diventare un'edizione aziendale
@@ -186,7 +186,7 @@ const haImmagine = (slug) =>
      (codice, titolo, durata, prezzo) e su uno schermo stretto non e' piu' una
      tabella, e' una poltiglia di righe che vanno a capo dove capita.
      ⛔ Nessuna pagina resta orfana e non si perde nessun dato: le schede dei
-     22 corsi sono raggiungibili dalle otto pagine area qui sopra, e i prezzi
+     i corsi sono raggiungibili dalle pagine area qui sopra, e i prezzi
      stanno su ogni scheda. I collegamenti restano comunque nell'HTML, quindi
      i motori di ricerca li vedono lo stesso.
      ⚠️ Se un giorno lo si rivuole sul telefono, la strada NON e' rimetterlo
