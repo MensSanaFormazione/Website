@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import { aree } from '../data/corsi.js';
+---
+<Base title="Candidatura docente | Mens Sana Formazione" description="Presenta la tua candidatura come docente a Mens Sana Formazione.">
+<section class="page-hero"><div class="container"><p class="eyebrow">Lavora con noi</p><h1>Raccontateci <em>di voi.</em></h1><p class="page-hero__sub">Materia, esperienza e due righe sul vostro lavoro. Sono incarichi professionali con partita IVA.</p></div></section>
+<section class="section section--tinted" id="candidatura">
+    <div class="container">
+      
+
+      <form
+        class="card modulo" data-application-form
+        action="/api/candidatura"
+        method="POST"
+      >
+        <p class="form-esito form-esito--ok" id="form-ok" role="status" tabindex="-1" hidden>
+          Candidatura ricevuta, grazie. La leggiamo e vi facciamo sapere.
+        </p>
+        <p class="form-esito form-esito--errore" id="form-errore" role="alert" tabindex="-1" hidden>
+          Ops, qualcosa non ha funzionato. Riprovate tra poco oppure
+          scriveteci a
+          <a href="mailto:info@mensanaformazione.com">info@mensanaformazione.com</a>.
+        </p>
+
+        
+        <input type="text" name="azienda" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="modulo__coppia">
+          <label>
+            <span class="eti">Nome e cognome</span>
+            <input type="text" name="nome" required autocomplete="name" />
+          </label>
+          <label>
+            <span class="eti">Email</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+
+        <div class="modulo__coppia">
+          <label>
+            <span class="eti">Telefono <span class="facolt">(facoltativo)</span></span>
+            <input type="tel" name="telefono" autocomplete="tel" />
+          </label>
+          <label>
+            <span class="eti">Città <span class="facolt">(facoltativo)</span></span>
+            <input type="text" name="citta" autocomplete="address-level2" />
+          </label>
+        </div>
+
+        
+        <label class="modulo__pieno modulo__screening">
+          <span class="eti">Avete partita IVA?</span>
+          <select name="partitaiva" required>
+            <option value="">Scegli…</option>
+            <option>Sì, ho partita IVA</option>
+            <option>No, ma sono disposto ad aprirla</option>
+            <option>No</option>
+          </select>
+        </label>
+
+        <div class="modulo__coppia">
+          <label>
+            <span class="eti">Area del catalogo</span>
+            <select name="area" required>
+              <option value="">Scegli…</option>
+              {aree.map((a) => (
+                <option>{a.sigla} · {a.nome}</option>
+              ))}
+              <option>Più di un'area</option>
+              <option>Non saprei, valutate voi</option>
+            </select>
+          </label>
+          <label>
+            <span class="eti">Codice del corso <span class="facolt">(facoltativo)</span></span>
+            <input type="text" name="codice" placeholder="es. B1, C2" />
+          </label>
+        </div>
+
+        <div class="modulo__coppia">
+          <label>
+            <span class="eti">Da quanto esercitate su questa materia</span>
+            <select name="esperienza" required>
+              <option value="">Scegli…</option>
+              <option>Meno di 3 anni</option>
+              <option>Da 3 a 5 anni</option>
+              <option>Da 6 a 10 anni</option>
+              <option>Oltre 10 anni</option>
+            </select>
+          </label>
+          <label>
+            <span class="eti">Avete già insegnato?</span>
+            <select name="docenza" required>
+              <option value="">Scegli…</option>
+              <option>Sì, tengo corsi con regolarità</option>
+              <option>Qualche volta, non con continuità</option>
+              <option>No, sarebbe la prima volta</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="modulo__pieno">
+          <span class="eti">Profilo LinkedIn o sito <span class="facolt">(facoltativo)</span></span>
+          <input type="url" name="profilo" placeholder="https://" />
+        </label>
+
+        <label class="modulo__pieno">
+          <span class="eti">Due righe su di voi</span>
+          <textarea
+            name="messaggio"
+            rows="6"
+            required
+            placeholder="Che cosa fate oggi, su quali materie lavorate e che cosa vorreste insegnare. Se avete già tenuto corsi, dove."
+          ></textarea>
+        </label>
+
+        
+        <label class="privacy-check modulo__pieno">
+          <input type="checkbox" name="privacy" value="si" required />
+          <span>
+            Ho letto l'<a href="/privacy/#candidature">Informativa Privacy</a>
+            e acconsento al trattamento dei miei dati per la valutazione della
+            candidatura (art. 13 GDPR).
+          </span>
+        </label>
+
+        <button type="submit" class="button button-red">Invia la candidatura</button>
+
+        <p class="modulo__nota">
+          Preferite scrivere una mail? Va bene lo stesso:
+          <a href="mailto:info@mensanaformazione.com">info@mensanaformazione.com</a>,
+          indicando materia e partita IVA.
+        </p>
+      </form>
+    </div>
+  </section></Base>

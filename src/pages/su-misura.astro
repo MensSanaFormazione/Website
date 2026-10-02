@@ -53,25 +53,11 @@ const leve = [
         caratteristiche e dai bisogni della vostra organizzazione e scriviamo un
         programma dedicato, con il docente giusto per quella materia.
       </p>
-      <a href="/contatti/" class="btn btn--primary">Parliamone</a>
+      <a href="/contatti/?interesse=su-misura" class="button button-red">Parliamone</a>
     </div>
   </section>
 
-  {/* COME FUNZIONA
-       ⛔ 25/08 sera, difetto visto da Nicola sul vivo: era l'unica sezione
-       della pagina rimasta con la testa vecchia ('.section-head' liscio, tetto
-       40rem). Con un titolo di 46 caratteri a corpo 57px andava a capo TRE
-       volte, e la meta' destra dello schermo restava vuota: lo stesso difetto
-       corretto il 25/08 sulla home, che qui tornava due schermate sotto
-       un'apertura centrata. La pagina si contraddiceva da sola in uno scroll.
-       ⛔ Il titolo diceva anche due cose insieme, il conteggio dei passaggi e
-       la promessa commerciale ("nessun impegno fino alla firma"): adesso
-       annuncia solo il passaggio, e la promessa la fa il passo 02, che e' il
-       punto in cui serve davvero.
-       ⛔ 25/08 sera, deciso da Nicola: la riga di accompagnamento che stava
-       nella colonna di destra e' stata TOLTA. La testa resta a due colonne
-       per il filetto e per l'allineamento col resto del sito, ma la colonna
-       destra ora e' vuota: se un giorno torna un testo, va li'. */}
+  
   <section class="section">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -90,13 +76,7 @@ const leve = [
     </div>
   </section>
 
-  {/* COSA SI MODULA
-       ⛔ Erano sei schede bianche col bordo grigio, cioe' esattamente il
-       pattern tolto dalla home il 25/08 perche' ripetuto sette volte di fila.
-       Qui arrivava come seconda sezione su quattro, subito dopo l'apertura.
-       Adesso e' un elenco tipografico: niente riquadri, niente ombre, il
-       fondo panna della fascia fa gia' da contenitore, e il segno di elenco
-       e' la freccia del marchio, non un pallino generico. */}
+  
   <section class="section section--tinted">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -118,7 +98,7 @@ const leve = [
     </div>
   </section>
 
-  {/* DA DOVE SI PARTE */}
+  
   <section class="section section--dark">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -142,7 +122,7 @@ const leve = [
     </div>
   </section>
 
-  {/* CTA */}
+  
   <section class="section cta-final">
     <div class="container reveal">
       <h2>Partiamo dal vostro problema</h2>
@@ -150,143 +130,9 @@ const leve = [
         Scriveteci cosa deve saper fare la vostra squadra dopo il corso: vi
         rispondiamo con un programma e una proposta chiara, senza sorprese.
       </p>
-      <a href="/contatti/" class="btn btn--primary">Parliamone</a>
+      <a href="/contatti/?interesse=su-misura" class="button button-red">Parliamone</a>
     </div>
   </section>
 </Base>
 
-<style>
-  /* ⛔ 25/08: apertura centrata. Prima il testo stava a sinistra e la meta'
-     destra dello schermo restava vuota su ogni pagina del sito, che a schermo
-     largo non si legge come eleganza ma come pagina non finita. */
-  .page-hero__centro {
-    max-width: 54rem;
-    text-align: center;
-  }
-  .page-hero__centro .eyebrow { justify-content: center; }
-  .page-hero__centro .page-hero__sub { margin-inline: auto; }
-  /* ⛔ 25/08 sera, difetto visto da Nicola: sotto l'apertura si vedevano DUE
-     filetti, uno a tutta larghezza e uno corto dentro il contenitore. Il
-     primo era questo bordo, il secondo e' quello della testa di sezione a due
-     colonne, aggiunta oggi. Il bordo qui non serviva piu': il fondo della
-     pagina e quello dell'apertura sono lo STESSO colore (--carta), quindi non
-     separava due superfici, raddoppiava una riga. Resta il filetto allineato
-     al testo, che e' quello che scandisce tutte le sezioni del sito. */
-  .page-hero {
-    background: var(--carta);
-    padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2rem, 4vw, 2.75rem);
-  }
-  /* ⛔ 25/08 sera, secondo passaggio sullo stesso punto. Misurato, non
-     stimato: fra il fondo del pulsante e il filetto della sezione dopo
-     c'erano 188 px di niente (64 di coda dell'apertura + 104 di testa della
-     sezione). Su un'apertura CENTRATA che finisce con un pulsante piccolo,
-     un vuoto cosi' non si legge come respiro: sembra che manchi qualcosa, e
-     rende ancora piu' brusco il passaggio al blocco allineato a sinistra.
-     Adesso sono 104: le due cose si leggono come una sequenza. ⛔ Vale solo
-     per la sezione che segue l'apertura, non per tutte. */
-  .page-hero + .section { padding-top: clamp(2rem, 4vw, 3rem); }
-  .page-hero__sub {
-    margin-block: 1.5rem 2rem;
-    font-size: var(--fs-500);
-    color: var(--grigio-700);
-    max-width: 44rem;
-  }
 
-  /* --- I quattro passaggi ------------------------------------------------
-     ⛔ Erano una griglia 2x2 di blocchi identici, ognuno col suo filetto nero
-     in cima: quattro voci pari, mentre un processo e' una cosa che AVANZA.
-     Adesso sono righe piene incolonnate, scandite dal numero: si leggono
-     come una scaletta e la sezione si accorcia. Sotto i 62rem la riga si
-     impila, che e' l'unico modo in cui un testo di tre righe resta leggibile
-     su un telefono. */
-  .passi { list-style: none; }
-  .passo {
-    padding-block: clamp(1.25rem, 3vw, 1.9rem);
-    border-top: 1px solid var(--grigio-100);
-  }
-  .passo:first-child { border-top-color: var(--grigio-900); border-top-width: 2px; }
-  .passo:last-child { border-bottom: 1px solid var(--grigio-100); }
-  .passo__n {
-    display: block;
-    font-family: var(--font-titoli);
-    font-size: var(--fs-700);
-    font-weight: 900;
-    line-height: 1;
-    color: var(--rosso);
-  }
-  .passo h3 { margin-block: 0.4rem 0.5rem; font-size: var(--fs-600); }
-  .passo p { color: var(--grigio-700); }
-
-  @media (min-width: 62rem) {
-    .passo {
-      display: grid;
-      grid-template-columns: 3.5rem minmax(0, 0.9fr) minmax(0, 1.3fr);
-      column-gap: clamp(1.5rem, 4vw, 3.5rem);
-      align-items: start;
-    }
-    .passo__n { grid-column: 1; grid-row: 1; }
-    .passo h3 { grid-column: 2; grid-row: 1; margin: 0; padding-top: 0.15rem; }
-    .passo p { grid-column: 3; grid-row: 1; }
-  }
-
-  /* --- Le sei leve --------------------------------------------------------
-     Elenco, non schede. Il ritmo della pagina cosi' cambia davvero: righe
-     lunghe sopra, colonne corte qui, e nessuno dei due blocchi ha un bordo. */
-  .leve {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.6rem, 3vw, 2.25rem) clamp(2rem, 5vw, 4rem);
-  }
-  @media (min-width: 48rem) {
-    .leve { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (min-width: 68rem) {
-    .leve { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-  .leva h3 {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-    font-size: var(--fs-600);
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--grigio-100);
-  }
-  .leva :global(.leva__segno) { flex: none; color: var(--rosso); }
-  .leva p { margin-top: 0.7rem; color: var(--grigio-700); }
-
-  .materie {
-    list-style: none;
-    display: grid;
-    gap: 0.6rem;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  }
-  .materie a {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: var(--radius);
-    color: var(--bianco);
-    font-weight: 700;
-    font-size: var(--fs-300);
-    transition: border-color var(--transition), transform var(--transition);
-  }
-  .materie a:hover { border-color: var(--rosso-chiaro); transform: translateX(0.35rem); }
-  .materie__sigla {
-    font-family: var(--font-titoli);
-    font-size: var(--fs-600);
-    font-weight: 900;
-    color: var(--rosso-chiaro);
-    min-width: 1.4rem;
-  }
-
-  .cta-final { text-align: center; }
-  .cta-final .container { max-width: 42rem; }
-  .cta-final p {
-    margin-block: 1rem 2rem;
-    color: var(--grigio-700);
-    font-size: var(--fs-500);
-  }
-</style>

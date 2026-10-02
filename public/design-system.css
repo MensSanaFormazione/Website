@@ -1,0 +1,127 @@
+/* Unica scala tipografica e palette per la homepage. */
+:root {
+  --sans: Inter, Arial, sans-serif;
+  --serif: Fraunces, Georgia, serif;
+  --text-small: 12px;
+  --text-ui: 14px;
+  --text-body: 16px;
+  --text-subtitle: 24px;
+  --text-card: 32px;
+  --text-section: 56px;
+  --text-hero: 72px;
+  --paper: #f7f6f2;
+  --soft: #eeece5;
+  --ink: #242a26;
+  --muted: #666a62;
+  --red: #bb2531;
+  --rule: #dcded5;
+  --on-dark: #cbd3c6;
+  --rule-dark: color-mix(in srgb, var(--paper) 30%, var(--ink));
+}
+
+/* Sette ruoli, condivisi da tutte le sezioni. */
+body { font-size: var(--text-body); }
+.hero h1 { font-size: var(--text-hero); }
+h2 { font-size: var(--text-section); }
+.service-copy h3, .method-step h3, .community h2, .area-code {
+  font-size: var(--text-card);
+}
+.values h3 { font-size: var(--text-subtitle); }
+.hero-description, .section-intro, .service-copy p, .catalog-summary p,
+.method-step p, .values details p, .contact-copy > p:not(.eyebrow),
+.contact-details a, .contact-details .mobile-number, .contact-details p,
+.community p:not(.eyebrow), .hero-photo-caption {
+  font-size: var(--text-body);
+}
+.button, .header .navigation a:nth-child(n), .text-link, .service-link,
+.area h3, .footer-main > div:not(:first-child) > a {
+  font-size: var(--text-ui);
+}
+.eyebrow, .step-label, .model-hint, .area div > span, .catalog-note,
+.hero-foot, .hero-foot-note, .hero-note, .visual-topline, .visual-bottomline,
+.material-detail > span, .value-number, .contact-details > div > span,
+.footer-brand p, .footer-main h2, .footer-main > div:not(:first-child) > p,
+.footer-legal, .footer-legal p, .footer-legal a {
+  font-size: var(--text-small);
+}
+.eyebrow, .hero-foot-note { letter-spacing: .1em; }
+.eyebrow { text-transform: uppercase; }
+.hero-foot { gap: 16px; flex-wrap: wrap; }
+.hero-actions { flex-wrap: wrap; }
+.tiny-cross { font-size: var(--text-subtitle); }
+
+/* Un rosso, fondi avorio/antracite, due colori per il testo secondario. */
+.header { background: color-mix(in srgb, var(--paper) 95%, transparent); }
+.social-link:before, .button-paper:before { background: var(--soft); }
+.social-linkedin:hover, .social-instagram:hover, .linkedin-link:hover {
+  color: var(--red); border-color: var(--red);
+}
+.button:before { background: var(--ink); }
+.button-red, .button-red:hover, .contact-section { background: var(--red); }
+.button-red, .button-dark, .service:hover .round-arrow, .area:hover > .icon {
+  color: var(--paper);
+}
+.button-red:hover { box-shadow: 0 10px 22px -13px color-mix(in srgb, var(--red) 45%, transparent); }
+.hero-static .visual-bottomline, .hero-foot-note { color: var(--muted); }
+.service-catalog { background: var(--soft); }
+.service-custom, .method-section, .footer { background: var(--ink); color: var(--paper); }
+.service-custom p, .method-section .section-intro, .method-section .method-step > p,
+.method-section .step-label, .method-section .model-hint, .footer-brand p,
+.footer-main > div:not(:first-child) > a, .footer-main > div:not(:first-child) > p,
+.footer-legal, .footer-legal p, .footer-legal a { color: var(--on-dark); }
+.method-section .section-label, .method-section .section-label > span,
+.method-section .step-label span:first-child, .footer-main h2,
+.footer-main .linkedin-link:hover, .footer-legal a:hover,
+.footer-main > div:not(:first-child) > a:hover { color: var(--paper); }
+.method-section .step-label span:first-child, .service-custom .round-arrow,
+.service-custom .service-link, .footer-legal { border-color: var(--rule-dark); }
+.method-section :focus-visible, .footer :focus-visible { outline-color: var(--paper); }
+.footer-brand > a { background: var(--paper); }
+.round-arrow, .service-link, .text-link { border-color: var(--rule); }
+.area-code { color: var(--muted); }
+.area:hover, .area:focus-visible { background: var(--soft); }
+.area:before {
+  background: linear-gradient(90deg, var(--soft), color-mix(in srgb, var(--soft) 40%, transparent) 45%, transparent), var(--area-cover) center/cover;
+}
+.area:hover div > span { color: var(--muted); }
+.contact-copy .eyebrow, .contact-copy > p:not(.eyebrow),
+.contact-details > div > span, .contact-details p, .contact-details .mobile-number {
+  color: var(--paper);
+}
+.contact-details {
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+  border-color: color-mix(in srgb, var(--paper) 25%, transparent);
+  box-shadow: 0 20px 50px -30px var(--ink);
+}
+.contact-details > div { border-color: color-mix(in srgb, var(--paper) 35%, transparent); }
+.contact-details a { overflow-wrap: anywhere; gap: 12px; }
+.footer-main > div { min-width: 0; }
+.footer-main > div > a { overflow-wrap: anywhere; }
+
+/* La scala si adatta al dispositivo, mai alla singola sezione. */
+@media (max-width: 1150px) {
+  :root { --text-hero: 56px; --text-section: 48px; --text-card: 28px; }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  :root { --text-hero: 40px; --text-section: 40px; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-details { max-width: 520px; }
+}
+@media (max-width: 600px) {
+  :root { --text-hero: 44px; --text-section: 40px; --text-card: 28px; }
+  .header-cta { gap: 6px; padding-inline: 9px; font-size: var(--text-small); }
+  .hero-foot-note { letter-spacing: .04em; }
+  .catalog-summary { align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .catalog-summary p { flex: 1 1 190px; }
+  .contact-details { display: block; }
+  .contact-details > div { padding-block: 20px; }
+  .contact-details > div:nth-child(2) { padding-bottom: 20px; }
+  .footer-brand { flex-wrap: wrap; gap: 18px; }
+  .footer-legal { flex-wrap: wrap; }
+  .why-heading h2 { position: relative; z-index: 1; }
+  .material-detail { position: relative; right: auto; bottom: auto; margin-top: 28px; width: 180px; }
+}
+@media (max-width: 360px) {
+  :root { --text-hero: 40px; --text-section: 36px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+}

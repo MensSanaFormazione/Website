@@ -38,8 +38,11 @@ function destinatariInCopia(valore) {
 
 export async function onRequestPost({ request, env }) {
   const tornaAlForm = (esito) =>
-    Response.redirect(new URL(`/contatti/?${esito}=1`, request.url).toString(), 303);
+    Response.redirect(new URL(`/esito/${esito === "inviato" ? "richiesta-inviata" : esito === "anteprima" ? "prova-contatti" : "errore-contatti"}/`, request.url).toString(), 303);
 
+  const origin = request.headers.get('origin');
+  if (origin && origin !== new URL(request.url).origin) return tornaAlForm('errore');
+  if (Number(request.headers.get('content-length') || 0) > 65536) return tornaAlForm('errore');
   let form;
   try {
     form = await request.formData();
@@ -64,9 +67,11 @@ export async function onRequestPost({ request, env }) {
   const privacy = campo('privacy', 5);
 
   const emailValida = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-  if (!nome || !emailValida || !messaggio || privacy !== 'si') {
+  if (!nome || !emailValida || !interesse || !messaggio || privacy !== 'si') {
     return tornaAlForm('errore');
   }
+
+  if (env.LOCAL_PREVIEW === true) return tornaAlForm('anteprima');
 
   if (!env.BREVO_API_KEY) {
     return tornaAlForm('errore');

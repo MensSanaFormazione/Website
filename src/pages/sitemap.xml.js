@@ -9,7 +9,7 @@ import { corsi, aree } from '../data/corsi.js';
 // che non viene scritta qui resta fuori dalla mappa e Google non sa che esiste.
 // ⛔ '/lavora-con-noi/' non e' in barra (sta solo nel piede), quindi la mappa e'
 // l'unica strada che i motori hanno per arrivarci: qui conta doppio.
-const fisse = ['/', '/formazione/', '/su-misura/', '/consulenza/', '/lavora-con-noi/', '/contatti/', '/digital/', '/privacy/', '/termini/'];
+const fisse = ['/', '/formazione/', '/su-misura/', '/consulenza/', '/lavora-con-noi/', '/contatti/', '/candidatura/', '/privacy/', '/termini/'];
 
 export function GET({ site }) {
   const oggi = new Date().toISOString().slice(0, 10);

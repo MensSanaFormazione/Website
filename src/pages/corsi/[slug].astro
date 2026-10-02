@@ -1,28 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
-import { corsi, LINKEDIN_URL, mostraPrezzo } from '../../data/corsi.js';
+import { corsi, aree, LINKEDIN_URL, mostraPrezzo } from '../../data/corsi.js';
 
 export function getStaticPaths() {
   return corsi.map((corso) => ({ params: { slug: corso.slug }, props: { corso } }));
 }
 
 const { corso } = Astro.props;
+const area = aree.find(a => a.sigla === corso.area);
 const correlati = corsi.filter((c) => c.area === corso.area && c.cod !== corso.cod);
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 ---
 
-{/* ⛔ 25/08 sera, deciso da Nicola: le ore di studio individuale ("60 ore
-     di studio individuale", "80 ore...") NON si mostrano piu' in nessuna
-     scheda corso. Erano in due punti, la riga sotto il titolo e la scheda
-     laterale del prezzo. ⛔ Il dato resta nel 'catalogo.json' e nel modulo
-     dell'area riservata: si e' tolta la vetrina, non il dato, quindi se un
-     giorno lo si rivuole basta rimettere le due righe. */}
+
 <Base
   title={`${corso.cod} · ${corso.titolo} | Mens Sana Formazione`}
   description={corso.sottotitolo}
 >
-  {/* HERO SCHEDA */}
+  
   <section class="scheda-hero">
     <div class="container">
       <a href="/formazione/" class="back rise" style="--r: 0"><Freccia verso="indietro" />Tutti i corsi</a>
@@ -39,7 +35,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </div>
   </section>
 
-  {/* CORPO */}
+  
   <section class="section scheda-corpo">
     <div class="container scheda-grid">
       <div class="scheda-main">
@@ -105,8 +101,9 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         )}
       </div>
 
-      {/* SIDEBAR */}
+      
       <aside class="scheda-side reveal">
+        <img class="course-side-image" src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy" />
         <div class="side-card spot">
           <p class="side-card__label">Quota di iscrizione</p>
           {mostraPrezzo(corso) ? (
@@ -118,7 +115,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             <li>{corso.durataVideo}</li>
             <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
           </ul>
-          <a href="/contatti/" class="btn btn--primary side-card__cta">Richiedi informazioni</a>
+          <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="button button-red side-card__cta">Richiedi informazioni</a>
           <a href="/contatti/" class="side-card__link">Ti serve un'edizione aziendale? Parliamone <Freccia /></a>
         </div>
         {corso.destinatari && corso.destinatari.length > 0 && (
@@ -137,7 +134,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </div>
   </section>
 
-  {/* CORRELATI */}
+  
   {correlati.length > 0 && (
     <section class="section section--tinted">
       <div class="container">
@@ -165,7 +162,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     </section>
   )}
 
-  {/* CTA */}
+  
   <section class="section cta-scheda">
     <div class="container reveal">
       <h2>Vuoi iscriverti o saperne di più?</h2>
@@ -173,290 +170,9 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         Scrivici indicando il corso {corso.cod}: ti rispondiamo entro un giorno lavorativo
         con date, modalità e tutto ciò che serve.
       </p>
-      <a href="/contatti/" class="btn btn--primary">Contattaci per il corso {corso.cod}</a>
+      <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="button button-red">Contattaci per il corso {corso.cod}</a>
     </div>
   </section>
 </Base>
 
-<style>
-  .scheda-hero {
-    background:
-      radial-gradient(ellipse 55% 60% at 90% 0%, rgba(200, 32, 47, 0.09), transparent),
-      var(--carta);
-    padding-block: clamp(3rem, 7vw, 5.5rem);
-  }
-  .back {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    font-weight: 700;
-    font-size: var(--fs-300);
-    color: var(--grigio-500);
-    margin-bottom: 1.4rem;
-    transition: color var(--transition);
-  }
-  .back:hover { color: var(--rosso); }
-  .scheda-hero__badges {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-bottom: 1rem;
-  }
-  .scheda-hero__area {
-    font-size: var(--fs-200);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--grigio-500);
-  }
-  .scheda-hero h1 { max-width: 46rem; font-size: var(--fs-800); }
-  .scheda-hero__sub {
-    margin-top: 1rem;
-    max-width: 42rem;
-    font-size: var(--fs-500);
-    color: var(--grigio-700);
-  }
-  .scheda-hero__meta {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem 1.8rem;
-    margin-top: 1.6rem;
-    font-size: var(--fs-300);
-    font-weight: 600;
-    color: var(--grigio-700);
-  }
-  .scheda-hero__meta :global(.ico) { color: var(--rosso); margin-right: 0.25rem; }
 
-  .scheda-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
-    align-items: start;
-  }
-  @media (max-width: 900px) {
-    .scheda-grid { grid-template-columns: 1fr; }
-  }
-  .scheda-main > div { margin-bottom: clamp(2.2rem, 5vw, 3.2rem); }
-  .scheda-descr {
-    color: var(--grigio-700);
-    font-size: var(--fs-500);
-    margin-bottom: 1rem;
-    max-width: 60ch;
-  }
-
-  /* Elenchi puntati dentro la descrizione: li aveva il vecchio sito e sono
-     stati ripresi tali e quali sui corsi recuperati dall'archivio. */
-  .scheda-elenco {
-    margin: -0.4rem 0 1.2rem 0;
-    padding-left: 1.1rem;
-    max-width: 60ch;
-    color: var(--grigio-700);
-    font-size: var(--fs-500);
-  }
-  .scheda-elenco li { margin-bottom: 0.35rem; }
-  .scheda-elenco li::marker { color: var(--rosso); }
-
-  .nota--sola { margin-top: 0.6rem; font-style: normal; }
-
-  .perche { display: flex; flex-direction: column; gap: 0.9rem; }
-  .perche__item {
-    border-left: 3px solid var(--rosso);
-    background: var(--carta);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 1.2rem 1.4rem;
-  }
-  .perche__item h3 { font-size: var(--fs-400); margin-bottom: 0.35rem; }
-  .perche__item p { color: var(--grigio-700); font-size: var(--fs-300); }
-
-  .programma { display: flex; flex-direction: column; gap: 0.7rem; }
-  .programma details {
-    border: 1px solid var(--grigio-100);
-    border-radius: var(--radius);
-    background: var(--bianco);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    transition: border-color var(--transition);
-  }
-  .programma details[open] { border-color: var(--rosso); }
-  .programma summary {
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 1rem 1.3rem;
-    font-weight: 700;
-    color: var(--nero);
-  }
-  .programma summary::-webkit-details-marker { display: none; }
-  .programma__num {
-    font-weight: 800;
-    color: var(--rosso);
-    font-size: var(--fs-300);
-  }
-  .programma__icon {
-    margin-left: auto;
-    flex-shrink: 0;
-    width: 1.6rem;
-    height: 1.6rem;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--rosso-tenue);
-    color: var(--rosso);
-    font-weight: 800;
-    transition: transform var(--transition), background var(--transition), color var(--transition);
-  }
-  .programma details[open] .programma__icon {
-    transform: rotate(45deg);
-    background: var(--rosso);
-    color: var(--bianco);
-  }
-  .programma ul {
-    list-style: none;
-    padding: 0 1.3rem 1.2rem 1.3rem;
-    animation: prog-open 0.3s ease;
-  }
-  .programma li {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.5rem;
-    font-size: var(--fs-300);
-    color: var(--grigio-700);
-  }
-  .programma li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 2px;
-    background: var(--rosso);
-    opacity: 0.7;
-  }
-  @keyframes prog-open {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: none; }
-  }
-  .nota {
-    margin-top: 1.2rem;
-    font-size: var(--fs-300);
-    color: var(--grigio-500);
-    font-style: italic;
-  }
-
-  .scheda-side {
-    position: sticky;
-    top: 5.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  @media (max-width: 900px) {
-    .scheda-side { position: static; }
-  }
-  .side-card {
-    background: var(--bianco);
-    border: 1px solid var(--grigio-100);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    padding: 1.6rem;
-  }
-  .side-card__label {
-    font-size: var(--fs-200);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--grigio-500);
-  }
-  .side-card__prezzo {
-    font-size: var(--fs-700);
-    font-weight: 800;
-    color: var(--nero);
-    letter-spacing: -0.02em;
-    margin-block: 0.3rem 0.9rem;
-  }
-  .side-card__prezzo small { font-size: var(--fs-300); color: var(--grigio-500); font-weight: 600; }
-  .side-card__prezzo--richiesta { font-size: var(--fs-500); color: var(--grigio-700); }
-  .side-card__meta {
-    list-style: none;
-    margin-bottom: 1.2rem;
-    font-size: var(--fs-300);
-    color: var(--grigio-700);
-  }
-  .side-card__meta li {
-    padding-left: 1.4rem;
-    position: relative;
-    margin-bottom: 0.4rem;
-  }
-  .side-card__meta li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--rosso);
-    font-weight: 800;
-  }
-  .side-card__cta { width: 100%; }
-  .side-card__link {
-    display: block;
-    margin-top: 0.9rem;
-    font-size: var(--fs-300);
-    font-weight: 600;
-    text-align: center;
-  }
-  .side-card--dest h3 { font-size: var(--fs-400); margin-bottom: 0.7rem; }
-  .dest { list-style: none; }
-  .dest li {
-    padding-left: 1.4rem;
-    position: relative;
-    margin-bottom: 0.45rem;
-    font-size: var(--fs-300);
-    color: var(--grigio-700);
-  }
-  .dest li::before {
-    content: '›';
-    position: absolute;
-    left: 0.2rem;
-    color: var(--rosso);
-    font-weight: 800;
-  }
-
-  .side-linkedin {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    background: var(--nero);
-    color: var(--grigio-300);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.3rem;
-    font-size: var(--fs-300);
-    transition: transform var(--transition), box-shadow var(--transition);
-  }
-  .side-linkedin:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .side-linkedin svg { flex-shrink: 0; color: #6cb2ff; }
-  .side-linkedin strong { color: var(--bianco); }
-
-  .correlato { display: flex; flex-direction: column; gap: 0.6rem; color: inherit; }
-  .correlato h3 { font-size: var(--fs-400); flex-grow: 1; }
-  .correlato__prezzo { font-weight: 800; color: var(--nero); }
-  .correlato__prezzo small { font-weight: 600; color: var(--grigio-500); font-size: var(--fs-200); }
-  .correlato__cta { font-weight: 700; font-size: var(--fs-300); color: var(--rosso); }
-
-  /* ⛔ 25/08 sera, difetto visto da Nicola: sopra "Vuoi iscriverti" c'era un
-     vuoto che non finiva piu'. Misurato: 104 px di testa della sezione sopra
-     gli 88 di coda di quella prima, con in mezzo un blocco centrato e stretto
-     che non li riempie. Un invito finale vuole respiro, non una schermata
-     bianca: adesso 56 sopra e 72 sotto. */
-  .cta-scheda {
-    text-align: center;
-    padding-block: clamp(1.5rem, 3vw, 2.25rem) clamp(2.5rem, 5vw, 4.5rem);
-  }
-  /* ⛔ Il vuoto sopra l'invito finale non era tutto suo: 104 px arrivavano
-     dalla CODA di questa sezione, che finisce con la colonna laterale in
-     alto a destra e sotto non ha piu' niente. Si accorcia qui, non solo la'. */
-  .scheda-corpo { padding-bottom: clamp(2rem, 4vw, 3rem); }
-  .cta-scheda .container { max-width: 42rem; }
-  .cta-scheda p { margin-block: 1rem 2rem; color: var(--grigio-700); font-size: var(--fs-500); }
-</style>

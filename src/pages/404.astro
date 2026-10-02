@@ -31,9 +31,9 @@ import Base from '../layouts/Base.astro';
   <section class="section">
     <div class="container">
       <div class="nf-actions">
-        <a class="btn btn--primary" href="/">Torna alla home</a>
-        <a class="btn btn--ghost" href="/formazione/">Vedi i corsi</a>
-        <a class="btn btn--ghost" href="/contatti/">Contattaci</a>
+        <a class="button button-red" href="/">Torna alla home</a>
+        <a class="text-link" href="/formazione/">Vedi i corsi</a>
+        <a class="text-link" href="/contatti/">Contattaci</a>
       </div>
       <p class="nf-note">
         Se sei arrivato qui da un link salvato o da un motore di ricerca,
@@ -49,15 +49,4 @@ import Base from '../layouts/Base.astro';
   </section>
 </Base>
 
-<style>
-  .nf-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-  .nf-note {
-    color: var(--dark);
-    max-width: 46rem;
-  }
-</style>
+

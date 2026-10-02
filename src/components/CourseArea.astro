@@ -1,0 +1,8 @@
+---
+const { area } = Astro.props;
+---
+<a class="course-area reveal" href={`/formazione/${area.slug}/`}>
+  <div class="course-cover"><img src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy"/><span class="round-arrow"><svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg></span></div>
+  <div class="course-card-meta"><span>AREA {area.sigla}</span><span>{area.corsi.length} {area.corsi.length===1?'corso':'corsi'}</span></div>
+  <h2>{area.nome}</h2><p>{area.occhiello}</p><span class="course-card-link">Vedi i corsi <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span>
+</a>

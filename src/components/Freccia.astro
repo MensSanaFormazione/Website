@@ -1,26 +1,4 @@
 ---
-/* La freccia del marchio.
-   ⛔ Non e' disegnata a occhio: e' il triangolo rosso della S del logo,
-   misurato pixel per pixel su `Grafiche/LOGO/logo1.png` (componente di 955 px,
-   riquadro 47x40, vertici a 3/0, 46/8 e 2/39). Nel marchio la punta e' alzata
-   di 14,8 gradi: qui e' stata riportata in orizzontale ruotando la figura,
-   senza toccare le proporzioni, perche' accanto a una riga di testo una punta
-   inclinata sembra un errore di stampa.
-   `verso="indietro"` la specchia per i ritorni. */
-interface Props {
-  verso?: 'avanti' | 'indietro';
-  classe?: string;
-}
 const { verso = 'avanti', classe = '' } = Astro.props;
 ---
-
-<svg
-  class:list={['freccia', { 'freccia--indietro': verso === 'indietro' }, classe]}
-  viewBox="0 0 24 24"
-  width="14"
-  height="14"
-  aria-hidden="true"
-  focusable="false"
->
-  <path d="M5.77 3.84 L23 12 L1 20.16 Z" fill="currentColor" />
-</svg>
+<svg class:list={['icon','freccia',{'freccia--indietro':verso==='indietro'},classe]} viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>

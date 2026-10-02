@@ -38,10 +38,13 @@ export async function onRequestPost({ request, env }) {
   // ⛔ Torna sulla pagina da cui si e' partiti, non su /contatti/.
   const tornaAlForm = (esito) =>
     Response.redirect(
-      new URL(`/lavora-con-noi/?${esito}=1`, request.url).toString(),
+      new URL(`/esito/${esito === "inviato" ? "candidatura-inviata" : esito === "anteprima" ? "prova-candidatura" : "errore-candidatura"}/`, request.url).toString(),
       303
     );
 
+  const origin = request.headers.get('origin');
+  if (origin && origin !== new URL(request.url).origin) return tornaAlForm('errore');
+  if (Number(request.headers.get('content-length') || 0) > 65536) return tornaAlForm('errore');
   let form;
   try {
     form = await request.formData();
@@ -75,9 +78,11 @@ export async function onRequestPost({ request, env }) {
   // ⛔ La partita IVA e l'area sono obbligatorie tanto quanto il nome: sono le
   // due domande di screening, e una candidatura che arriva senza e' proprio
   // quella che poi fa perdere tempo (voce 78).
-  if (!nome || !emailValida || !messaggio || !partitaIva || !area || privacy !== 'si') {
+  if (!nome || !emailValida || !messaggio || !partitaIva || !area || !esperienza || !docenza || privacy !== 'si') {
     return tornaAlForm('errore');
   }
+
+  if (env.LOCAL_PREVIEW === true) return tornaAlForm('anteprima');
 
   if (!env.BREVO_API_KEY) {
     return tornaAlForm('errore');

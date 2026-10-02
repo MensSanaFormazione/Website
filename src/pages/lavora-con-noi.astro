@@ -88,10 +88,7 @@ const passi = [
   title="Lavora con noi: cerchiamo docenti | Mens Sana Formazione"
   description={`Cerchiamo docenti per le ${areeInLettere} aree del nostro catalogo Legal & Compliance: professionisti con esperienza vera sulla materia e partita IVA. Lezioni a distanza e in diretta, nessuna trasferta. Candidatevi dal modulo.`}
 >
-  {/* APERTURA
-       ⛔ Due colonne di proposito: a sinistra il testo, a destra la figura.
-       Sotto i 62rem la figura scende sotto il testo e NON sparisce: è il
-       segnale che rende la pagina riconoscibile a chi arriva dalle storie. */}
+  
   <section class="page-hero page-hero--figura">
     <div class="container apertura">
       <div class="apertura__testo">
@@ -117,7 +114,7 @@ const passi = [
             <span>Incarico professionale</span>
           </li>
         </ul>
-        <a href="#candidatura" class="btn btn--primary">Vai al modulo</a>
+        <a href="/candidatura/" class="button button-red">Invia la candidatura</a>
       </div>
       <div class="apertura__figura" aria-hidden="true">
         <img
@@ -132,7 +129,7 @@ const passi = [
     </div>
   </section>
 
-  {/* CHI CERCHIAMO */}
+  
   <section class="section">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -154,11 +151,7 @@ const passi = [
     </div>
   </section>
 
-  {/* LE AREE
-       ⛔ Le otto aree arrivano da `catalogo.json` come in ogni altra pagina:
-       chi si candida deve trovare gli stessi nomi e gli stessi codici che
-       vede in vetrina. Se un giorno un'area cambia nome, questa pagina segue
-       da sola. */}
+  
   <section class="section section--tinted">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -180,7 +173,7 @@ const passi = [
         ))}
       </ul>
       <p class="leve-nota reveal">
-        Ogni corso ha un codice, da <strong>A1</strong> a <strong>H2</strong>:
+        Ogni corso ha un codice, da <strong>A1</strong> a <strong>I2</strong>:
         apritene uno, guardate il programma e nel modulo indicate il codice.
         Se la vostra materia sfiora più aree, scriveteci quale trovate più
         vicina e ne parliamo.
@@ -188,7 +181,7 @@ const passi = [
     </div>
   </section>
 
-  {/* COME FUNZIONA */}
+  
   <section class="section">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -207,11 +200,7 @@ const passi = [
     </div>
   </section>
 
-  {/* COSA NON È
-       ⛔ Fondo scuro come il blocco del compenso di `/consulenza/`, e per lo
-       stesso motivo: è la parte che il lettore vuole sapere subito e che
-       nascosta in fondo a un paragrafo sembra una cosa che non si vuole dire.
-       ⛔ Qui dentro NON entrano cifre. */}
+  
   <section class="section section--dark">
     <div class="container">
       <div class="section-head section-head--riga reveal">
@@ -252,502 +241,10 @@ const passi = [
     </div>
   </section>
 
-  {/* IL MODULO */}
-  <section class="section section--tinted" id="candidatura">
-    <div class="container">
-      <div class="section-head section-head--riga reveal">
-        <p class="eyebrow">La candidatura</p>
-        <h2>Raccontateci di voi</h2>
-        <p>
-          Le domande sono poche di proposito: servono a capire se la vostra
-          materia incontra i nostri corsi. Il resto lo chiediamo parlando.
-        </p>
-      </div>
-
-      <form
-        class="card modulo reveal"
-        action="/api/candidatura"
-        method="POST"
-      >
-        <p class="form-esito form-esito--ok" id="form-ok" hidden>
-          Candidatura ricevuta, grazie. La leggiamo e vi facciamo sapere.
-        </p>
-        <p class="form-esito form-esito--errore" id="form-errore" hidden>
-          Ops, qualcosa non ha funzionato. Riprovate tra poco oppure
-          scriveteci a
-          <a href="mailto:info@mensanaformazione.com">info@mensanaformazione.com</a>.
-        </p>
-
-        {/* Honeypot antispam: invisibile agli umani, come su /contatti/. */}
-        <input type="text" name="azienda" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-        <div class="modulo__coppia">
-          <label>
-            <span class="eti">Nome e cognome</span>
-            <input type="text" name="nome" required autocomplete="name" />
-          </label>
-          <label>
-            <span class="eti">Email</span>
-            <input type="email" name="email" required autocomplete="email" />
-          </label>
-        </div>
-
-        <div class="modulo__coppia">
-          <label>
-            <span class="eti">Telefono <span class="facolt">(facoltativo)</span></span>
-            <input type="tel" name="telefono" autocomplete="tel" />
-          </label>
-          <label>
-            <span class="eti">Città <span class="facolt">(facoltativo)</span></span>
-            <input type="text" name="citta" autocomplete="address-level2" />
-          </label>
-        </div>
-
-        {/* ⛔ LA DOMANDA DI SCREENING. È la prima del modulo dopo i recapiti
-             e non è facoltativa: è esattamente quella che mancava
-             all'annuncio LinkedIn del 27/08 (voce 78). La terza risposta
-             esiste perché un no secco farebbe abbandonare il modulo a chi
-             la partita IVA la aprirebbe: meglio saperlo e decidere noi. */}
-        <label class="modulo__pieno modulo__screening">
-          <span class="eti">Avete partita IVA?</span>
-          <select name="partitaiva" required>
-            <option value="">Scegli…</option>
-            <option>Sì, ho partita IVA</option>
-            <option>No, ma sono disposto ad aprirla</option>
-            <option>No</option>
-          </select>
-        </label>
-
-        <div class="modulo__coppia">
-          <label>
-            <span class="eti">Area del catalogo</span>
-            <select name="area" required>
-              <option value="">Scegli…</option>
-              {aree.map((a) => (
-                <option>{a.sigla} · {a.nome}</option>
-              ))}
-              <option>Più di un'area</option>
-              <option>Non saprei, valutate voi</option>
-            </select>
-          </label>
-          <label>
-            <span class="eti">Codice del corso <span class="facolt">(facoltativo)</span></span>
-            <input type="text" name="codice" placeholder="es. B1, C2" />
-          </label>
-        </div>
-
-        <div class="modulo__coppia">
-          <label>
-            <span class="eti">Da quanto esercitate su questa materia</span>
-            <select name="esperienza" required>
-              <option value="">Scegli…</option>
-              <option>Meno di 3 anni</option>
-              <option>Da 3 a 5 anni</option>
-              <option>Da 6 a 10 anni</option>
-              <option>Oltre 10 anni</option>
-            </select>
-          </label>
-          <label>
-            <span class="eti">Avete già insegnato?</span>
-            <select name="docenza" required>
-              <option value="">Scegli…</option>
-              <option>Sì, tengo corsi con regolarità</option>
-              <option>Qualche volta, non con continuità</option>
-              <option>No, sarebbe la prima volta</option>
-            </select>
-          </label>
-        </div>
-
-        <label class="modulo__pieno">
-          <span class="eti">Profilo LinkedIn o sito <span class="facolt">(facoltativo)</span></span>
-          <input type="url" name="profilo" placeholder="https://" />
-        </label>
-
-        <label class="modulo__pieno">
-          <span class="eti">Due righe su di voi</span>
-          <textarea
-            name="messaggio"
-            rows="6"
-            required
-            placeholder="Che cosa fate oggi, su quali materie lavorate e che cosa vorreste insegnare. Se avete già tenuto corsi, dove."
-          ></textarea>
-        </label>
-
-        {/* ⛔ Il consenso rimanda al paragrafo dedicato dell'informativa, non
-             a quello del modulo contatti: la finalità è la selezione, non il
-             riscontro a una richiesta commerciale. */}
-        <label class="privacy-check modulo__pieno">
-          <input type="checkbox" name="privacy" value="si" required />
-          <span>
-            Ho letto l'<a href="/privacy/#candidature">Informativa Privacy</a>
-            e acconsento al trattamento dei miei dati per la valutazione della
-            candidatura (art. 13 GDPR).
-          </span>
-        </label>
-
-        <button type="submit" class="btn btn--primary">Invia la candidatura</button>
-
-        <p class="modulo__nota">
-          Preferite scrivere una mail? Va bene lo stesso:
-          <a href="mailto:info@mensanaformazione.com">info@mensanaformazione.com</a>,
-          indicando materia e partita IVA.
-        </p>
-      </form>
-    </div>
-  </section>
+  
+  <section class="inner-cta"><div class="wrap"><div><p class="eyebrow">LA CANDIDATURA</p><h2>La vostra materia.<br/><em>Il nostro prossimo corso.</em></h2></div><div><p>Materia, esperienza e due righe su di voi. Il resto lo chiediamo parlando.</p><a class="button button-paper" href="/candidatura/">Invia la candidatura</a></div></div></section>
 </Base>
 
-<script>
-  // Esito dell'invio: la funzione /api/candidatura rimanda qui con
-  // ?inviato=1 oppure ?errore=1. ⛔ Rimanda QUI e non su /contatti/, che è
-  // dove porta il modulo dell'altra pagina.
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('inviato')) {
-    document.getElementById('form-ok')?.removeAttribute('hidden');
-  } else if (params.has('errore')) {
-    document.getElementById('form-errore')?.removeAttribute('hidden');
-  }
-  if (params.has('inviato') || params.has('errore')) {
-    document.querySelector('.modulo')?.scrollIntoView({ block: 'center' });
-    history.replaceState(null, '', window.location.pathname);
-  }
-</script>
 
-<style>
-  /* --- Apertura con la figura ---------------------------------------------
-     ⛔ La colonna del testo NON è centrata come su /consulenza/ e
-     /su-misura/: lì il titolo è solo, qui divide la riga con la persona. */
-  .page-hero--figura {
-    background: var(--carta);
-    padding-block: clamp(2.5rem, 6vw, 4rem) 0;
-    overflow: hidden;
-  }
-  .page-hero--figura + .section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
-  .apertura {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
-    align-items: end;
-  }
-  @media (min-width: 62rem) {
-    .apertura {
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: clamp(2rem, 5vw, 4rem);
-    }
-  }
-  .apertura__testo { padding-bottom: clamp(2rem, 5vw, 3.5rem); }
-  .page-hero__sub {
-    margin-block: 1.4rem 1.6rem;
-    font-size: var(--fs-500);
-    color: var(--grigio-700);
-    max-width: 36rem;
-  }
-  .page-hero__sub strong { color: var(--nero); }
 
-  /* I tre fatti: rispondono alle tre domande che uno si fa prima di leggere
-     i requisiti (dove si insegna, se si viaggia, che rapporto è). */
-  .fatti {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.4rem;
-    margin-bottom: 1.8rem;
-  }
-  .fatti li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--fs-300);
-    font-weight: 600;
-    color: var(--grigio-700);
-  }
-  .fatti .ico {
-    flex: none;
-    width: 1.15rem;
-    height: 1.15rem;
-    fill: none;
-    stroke: var(--rosso);
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
 
-  /* --- La figura -----------------------------------------------------------
-     ⛔ Il velo rosso dietro alla sagoma è lo stesso accorgimento delle storie
-     "ricerca docenti": senza, su fondo crema la figura sembra appoggiata sul
-     niente. È un tondo sfumato, non un riquadro, così non taglia le braccia.
-     ⛔ La figura si adatta ad ALTEZZA, come nelle storie: adattandola a
-     larghezza cambierebbe di statura a seconda di quanto sono aperte le
-     braccia. */
-  /* ⛔ L'altezza va DICHIARATA, non lasciata a `max-height`: con `height:100%`
-     su un contenitore senza altezza definita la percentuale non si risolve e
-     l'immagine esce alla sua altezza naturale, 1000 px. Visto sul vivo alla
-     prima prova: la figura sfondava sopra e sotto e la testa finiva dietro
-     alla barra. */
-  /* ⛔ Stesso difetto della home, e qui bloccava "Vai al modulo" a 390 e 414
-     px: la figura e' decorativa e `aria-hidden`, quindi non deve MAI
-     intercettare un tocco. Vedi il commento lungo in `index.astro`. */
-  .apertura__figura {
-    position: relative;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    /* Su schermo stretto la figura non deve mangiarsi mezzo telefono. */
-    height: clamp(15rem, 46vw, 19rem);
-  }
-  @media (min-width: 62rem) {
-    .apertura__figura { height: clamp(19rem, 30vw, 27rem); }
-  }
-  .apertura__figura::before {
-    content: '';
-    position: absolute;
-    /* Legato all'altezza, non alla larghezza: vedi `index.astro`. */
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 92%;
-    width: auto;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 50% 50%,
-      rgba(200, 32, 47, 0.16) 0%,
-      rgba(200, 32, 47, 0.06) 45%,
-      transparent 70%
-    );
-  }
-  .apertura__figura img {
-    position: relative;
-    height: 100%;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: bottom center;
-  }
-
-  /* --- Requisiti e materie -------------------------------------------------
-     Stesso trattamento delle materie di /consulenza/ e delle leve di
-     /su-misura/: elenco tipografico, non schede. Il `subgrid` tiene i filetti
-     alla stessa quota anche quando un titolo va a capo. */
-  .leve {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.6rem, 3vw, 2.25rem) clamp(2rem, 5vw, 4rem);
-  }
-  .leva {
-    display: grid;
-    grid-row: span 2;
-    grid-template-rows: subgrid;
-    row-gap: 0;
-    align-content: start;
-  }
-  @media (min-width: 48rem) {
-    .leve { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  .leva h3 {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-    font-size: var(--fs-600);
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--grigio-300);
-  }
-  .leva :global(.leva__segno) { flex: none; color: var(--rosso); }
-  .leva p { margin-top: 0.7rem; color: var(--grigio-700); }
-
-  .leve-nota {
-    margin-top: clamp(2rem, 4vw, 2.75rem);
-    padding-top: clamp(1.25rem, 3vw, 1.75rem);
-    border-top: 1px solid var(--grigio-100);
-    max-width: 46rem;
-    color: var(--grigio-700);
-    font-size: var(--fs-400);
-  }
-  .leve-nota strong { color: var(--nero); }
-
-  /* --- Le otto aree --------------------------------------------------------
-     Righe e non schede: è un indice, serve a mandare al catalogo. */
-  .aree-elenco { list-style: none; }
-  .aree-elenco li + li { border-top: 1px solid var(--grigio-100); }
-  .aree-elenco a {
-    display: grid;
-    grid-template-columns: 2.25rem minmax(0, 1fr) auto auto;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 0.95rem 0.2rem;
-    color: var(--nero);
-    text-decoration: none;
-    transition: color var(--transition), padding-left var(--transition);
-  }
-  .aree-elenco a:hover { color: var(--rosso); padding-left: 0.6rem; }
-  .aree-elenco__sigla {
-    font-family: var(--font-titoli);
-    font-weight: 900;
-    font-size: var(--fs-500);
-    color: var(--rosso);
-  }
-  .aree-elenco__nome { font-weight: 600; font-size: var(--fs-500); }
-  .aree-elenco__n {
-    font-size: var(--fs-200);
-    color: var(--grigio-500);
-    white-space: nowrap;
-  }
-  @media (max-width: 34rem) {
-    .aree-elenco a { grid-template-columns: 2rem minmax(0, 1fr) auto; }
-    .aree-elenco__n { display: none; }
-  }
-
-  /* --- I passi ------------------------------------------------------------- */
-  .passi {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.75rem, 4vw, 2.5rem);
-  }
-  @media (min-width: 48rem) { .passi { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 72rem) { .passi { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .passo { border-top: 1px solid var(--grigio-300); padding-top: 1.1rem; }
-  .passo__n {
-    display: block;
-    font-family: var(--font-titoli);
-    font-size: clamp(2.2rem, 3.5vw, 3rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    /* ⛔ Era `--grigio-300`, cioe' 1,5 di contrasto sulla carta: illeggibile
-       anche per il testo grande, che ha soglia 3. Su `/consulenza/` gli stessi
-       quattro passi hanno il numero rosso, e resta rosso anche qui. */
-    color: var(--rosso);
-    margin-bottom: 0.55rem;
-  }
-  .passo h3 { font-size: var(--fs-500); line-height: 1.25; margin-bottom: 0.45rem; }
-  .passo p { font-size: var(--fs-300); color: var(--grigio-700); }
-
-  /* --- Cosa non è --------------------------------------------------------- */
-  .non-e {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.6rem, 3vw, 2.25rem);
-  }
-  @media (min-width: 62rem) { .non-e { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .non-e li { border-top: 1px solid var(--grigio-700); padding-top: 1.1rem; }
-  .non-e h3 { font-size: var(--fs-500); margin-bottom: 0.5rem; }
-  .non-e p { font-size: var(--fs-300); }
-
-  /* --- Il modulo -----------------------------------------------------------
-     ⛔ Su due colonne, al contrario di /contatti/: qui i campi sono dodici e
-     in colonna singola il modulo diventerebbe un rotolo che nessuno finisce.
-     Sotto i 40rem torna a una colonna sola. */
-  /* ⛔ Centrato, non appoggiato a sinistra: a 1440 px il modulo largo 52rem
-     lasciava mezza pagina vuota alla sua destra, e un modulo con del niente
-     accanto sembra una pagina non finita. La testa di sezione resta a
-     sinistra come in tutto il sito, il modulo e' un blocco a se'. */
-  .modulo {
-    display: grid;
-    gap: 1.1rem;
-    max-width: 52rem;
-    margin-inline: auto;
-    background: var(--bianco);
-  }
-  /* ⛔ `align-items: end` e' una rete di sicurezza, non un vezzo: se una delle
-     due etichette va a capo, senza questo il campo accanto scende di una riga
-     e la coppia risulta sfalsata. Visto sul vivo alla prima prova. */
-  .modulo__coppia {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.1rem;
-    align-items: end;
-  }
-  @media (min-width: 40rem) {
-    .modulo__coppia { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  .modulo label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    font-weight: 600;
-    font-size: var(--fs-300);
-    color: var(--nero);
-  }
-  /* ⛔ L'etichetta e' UN SOLO elemento, non due. Dentro una `label` in colonna
-     ogni figlio e' una riga: con "Codice del corso" e "(facoltativo)" separati,
-     il "(facoltativo)" finiva su una riga sua e spingeva il campo giu'. */
-  .modulo .eti { display: block; }
-  .facolt { font-weight: 400; color: var(--grigio-500); }
-
-  /* ⛔ La domanda sulla partita IVA sta da sola, ed e' voluto: e' la domanda
-     di screening che all'annuncio LinkedIn del 27/08 non era stata messa
-     (voce 78). Ma un menu a tendina con tre risposte corte largo tutto il
-     modulo sembra un errore: il controllo si ferma, l'etichetta no. */
-  .modulo__screening select { max-width: 24rem; }
-  .modulo input,
-  .modulo select,
-  .modulo textarea {
-    font: inherit;
-    width: 100%;
-    min-width: 0;
-    padding: 0.75rem 0.9rem;
-    border: 1.5px solid var(--grigio-300);
-    border-radius: 10px;
-    background: var(--bianco);
-    color: var(--nero);
-    transition: border-color var(--transition), box-shadow var(--transition);
-  }
-  .modulo input:focus,
-  .modulo select:focus,
-  .modulo textarea:focus {
-    outline: none;
-    border-color: var(--rosso);
-    box-shadow: 0 0 0 3px rgba(200, 32, 47, 0.15);
-  }
-  .modulo textarea { resize: vertical; }
-  .modulo .btn { justify-self: start; margin-top: 0.4rem; }
-
-  .hp-field {
-    position: absolute !important;
-    left: -9999px !important;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-  }
-  .privacy-check {
-    flex-direction: row !important;
-    align-items: flex-start;
-    gap: 0.6rem !important;
-    font-weight: 400 !important;
-    font-size: var(--fs-200) !important;
-    color: var(--grigio-700);
-  }
-  .privacy-check input {
-    width: auto !important;
-    margin-top: 0.2rem;
-    accent-color: var(--rosso);
-  }
-  .privacy-check a { font-weight: 600; }
-  .form-esito {
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: var(--fs-300);
-  }
-  .form-esito--ok {
-    background: #e8f6ec;
-    color: #1a7a3a;
-    border: 1.5px solid #bfe5cb;
-  }
-  .form-esito--errore {
-    background: #fdecec;
-    color: #a81c28;
-    border: 1.5px solid #f3c1c5;
-  }
-  .modulo__nota {
-    margin-top: 0.4rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--grigio-100);
-    font-size: var(--fs-200);
-    color: var(--grigio-500);
-  }
-</style>

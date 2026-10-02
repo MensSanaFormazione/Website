@@ -85,3 +85,8 @@
 /en                            /             301
 /it/*                          /             301
 /en/*                          /             301
+
+/index.html / 301
+/formazione.html /formazione/ 301
+/consulenza.html /consulenza/ 301
+/contatti.html /contatti/ 301

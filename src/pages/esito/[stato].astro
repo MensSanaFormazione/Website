@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+export function getStaticPaths() {
+  const pages = [
+    ['richiesta-inviata','Richiesta inviata.','Grazie per averci scritto. Ti rispondiamo entro un giorno lavorativo.','/contatti/'],
+    ['candidatura-inviata','Candidatura ricevuta.','Grazie. La leggiamo e vi facciamo sapere.','/candidatura/'],
+    ['errore-contatti','Invio non riuscito.','La richiesta non è stata inviata. Controlla i campi e riprova, oppure scrivici direttamente a info@mensanaformazione.com.','/contatti/'],
+    ['errore-candidatura','Invio non riuscito.','La candidatura non è stata inviata. Controlla i campi e riprova, oppure scrivici direttamente a info@mensanaformazione.com.','/candidatura/'],
+  ];
+  return pages.map(([stato,title,text,back]) => ({params:{stato},props:{title,text,back}}));
+}
+const {title,text,back}=Astro.props;
+---
+<Base title={`${title} | Mens Sana Formazione`} description={text}>
+  <section class="page-hero result-page"><div class="container">
+    <p class="eyebrow">Mens Sana Formazione</p><h1>{title}</h1><p>{text}</p>
+    <a class="button button-red" href={back}>Torna al modulo</a>
+    <a class="text-link" href="/">Vai alla home <svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg></a>
+  </div></section>
+</Base>
