@@ -23,6 +23,8 @@
 //                   di tenere il solo info@: se un giorno viene impostata,
 //                   questa funzione la rispetta come l'altra.
 
+import { verificaGettone, motivoSpam } from '../../src/server/antispam.js';
+
 const DESTINATARIO = 'info@mensanaformazione.com';
 const MITTENTE = { name: 'Sito Mens Sana Formazione', email: 'info@mensanaformazione.com' };
 
@@ -83,6 +85,22 @@ export async function onRequestPost({ request, env }) {
   }
 
   if (env.LOCAL_PREVIEW === true) return tornaAlForm('anteprima');
+
+  // Antispam (src/server/antispam.js). Senza gettone valido si risponde
+  // "errore": una persona vera vede la pagina con l'indirizzo info@ e puo'
+  // scrivere lo stesso. Allo spam riconosciuto si risponde "inviato", cosi'
+  // il bot non capisce di essere stato fermato, e la mail non parte.
+  if (!env.BREVO_API_KEY) return tornaAlForm('errore');
+  const esitoGettone = await verificaGettone(env, campo('gettone', 200));
+  if (esitoGettone === 'gettone-mancante' || esitoGettone === 'gettone-scaduto') {
+    console.log(`modulo scartato: ${esitoGettone}`);
+    return tornaAlForm('errore');
+  }
+  const spam = esitoGettone !== 'ok' ? esitoGettone : motivoSpam({ nome, email, testi: [messaggio, profilo, citta] });
+  if (spam) {
+    console.log(`modulo scartato come spam: ${spam}`);
+    return tornaAlForm('inviato');
+  }
 
   if (!env.BREVO_API_KEY) {
     return tornaAlForm('errore');
