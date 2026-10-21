@@ -83,7 +83,7 @@ const SCHEDE_AREE = {
     slug: 'digitalizzazione-pa',
     occhiello: 'La transizione digitale degli enti pubblici.',
     intro:
-      "Il processo di transizione digitale prefigurato dal PNRR: la materia di chi lavora dentro la pubblica amministrazione o insieme a lei.",
+      "La transizione digitale degli enti pubblici, dal Codice dell'amministrazione digitale al PNRR fino a cybersicurezza e intelligenza artificiale: la materia di chi lavora dentro la pubblica amministrazione o insieme a lei.",
   },
   I: {
     slug: 'intelligenza-artificiale',

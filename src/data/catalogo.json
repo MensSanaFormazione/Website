@@ -27,7 +27,7 @@
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
-        "Il corso attraversa la materia societaria dalla base (impresa, azienda, ditta) fino ai gruppi, alle operazioni straordinarie e alle procedure concorsuali, con un confronto costante con la giurisprudenza più aggiornata e la prassi legislativa.",
+        "Il corso attraversa la materia societaria dalla base (impresa, azienda, ditta) fino ai gruppi, alle operazioni straordinarie e alla crisi d'impresa, con un confronto costante con la giurisprudenza più aggiornata e con le riforme più recenti del diritto societario.",
         "La seconda parte entra nel cuore della responsabilità amministrativa degli enti: Modelli Organizzativi ex D.Lgs. 231/2001, Codice Etico, deleghe di funzioni, Organismo di Vigilanza e policy aziendali. Durante il corso vengono simulate negoziazioni su clausole e patti, con possibilità di lavorare sulla redazione di documenti societari reali."
       ],
       "perche": [
@@ -41,7 +41,7 @@
         },
         {
           "titolo": "Il quadro si aggiorna di continuo",
-          "testo": "Whistleblowing (D.Lgs. 24/2023), nuovi reati presupposto, indicazioni ANAC: chi si occupa di governance deve mantenere il Modello vivo, non archiviato in un cassetto."
+          "testo": "Whistleblowing (D.Lgs. 24/2023), nuovi reati presupposto introdotti anche nel 2026, indicazioni ANAC: chi si occupa di governance deve mantenere il Modello vivo, non archiviato in un cassetto."
         }
       ],
       "destinatari": [
@@ -66,11 +66,14 @@
           "voci": [
             "Le società di persone",
             "Le società di capitali",
+            "Gli assetti organizzativi, amministrativi e contabili adeguati (art. 2086 c.c.)",
+            "Il collegio sindacale e il nuovo regime di responsabilità dei sindaci",
+            "Le novità della Legge Capitali sulle assemblee e sulla governance delle società",
             "La società cooperativa",
             "Il bilancio, i libri, i registri sociali e le altre scritture contabili",
             "I gruppi di società, R.T.I. e A.T.I.",
             "Trasformazioni, fusioni e scissioni societarie",
-            "Le procedure concorsuali"
+            "La crisi d'impresa: gli strumenti di regolazione previsti dal Codice della crisi d'impresa e dell'insolvenza"
           ]
         },
         {
@@ -80,7 +83,9 @@
             "Il Codice Etico",
             "Le deleghe di funzioni",
             "L'Organismo di Vigilanza",
-            "Le policy aziendali"
+            "Le policy aziendali",
+            "Il whistleblowing (D.Lgs. 24/2023): i canali di segnalazione e il raccordo con il Modello",
+            "L'aggiornamento del Modello ai nuovi reati presupposto"
           ]
         }
       ],
@@ -113,7 +118,7 @@
         },
         {
           "titolo": "Dal riciclaggio al SOX, una sola cassetta degli attrezzi",
-          "testo": "Il corso collega le fonti che un auditor incontra davvero: D.Lgs. 231/2001 e 231/2007, L. 262/2005, disciplina della revisione legale, Sarbanes-Oxley Act e FCPA per chi lavora con gruppi internazionali."
+          "testo": "Il corso collega le fonti che un auditor incontra davvero: Global Internal Audit Standards, D.Lgs. 231/2001 e 231/2007, L. 262/2005, disciplina della revisione legale, Sarbanes-Oxley Act e FCPA per chi lavora con gruppi internazionali."
         }
       ],
       "destinatari": [
@@ -128,14 +133,14 @@
           "sezione": "Governance e Sistema di Controllo Interno",
           "voci": [
             "Governance aziendale, Sistema di Controllo Interno e Internal Auditing",
-            "Definizione di Internal Audit",
-            "Quadro normativo nazionale (Circolare Banca d'Italia 288/2015) e internazionale",
-            "L'attuazione della Direttiva 2006/43/CE sulla revisione legale dei conti",
+            "Il ruolo dell'Internal Audit secondo i Global Internal Audit Standards dell'IIA, in vigore dal 2025",
+            "Quadro normativo nazionale (disposizioni di vigilanza della Banca d'Italia per banche e intermediari finanziari) e internazionale",
+            "La disciplina della revisione legale dei conti (D.Lgs. 39/2010 e Regolamento UE 537/2014)",
             "La regolamentazione del settore finanziario in Italia",
             "Disposizioni civilistiche in tema di controllo interno",
             "D.Lgs. 231/2001: Codice Etico e responsabilità delle persone giuridiche",
             "L. 262/2005 sulla tutela del risparmio",
-            "Codice di autodisciplina di Borsa Italiana",
+            "Il Codice di Corporate Governance di Borsa Italiana",
             "D.Lgs. 231/2007: antiriciclaggio e contrasto al finanziamento del terrorismo",
             "Normativa internazionale: Sarbanes-Oxley Act (SOX) e FCPA"
           ]
@@ -143,7 +148,7 @@
         {
           "sezione": "Risk assessment e mappatura dei processi",
           "voci": [
-            "Il CoSO Report e il risk assessment sull'intera azienda",
+            "I framework CoSO (Internal Control ed Enterprise Risk Management) e il risk assessment sull'intera azienda",
             "La matrice dei rischi e l'Enterprise Risk Management (ERM)",
             "La valutazione dei rischi: probabilità e impatto",
             "Identificazione dei rischi e risposta al rischio",
@@ -172,7 +177,8 @@
             "Financial audit",
             "Operating audit",
             "Fraud audit",
-            "Audit ICT"
+            "Audit ICT e sicurezza informatica, anche alla luce della Direttiva NIS2 e del Regolamento DORA",
+            "Audit sui dati e sui processi di sostenibilità"
           ]
         }
       ],
@@ -220,14 +226,16 @@
           "sezione": "La struttura del Sistema di Controllo Interno e Gestione dei Rischi",
           "voci": [
             "Architettura del SCI-GR e principi di riferimento",
-            "I tre livelli di controllo e il posizionamento del risk management"
+            "I tre livelli di controllo e il posizionamento del risk management",
+            "Il risk management e gli adeguati assetti organizzativi (art. 2086 c.c.)",
+            "I rischi emergenti: cybersicurezza, catena di fornitura, sostenibilità e intelligenza artificiale"
           ]
         },
         {
           "sezione": "Gli attori della governance del rischio",
           "voci": [
             "Il Consiglio di Amministrazione: ruolo e poteri",
-            "L'amministratore incaricato del controllo SCI-GR",
+            "Il chief executive officer incaricato del SCI-GR secondo il Codice di Corporate Governance",
             "Il Comitato controllo e rischi",
             "Il responsabile della funzione di internal audit",
             "Il Collegio sindacale"
@@ -250,7 +258,7 @@
       "durataStudio": "Studio individuale guidato",
       "descrizione": [
         "Il corso ricostruisce origine ed evoluzione della funzione di Compliance, dai comitati di Basilea a Solvency II, per poi analizzarne compiti, obbligatorietà e collocamento nell'organigramma, insieme ai rapporti con risk management e internal audit.",
-        "La seconda parte incrocia la Compliance con le normative che la attivano ogni giorno: D.Lgs. 231/2001, GDPR, sicurezza sul lavoro (D.Lgs. 81/2008), antiriciclaggio (D.Lgs. 231/2007), fino alla disciplina anticorruzione della L. 190/2012 e agli obblighi di trasparenza."
+        "La seconda parte incrocia la Compliance con le normative che la attivano ogni giorno: D.Lgs. 231/2001, GDPR, sicurezza sul lavoro (D.Lgs. 81/2008), antiriciclaggio (D.Lgs. 231/2007), whistleblowing (D.Lgs. 24/2023), fino alla disciplina anticorruzione della L. 190/2012, alle sue modifiche più recenti e agli obblighi di trasparenza."
       ],
       "perche": [
         {
@@ -283,7 +291,8 @@
             "La Compliance \"eterodeterminata\": le principali fonti normative europee e nazionali",
             "La Compliance \"autodeterminata\": fonti secondarie, regolamenti, direttive aziendali",
             "L'obbligatorietà della funzione e il collocamento nell'organigramma",
-            "Il rapporto tra Compliance, Risk Management e funzione di Audit"
+            "Il rapporto tra Compliance, Risk Management e funzione di Audit",
+            "I sistemi di gestione della compliance e dell'anticorruzione: le norme ISO 37301 e ISO 37001"
           ]
         },
         {
@@ -293,6 +302,8 @@
             "Compliance e GDPR (Regolamento UE 2016/679)",
             "Il D.Lgs. 81/2008 sulla salute e sicurezza nei luoghi di lavoro",
             "Compliance e D.Lgs. 231/2007: antiriciclaggio",
+            "Il whistleblowing (D.Lgs. 24/2023): canali di segnalazione e tutele del segnalante",
+            "Compliance e sanzioni internazionali: le misure restrittive dell'Unione europea",
             "Il rispetto dei codici etici e delle direttive aziendali"
           ]
         },
@@ -300,6 +311,8 @@
           "sezione": "La disciplina dell'anticorruzione",
           "voci": [
             "La L. 190/2012, cosiddetta Legge Anticorruzione",
+            "Le modifiche del 2024 ai reati contro la Pubblica Amministrazione: abrogazione dell'abuso d'ufficio e nuova disciplina del traffico di influenze illecite",
+            "Il Piano Nazionale Anticorruzione e le indicazioni dell'ANAC",
             "Gli obblighi di trasparenza"
           ]
         }
@@ -366,7 +379,8 @@
             "Come regolarsi di fronte alle clausole vessatorie",
             "Le formule di autotutela del compratore e la risoluzione di diritto",
             "Le modalità di applicazione delle clausole di variazione prezzi",
-            "Garanzie e responsabilità civile del produttore-fornitore per prodotto difettoso"
+            "Garanzie e responsabilità del produttore-fornitore per prodotto difettoso, alla luce della nuova direttiva europea sulla responsabilità per danno da prodotti difettosi (UE) 2024/2853 e del Regolamento (UE) 2023/988 sulla sicurezza generale dei prodotti",
+            "La mediazione obbligatoria nelle controversie contrattuali dopo la riforma Cartabia"
           ]
         },
         {
@@ -384,7 +398,8 @@
           "voci": [
             "Il Regolamento UE 2016/679 (GDPR) e il D.Lgs. 101/2018",
             "Il D.Lgs. 81/2008 sulla salute e sicurezza nei luoghi di lavoro",
-            "Il D.Lgs. 231/2001 sulla responsabilità amministrativa degli enti"
+            "Il D.Lgs. 231/2001 sulla responsabilità amministrativa degli enti",
+            "La disciplina dei ritardi di pagamento nelle transazioni commerciali (D.Lgs. 231/2002)"
           ]
         },
         {
@@ -456,7 +471,8 @@
           "voci": [
             "La struttura dei contratti internazionali",
             "Interpretazione, force majeure, hardship, clausola penale, confidenzialità",
-            "La cessazione del contratto e la legge applicabile"
+            "La cessazione del contratto e la legge applicabile",
+            "Le clausole di conformità a sanzioni internazionali ed export control"
           ]
         },
         {
@@ -473,12 +489,12 @@
           "sezione": "Controversie transnazionali",
           "voci": [
             "La risoluzione delle controversie davanti al giudice interno",
-            "Il Regolamento (UE) 1215/2012 e il Regolamento (CE) 44/2001",
-            "Le Convenzioni di Bruxelles e di Lugano",
+            "Il Regolamento (UE) 1215/2012 (Bruxelles I-bis) su giurisdizione e riconoscimento delle sentenze",
+            "La Convenzione di Lugano, le Convenzioni dell'Aja e i rapporti con il Regno Unito dopo la Brexit",
             "La L. 218/1995 di diritto internazionale privato",
-            "La scelta o l'individuazione della legge applicabile",
+            "La scelta o l'individuazione della legge applicabile: il Regolamento (CE) 593/2008 (Roma I)",
             "Scelta del foro e/o dell'arbitrato",
-            "Conciliazione, mediazione e arbitrato come metodi alternativi"
+            "Conciliazione, mediazione e arbitrato come metodi alternativi, anche dopo la riforma dell'arbitrato del 2022"
           ]
         },
         {
@@ -486,9 +502,12 @@
           "voci": [
             "Contratti tipici italiani e atipicità della prassi internazionale",
             "Sale of Goods Agreements: obbligazioni del venditore e del compratore",
+            "La Convenzione di Vienna del 1980 sulla vendita internazionale di beni (CISG)",
+            "Gli Incoterms 2020 della Camera di Commercio Internazionale",
             "Le Joint Venture",
             "I contratti di licenza e di trasferimento di tecnologia",
             "La tutela della proprietà intellettuale",
+            "Export control e misure restrittive UE: beni a duplice uso (Reg. UE 2021/821) e responsabilità dell'ente ai sensi del D.Lgs. 231/2001",
             "Come si progetta e si redige il contratto internazionale"
           ]
         }
@@ -536,9 +555,9 @@
         {
           "sezione": "Il quadro di riferimento",
           "voci": [
-            "Inquadramento e principi del Codice dei contratti pubblici (D.Lgs. 36/2023)",
+            "Inquadramento e principi del Codice dei contratti pubblici (D.Lgs. 36/2023): risultato, fiducia e accesso al mercato",
             "Profili oggettivi e soggettivi di applicazione",
-            "L'evoluzione normativa e gli aggiornamenti al Codice"
+            "Gli aggiornamenti al Codice: il correttivo D.Lgs. 209/2024"
           ]
         },
         {
@@ -547,8 +566,8 @@
             "Gli operatori economici in generale; enti pubblici anche non economici",
             "Consorzi stabili e consorzi ordinari di concorrenti",
             "Raggruppamenti temporanei di imprese, contratti di rete, GEIE",
-            "Il RUP nel procedimento amministrativo e nei contratti pubblici",
-            "Il Direttore dei Lavori e il DM 49/2018",
+            "Il RUP, Responsabile unico del progetto, e i responsabili di fase",
+            "Il Direttore dei Lavori e il direttore dell'esecuzione nel nuovo Codice (Allegato II.14)",
             "Rapporti tra direttore dell'esecuzione e RUP; la coincidenza delle figure"
           ]
         },
@@ -580,6 +599,7 @@
           "voci": [
             "Il procedimento di evidenza pubblica",
             "Il contratto e l'autotutela della PA",
+            "L'esecuzione del contratto: revisione dei prezzi, modifiche contrattuali e digitalizzazione della fase esecutiva",
             "I controlli e il contenzioso"
           ]
         }
@@ -631,6 +651,7 @@
             "Raccolta e analisi delle informazioni",
             "La responsabilità patrimoniale del debitore: la garanzia generica del patrimonio",
             "I pericoli per il creditore e i rimedi dell'ordinamento",
+            "La crisi del debitore: segnali di allerta e composizione negoziata della crisi",
             "La gestione dei microcrediti e dei macrocrediti",
             "Differenze tra crediti dei privati e delle imprese",
             "Differenze tra crediti chirografari e crediti garantiti"
@@ -651,11 +672,12 @@
         {
           "sezione": "La procedura stragiudiziale",
           "voci": [
-            "Principi generali: giudizio di convenienza, recupero dei costi ex art. 1196 c.c., scarico fiscale, interessi moratori ex D.Lgs. 231/2002",
+            "Principi generali: giudizio di convenienza, spese del pagamento (art. 1196 c.c.), risarcimento forfettario dei costi di recupero (art. 6 D.Lgs. 231/2002), scarico fiscale, interessi moratori",
             "I beni aggredibili: quali sono e come ricercarli",
             "La messa in mora e la definizione di piani di rientro",
             "L'efficacia novativa e non novativa delle transazioni commerciali",
-            "La rinuncia alle azioni legali per sopravvenuta definizione stragiudiziale"
+            "La rinuncia alle azioni legali per sopravvenuta definizione stragiudiziale",
+            "La negoziazione assistita e la mediazione: quando sono condizione di procedibilità"
           ]
         }
       ],
@@ -675,7 +697,7 @@
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
         "Il corso copre il recupero del credito davanti agli organi giudiziari: natura e tipologie del titolo esecutivo, ricorso per decreto ingiuntivo ordinario e provvisoriamente esecutivo, atto di precetto e fase esecutiva, con tutte le forme di pignoramento (mobiliare, presso terzi, dello stipendio, immobiliare).",
-        "Completano il quadro le garanzie del credito (pegno, ipoteca, fideiussione, riservato dominio), i titoli di credito come assegno e cambiale, le procedure concorsuali con l'insinuazione al passivo e la disciplina delle obbligazioni pecuniarie: interessi, anatocismo, prescrizione."
+        "Completano il quadro le garanzie del credito (pegno, ipoteca, fideiussione, riservato dominio), i titoli di credito come assegno e cambiale, la crisi del debitore nel Codice della crisi d'impresa con l'insinuazione al passivo e la disciplina delle obbligazioni pecuniarie: interessi, anatocismo, prescrizione."
       ],
       "perche": [
         {
@@ -717,17 +739,18 @@
             "I presupposti per la provvisoria esecutorietà",
             "La scelta tra giudizio ordinario e ricorso per decreto ingiuntivo",
             "I documenti indispensabili per avviare un'azione legale",
-            "L'atto di precetto e la sua natura giuridica"
+            "L'atto di precetto e la sua natura giuridica",
+            "Le novità della riforma Cartabia e dei correttivi successivi sul processo civile e sull'esecuzione"
           ]
         },
         {
           "sezione": "La fase esecutiva",
           "voci": [
-            "Le indagini da compiere prima del pignoramento",
+            "Le indagini da compiere prima del pignoramento, compresa la ricerca telematica dei beni (art. 492-bis c.p.c.)",
             "Il pignoramento mobiliare e presso terzi",
             "Il pignoramento dello stipendio",
             "Il pignoramento immobiliare",
-            "Le procedure concorsuali: precisazione del credito e insinuazione al passivo"
+            "La crisi del debitore nel Codice della crisi d'impresa: liquidazione giudiziale, concordato preventivo, precisazione del credito e insinuazione al passivo"
           ]
         },
         {
@@ -740,7 +763,7 @@
             "Il patto di riservato dominio",
             "L'assegno: elementi, tipologie, protesto",
             "La cambiale e il pagherò cambiario come titolo esecutivo",
-            "RID e bonifico bancario"
+            "Addebito diretto SEPA (SDD) e bonifico bancario"
           ]
         },
         {
@@ -800,7 +823,7 @@
             "I crediti commerciali nel sistema produttivo italiano",
             "Il ritardo negli incassi: l'incidenza del credito sui risultati aziendali",
             "Il costo della gestione del credito",
-            "Le disposizioni contro i ritardi di pagamento nelle transazioni commerciali"
+            "Le disposizioni contro i ritardi di pagamento nelle transazioni commerciali (D.Lgs. 231/2002)"
           ]
         },
         {
@@ -825,6 +848,8 @@
           "voci": [
             "Definire e gestire il fido cliente",
             "Gli accantonamenti a protezione del rischio",
+            "Gli strumenti di copertura del rischio: assicurazione del credito, factoring e cessione dei crediti",
+            "I crediti scaduti come segnale di crisi: adeguati assetti e indicatori di allerta del Codice della crisi d'impresa",
             "Gestire e controllare l'attività di recupero crediti",
             "I KPI della gestione del credito commerciale",
             "Il tableau de bord della funzione crediti"
@@ -852,7 +877,7 @@
       "perche": [
         {
           "titolo": "La giustizia tributaria è stata riformata da cima a fondo",
-          "testo": "Con la L. 130/2022 e il D.Lgs. 220/2023 le Commissioni sono diventate Corti di giustizia tributaria con magistrati professionali, e le nuove regole processuali si applicano ai ricorsi più recenti. Chi difende contribuenti o imprese deve conoscere il processo nella sua versione attuale."
+          "testo": "Con la L. 130/2022 e il D.Lgs. 220/2023 le Commissioni sono diventate Corti di giustizia tributaria con magistrati professionali, e la riforma fiscale ha riscritto statuto del contribuente, sanzioni e regole del processo. Chi difende contribuenti o imprese deve conoscere il sistema nella sua versione attuale."
         },
         {
           "titolo": "Il processo è telematico, senza eccezioni di comodo",
@@ -860,7 +885,7 @@
         },
         {
           "titolo": "Il contenzioso vale miliardi ogni anno",
-          "testo": "Le controversie fiscali riguardano importi medi elevatissimi e ogni fase (dal reclamo alle impugnazioni) ha regole e termini che non perdonano. Una preparazione sistematica riduce il rischio di errori irreversibili."
+          "testo": "Le controversie fiscali riguardano importi medi elevatissimi e ogni fase, dal contraddittorio preventivo alle impugnazioni, ha regole e termini che non perdonano. Una preparazione sistematica riduce il rischio di errori irreversibili."
         }
       ],
       "destinatari": [
@@ -884,9 +909,11 @@
           "sezione": "L'azione dell'amministrazione finanziaria",
           "voci": [
             "L'attività dell'amministrazione finanziaria",
+            "Lo Statuto dei diritti del contribuente riformato: contraddittorio preventivo e autotutela",
+            "L'adempimento collaborativo e il concordato preventivo biennale",
             "I singoli tributi",
             "La finanza derivata e il federalismo fiscale",
-            "Il sistema sanzionatorio"
+            "Il sistema sanzionatorio dopo la revisione del 2024"
           ]
         },
         {
@@ -895,10 +922,12 @@
             "Gli organi della giustizia tributaria",
             "Il Consiglio di Presidenza della Giustizia Tributaria",
             "Il Processo Tributario Telematico (PTT)",
+            "Le novità della riforma: giudice monocratico, prova testimoniale scritta, udienza a distanza",
             "La sospensione, interruzione ed estinzione del processo tributario",
             "Le impugnazioni",
             "Le sentenze passate in giudicato",
-            "Il giudizio di ottemperanza"
+            "Il giudizio di ottemperanza",
+            "I testi unici della riforma fiscale: giustizia tributaria e sanzioni"
           ]
         }
       ],
@@ -984,7 +1013,9 @@
             "Il controllo del cash flow: working capital e flussi di cassa",
             "Il controllo attraverso il bilancio d'esercizio e gli indici",
             "Il controllo economico, patrimoniale e finanziario",
-            "Il controllo degli investimenti: valutazione economica e finanziaria"
+            "Il controllo degli investimenti: valutazione economica e finanziaria",
+            "Gli indicatori per gli adeguati assetti e l'emersione tempestiva della crisi (art. 2086 c.c. e Codice della crisi d'impresa)",
+            "Le novità dei principi contabili internazionali: il nuovo schema di conto economico dell'IFRS 18"
           ]
         },
         {
@@ -1008,7 +1039,7 @@
       "prezzo": 1200,
       "durataVideo": "21 ore di videolezione",
       "descrizione": [
-        "Il Corso, che rientra nell'ambito più generale del Diritto Finanziario, ha ad oggetto la disamina degli strumenti che consentono di comprendere e utilizzare i dati di bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare e controllare i costi, misurare e controllare i risultati utilizzando l'analisi di bilancio, gestire le commesse ed i progetti, produrre una reportistica efficace. Il Corso può avere una durata superiore laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
+        "Il corso fornisce gli strumenti di economia e finanza d'impresa che servono a comprendere e utilizzare i dati di bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare e controllare i costi, misurare i risultati con l'analisi di bilancio, gestire commesse e progetti e produrre una reportistica efficace. Può avere una durata superiore se serve approfondire ambiti di particolare interesse."
       ],
       "programma": [
         {
@@ -1041,7 +1072,7 @@
             "Calcolare il costo del prodotto o del servizio",
             "I costi diretti",
             "L'allocazione dei costi indiretti",
-            "Cenni - Activity Based Costing"
+            "Cenni di Activity Based Costing"
           ]
         },
         {
@@ -1086,20 +1117,22 @@
       "prezzo": 1200,
       "durataVideo": "21 ore di videolezione",
       "descrizione": [
-        "Il Corso, che rientra nell'ambito più generale del Diritto Finanziario, ha ad oggetto l'analisi, il monitoraggio e la gestione di un Progetto nonché degli Strumenti volti alla realizzazione del Progetto stesso al fine di controllare il suo stato di avanzamento lavori. Il Corso può avere una durata superiore laddove sorgesse l'esigenza di analizzare ed approfondire specifici ambiti di particolare interesse."
+        "Il corso tratta l'analisi, il monitoraggio e la gestione di un progetto e degli strumenti che servono a realizzarlo e a controllarne lo stato di avanzamento, con riferimento agli standard internazionali di project management e agli approcci agili. Può avere una durata superiore se serve approfondire ambiti di particolare interesse."
       ],
       "programma": [
         {
           "sezione": "La gestione di un Progetto Complesso: come valutare e collegare le azioni ai risultati",
           "voci": [
             "Quali sono i parametri per valutare la fattibilità e il successo di un progetto complesso?",
-            "Quali sono gli strumenti per monitorare il progetto e controllare lo stato di avanzamento lavori?"
+            "Quali sono gli strumenti per monitorare il progetto e controllare lo stato di avanzamento lavori?",
+            "Gli standard di riferimento: la PMBOK Guide del Project Management Institute e la norma ISO 21502",
+            "Approcci predittivi, agili e ibridi: come scegliere il modello di gestione"
           ]
         },
         {
           "sezione": "Analisi di fattibilità del Progetto",
           "voci": [
-            "Le «performance obligation» di progetto",
+            "Obiettivi, deliverable e criteri di accettazione del progetto",
             "Le competenze delle risorse umane necessarie",
             "La formazione del team",
             "Le risorse materiali e finanziarie necessarie",
@@ -1143,9 +1176,9 @@
             "Cosa dobbiamo fare? WBS",
             "Chi fa cosa? OBS, Tasks assignment",
             "Quanto costa? CBS",
-            "Qual è la sequenza delle attività? PDM, CPM, Fast Traking",
+            "Qual è la sequenza delle attività? PDM, CPM, Fast Tracking",
             "Qual è il modello di progetto? Pert, Gantt",
-            "Come controllare? Milestone, Chek point",
+            "Come controllare? Milestone, Checkpoint",
             "Tecnica del Earned Value e controllo dell'avanzamento del progetto",
             "Scostamenti di avanzamento, costo, tempo",
             "Analisi delle cause dello scostamento",
@@ -1243,11 +1276,11 @@
       "area": "F",
       "areaNome": "Compliance",
       "titolo": "Responsabilità Amministrativa degli Enti (D.Lgs. 231/01)",
-      "sottotitolo": "Modelli organizzativi, codice etico, deleghe di funzioni e Organismo di Vigilanza, con gli aggiornamenti dei D.Lgs. 156/2022, 19/2023 e 105/2023.",
+      "sottotitolo": "Modelli organizzativi, codice etico, deleghe di funzioni, whistleblowing e Organismo di Vigilanza, con il catalogo dei reati presupposto aggiornato agli interventi più recenti.",
       "prezzo": 1050,
       "durataVideo": "16 ore di videolezione",
       "descrizione": [
-        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2001.",
+        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2001, alla luce di un catalogo dei reati presupposto che negli ultimi anni è stato modificato a ritmo serrato.",
         "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
         {
           "elenco": [
@@ -1257,29 +1290,32 @@
             "il codice etico",
             "le deleghe di funzioni",
             "l'Organismo di Vigilanza",
+            "il whistleblowing e i canali di segnalazione",
             "le policy aziendali",
             "i reati previsti dal D.Lgs. 231/2001",
             "il sistema sanzionatorio",
             "i procedimenti penali"
           ]
         },
-        "Il Corso su richiesta del Cliente, può avere una durata diversa laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
+        "Su richiesta del Cliente il Corso può avere una durata diversa, laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse."
       ],
       "programma": [
         {
           "sezione": "Argomenti trattati",
           "voci": [
             "Le Fonti normative della Responsabilità Amministrativa degli Enti",
-            "Il D.Lgs. 231/01 con focus sugli aggiornamenti normativi introdotti dai Decreti Legislativi 156/2022, 19/2023 e 105/2023",
+            "Il D.Lgs. 231/01 e l'evoluzione del catalogo dei reati presupposto, fino agli interventi del 2026",
             "La Responsabilità degli Enti",
-            "L'analisi delle principali fattispecie di Reati contro la Pubblica Amministrazione: art. 24 e 25 del Decreto",
-            "L'analisi di taluni sempi di attività sensibili e spunti per la costruzione di Protocolli comportamentali di prevenzione",
+            "L'analisi delle principali fattispecie di Reati contro la Pubblica Amministrazione (artt. 24 e 25 del Decreto), dopo l'abrogazione dell'abuso d'ufficio e l'introduzione del peculato per distrazione",
+            "L'analisi di taluni esempi di attività sensibili e spunti per la costruzione di Protocolli comportamentali di prevenzione",
             "I Reati di ricettazione, riciclaggio e autoriciclaggio: art. 25 octies del Decreto",
-            "Il Sistema sanzionatorio",
+            "I reati presupposto più recenti: violazione delle misure restrittive dell'Unione europea, nuovi reati ambientali, frodi agroalimentari",
+            "Il Sistema sanzionatorio, compreso il nuovo criterio in percentuale sul fatturato per le misure restrittive UE",
             "I Procedimenti penali",
             "I Modelli Organizzativi",
             "Il Codice Etico; Le deleghe di funzioni",
             "L'Organismo di Vigilanza",
+            "Il whistleblowing (D.Lgs. 24/2023) e il suo raccordo con il Modello",
             "Le Policy aziendali"
           ]
         }
@@ -1294,16 +1330,19 @@
       "area": "F",
       "areaNome": "Compliance",
       "titolo": "L'Antiriciclaggio (D.Lgs. 231/2007)",
-      "sottotitolo": "Fonti nazionali e sovranazionali, destinatari e autorità, obblighi di adeguata verifica e segnalazione delle operazioni sospette, sistema sanzionatorio.",
+      "sottotitolo": "Fonti nazionali e sovranazionali, compreso il nuovo pacchetto europeo antiriciclaggio, destinatari e autorità, titolare effettivo, adeguata verifica, segnalazione delle operazioni sospette e sistema sanzionatorio.",
       "prezzo": 1050,
       "durataVideo": "16 ore di videolezione",
       "descrizione": [
-        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2007.",
+        "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2007, alla luce del nuovo pacchetto europeo antiriciclaggio.",
+        "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
         {
           "elenco": [
-            "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
             "fonti normative nazionali e sovranazionali",
-            "la nozione di antiriciclaggio; i destinatari e le autorità; obblighi in tema di antiriciclaggio",
+            "la nozione di riciclaggio",
+            "i destinatari e le autorità",
+            "gli obblighi in tema di antiriciclaggio",
+            "il titolare effettivo",
             "il sistema sanzionatorio"
           ]
         },
@@ -1313,8 +1352,8 @@
         {
           "sezione": "Le fonti normative nazionali e sovranazionali",
           "voci": [
-            "La normativa europea antiriciclaggio",
-            "La normativa nazionale antiriciclaggio"
+            "La normativa europea: il pacchetto antiriciclaggio del 2024 (Regolamento AMLR, sesta direttiva e Autorità europea AMLA) e i tempi di applicazione",
+            "La normativa nazionale: il D.Lgs. 231/2007, i suoi aggiornamenti e il recepimento della sesta direttiva"
           ]
         },
         {
@@ -1331,18 +1370,21 @@
             "I liberi professionisti",
             "Gli intermediari finanziari",
             "I revisori contabili",
-            "Il MEF La UIF",
-            "Le Autorità di Controllo, vigilanza ed ispezione"
+            "Gli operatori non finanziari e i prestatori di servizi per le cripto-attività",
+            "Il MEF e la UIF",
+            "Le Autorità di Controllo, vigilanza ed ispezione",
+            "L'Autorità europea antiriciclaggio (AMLA)"
           ]
         },
         {
-          "sezione": "Gli obblighi dei professionisti",
+          "sezione": "Gli obblighi dei soggetti obbligati",
           "voci": [
             "l'adeguata verifica della clientela",
+            "il titolare effettivo: individuazione, comunicazione al registro e accesso alle informazioni",
             "la registrazione e la conservazione dei dati",
             "la segnalazione delle operazioni sospette",
             "la formazione",
-            "le limitazioni all'uso del contante e dei titoli al portatore"
+            "le limitazioni all'uso del contante e dei titoli al portatore, e il tetto europeo previsto dal Regolamento AMLR"
           ]
         },
         {
@@ -1375,7 +1417,7 @@
             "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
             "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
             "Migliorare il benessere individuale ed organizzativo",
-            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona, con una metodologia mutuata dalle discipline dell'apprendimento, dallo sport coaching, dalla creatività e dal \"business management\""
           ]
         },
         "MAKING IT SUBSTAINABLE: \"CONVERSAZIONI DI COACHING PER I MANAGER IN UN PERIODO INTENSO\"",
@@ -1412,23 +1454,22 @@
             "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
             "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
             "Migliorare il benessere individuale ed organizzativo",
-            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona, con una metodologia mutuata dalle discipline dell'apprendimento, dallo sport coaching, dalla creatività e dal \"business management\""
           ]
         },
         "LA VISION E LO SCOPO",
-        "Il coaching come un strumento per lavorare sullo scopo individuale o di Gruppo e sulla Vision.",
+        "Il coaching come strumento per lavorare sullo scopo individuale o di gruppo e sulla Vision.",
         "Questo è ancora più importante nei momenti di difficoltà o transizione",
         "Lavorare sullo scopo permette alla persona di:",
         {
           "elenco": [
             "Fare le proprie scelte con consapevolezza",
             "Superare i momenti di difficoltà",
-            "Trovare le sfide giornaliere per mantenere la coerenza con i propri obiettivi",
-            "Durata; una sessione a distanza individuale"
+            "Trovare le sfide giornaliere per mantenere la coerenza con i propri obiettivi"
           ]
         },
-        "Costo: (Da dedurre per chi vuole, eventualmente proseguire nel percorso di Success Coaching)",
-        "Follow up: eventuale 200 euro"
+        "Durata: una sessione individuale a distanza.",
+        "Chi lo desidera può proseguire con il percorso di Success Coaching (G3) o con una sessione di follow up."
       ],
       "programma": []
     },
@@ -1452,18 +1493,18 @@
             "Assicurare l'efficace inserimento o la promozione di un manager o collaboratore in una nuova realtà organizzativa",
             "Massimizzare l'efficacia di \"on boarding\" in un nuovo ruolo",
             "Migliorare il benessere individuale ed organizzativo",
-            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona attraverso una metodologia mutuata dalle discipline dell'apprendimento, dello sport coaching della creatività e dal \"business management\""
+            "Ogni percorso è costruito e strutturato sulla base delle esigenze dell'azienda (committente) e della persona, con una metodologia mutuata dalle discipline dell'apprendimento, dallo sport coaching, dalla creatività e dal \"business management\""
           ]
         },
         "SUCCESS COACHING",
-        "E' un programma di coaching che lavora con la persona per il raggiungimento dei risultati in coerenza con il proprio benessere, la valorizzazione delle potenzialità e dell'impatto con i propri stakeholder rilevanti",
+        "È un programma di coaching che lavora con la persona per il raggiungimento dei risultati in coerenza con il proprio benessere, la valorizzazione delle potenzialità e l'impatto sui propri stakeholder rilevanti.",
         "Come lavoriamo",
         "Il processo prevede:",
         {
           "elenco": [
-            "La definzione dei \"risultati attesi\" dal cliente (committente e persona)",
+            "La definizione dei \"risultati attesi\" dal cliente (committente e persona)",
             "L'accompagnamento al raggiungimento dei risultati (Otto incontri a distanza della durata di due ore circa, ogni 3 settimane/un mese)",
-            "Lavoro a distanza (Negli incontri verrà definito un piano di azione e gli \"allenamenti\" dal svolgere tra un incontro e l'altro)"
+            "Lavoro a distanza (negli incontri verranno definiti un piano di azione e gli \"allenamenti\" da svolgere tra un incontro e l'altro)"
           ]
         }
       ],
@@ -1494,14 +1535,50 @@
       "area": "H",
       "areaNome": "Digitalizzazione PA",
       "titolo": "La Transizione Digitale nella Pubblica Amministrazione",
-      "sottotitolo": "Strumenti e aspetti giuridici del processo di transizione digitale prefigurato dal PNRR.",
+      "sottotitolo": "Strumenti e aspetti giuridici della transizione digitale degli enti pubblici: dal Codice dell'amministrazione digitale al PNRR, fino a cybersicurezza e intelligenza artificiale.",
       "prezzo": 1050,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
-        "Il Corso rappresenta una guida per le pubbliche amministrazioni nella comprensione del processo di transizione digitale prefigurato dal PNRR."
+        "Il corso è una guida per chi lavora nelle pubbliche amministrazioni, o insieme a loro, nella comprensione del processo di transizione digitale: le regole che lo governano, gli strumenti già operativi e gli obblighi che ne derivano per gli enti.",
+        "Il percorso parte dal Codice dell'amministrazione digitale e dal Piano triennale per l'informatica nella PA, attraversa le misure del PNRR e la loro fase conclusiva, e arriva ai temi che oggi impegnano gli enti: cybersicurezza, accessibilità, gestione documentale, appalti digitali e uso dell'intelligenza artificiale."
       ],
-      "programma": []
+      "programma": [
+        {
+          "sezione": "Il quadro normativo e strategico",
+          "voci": [
+            "Il Codice dell'amministrazione digitale (D.Lgs. 82/2005) e le Linee guida AgID",
+            "Il Piano triennale per l'informatica nella Pubblica Amministrazione",
+            "Il PNRR e la digitalizzazione della PA: obiettivi, risultati e fase conclusiva",
+            "Il ruolo del Responsabile per la transizione al digitale"
+          ]
+        },
+        {
+          "sezione": "Identità, servizi e dati",
+          "voci": [
+            "Identità digitale: SPID, CIE e il portafoglio europeo di identità digitale (Regolamento eIDAS 2)",
+            "Servizi digitali al cittadino: pagoPA, App IO, notifiche digitali",
+            "Interoperabilità e valorizzazione dei dati pubblici: la Piattaforma Digitale Nazionale Dati",
+            "Il cloud della PA e la migrazione dei servizi"
+          ]
+        },
+        {
+          "sezione": "Documenti, accessibilità e appalti digitali",
+          "voci": [
+            "Documento informatico, gestione documentale e conservazione",
+            "Accessibilità dei siti e dei servizi digitali e vigilanza AgID",
+            "La digitalizzazione del ciclo dei contratti pubblici"
+          ]
+        },
+        {
+          "sezione": "Sicurezza e intelligenza artificiale",
+          "voci": [
+            "Cybersicurezza nella PA: Agenzia per la cybersicurezza nazionale, Direttiva NIS2 e obblighi per gli enti",
+            "Protezione dei dati personali nei servizi digitali pubblici",
+            "L'intelligenza artificiale nella Pubblica Amministrazione: AI Act e legge italiana sull'IA"
+          ]
+        }
+      ]
     },
     {
       "pubblicato": true,
