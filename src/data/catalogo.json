@@ -1170,61 +1170,70 @@
       "slug": "f1-gdpr-e-dpo",
       "area": "F",
       "areaNome": "Compliance",
-      "titolo": "Regolamento Europeo Privacy (GDPR) e Data Protection Officer",
-      "sottotitolo": "Il Regolamento UE 2016/679 dai principi alle sanzioni, con la figura del DPO: accountability, registri dei trattamenti, data breach e diritti degli interessati.",
+      "titolo": "Data Protection Officer e GDPR nell'Era Digitale: Privacy, IA, Data Strategy e Cyber Security",
+      "sottotitolo": "Dal GDPR a una governance integrata dei dati: il DPO davanti a Data Act, NIS2, DORA e AI Act, con un laboratorio pratico su data breach, audit e ispezioni.",
       "prezzo": 1200,
-      "durataVideo": "21 ore di videolezione",
+      "durataVideo": "21 ore, in 3 giornate da 7 ore o in 5-6 moduli",
       "descrizione": [
-        "Il Corso, che rientra nell'ambito più generale del Diritto alla Privacy, ha ad oggetto la disamina dei principali aspetti normativi sottesi al nuovo Regolamento dell'Unione Europea 2016/679 (GDPR).",
-        "In particolare, durante lo svolgimento del corso verranno affrontati, tra gli altri, i seguenti aspetti:",
+        "Il corso porta il percorso tradizionale sul Regolamento UE 2016/679 (GDPR) dentro le sfide che oggi riguardano le imprese e la figura del Data Protection Officer. L'attenzione si sposta dall'adempimento burocratico a una governance integrata dei dati, che comprende la sicurezza informatica, i nuovi quadri normativi europei e l'impatto dei sistemi di intelligenza artificiale.",
+        "Accanto ai fondamenti del GDPR e alle priorità ispettive del Garante, il programma affronta:",
         {
           "elenco": [
-            "disposizioni generali del GDPR e suoi principi informatori",
-            "gli attori del Regolamento",
-            "i diritti degli interessati",
-            "il nuovo diritto all'oblio",
-            "la portabilità dei dati",
-            "il principio di accountability",
-            "il responsabile della protezione dei dati (DPO)",
-            "il data breach; il sistema sanzionatorio",
-            "rapporti tra il GDPR e il Codice della Privacy"
+            "le nuove normative europee sui dati: Data Act, Data Governance Act e Digital Services Act",
+            "la sicurezza informatica e il raccordo con la Direttiva NIS2 e il Regolamento DORA",
+            "il trasferimento dei dati fuori dall'Unione europea: Data Privacy Framework UE-USA, clausole contrattuali tipo e valutazione d'impatto sul trasferimento",
+            "gli effetti dell'AI Act sui trattamenti di dati personali",
+            "i più recenti provvedimenti del Garante e della Corte di giustizia dell'Unione europea"
           ]
         },
-        "Il Corso può avere una durata diversa laddove sorgesse l'esigenza di analizzare specifici ambiti di particolare interesse. Durante il Corso verranno simulate talune possibili vicende della vita professionale e privata che impattano con la nuova normativa europea e verrà fornita la soluzione migliore per la loro regolamentazione."
+        "Il corso si chiude con un laboratorio di cinque ore: la simulazione di un data breach da ransomware, un audit privacy interno e la preparazione a un'ispezione del Garante o della Guardia di Finanza."
       ],
       "programma": [
         {
-          "sezione": "Argomenti trattati",
+          "sezione": "Modulo 1 (4 ore). Fondamenti del GDPR, governance dei dati e nuovi orientamenti ispettivi",
           "voci": [
-            "Le Principali novità contenute nel Regolamento rispetto al Codice della Privacy",
-            "Il Periodo Transitorio",
-            "Le Disposizioni generali ed i suoi Principi",
-            "Gli Attori del Regolamento",
-            "Quali sono i Diritti degli interessati?",
-            "La nuova figura del Diritto all'Oblio",
-            "La Portabilità dei Dati e la Profilazione on line",
-            "Garanzie per la Sicurezza dei Dati",
-            "Privacy by design e Privacy by default",
-            "Il Principio dell'accountability",
-            "I Corresponsabili del Trattamento",
-            "L‘Esecuzione del Regolamento",
-            "Il DPO (Data Protection Officer)",
-            "I Registri delle attività di Trattamento",
-            "La Sicurezza dei Dati e valutazione dei Rischi",
-            "Il Comitato Europeo per la protezione dei Dati",
-            "Data breach",
-            "I Codici di condotta e certificazione",
-            "Il trasferimento dei Dati verso l‘estero",
-            "I Controlli: l‘Autorità di Controllo",
-            "I Ricorsi, Responsabilità, Risarcimento",
-            "Il Sistema sanzionatorio: quali adeguamenti per le Imprese per non incorrervi",
-            "Il Trattamento dei Dati specifici",
-            "I Social network e i minori: quali nuove tutele?",
-            "L'analisi della recentissima normativa nazionale (Decreto legislativo 10 agosto 2018, n. 101) concernente l'adeguamento della normativa nazionale D.Lgs. 196/03 alle disposizioni del Regolamento"
+            "Principi chiave: accountability, privacy by design e privacy by default nell'era del cloud e del lavoro agile",
+            "Basi giuridiche, gestione del consenso digitale e informativa multilivello",
+            "Analisi dei più recenti provvedimenti sanzionatori del Garante e della Corte di giustizia UE",
+            "Gestione operativa dei registri dei trattamenti e accountability nei gruppi societari"
+          ]
+        },
+        {
+          "sezione": "Modulo 2 (4 ore). Il DPO nel nuovo quadro dell'European Data Strategy",
+          "voci": [
+            "Designazione, requisiti, compiti e responsabilità del DPO: interno o esterno, conflitti di interesse e giurisprudenza",
+            "Il DPO alla prova dell'European Data Strategy: interazioni con Data Act, Data Governance Act e Digital Services Act",
+            "Trasferimento dei dati extra UE: Data Privacy Framework UE-USA, clausole contrattuali tipo (SCC) e valutazione d'impatto sul trasferimento (TIA)"
+          ]
+        },
+        {
+          "sezione": "Modulo 3 (4 ore). Cybersecurity, data breach e integrazione con NIS2 e DORA",
+          "voci": [
+            "Misure di sicurezza tecniche e organizzative: cifratura, pseudonimizzazione, controllo degli accessi e gestione delle credenziali",
+            "Procedura di data breach: identificazione, contenimento, notifica al Garante entro 72 ore e comunicazione agli interessati",
+            "Integrazione della privacy con i requisiti di sicurezza informatica della Direttiva NIS2 e del Regolamento DORA",
+            "Gestione del rischio nella catena di fornitura e controlli sui responsabili del trattamento (art. 28 GDPR)"
+          ]
+        },
+        {
+          "sezione": "Modulo 4 (4 ore). Privacy e intelligenza artificiale: gli effetti dell'AI Act sui trattamenti",
+          "voci": [
+            "Addestramento dei modelli di IA e uso di dati personali: basi giuridiche e rischio di bias discriminatori",
+            "Valutazione d'impatto (DPIA) specifica per algoritmi ad alto rischio e sistemi di profilazione avanzata",
+            "Processi decisionali automatizzati (art. 22 GDPR) e diritto degli interessati alla spiegabilità dell'output",
+            "Rapporto e punti di sovrapposizione tra il DPO e l'AI Officer o AI Compliance Manager"
+          ]
+        },
+        {
+          "sezione": "Modulo 5 (5 ore). Laboratorio pratico: audit e gestione delle ispezioni",
+          "voci": [
+            "Simulazione guidata di un data breach da ransomware: redazione del registro delle violazioni e della notifica al Garante",
+            "Pianificazione ed esecuzione di un audit privacy interno: checklist di verifica e reporting di compliance",
+            "Come affrontare un'ispezione della Guardia di Finanza o del Garante: diritti, doveri e gestione della documentazione"
           ]
         }
       ],
-      "durataStudio": "80 ore di studio individuale"
+      "durataStudio": ""
     },
     {
       "pubblicato": true,
@@ -1501,28 +1510,43 @@
       "slug": "i1-ai-act-uso-consapevole",
       "area": "I",
       "areaNome": "Intelligenza Artificiale",
-      "titolo": "AI Act e Uso Consapevole dell'IA",
-      "sottotitolo": "Gli obblighi che riguardano l'impresa oggi, come si rispettano e come si dimostra di averlo fatto.",
+      "titolo": "Intelligenza Artificiale in Azienda I: AI Act e Protezione dei Dati",
+      "sottotitolo": "Il Regolamento UE sull'intelligenza artificiale e il suo rapporto con il GDPR: chi ha quali obblighi, come si classifica il rischio, come si trattano i dati personali nei sistemi di IA.",
       "prezzo": null,
-      "durataVideo": "8 ore in due giornate",
+      "durataVideo": "8 ore, in 2 sessioni da 4 ore o in una giornata",
       "durataStudio": "",
       "descrizione": [
-        "Il corso risponde a una domanda concreta: la mia impresa utilizza sistemi di intelligenza artificiale, che cosa deve fare per essere in regola e per poterlo dimostrare.",
-        "Dal 2 agosto 2026 il Regolamento UE 2024/1689 è entrato nella sua fase generale di applicazione. In Italia il quadro è completato dalla Legge 132/2025 e dai decreti di adeguamento approvati il 4 agosto 2026, con la vigilanza affidata all'Agenzia per la cybersicurezza nazionale. Il Regolamento UE 2026/1744, in vigore dal 27 luglio 2026, ha poi sostituito il testo dell'articolo 4 e differito al 2 dicembre 2027 e al 2 agosto 2028 gli obblighi sui sistemi ad alto rischio.",
-        "L'obbligo di alfabetizzazione dell'articolo 4 non conosce soglie dimensionali: riguarda anche l'impresa i cui dipendenti usano strumenti generativi in modo occasionale. Nella formulazione in vigore è un obbligo di mezzi e non di risultato, quindi ciò che conta è che le misure siano proporzionate al ruolo e al rischio, e che siano documentate.",
-        "Per questa ragione il percorso si chiude con una verifica e con la consegna di materiali conservabili: attestato nominativo, registro delle presenze, esito della verifica, modello di policy aziendale e nota metodologica."
+        "È la prima metà del percorso Intelligenza Artificiale in Azienda (I3) e si può seguire da sola. Si rivolge a imprese, enti e professionisti che devono orientarsi nel quadro normativo sull'adozione dei sistemi di intelligenza artificiale.",
+        "La prima parte inquadra il Regolamento UE 2024/1689 (AI Act): a chi si applica, come classifica i sistemi in base al rischio, quali obblighi impone e come funziona il sistema sanzionatorio. La seconda affronta il bilanciamento tra l'addestramento e l'uso degli algoritmi e la normativa sulla protezione dei dati personali, dalla scelta della base giuridica alla valutazione d'impatto."
       ],
       "programma": [
         {
-          "sezione": "Programma",
+          "sezione": "Modulo 1 (4 ore). Il Regolamento UE sull'intelligenza artificiale (AI Act) e la governance",
           "voci": [
-            "Modulo 1 (2 ore). Il quadro normativo: distinguere gli obblighi che gravano oggi sull'organizzazione da quelli differiti",
-            "Modulo 2 (2 ore). Funzionamento e limiti dei sistemi generativi: dove nascono gli errori e quando la legge impone di dichiararne l'impiego",
-            "Modulo 3 (2 ore). L'uso quotidiano in azienda: che cosa può essere inserito in un prompt e con quali regole operative",
-            "Modulo 4 (1 ora e 30). Procedure interne e documentazione: quali strumenti organizzativi mancano e in che ordine adottarli",
-            "Verifica finale (30 minuti). Questionario a risposta chiusa e produzione dell'evidenza documentale del percorso"
+            "Ambito di applicazione oggettivo e soggettivo dell'AI Act: fornitori, deployer, importatori, distributori",
+            "Classificazione del rischio: sistemi a rischio inaccettabile, ad alto rischio, a rischio minimo o specifico",
+            "Obblighi di conformità per i sistemi ad alto rischio: gestione del rischio, governance dei dati, documentazione tecnica, trasparenza e sorveglianza umana",
+            "IA generativa e modelli per finalità generali (General-Purpose AI): obblighi di trasparenza e tutela del diritto d'autore",
+            "Sistema sanzionatorio e coordinamento con le autorità di vigilanza"
+          ]
+        },
+        {
+          "sezione": "Modulo 2 (4 ore). Intelligenza artificiale e protezione dei dati personali (GDPR)",
+          "voci": [
+            "Trattamento dei dati personali nelle fasi di addestramento, test e messa in uso dei sistemi di IA",
+            "Principio di minimizzazione dei dati e criticità legate all'uso di dati non strutturati o raccolti dal web (scraping)",
+            "Basi giuridiche del trattamento: legittimo interesse, consenso, obblighi di legge",
+            "Valutazione d'impatto (DPIA) obbligatoria per i trattamenti ad alto rischio mediante IA",
+            "Diritti degli interessati e decisioni automatizzate (art. 22 GDPR): limiti e tutele",
+            "Ruolo del DPO e registri delle attività di trattamento"
           ]
         }
+      ],
+      "destinatari": [
+        "Avvocati in-house e giuristi d'impresa",
+        "DPO e responsabili compliance",
+        "HR manager",
+        "Imprenditori"
       ]
     },
     {
@@ -1532,25 +1556,102 @@
       "slug": "i2-responsabilita-intelligenza-artificiale",
       "area": "I",
       "areaNome": "Intelligenza Artificiale",
-      "titolo": "Chi Risponde Quando l'IA Sbaglia",
-      "sottotitolo": "Responsabilità civile, penale e amministrativa nell'uso dell'intelligenza artificiale.",
+      "titolo": "Intelligenza Artificiale in Azienda II: Proprietà Intellettuale e Responsabilità",
+      "sottotitolo": "Chi è titolare di ciò che si produce con l'IA, come si protegge il know-how aziendale e chi risponde quando un sistema sbaglia, con un laboratorio sulla policy aziendale.",
       "prezzo": null,
-      "durataVideo": "8 ore in due giornate",
+      "durataVideo": "8 ore, in 2 sessioni da 4 ore o in una giornata",
       "durataStudio": "",
       "descrizione": [
-        "Il corso affronta il tema che segue immediatamente quello della conformità: individuare chi risponde, e a quale titolo, quando l'impiego di un sistema di intelligenza artificiale produce un danno, un errore o una violazione.",
-        "Nel 2026 il quadro si è definito su tre fronti. Sono arrivate le prime decisioni dei giudici italiani sull'uso non verificato di sistemi generativi, con condanne quantificate fino alla Corte di cassazione. È stato approvato il pacchetto di adeguamento che introduce nel codice penale una fattispecie autonoma in materia di misure di sicurezza e amplia il catalogo dei reati presupposto della responsabilità degli enti. Ed è in scadenza il termine di recepimento della direttiva che qualifica il software come prodotto ai fini della responsabilità civile.",
-        "Da qui il corso trae le conseguenze operative per l'impresa: aggiornamento del Modello di organizzazione, gestione e controllo, contenuto dei contratti con i fornitori, disciplina delle decisioni che incidono sui lavoratori, documentazione da predisporre."
+        "È la seconda metà del percorso Intelligenza Artificiale in Azienda (I3) e si può seguire da sola.",
+        "La prima parte affronta i nodi della proprietà intellettuale nell'IA generativa: la tutela delle opere realizzate con il supporto dell'IA, l'uso di contenuti protetti per addestrare i modelli, la titolarità degli output e la protezione dei segreti commerciali. La seconda esamina i profili di responsabilità civile e penale e il raccordo con i Modelli Organizzativi ex D.Lgs. 231/01, e si chiude con un laboratorio pratico: la stesura di una policy aziendale sull'uso sicuro e conforme dell'IA."
       ],
       "programma": [
         {
-          "sezione": "Programma",
+          "sezione": "Modulo 3 (4 ore). Proprietà intellettuale, copyright e creazioni algoritmiche",
           "voci": [
-            "Modulo 1 (2 ore). Le decisioni dei giudici italiani: i criteri con cui è stata imputata la responsabilità per l'uso non verificato di sistemi generativi",
-            "Modulo 2 (2 ore). Responsabilità penale e Modello 231: le modifiche da apportare al Modello di organizzazione, gestione e controllo",
-            "Modulo 3 (2 ore). Responsabilità civile e rapporti con i fornitori: il nuovo regime di responsabilità da prodotto e la contrattualistica da adeguare",
-            "Modulo 4 (1 ora e 30). Intelligenza artificiale e rapporto di lavoro: le decisioni che non possono essere automatizzate e le procedure per quelle ammesse",
-            "Modulo 5 (30 minuti). La documentazione a difesa dell'impresa: quali documenti, con quali responsabili e in quali tempi"
+            "Opere generate dall'IA e requisito della creatività umana: stato dell'arte normativo e giurisprudenziale, nell'Unione europea e in chiave comparata",
+            "Uso di contenuti protetti da copyright per addestrare i modelli: l'eccezione del Text and Data Mining (TDM) e il regime di opt-out",
+            "Titolarità dei diritti sulle creazioni realizzate con il supporto dell'IA e sugli output degli strumenti generativi di uso comune",
+            "Strategie contrattuali di protezione del know-how aziendale e dei segreti commerciali nell'uso di strumenti di IA proprietari o open source"
+          ]
+        },
+        {
+          "sezione": "Modulo 4 (4 ore). Responsabilità civile e penale, con casi aziendali",
+          "voci": [
+            "Chi risponde quando l'IA sbaglia? Responsabilità civile contrattuale ed extracontrattuale del deployer e del fornitore",
+            "Profili di responsabilità penale legati a usi illeciti o a difetti di progettazione e controllo",
+            "Modelli Organizzativi ex D.Lgs. 231/01 e sistemi di gestione della compliance algoritmica",
+            "Laboratorio pratico: stesura di una policy aziendale sull'uso sicuro e conforme dell'IA"
+          ]
+        }
+      ],
+      "destinatari": [
+        "Avvocati in-house e giuristi d'impresa",
+        "DPO e responsabili compliance",
+        "HR manager",
+        "Imprenditori"
+      ]
+    },
+    {
+      "pubblicato": true,
+      "mostraPrezzo": false,
+      "cod": "I3",
+      "slug": "i3-intelligenza-artificiale-in-azienda",
+      "area": "I",
+      "areaNome": "Intelligenza Artificiale",
+      "titolo": "Intelligenza Artificiale in Azienda: Compliance, Privacy e Proprietà Intellettuale",
+      "sottotitolo": "Il percorso completo: AI Act, protezione dei dati, proprietà intellettuale e responsabilità, con casi concreti e un laboratorio sulla policy aziendale.",
+      "prezzo": null,
+      "durataVideo": "16 ore, in 4 sessioni da 4 ore o in 2 giornate",
+      "durataStudio": "",
+      "descrizione": [
+        "Il corso aiuta enti, imprese e professionisti a orientarsi nel quadro normativo sull'adozione dei sistemi di intelligenza artificiale. Ha un taglio interdisciplinare: mette insieme la disciplina dell'AI Act, i presidi di protezione dei dati personali e la tutela del patrimonio immateriale e del diritto d'autore.",
+        "Riunisce in un unico percorso i corsi I1 e I2. I primi due moduli inquadrano l'AI Act e il rapporto con il GDPR, gli ultimi due la proprietà intellettuale e la responsabilità civile e penale, con l'analisi di casi aziendali e la stesura guidata di una policy sull'uso dell'IA."
+      ],
+      "destinatari": [
+        "Avvocati in-house e giuristi d'impresa",
+        "DPO e responsabili compliance",
+        "HR manager",
+        "Imprenditori"
+      ],
+      "programma": [
+        {
+          "sezione": "Modulo 1 (4 ore). Il Regolamento UE sull'intelligenza artificiale (AI Act) e la governance",
+          "voci": [
+            "Ambito di applicazione oggettivo e soggettivo dell'AI Act: fornitori, deployer, importatori, distributori",
+            "Classificazione del rischio: sistemi a rischio inaccettabile, ad alto rischio, a rischio minimo o specifico",
+            "Obblighi di conformità per i sistemi ad alto rischio: gestione del rischio, governance dei dati, documentazione tecnica, trasparenza e sorveglianza umana",
+            "IA generativa e modelli per finalità generali (General-Purpose AI): obblighi di trasparenza e tutela del diritto d'autore",
+            "Sistema sanzionatorio e coordinamento con le autorità di vigilanza"
+          ]
+        },
+        {
+          "sezione": "Modulo 2 (4 ore). Intelligenza artificiale e protezione dei dati personali (GDPR)",
+          "voci": [
+            "Trattamento dei dati personali nelle fasi di addestramento, test e messa in uso dei sistemi di IA",
+            "Principio di minimizzazione dei dati e criticità legate all'uso di dati non strutturati o raccolti dal web (scraping)",
+            "Basi giuridiche del trattamento: legittimo interesse, consenso, obblighi di legge",
+            "Valutazione d'impatto (DPIA) obbligatoria per i trattamenti ad alto rischio mediante IA",
+            "Diritti degli interessati e decisioni automatizzate (art. 22 GDPR): limiti e tutele",
+            "Ruolo del DPO e registri delle attività di trattamento"
+          ]
+        },
+        {
+          "sezione": "Modulo 3 (4 ore). Proprietà intellettuale, copyright e creazioni algoritmiche",
+          "voci": [
+            "Opere generate dall'IA e requisito della creatività umana: stato dell'arte normativo e giurisprudenziale, nell'Unione europea e in chiave comparata",
+            "Uso di contenuti protetti da copyright per addestrare i modelli: l'eccezione del Text and Data Mining (TDM) e il regime di opt-out",
+            "Titolarità dei diritti sulle creazioni realizzate con il supporto dell'IA e sugli output degli strumenti generativi di uso comune",
+            "Strategie contrattuali di protezione del know-how aziendale e dei segreti commerciali nell'uso di strumenti di IA proprietari o open source"
+          ]
+        },
+        {
+          "sezione": "Modulo 4 (4 ore). Responsabilità civile e penale, con casi aziendali",
+          "voci": [
+            "Chi risponde quando l'IA sbaglia? Responsabilità civile contrattuale ed extracontrattuale del deployer e del fornitore",
+            "Profili di responsabilità penale legati a usi illeciti o a difetti di progettazione e controllo",
+            "Modelli Organizzativi ex D.Lgs. 231/01 e sistemi di gestione della compliance algoritmica",
+            "Laboratorio pratico: stesura di una policy aziendale sull'uso sicuro e conforme dell'IA"
           ]
         }
       ]

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import {aree,numeroCorsi,areeInLettere,consulenze} from '../data/corsi.js';
 import CourseArea from '../components/CourseArea.astro';
 ---
-<Base title="Corsi | Mens Sana Formazione" description="23 corsi in nove aree. Formazione Legal &amp; Compliance ed edizioni aziendali su misura.">
+<Base title="Corsi | Mens Sana Formazione" description="24 corsi in nove aree. Formazione Legal &amp; Compliance ed edizioni aziendali su misura.">
 <section class="page-opening wrap">
   <div class="page-heading"><div><p class="eyebrow"><span class="red-dot"></span> IL CATALOGO</p><h1>{numeroCorsi} corsi.<br><em>{areeInLettere.charAt(0).toUpperCase() + areeInLettere.slice(1)} aree.</em></h1></div>
   <div class="page-lead"><p>Ogni area è un mestiere diverso: apri quella che ti riguarda e trovi solo i suoi corsi. Ognuno può diventare un’edizione aziendale costruita sulle vostre esigenze.</p><a class="text-link" href="/contatti/?interesse=corsi">Chiedici un consiglio <svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg></a></div></div>

@@ -87,9 +87,9 @@ const SCHEDE_AREE = {
   },
   I: {
     slug: 'intelligenza-artificiale',
-    occhiello: "Gli obblighi dell'AI Act e chi risponde se l'IA sbaglia.",
+    occhiello: "AI Act, privacy, proprietà intellettuale e responsabilità nell'uso dell'IA.",
     intro:
-      "Due percorsi di otto ore, indipendenti e componibili: il primo mette l'impresa in regola con il Regolamento UE 2024/1689 e ne documenta l'alfabetizzazione, il secondo ricostruisce chi risponde quando un sistema di intelligenza artificiale produce un danno o un errore.",
+      "Un percorso di sedici ore, da seguire per intero o in due corsi da otto: il primo affronta l'AI Act e la protezione dei dati, il secondo la proprietà intellettuale e chi risponde quando un sistema di intelligenza artificiale sbaglia.",
   },
 };
 
