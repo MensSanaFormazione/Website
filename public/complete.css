@@ -126,3 +126,43 @@ body:has(.policy) .page-hero{background:var(--soft)}body:has(.policy) .page-hero
 .cta-scheda .button{margin-top:26px}
 .footer-main>div:not(:first-child)>a:has(svg){display:flex;align-items:center;gap:8px}
 .catalog-note .icon{vertical-align:middle}
+
+/* Home, sezione 04: opinioni Emagister e partner. */
+.proof-section{padding-block:96px 104px;border-top:1px solid var(--rule)}
+.proof-main{display:grid;grid-template-columns:1fr 1.07fr;gap:80px;align-items:start}
+.proof-heading h2{margin-top:30px;line-height:1.1}
+.proof-heading h2 em{color:var(--red)}
+.proof-score{display:flex;align-items:flex-end;gap:36px;flex-wrap:wrap;margin-top:44px}
+.proof-number{display:flex;flex-direction:column;margin:0}
+.proof-number strong{font-family:var(--serif);font-weight:400;font-size:clamp(64px,8vw,104px);line-height:.9;letter-spacing:-.02em;color:var(--ink)}
+.proof-number span{font-size:var(--text-ui);color:var(--muted);margin-top:12px}
+.proof-rating{padding-bottom:2px}
+.proof-stars{display:flex;gap:4px;color:var(--red)}
+.proof-stars .icon{width:22px;height:22px;fill:currentColor;stroke:currentColor;stroke-width:1.2;stroke-linejoin:round}
+.proof-rating p{margin:10px 0 0;font-size:var(--text-ui)}
+.proof-rating strong{font-weight:600}
+.proof-note{max-width:400px;line-height:1.85;margin-top:28px;color:var(--muted)}
+.proof-heading .text-link{margin-top:20px}
+.proof-list{padding-top:39px}
+.proof-list-title{font-size:var(--text-small);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.proof-list ul{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--rule)}
+.proof-list li{border-top:1px solid var(--rule)}
+.proof-list a{display:grid;grid-template-columns:1fr auto 3em;gap:18px;align-items:baseline;padding:22px 0}
+.proof-course{font-size:20px;line-height:1.35;transition:color .25s}
+.proof-count{font-size:var(--text-ui);color:var(--muted);white-space:nowrap}
+.proof-vote{font-family:var(--serif);font-size:22px;color:var(--red);text-align:right}
+.proof-list a:hover .proof-course,.proof-list a:focus-visible .proof-course{color:var(--red)}
+.partners{display:flex;align-items:center;gap:48px;margin-top:80px;padding-top:36px;border-top:1px solid var(--rule)}
+.partners .eyebrow{margin:0;flex:none}
+.partner-logos{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:56px;flex-wrap:wrap}
+.partner-logos a{display:flex;align-items:center;gap:12px;transition:transform .35s var(--ease-out)}
+.partner-logos a:hover,.partner-logos a:focus-visible{transform:translateY(-2px)}
+.partner-logos img{display:block;height:64px;width:auto}
+.partner-logos li:first-child img{height:36px}
+.partner-logos li:last-child img{height:84px}
+.partner-lockup img{height:48px;border-radius:10px}
+.partner-lockup>span:not(.sr-only){display:flex;flex-direction:column}
+.partner-lockup b{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.1;color:var(--ink)}
+.partner-lockup i{font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+@media(max-width:850px){.proof-main{grid-template-columns:1fr;gap:44px}.proof-list{padding-top:0}.partners{flex-direction:column;align-items:flex-start;gap:24px;margin-top:56px}.partner-logos{gap:28px 40px}}
+@media(max-width:600px){.proof-section{padding-block:72px 80px}.proof-score{gap:24px;margin-top:34px}.proof-course{font-size:17px}.proof-list a{grid-template-columns:1fr auto;gap:4px 14px;padding:18px 0}.proof-count{grid-column:1;grid-row:2}.proof-vote{grid-column:2;grid-row:1/3;align-self:center}}

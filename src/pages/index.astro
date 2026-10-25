@@ -1,6 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import {aree,numeroCorsi,areeInLettere,consulenze} from '../data/corsi.js';
+import {aree,numeroCorsi,areeInLettere,consulenze,corsi} from '../data/corsi.js';
+// Opinioni lette sulla scheda pubblica Emagister il 25/10/2026: 222 su 18 corsi, tutti 5,0 tranne D3 a 4,9.
+const EMAGISTER_URL = 'https://www.emagister.it/corsi_mens_sana_formazione_srl-cen-104514.htm';
+const corsoUrl = (cod) => { const c = corsi.find((x) => x.cod === cod); return c ? `/corsi/${c.slug}/` : '/formazione/'; };
+const opinioni = [
+  { cod: 'C3', nome: 'Contratti pubblici', n: 23, voto: '5,0' },
+  { cod: 'C1', nome: 'Contratti nazionali d’impresa', n: 21, voto: '5,0' },
+  { cod: 'F1', nome: 'GDPR e Data Protection Officer', n: 18, voto: '5,0' },
+  { cod: 'D1', nome: 'Recupero dei crediti', n: 17, voto: '5,0' },
+  { cod: 'D3', nome: 'Gestione del credito commerciale', n: 16, voto: '4,9' },
+  { cod: 'E4', nome: 'Project management', n: 15, voto: '5,0' },
+];
 ---
 <Base title="Mens Sana Formazione | Corsi Legal & Compliance per imprese | Milano" description="Formazione Legal & Compliance per enti, imprese e professionisti. 24 corsi, nove aree e percorsi aziendali su misura. Milano, dal 2017.">
 
@@ -63,6 +74,40 @@ import {aree,numeroCorsi,areeInLettere,consulenze} from '../data/corsi.js';
         <details><summary><span class="value-number">02</span><h3>Su misura, sempre.</h3><span class="plus" aria-hidden="true"></span></summary><p>Ogni corso parte dalle tue esigenze specifiche: durata, taglio e casi pratici. Il catalogo è la base, la personalizzazione è la regola.</p></details>
         <details><summary><span class="value-number">03</span><h3>Risposte in tempi<br>da impresa.</h3><span class="plus" aria-hidden="true"></span></summary><p>Chi scrive riceve una risposta vera, con programma e proposta economica, non un modulo di ricontatto. Le decisioni aziendali non aspettano.</p></details>
         <details><summary><span class="value-number">04</span><h3>Aggiornati alla norma<br>di oggi.</h3><span class="plus" aria-hidden="true"></span></summary><p>I programmi si riscrivono quando cambia la legge, non a fine anno: il diritto d’impresa si muove più in fretta dei cataloghi.</p></details>
+      </div>
+    </section>
+
+    <section class="proof-section section wrap" id="opinioni" aria-labelledby="opinioni-title">
+      <div class="proof-main">
+        <div class="proof-heading reveal">
+          <p class="eyebrow section-label"><span>04 /</span> CHI HA STUDIATO CON NOI</p>
+          <h2 id="opinioni-title">Lo dicono<br><em>i partecipanti.</em></h2>
+          <div class="proof-score">
+            <p class="proof-number"><strong>222</strong><span>opinioni su Emagister</span></p>
+            <div class="proof-rating">
+              <span class="proof-stars" aria-hidden="true">{[1,2,3,4,5].map(() => (<svg viewBox="0 0 24 24" class="icon"><path d="M12 2.8l2.84 5.76 6.36.92-4.6 4.49 1.08 6.33L12 17.31l-5.68 2.99 1.08-6.33-4.6-4.49 6.36-.92z"/></svg>))}</span>
+              <p><strong>5,0 su 5</strong> di media</p>
+            </div>
+          </div>
+          <p class="proof-note">Valutazioni lasciate sul portale Emagister da chi ha frequentato i nostri corsi, su diciotto corsi del catalogo. Dato rilevato a ottobre 2026.</p>
+          <a class="text-link" href={EMAGISTER_URL} target="_blank" rel="noopener noreferrer">Leggi le opinioni <svg aria-hidden="true" class="icon"><use href="#diagonal"/></svg><span class="sr-only"> (si apre in una nuova scheda)</span></a>
+        </div>
+        <div class="proof-list reveal">
+          <p class="proof-list-title">I corsi con più opinioni</p>
+          <ul>
+            {opinioni.map((o) => (
+              <li><a href={corsoUrl(o.cod)}><span class="proof-course">{o.nome}</span><span class="proof-count">{o.n} opinioni</span><span class="proof-vote">{o.voto}</span></a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="partners reveal">
+        <p class="eyebrow">PARTNER</p>
+        <ul class="partner-logos">
+          <li><a href={EMAGISTER_URL} target="_blank" rel="noopener noreferrer"><img src="/assets/partner/emagister.svg" alt="Emagister" width="128" height="38" loading="lazy"><span class="sr-only"> (si apre in una nuova scheda)</span></a></li>
+          <li><a href="https://bbfiorielimoni.it/" target="_blank" rel="noopener noreferrer" class="partner-lockup"><img src="/assets/partner/bb-fiori-e-limoni.webp" alt="" width="180" height="180" loading="lazy"><span><b>Fiori e Limoni</b><i>Bed and Breakfast</i></span><span class="sr-only"> (si apre in una nuova scheda)</span></a></li>
+          <li><a href="https://bbgottardo.com/" target="_blank" rel="noopener noreferrer"><img src="/assets/partner/bb-gottardo.webp" alt="B&amp;B Gottardo" width="240" height="240" loading="lazy"><span class="sr-only"> (si apre in una nuova scheda)</span></a></li>
+        </ul>
       </div>
     </section>
 
