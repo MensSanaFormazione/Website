@@ -19,8 +19,10 @@ export const corsi = catalogo.corsi.filter((c) => c.pubblicato !== false);
 
 // Il prezzo si vede solo se sono veri sia l'interruttore generale sia quello
 // del singolo corso. Basta uno dei due spento e la pagina non lo mostra.
+// Senza una cifra salvata il corso resta comunque "Su richiesta".
 export function mostraPrezzo(corso) {
-  return catalogo.impostazioni.mostraPrezzi !== false && corso.mostraPrezzo !== false;
+  return catalogo.impostazioni.mostraPrezzi !== false && corso.mostraPrezzo !== false
+    && typeof corso.prezzo === 'number' && corso.prezzo > 0;
 }
 
 // L'interruttore generale da solo. Serve alle pagine che devono cambiare il

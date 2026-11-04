@@ -23,7 +23,7 @@
       "areaNome": "Diritto Societario",
       "titolo": "Organi Societari e Modelli Organizzativi",
       "sottotitolo": "Dalla governance societaria ai Modelli 231: come sono fatte le società, chi le governa e come si costruisce un presidio organizzativo che regge.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -100,7 +100,7 @@
       "areaNome": "Organismi di Controllo",
       "titolo": "La Funzione di Internal Auditing",
       "sottotitolo": "Il terzo livello di controllo visto da dentro: dal quadro normativo al piano di audit, dal risk assessment al follow-up dei findings.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -193,7 +193,7 @@
       "areaNome": "Organismi di Controllo",
       "titolo": "La Funzione di Risk Management",
       "sottotitolo": "Chi fa cosa nel governo dei rischi: ruoli, poteri e responsabilità dentro il Sistema di Controllo Interno e Gestione dei Rischi.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -253,7 +253,7 @@
       "areaNome": "Organismi di Controllo",
       "titolo": "La Funzione di Compliance e Anticorruption",
       "sottotitolo": "Da Basilea al whistleblowing: come nasce, dove si colloca e come lavora la funzione che tiene l'azienda dentro le regole.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "Studio individuale guidato",
       "descrizione": [
@@ -328,7 +328,7 @@
       "areaNome": "Contrattualistica",
       "titolo": "Contratti Nazionali d'Impresa",
       "sottotitolo": "Il contratto come strumento di lavoro: trattative, clausole, patologie e rimedi per chi compra, vende e firma ogni giorno.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
@@ -425,7 +425,7 @@
       "areaNome": "Contrattualistica",
       "titolo": "Contratti Internazionali",
       "sottotitolo": "Redigere e negoziare oltre confine: struttura, clausole tipiche, legge applicabile e risoluzione delle controversie transnazionali.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -523,7 +523,7 @@
       "areaNome": "Contrattualistica",
       "titolo": "Contratti Pubblici",
       "sottotitolo": "Il Codice dei contratti pubblici applicato: dalla qualificazione in gara all'esecuzione, con il D.Lgs. 36/2023 e i suoi aggiornamenti.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
@@ -615,7 +615,7 @@
       "areaNome": "Credit Management",
       "titolo": "Recupero dei Crediti I: Normativa e Aspetti Legali",
       "sottotitolo": "La fase stragiudiziale fatta bene: strategia, autotutela e strumenti per incassare senza (o prima di) andare in tribunale.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -692,7 +692,7 @@
       "areaNome": "Credit Management",
       "titolo": "Recupero dei Crediti II: la Fase Giudiziale ed Esecutiva",
       "sottotitolo": "Dal decreto ingiuntivo al pignoramento: come si porta un credito in tribunale e come lo si trasforma in denaro.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "14 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
@@ -788,7 +788,7 @@
       "areaNome": "Credit Management",
       "titolo": "La Gestione del Credito Commerciale",
       "sottotitolo": "Il credito come leva finanziaria: credit policy, rischio cliente, fidi e KPI per trasformare i crediti in cassa.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
@@ -867,7 +867,7 @@
       "areaNome": "Finance & Fiscale",
       "titolo": "Diritto Tributario e Contenzioso Tributario",
       "sottotitolo": "Il sistema fiscale e la sua giustizia: dalle fonti ai singoli tributi, fino al processo tributario telematico e alle impugnazioni.",
-      "prezzo": 1250,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
@@ -942,7 +942,7 @@
       "areaNome": "Finance & Fiscale",
       "titolo": "I Controlli di Gestione in Impresa",
       "sottotitolo": "Numeri che guidano le decisioni: costi, ricavi, cash flow, investimenti e reporting per governare l'impresa con metodo.",
-      "prezzo": 1250,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "90 ore di studio individuale",
       "descrizione": [
@@ -1036,7 +1036,7 @@
       "areaNome": "Finance & Fiscale",
       "titolo": "Principi di Economia e Finanza d'Impresa",
       "sottotitolo": "Leggere il bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare i costi e misurare i risultati.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "21 ore di videolezione",
       "descrizione": [
         "Il corso fornisce gli strumenti di economia e finanza d'impresa che servono a comprendere e utilizzare i dati di bilancio, collegare le decisioni operative ai risultati economici e finanziari, calcolare e controllare i costi, misurare i risultati con l'analisi di bilancio, gestire commesse e progetti e produrre una reportistica efficace. Può avere una durata superiore se serve approfondire ambiti di particolare interesse."
@@ -1114,7 +1114,7 @@
       "areaNome": "Finance & Fiscale",
       "titolo": "Project Management",
       "sottotitolo": "Analisi, monitoraggio e gestione di un progetto: fattibilità, costi, rischi e strumenti per controllare lo stato di avanzamento dei lavori.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "21 ore di videolezione",
       "descrizione": [
         "Il corso tratta l'analisi, il monitoraggio e la gestione di un progetto e degli strumenti che servono a realizzarlo e a controllarne lo stato di avanzamento, con riferimento agli standard internazionali di project management e agli approcci agili. Può avere una durata superiore se serve approfondire ambiti di particolare interesse."
@@ -1205,7 +1205,7 @@
       "areaNome": "Compliance",
       "titolo": "Data Protection Officer e GDPR nell'Era Digitale: Privacy, IA, Data Strategy e Cyber Security",
       "sottotitolo": "Dal GDPR a una governance integrata dei dati: il DPO davanti a Data Act, NIS2, DORA e AI Act, con un laboratorio pratico su data breach, audit e ispezioni.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "21 ore, in 3 giornate da 7 ore o in 5-6 moduli",
       "descrizione": [
         "Il corso porta il percorso tradizionale sul Regolamento UE 2016/679 (GDPR) dentro le sfide che oggi riguardano le imprese e la figura del Data Protection Officer. L'attenzione si sposta dall'adempimento burocratico a una governance integrata dei dati, che comprende la sicurezza informatica, i nuovi quadri normativi europei e l'impatto dei sistemi di intelligenza artificiale.",
@@ -1277,7 +1277,7 @@
       "areaNome": "Compliance",
       "titolo": "Responsabilità Amministrativa degli Enti (D.Lgs. 231/01)",
       "sottotitolo": "Modelli organizzativi, codice etico, deleghe di funzioni, whistleblowing e Organismo di Vigilanza, con il catalogo dei reati presupposto aggiornato agli interventi più recenti.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "descrizione": [
         "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2001, alla luce di un catalogo dei reati presupposto che negli ultimi anni è stato modificato a ritmo serrato.",
@@ -1331,7 +1331,7 @@
       "areaNome": "Compliance",
       "titolo": "L'Antiriciclaggio (D.Lgs. 231/2007)",
       "sottotitolo": "Fonti nazionali e sovranazionali, compreso il nuovo pacchetto europeo antiriciclaggio, destinatari e autorità, titolare effettivo, adeguata verifica, segnalazione delle operazioni sospette e sistema sanzionatorio.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "descrizione": [
         "Il Corso, che rientra nell'ambito più generale del Diritto Amministrativo e Penale delle imprese, ha ad oggetto la disamina dei principali aspetti normativi sottesi al D.Lgs. 231/2007, alla luce del nuovo pacchetto europeo antiriciclaggio.",
@@ -1482,7 +1482,7 @@
       "areaNome": "Business Coaching",
       "titolo": "Success Coaching",
       "sottotitolo": "Otto incontri a distanza per raggiungere i risultati concordati con la committenza, valorizzando le potenzialità e il benessere della persona.",
-      "prezzo": 4000,
+      "prezzo": null,
       "durataVideo": "Otto incontri a distanza di circa due ore",
       "descrizione": [
         "La Nostra offerta di Coaching per i manager e le aziende",
@@ -1513,13 +1513,13 @@
     {
       "pubblicato": false,
       "mostraPrezzo": true,
-      "cod": "H1",
-      "slug": "h1-documento-informatico",
+      "cod": "H2",
+      "slug": "h2-documento-informatico",
       "area": "H",
       "areaNome": "Digitalizzazione PA",
       "titolo": "Ciclo di Vita del Documento Informatico",
       "sottotitolo": "La gestione del ciclo di vita del documento informatico alla luce delle Linee guida del 10 settembre 2020.",
-      "prezzo": 1200,
+      "prezzo": null,
       "durataVideo": "21 ore di videolezione",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
@@ -1530,13 +1530,13 @@
     {
       "pubblicato": true,
       "mostraPrezzo": true,
-      "cod": "H2",
-      "slug": "h2-transizione-digitale-pa",
+      "cod": "H1",
+      "slug": "h1-transizione-digitale-pa",
       "area": "H",
       "areaNome": "Digitalizzazione PA",
       "titolo": "La Transizione Digitale nella Pubblica Amministrazione",
       "sottotitolo": "Strumenti e aspetti giuridici della transizione digitale degli enti pubblici: dal Codice dell'amministrazione digitale al PNRR, fino a cybersicurezza e intelligenza artificiale.",
-      "prezzo": 1050,
+      "prezzo": null,
       "durataVideo": "16 ore di videolezione",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
