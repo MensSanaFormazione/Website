@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
 import ModuloIscrizione from '../../components/ModuloIscrizione.astro';
+import PrezzoCorso from '../../components/PrezzoCorso.astro';
 import { corsi, aree, LINKEDIN_URL, mostraPrezzo } from '../../data/corsi.js';
 import promozione from '../../data/promozione.json';
 
@@ -204,13 +205,7 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
             <a href={`/corsi/${c.slug}/`} class="card correlato spot reveal" style={`--d: ${i * 0.08}s`}>
               <span class="badge">{c.cod}</span>
               <h3>{c.titolo}</h3>
-              <p class="correlato__prezzo">
-                {mostraPrezzo(c) ? (
-                  <>{fmtPrezzo(c.prezzo)} € <small>+ IVA</small></>
-                ) : (
-                  <small>Quota su richiesta</small>
-                )}
-              </p>
+              <PrezzoCorso corso={c} classe="correlato__prezzo" />
               <span class="correlato__cta">Vai alla scheda <Freccia /></span>
             </a>
           ))}

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import {aree,numeroCorsi,areeInLettere,consulenze,corsi} from '../data/corsi.js';
+import StrisciaOfferta from '../components/StrisciaOfferta.astro';
 // Opinioni lette il 25/10/2026 sul profilo Emagister 104514 (testata: 26 corsi, 223 opinioni, 5,0). Esiste anche un secondo profilo, 109564, con 12 corsi e 118 opinioni: non si sommano.
 const EMAGISTER_URL = 'https://www.emagister.it/corsi_mens_sana_formazione_srl-ef104514.htm';
 const corsoUrl = (cod) => { const c = corsi.find((x) => x.cod === cod); return c ? `/corsi/${c.slug}/` : '/formazione/'; };
@@ -34,6 +35,8 @@ const opinioni = [
       </div>
       <div class="hero-foot"><span><span class="location-dot" aria-hidden="true"></span> Milano, dal 2017</span><span class="hero-foot-note">CONOSCERE. APPLICARE. CRESCERE.</span></div>
     </section>
+
+    <StrisciaOfferta />
 
     <section class="section wrap" id="formazione" aria-labelledby="formazione-title">
       <div class="section-heading reveal"><p class="eyebrow section-label"><span>01 /</span> COSA FACCIAMO</p><div><h2 id="formazione-title">Due modi di<br><em>lavorare insieme.</em></h2><p class="section-intro">Scegli il percorso che ti riguarda: un corso già pronto, scelto fra i {numeroCorsi} del catalogo, oppure un percorso costruito da zero sulle esigenze della tua organizzazione.</p></div></div>

@@ -9,6 +9,22 @@
 // a mano solo sapendo cosa si fa, e mai mentre qualcuno sta usando il pannello.
 
 import catalogo from './catalogo.json';
+import promozione from './promozione.json';
+
+// Offerta in corso (src/data/promozione.json). Risponde i dati dell'offerta
+// del corso, o null se il corso non e' in offerta o la promozione e' spenta.
+export function offerta(cod) {
+  const voce = promozione.attiva ? promozione.corsi[cod] : null;
+  if (!voce) return null;
+  return { ...voce, scadenza: promozione.scadenza, sconto: Math.round((1 - voce.prezzo / voce.listino) * 100) };
+}
+export const offertaAttiva = promozione.attiva === true;
+export const scadenzaOfferta = promozione.scadenza;
+// Nell'ordine dello schema degli amministratori (F1, I1, I2, D2, D3).
+export const corsiInOfferta = () => Object.keys(promozione.corsi)
+  .map((cod) => catalogo.corsi.find((c) => c.cod === cod && c.pubblicato !== false))
+  .filter((c) => c && offerta(c.cod))
+  .map((c) => ({ ...c, offerta: offerta(c.cod) }));
 
 export const impostazioni = catalogo.impostazioni;
 

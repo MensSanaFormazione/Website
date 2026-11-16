@@ -175,3 +175,28 @@ body:has(.policy) .page-hero{background:var(--soft)}body:has(.policy) .page-hero
 .side-card__date li{padding-left:14px;border-left:2px solid var(--red)}
 .side-card__scadenza{font-size:var(--text-small);color:var(--muted);line-height:1.6;margin:16px 0 0}
 .side-card__esaurita{font-size:var(--text-ui);line-height:1.6;background:var(--paper);border-left:3px solid var(--red);padding:12px 14px;margin:-8px 0 22px}
+/* Prezzo in offerta nelle schede riassuntive e fascia dell'offerta (16/11/2026) */
+.prezzo-offerta{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:auto}
+.prezzo-offerta__bollino{background:var(--red);color:#fff;font-size:var(--text-small);font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px}
+.prezzo-offerta__cifre{font-size:var(--text-body);color:var(--ink)}
+.prezzo-offerta__cifre s{color:var(--muted);font-size:var(--text-ui);margin-right:4px}
+.prezzo-offerta__cifre strong{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.prezzo-offerta__cifre small{font-size:var(--text-small);color:var(--muted)}
+.prezzo-offerta__nota{font-size:var(--text-small);line-height:1.5;color:var(--muted)}
+.course-offer{color:var(--red);font-weight:600}
+.striscia-offerta{background:var(--ink);color:var(--paper);padding-block:56px;border-top:3px solid var(--red)}
+.striscia-offerta__dentro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:center}
+.striscia-offerta__bollino{display:inline-block;background:var(--red);color:#fff;font-size:var(--text-small);text-transform:uppercase;letter-spacing:.1em;padding:6px 10px;margin:0 0 18px}
+.striscia-offerta h2{font-size:var(--text-card);line-height:1.15;letter-spacing:-.03em;margin:0 0 16px;color:var(--paper)}
+.striscia-offerta h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.striscia-offerta__nota{font-size:var(--text-ui);line-height:1.7;color:var(--on-dark);margin:0;max-width:520px}
+.striscia-offerta__corsi{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-dark)}
+.striscia-offerta__corsi a{display:grid;grid-template-columns:34px minmax(0,1fr) auto 18px;gap:14px;align-items:center;padding:15px 4px;border-bottom:1px solid var(--rule-dark);color:var(--paper);transition:background .2s,padding .2s}
+.striscia-offerta__corsi a:hover{background:color-mix(in srgb,var(--paper) 6%,transparent);padding-inline:10px}
+.striscia-offerta__cod{color:#ff8a92;font-size:var(--text-small);font-weight:600;letter-spacing:.06em}
+.striscia-offerta__nome{font-size:var(--text-body)}
+.striscia-offerta__prezzo{font-size:var(--text-body);font-weight:600;white-space:nowrap}
+.striscia-offerta__prezzo s{font-weight:400;color:var(--on-dark);font-size:var(--text-ui);margin-right:6px}
+.striscia-offerta .icon{width:16px;height:16px}
+@media(max-width:900px){.striscia-offerta__dentro{grid-template-columns:1fr;gap:28px}.striscia-offerta{padding-block:42px}}
+@media(max-width:480px){.striscia-offerta__corsi a{grid-template-columns:30px minmax(0,1fr) 16px}.striscia-offerta__prezzo{grid-column:2;grid-row:2}.striscia-offerta .icon{grid-column:3;grid-row:1}}

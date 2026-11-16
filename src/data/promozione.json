@@ -11,6 +11,7 @@
   ],
   "corsi": {
     "F1": {
+      "breve": "GDPR e DPO",
       "durata": "8 ore, in 2 mezze giornate da 4 ore",
       "listino": 450,
       "prezzo": 200,
@@ -20,6 +21,7 @@
       ]
     },
     "I1": {
+      "breve": "AI Act e protezione dei dati",
       "durata": "8 ore, in 2 mezze giornate da 4 ore",
       "listino": 450,
       "prezzo": 200,
@@ -29,6 +31,7 @@
       ]
     },
     "I2": {
+      "breve": "Responsabilità e intelligenza artificiale",
       "durata": "8 ore, in 2 mezze giornate da 4 ore",
       "listino": 490,
       "prezzo": 220,
@@ -38,6 +41,7 @@
       ]
     },
     "D2": {
+      "breve": "Recupero crediti giudiziale",
       "durata": "8 ore, in 2 mezze giornate da 4 ore",
       "listino": 550,
       "prezzo": 250,
@@ -47,6 +51,7 @@
       ]
     },
     "D3": {
+      "breve": "Gestione del credito commerciale",
       "durata": "8 ore, in 2 mezze giornate da 4 ore",
       "listino": 650,
       "prezzo": 300,
