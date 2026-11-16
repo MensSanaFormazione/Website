@@ -4,7 +4,7 @@ import path from 'node:path';
 import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
 import PrezzoCorso from '../../components/PrezzoCorso.astro';
-import { aree, mostraPrezzo, offerta, inPromozione, prezzoPromo } from '../../data/corsi.js';
+import { aree, mostraPrezzo, offerta, inPromozione, prezzoPromo, scadenzaBreve } from '../../data/corsi.js';
 
 export function getStaticPaths() {
   return aree
@@ -61,7 +61,7 @@ const haImmagine = fs.existsSync(
       <div class="grid grid--3">
         {area.corsi.map((corso) => (
           <a href={`/corsi/${corso.slug}/`} class={`card corso spot${inPromozione(corso.cod) ? ' corso--offerta' : ''}`}>
-            {inPromozione(corso.cod) && (<span class="bollino-offerta" aria-hidden="true">{prezzoPromo(corso.cod) ? (<strong>-{prezzoPromo(corso.cod).sconto}%</strong>) : (<strong>Offerta</strong>)}<small>fino al 31/12</small></span>)}
+            {inPromozione(corso.cod) && (<span class="bollino-offerta" aria-hidden="true">{prezzoPromo(corso.cod) ? (<strong>-{prezzoPromo(corso.cod).sconto}%</strong>) : (<strong>Offerta</strong>)}<small>fino al {scadenzaBreve}</small></span>)}
             <div class="corso__top">
               <span class="badge">{corso.cod}</span>
               <span class="corso__area">{corso.durataVideo}</span>

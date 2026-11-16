@@ -95,7 +95,7 @@ export const paginaAdmin = `<!doctype html>
 
 <script>
 (function () {
-  var dati = null, sha = null, cambiato = false;
+  var dati = null, sha = null, promo = null, promoSha = null, cambiato = false;
   var elContenuto = document.getElementById('contenuto');
   var elStato = document.getElementById('stato');
   var elSalva = document.getElementById('salva');
@@ -139,8 +139,8 @@ export const paginaAdmin = `<!doctype html>
   }
 
   function numero(oggetto, chiave, etichetta, aiuto) {
-    var i = el('input', { type: 'number', min: '0', step: '10', value: oggetto[chiave] });
-    i.addEventListener('input', function () { oggetto[chiave] = i.value === '' ? 0 : Number(i.value); segnaCambiato(); });
+    var i = el('input', { type: 'number', min: '0', step: '10', value: oggetto[chiave] == null ? '' : oggetto[chiave] });
+    i.addEventListener('input', function () { oggetto[chiave] = i.value === '' ? null : Number(i.value); segnaCambiato(); });
     return campo(etichetta, aiuto, i);
   }
 
@@ -205,7 +205,7 @@ export const paginaAdmin = `<!doctype html>
 
     var due = el('div', { class: 'due' }, [
       testo(corso, 'cod', 'Codice', 'es. A1'),
-      numero(corso, 'prezzo', 'Prezzo in euro', 'IVA esclusa'),
+      numero(corso, 'prezzo', 'Prezzo in euro', 'IVA esclusa, vuoto = su richiesta'),
     ]);
     corpo.appendChild(due);
     corpo.appendChild(testo(corso, 'titolo', 'Titolo del corso'));
@@ -262,6 +262,73 @@ export const paginaAdmin = `<!doctype html>
     return el('details', { class: 'corso' }, [titolo, corpo]);
   }
 
+
+  // ---------------------------------------------------------------- Offerta
+  // Riquadri gialli, bollini, prezzi in promozione e "posti esauriti" escono tutti
+  // da qui (src/data/promozione.json): accendere o spegnere un corso basta.
+  function statoOfferta(cod) {
+    if (promo.corsi && promo.corsi[cod]) return 'offerta';
+    if (promo.esaurite && promo.esaurite[cod]) return 'esaurito';
+    return 'no';
+  }
+  function cambiaStato(corso, nuovo) {
+    var cod = corso.cod;
+    promo.corsi = promo.corsi || {}; promo.esaurite = promo.esaurite || {}; promo.vetrinaEsaurite = promo.vetrinaEsaurite || {};
+    var prima = promo.corsi[cod] || promo.vetrinaEsaurite[cod] || {};
+    delete promo.corsi[cod]; delete promo.esaurite[cod]; delete promo.vetrinaEsaurite[cod];
+    if (nuovo === 'offerta') {
+      promo.corsi[cod] = { breve: prima.breve || corso.titolo || '', durata: prima.durata || '8 ore, in 2 mezze giornate da 4 ore',
+        listino: prima.listino || null, prezzo: prima.prezzo || null, edizioni: prima.edizioni || [] };
+    } else if (nuovo === 'esaurito') {
+      promo.esaurite[cod] = 'L\\'offerta su questo corso non è più valida: è stato raggiunto il numero massimo di partecipanti per ciascuna classe.';
+      promo.vetrinaEsaurite[cod] = { breve: prima.breve || corso.titolo || '', listino: prima.listino || null, prezzo: prima.prezzo || null };
+    }
+    segnaCambiato(); disegna();
+  }
+  function disegnaOfferta() {
+    elContenuto.appendChild(el('h2', { testo: 'Offerta in corso' }));
+    var box = el('div', { class: 'riquadro' });
+    box.appendChild(el('div', { class: 'interruttori' }, [
+      interruttore(promo, 'attiva', 'Offerta attiva sul sito', false),
+      interruttore(promo, 'moduloIscrizione', 'Modulo di iscrizione nelle schede corso', true),
+    ]));
+    box.appendChild(el('p', { class: 'nota', testo: 'Spenta, spariscono in un colpo riquadri gialli, bollini, prezzi in offerta, avvisi di posti esauriti e la fascia in home. Tutto resta scritto qui e torna quando la riaccendi.' }));
+    box.appendChild(testo(promo, 'scadenza', 'Scadenza delle iscrizioni in offerta', 'scritta come 31/12/2026: si aggiorna da sola in tutto il sito'));
+    elContenuto.appendChild(box);
+
+    var lista = el('div', { class: 'riquadro' });
+    lista.appendChild(el('p', { class: 'nota', testo: 'Per ogni corso: "In offerta" lo mette in giallo con bollino e prezzo; "Posti esauriti" lo lascia giallo da fuori, ma dentro la scheda dice che i posti sono finiti.' }));
+    dati.corsi.filter(function (c) { return c.cod; }).forEach(function (corso) {
+      var st = statoOfferta(corso.cod);
+      var sel = el('select');
+      [['no', 'Nessuna offerta'], ['offerta', 'In offerta'], ['esaurito', 'Posti esauriti']].forEach(function (o) {
+        var opt = el('option', { value: o[0], testo: o[1] }); if (o[0] === st) opt.selected = true; sel.appendChild(opt);
+      });
+      sel.addEventListener('change', function () { cambiaStato(corso, sel.value); });
+      var riga = el('div', { class: 'blocco' }, [campo(corso.cod + ' · ' + (corso.titolo || ''), null, sel)]);
+      if (st === 'offerta') {
+        var v = promo.corsi[corso.cod];
+        riga.appendChild(testo(v, 'breve', 'Nome breve', 'quello della fascia in home'));
+        riga.appendChild(el('div', { class: 'due' }, [
+          numero(v, 'listino', 'Prezzo di listino', 'euro, IVA esclusa, compare barrato'),
+          numero(v, 'prezzo', 'Prezzo in offerta', 'euro, IVA esclusa'),
+        ]));
+        riga.appendChild(testo(v, 'durata', 'Durata'));
+        riga.appendChild(elencoTesti(v, 'edizioni', 'Date delle edizioni', 'una per riga, es. 20 e 27 gennaio 2027, ore 14-18 (due mercoledì)', 3));
+      } else if (st === 'esaurito') {
+        var w = promo.vetrinaEsaurite[corso.cod] = promo.vetrinaEsaurite[corso.cod] || { breve: corso.titolo || '', listino: null, prezzo: null };
+        riga.appendChild(testo(w, 'breve', 'Nome breve', 'quello della fascia in home'));
+        riga.appendChild(el('div', { class: 'due' }, [
+          numero(w, 'listino', 'Prezzo di listino mostrato', 'barrato'),
+          numero(w, 'prezzo', 'Prezzo in offerta mostrato', 'vuoto = solo "In offerta"'),
+        ]));
+        riga.appendChild(areaTesto(promo.esaurite, corso.cod, 'Frase dentro la scheda', 'sotto la scritta POSTI ESAURITI', 3));
+      }
+      lista.appendChild(riga);
+    });
+    elContenuto.appendChild(lista);
+  }
+
   function disegna() {
     var aperti = {};
     elContenuto.querySelectorAll('details.corso').forEach(function (d, i) { aperti[i] = d.open; });
@@ -273,6 +340,7 @@ export const paginaAdmin = `<!doctype html>
       ]),
       el('p', { class: 'nota', testo: 'Spento, i prezzi spariscono da tutte le pagine e al loro posto compare "Su richiesta". I prezzi restano scritti qui dentro e tornano quando lo riaccendi.' }),
     ]);
+    if (promo) disegnaOfferta();
     elContenuto.appendChild(el('h2', { testo: 'Impostazioni generali' }));
     elContenuto.appendChild(generali);
 
@@ -288,7 +356,7 @@ export const paginaAdmin = `<!doctype html>
         dati.corsi.push({
           nuovo: true, pubblicato: false, mostraPrezzo: true, cod: '', slug: '',
           area: Object.keys(dati.nomiAree)[0], areaNome: dati.nomiAree[Object.keys(dati.nomiAree)[0]],
-          titolo: '', sottotitolo: '', prezzo: 0, durataVideo: '', durataStudio: '',
+          titolo: '', sottotitolo: '', prezzo: null, durataVideo: '8 ore online su Microsoft Teams', durataStudio: '',
           descrizione: [], perche: [], destinatari: [], programma: [], plus: '',
         });
         segnaCambiato(); disegna();
@@ -325,11 +393,14 @@ export const paginaAdmin = `<!doctype html>
     elSalva.disabled = true;
     stato('Salvo…');
     var pulito = JSON.parse(JSON.stringify(dati));
+    if (promo && promo.vetrinaEsaurite) Object.keys(promo.vetrinaEsaurite).forEach(function (k) {
+      var v = promo.vetrinaEsaurite[k]; if (!v || !v.listino || !v.prezzo) delete promo.vetrinaEsaurite[k];
+    });
     pulito.corsi.forEach(function (c) { delete c.nuovo; });
     fetch('/api/admin/catalogo', {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ dati: pulito, sha: sha }),
+      body: JSON.stringify({ dati: pulito, sha: sha, promo: promo, promoSha: promoSha }),
     }).then(function (r) {
       return r.json().then(function (j) { return { ok: r.ok, j: j }; });
     }).then(function (res) {
@@ -340,6 +411,7 @@ export const paginaAdmin = `<!doctype html>
         return;
       }
       sha = res.j.sha;
+      if (res.j.promoSha) promoSha = res.j.promoSha;
       cambiato = false;
       dati.corsi.forEach(function (c) { delete c.nuovo; });
       stato('Salvato. Il sito si aggiorna da solo entro un paio di minuti.', 'ok');
@@ -365,7 +437,7 @@ export const paginaAdmin = `<!doctype html>
       mostraErrori(res.j.errore || 'Accesso negato');
       return;
     }
-    dati = res.j.dati; sha = res.j.sha;
+    dati = res.j.dati; sha = res.j.sha; promo = res.j.promo || null; promoSha = res.j.promoSha || null;
     document.getElementById('chi').textContent = res.j.email || '';
     stato('Catalogo caricato');
     disegna();

@@ -39,6 +39,12 @@ export function scontoArea(area) {
   return sconti.length ? Math.max(...sconti) : null;
 }
 export const scadenzaOfferta = promozione.scadenza;
+// La scadenza si scrive una volta sola in promozione.json (gg/mm/aaaa, modificabile dal pannello)
+// e da qui esce nelle due forme usate dal sito: "31 dicembre 2026" e "31/12".
+const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+const [gg, mm, aa] = String(promozione.scadenza || '').split('/').map(Number);
+export const scadenzaLunga = gg && mm && aa ? `${gg} ${MESI[mm - 1]} ${aa}` : String(promozione.scadenza || '');
+export const scadenzaBreve = gg && mm ? `${String(gg).padStart(2, '0')}/${String(mm).padStart(2, '0')}` : String(promozione.scadenza || '');
 // Nell'ordine dello schema degli amministratori (F1, I1, I2, D2, D3).
 export const corsiInOfferta = () => Object.keys(promozione.corsi)
   .map((cod) => catalogo.corsi.find((c) => c.cod === cod && c.pubblicato !== false))

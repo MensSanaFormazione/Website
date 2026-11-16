@@ -3,7 +3,7 @@
 // la promozione e' spenta (`attiva: false` in src/data/promozione.json).
 // 16/11: dentro anche F2 e F3, offerta a posti esauriti, senza prezzo;
 // entrando nella scheda c'e' la frase di promozione.json.
-import { corsiInOfferta, corsi, esaurita, vetrina, offertaAttiva } from '../data/corsi.js';
+import { corsiInOfferta, corsi, esaurita, vetrina, offertaAttiva, scadenzaLunga } from '../data/corsi.js';
 const conPrezzo = corsiInOfferta();
 const esauriti = corsi.filter((c) => esaurita(c.cod)).map((c) => ({ ...c, prezzi: vetrina(c.cod), breve: vetrina(c.cod)?.breve || c.titolo }));
 const ordine = ['F', 'I', 'D'];
@@ -17,7 +17,7 @@ const minimo = conPrezzo.length ? Math.min(...conPrezzo.map((c) => c.offerta.pre
       <div class="striscia-offerta__testo">
         <p class="striscia-offerta__bollino">Offerta iscrizioni 2027</p>
         <h2 id="striscia-offerta-titolo">{lista.length} corsi online su Microsoft Teams, <em>da {minimo}&nbsp;€&nbsp;+&nbsp;IVA.</em></h2>
-        <p class="striscia-offerta__nota">Iscrizioni entro il 31 dicembre 2026, con il bonifico che deve pervenire entro la stessa data. Corsi a gennaio e febbraio 2027, 8 ore in due mezze giornate, dalle 14 alle 18. Offerta valida fino al raggiungimento del numero massimo di partecipanti per classe.</p>
+        <p class="striscia-offerta__nota">Iscrizioni entro il {scadenzaLunga}, con il bonifico che deve pervenire entro la stessa data. Corsi a gennaio e febbraio 2027, 8 ore in due mezze giornate, dalle 14 alle 18. Offerta valida fino al raggiungimento del numero massimo di partecipanti per classe.</p>
       </div>
       <ul class="striscia-offerta__corsi">
         {lista.map((c) => (

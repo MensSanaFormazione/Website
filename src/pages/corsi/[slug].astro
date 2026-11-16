@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
 import ModuloIscrizione from '../../components/ModuloIscrizione.astro';
 import PrezzoCorso from '../../components/PrezzoCorso.astro';
-import { corsi, aree, LINKEDIN_URL, mostraPrezzo, offerta, inPromozione, prezzoPromo } from '../../data/corsi.js';
+import { corsi, aree, LINKEDIN_URL, mostraPrezzo, offerta, inPromozione, prezzoPromo, scadenzaBreve } from '../../data/corsi.js';
 import promozione from '../../data/promozione.json';
 
 export function getStaticPaths() {
@@ -219,7 +219,7 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
         <div class="grid grid--3">
           {correlati.map((c, i) => (
             <a href={`/corsi/${c.slug}/`} class={`card correlato spot reveal${inPromozione(c.cod) ? ' corso--offerta' : ''}`} style={`--d: ${i * 0.08}s`}>
-              {inPromozione(c.cod) && (<span class="bollino-offerta" aria-hidden="true">{prezzoPromo(c.cod) ? (<strong>-{prezzoPromo(c.cod).sconto}%</strong>) : (<strong>Offerta</strong>)}<small>fino al 31/12</small></span>)}
+              {inPromozione(c.cod) && (<span class="bollino-offerta" aria-hidden="true">{prezzoPromo(c.cod) ? (<strong>-{prezzoPromo(c.cod).sconto}%</strong>) : (<strong>Offerta</strong>)}<small>fino al {scadenzaBreve}</small></span>)}
               <span class="badge">{c.cod}</span>
               <h3>{c.titolo}</h3>
               <PrezzoCorso corso={c} classe="correlato__prezzo" />

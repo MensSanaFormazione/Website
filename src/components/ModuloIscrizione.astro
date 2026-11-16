@@ -1,4 +1,5 @@
 ---
+import { scadenzaOfferta } from '../data/corsi.js';
 // Modulo di iscrizione in fondo a ogni scheda corso (richiesto dagli
 // amministratori il 16/11/2026, modelli Cegos e Valeo).
 // Spedisce a /api/iscrizione (functions/api/iscrizione.js), che inoltra via
@@ -116,7 +117,7 @@ const MAX_PARTECIPANTI = 10;
           <li>Le quote si intendono a partecipante, IVA esclusa.</li>
           {promo && promo.condizioni.map((c) => <li>{c}</li>)}
           <li>L'iscrizione è confermata quando ti scriviamo noi: con la conferma ricevi i dati per il bonifico e, prima del corso, il link per collegarti su Teams.</li>
-          <li>Pagamento con bonifico bancario: per le iscrizioni in offerta entro il 31/12/2026, negli altri casi almeno 5 giorni lavorativi prima dell'inizio del corso.</li>
+          <li>Pagamento con bonifico bancario: per le iscrizioni in offerta entro il {scadenzaOfferta}, negli altri casi almeno 5 giorni lavorativi prima dell'inizio del corso.</li>
           <li>Puoi disdire senza penali con almeno 36 ore di preavviso, scrivendo a info@mensanaformazione.com; con un preavviso più breve si applica una penale del 30%.</li>
           <li>Se una classe è al completo ti proponiamo l'edizione successiva o una nuova classe.</li>
           <li>Se ti iscrivi come privato (consumatore) puoi recedere entro 14 giorni dall'iscrizione, senza spese.</li>
