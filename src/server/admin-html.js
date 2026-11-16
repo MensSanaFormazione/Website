@@ -70,6 +70,8 @@ export const paginaAdmin = `<!doctype html>
   .corpo { padding: 0 1.1rem 1.1rem; }
   .cod { background: var(--rosso-tenue); color: var(--rosso); border-radius: 6px; padding: .1rem .45rem; font-size: .78rem; }
   .nascosto { color: var(--grigio-500); font-weight: 600; font-size: .78rem; }
+  .da-fare { margin-left: auto; color: #8a5a00; background: #fff4d6; border-radius: 6px; padding: .1rem .5rem; font-weight: 600; font-size: .74rem; }
+  h3.area-titolo { font-size: .95rem; margin: 1.4rem 0 .5rem; color: var(--grigio-700); }
   .blocco { border-left: 3px solid var(--grigio-100); padding-left: .8rem; margin-bottom: .8rem; }
   .due { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
   .stato { font-size: .88rem; font-weight: 600; }
@@ -163,6 +165,40 @@ export const paginaAdmin = `<!doctype html>
     return campo(etichetta, aiuto || 'una voce per riga', t);
   }
 
+  // Descrizione: un paragrafo per riga; le righe che cominciano con "- " formano un elenco puntato.
+  function descrizione(corso) {
+    var t = el('textarea', { rows: 8 });
+    var righe = [];
+    (corso.descrizione || []).forEach(function (x) {
+      if (x && typeof x === 'object' && Array.isArray(x.elenco)) x.elenco.forEach(function (v) { righe.push('- ' + v); });
+      else righe.push(String(x == null ? '' : x));
+    });
+    t.value = righe.join('\\n');
+    t.addEventListener('input', function () {
+      var out = [];
+      t.value.split('\\n').map(function (r) { return r.trim(); }).filter(Boolean).forEach(function (r) {
+        if (r.slice(0, 2) === '- ') {
+          var ultimo = out[out.length - 1];
+          if (ultimo && typeof ultimo === 'object') ultimo.elenco.push(r.slice(2).trim());
+          else out.push({ elenco: [r.slice(2).trim()] });
+        } else out.push(r);
+      });
+      corso.descrizione = out; segnaCambiato();
+    });
+    return campo('Descrizione', 'un paragrafo per riga; le righe che iniziano con "- " diventano un elenco puntato', t);
+  }
+
+  // Quante sezioni del corso sono ancora vuote: si vede nel titolo, cosi' le schede da completare saltano all'occhio.
+  function mancanti(corso) {
+    var m = [];
+    if (!corso.sottotitolo) m.push('sottotitolo');
+    if (!(corso.descrizione || []).length) m.push('descrizione');
+    if (!(corso.destinatari || []).filter(Boolean).length) m.push('a chi si rivolge');
+    if (!(corso.perche || []).filter(function (p) { return p.titolo || p.testo; }).length) m.push('perché iscriversi');
+    if (!(corso.programma || []).filter(function (p) { return p.sezione || (p.voci || []).length; }).length) m.push('programma');
+    return m;
+  }
+
   function interruttore(oggetto, chiave, etichetta, predefinito) {
     var i = el('input', { type: 'checkbox' });
     i.checked = oggetto[chiave] === undefined ? !!predefinito : !!oggetto[chiave];
@@ -195,6 +231,7 @@ export const paginaAdmin = `<!doctype html>
       el('span', { class: 'cod', testo: corso.cod || '—' }),
       el('span', { testo: corso.titolo || 'Corso senza titolo' }),
       corso.pubblicato === false ? el('span', { class: 'nascosto', testo: '· nascosto dal sito' }) : null,
+      mancanti(corso).length ? el('span', { class: 'da-fare', testo: 'da completare: ' + mancanti(corso).join(', ') }) : null,
     ]);
     var corpo = el('div', { class: 'corpo' });
 
@@ -223,7 +260,7 @@ export const paginaAdmin = `<!doctype html>
     corpo.appendChild(campo('Area', null, aree));
 
     corpo.appendChild(testo(corso, 'slug', 'Indirizzo della pagina',
-      'non si cambia: e\\'l\\'indirizzo gia\\' online e nei risultati di Google', !corso.nuovo));
+      'non si cambia: è l\\'indirizzo già online e nei risultati di Google', !corso.nuovo));
 
     var due2 = el('div', { class: 'due' }, [
       testo(corso, 'durataVideo', 'Durata e formato'),
@@ -231,13 +268,14 @@ export const paginaAdmin = `<!doctype html>
     ]);
     corpo.appendChild(due2);
 
-    corpo.appendChild(elencoTesti(corso, 'descrizione', 'Descrizione', 'un paragrafo per riga', 6));
+    corpo.appendChild(descrizione(corso));
     corpo.appendChild(elencoTesti(corso, 'destinatari', 'A chi si rivolge', 'una voce per riga', 5));
     corpo.appendChild(areaTesto(corso, 'plus', 'Nota finale', 'la riga in fondo alla scheda', 3));
 
-    corpo.appendChild(el('h2', { testo: 'Perche\\' iscriversi' }));
+    corpo.appendChild(el('h2', { testo: 'Perché iscriversi' }));
     var perche = el('div');
     corso.perche = corso.perche || [];
+    while (corso.perche.length < 3) corso.perche.push({ titolo: '', testo: '' });
     elencoBlocchi(perche, corso.perche,
       [{ chiave: 'titolo', etichetta: 'Titolo' }, { chiave: 'testo', etichetta: 'Testo', multiriga: true }],
       'Aggiungi un motivo', function () { return { titolo: '', testo: '' }; });
@@ -246,6 +284,7 @@ export const paginaAdmin = `<!doctype html>
     corpo.appendChild(el('h2', { testo: 'Programma' }));
     var programma = el('div');
     corso.programma = corso.programma || [];
+    if (!corso.programma.length) corso.programma.push({ sezione: '', voci: [] });
     elencoBlocchi(programma, corso.programma,
       [{ chiave: 'sezione', etichetta: 'Titolo della sezione' }, { chiave: 'voci', etichetta: 'Argomenti', elenco: true }],
       'Aggiungi una sezione', function () { return { sezione: '', voci: [] }; });
@@ -259,7 +298,7 @@ export const paginaAdmin = `<!doctype html>
       },
     }));
 
-    return el('details', { class: 'corso' }, [titolo, corpo]);
+    return el('details', { class: 'corso', 'data-i': String(indice) }, [titolo, corpo]);
   }
 
 
@@ -331,7 +370,7 @@ export const paginaAdmin = `<!doctype html>
 
   function disegna() {
     var aperti = {};
-    elContenuto.querySelectorAll('details.corso').forEach(function (d, i) { aperti[i] = d.open; });
+    elContenuto.querySelectorAll('details.corso').forEach(function (d) { aperti[d.getAttribute('data-i')] = d.open; });
     elContenuto.innerHTML = '';
 
     var generali = el('div', { class: 'riquadro' }, [
@@ -345,10 +384,19 @@ export const paginaAdmin = `<!doctype html>
     elContenuto.appendChild(generali);
 
     elContenuto.appendChild(el('h2', { testo: 'Corsi (' + dati.corsi.length + ')' }));
-    dati.corsi.forEach(function (corso, i) {
-      var scheda = schedaCorso(corso, i);
-      if (aperti[i]) scheda.open = true;
-      elContenuto.appendChild(scheda);
+    Object.keys(dati.nomiAree).concat(['?']).forEach(function (sigla) {
+      var gruppo = [];
+      dati.corsi.forEach(function (corso, i) {
+        var suaArea = Object.prototype.hasOwnProperty.call(dati.nomiAree, corso.area) ? corso.area : '?';
+        if (suaArea === sigla) gruppo.push(i);
+      });
+      if (!gruppo.length) return;
+      elContenuto.appendChild(el('h3', { class: 'area-titolo', testo: sigla === '?' ? 'Senza area' : 'Area ' + sigla + ' · ' + dati.nomiAree[sigla] }));
+      gruppo.forEach(function (i) {
+        var scheda = schedaCorso(dati.corsi[i], i);
+        if (aperti[i]) scheda.open = true;
+        elContenuto.appendChild(scheda);
+      });
     });
     elContenuto.appendChild(el('button', {
       class: 'btn', testo: 'Aggiungi un corso',
@@ -396,7 +444,11 @@ export const paginaAdmin = `<!doctype html>
     if (promo && promo.vetrinaEsaurite) Object.keys(promo.vetrinaEsaurite).forEach(function (k) {
       var v = promo.vetrinaEsaurite[k]; if (!v || !v.listino || !v.prezzo) delete promo.vetrinaEsaurite[k];
     });
-    pulito.corsi.forEach(function (c) { delete c.nuovo; });
+    pulito.corsi.forEach(function (c) {
+      delete c.nuovo;
+      if (c.perche) c.perche = c.perche.filter(function (p) { return (p.titolo || '').trim() || (p.testo || '').trim(); });
+      if (c.programma) c.programma = c.programma.filter(function (p) { return (p.sezione || '').trim() || (p.voci || []).length; });
+    });
     fetch('/api/admin/catalogo', {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
