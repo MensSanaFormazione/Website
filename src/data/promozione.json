@@ -64,5 +64,17 @@
   "esaurite": {
     "F2": "L'offerta su questo corso non è più valida: è stato raggiunto il numero massimo di partecipanti per ciascuna classe.",
     "F3": "L'offerta su questo corso non è più valida: è stato raggiunto il numero massimo di partecipanti per ciascuna classe."
+  },
+  "vetrinaEsaurite": {
+    "F2": {
+      "breve": "Responsabilità degli enti (231/01)",
+      "listino": 450,
+      "prezzo": 200
+    },
+    "F3": {
+      "breve": "Antiriciclaggio",
+      "listino": 450,
+      "prezzo": 200
+    }
   }
 }

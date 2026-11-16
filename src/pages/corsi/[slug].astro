@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
 import ModuloIscrizione from '../../components/ModuloIscrizione.astro';
 import PrezzoCorso from '../../components/PrezzoCorso.astro';
-import { corsi, aree, LINKEDIN_URL, mostraPrezzo } from '../../data/corsi.js';
+import { corsi, aree, LINKEDIN_URL, mostraPrezzo, offerta, inPromozione, prezzoPromo } from '../../data/corsi.js';
 import promozione from '../../data/promozione.json';
 
 export function getStaticPaths() {
@@ -42,7 +42,14 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
         <span class="badge">{corso.cod}</span>
         <span class="scheda-hero__area">{corso.areaNome}</span>
         {promo && <span class="badge badge--offerta">In offerta fino al {promo.scadenza}</span>}
+        {esaurita && <span class="badge badge--offerta">Offerta esaurita</span>}
       </div>
+      {esaurita && (
+        <div class="avviso-esaurita rise" style="--r: 2" role="note">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <div><strong>Posti in offerta esauriti</strong><p>{esaurita}</p></div>
+        </div>
+      )}
       <h1 class="rise" style="--r: 2">{corso.titolo}</h1>
       <p class="scheda-hero__sub rise" style="--r: 3">{corso.sottotitolo}</p>
       <ul class="scheda-hero__meta rise" style="--r: 4">
@@ -142,8 +149,10 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
           </div>
         ) : (
           <div class="side-card spot">
-            <p class="side-card__label">Quota di iscrizione</p>
-            {mostraPrezzo(corso) ? (
+            <p class="side-card__label">{prezzoPromo(corso.cod) ? 'Quota in offerta' : 'Quota di iscrizione'}</p>
+            {prezzoPromo(corso.cod) ? (
+              <p class="side-card__prezzo"><s class="side-card__listino">{fmtPrezzo(prezzoPromo(corso.cod).listino)} €</s> {fmtPrezzo(prezzoPromo(corso.cod).prezzo)} € <small>+ IVA</small></p>
+            ) : mostraPrezzo(corso) ? (
               <p class="side-card__prezzo">{fmtPrezzo(corso.prezzo)} € <small>+ IVA</small></p>
             ) : (
               <p class="side-card__prezzo side-card__prezzo--richiesta">Su richiesta</p>
@@ -202,7 +211,8 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
         </div>
         <div class="grid grid--3">
           {correlati.map((c, i) => (
-            <a href={`/corsi/${c.slug}/`} class="card correlato spot reveal" style={`--d: ${i * 0.08}s`}>
+            <a href={`/corsi/${c.slug}/`} class={`card correlato spot reveal${inPromozione(c.cod) ? ' corso--offerta' : ''}`} style={`--d: ${i * 0.08}s`}>
+              {inPromozione(c.cod) && (<span class="bollino-offerta" aria-hidden="true">{prezzoPromo(c.cod) ? (<strong>-{prezzoPromo(c.cod).sconto}%</strong>) : (<strong>Offerta</strong>)}<small>fino al 31/12</small></span>)}
               <span class="badge">{c.cod}</span>
               <h3>{c.titolo}</h3>
               <PrezzoCorso corso={c} classe="correlato__prezzo" />

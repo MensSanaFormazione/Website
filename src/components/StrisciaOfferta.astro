@@ -1,25 +1,31 @@
 ---
 // Fascia dell'offerta in home e nella pagina Corsi. Sparisce da sola quando
 // la promozione e' spenta (`attiva: false` in src/data/promozione.json).
-import { corsiInOfferta } from '../data/corsi.js';
-const lista = corsiInOfferta();
-const minimo = lista.length ? Math.min(...lista.map((c) => c.offerta.prezzo)) : 0;
+// 16/11: dentro anche F2 e F3, offerta a posti esauriti, senza prezzo;
+// entrando nella scheda c'e' la frase di promozione.json.
+import { corsiInOfferta, corsi, esaurita, vetrina, offertaAttiva } from '../data/corsi.js';
+const conPrezzo = corsiInOfferta();
+const esauriti = corsi.filter((c) => esaurita(c.cod)).map((c) => ({ ...c, prezzi: vetrina(c.cod), breve: vetrina(c.cod)?.breve || c.titolo }));
+const ordine = ['F', 'I', 'D'];
+const lista = [...conPrezzo.map((c) => ({ ...c, prezzi: c.offerta, breve: c.offerta.breve })), ...esauriti]
+  .sort((a, b) => ordine.indexOf(a.area) - ordine.indexOf(b.area) || a.cod.localeCompare(b.cod));
+const minimo = conPrezzo.length ? Math.min(...conPrezzo.map((c) => c.offerta.prezzo)) : 0;
 ---
-{lista.length > 0 && (
+{offertaAttiva && lista.length > 0 && (
   <section class="striscia-offerta" aria-labelledby="striscia-offerta-titolo">
     <div class="wrap striscia-offerta__dentro">
       <div class="striscia-offerta__testo">
         <p class="striscia-offerta__bollino">Offerta iscrizioni 2027</p>
-        <h2 id="striscia-offerta-titolo">{lista.length} corsi online su Microsoft Teams, <em>da {minimo} € + IVA.</em></h2>
+        <h2 id="striscia-offerta-titolo">{lista.length} corsi online su Microsoft Teams, <em>da {minimo}&nbsp;€&nbsp;+&nbsp;IVA.</em></h2>
         <p class="striscia-offerta__nota">Iscrizioni entro il 31 dicembre 2026, con il bonifico che deve pervenire entro la stessa data. Corsi a gennaio e febbraio 2027, 8 ore in due mezze giornate, dalle 14 alle 18. Offerta valida fino al raggiungimento del numero massimo di partecipanti per classe.</p>
       </div>
       <ul class="striscia-offerta__corsi">
         {lista.map((c) => (
           <li>
-            <a href={`/corsi/${c.slug}/#iscrizione`}>
+            <a href={c.offerta ? `/corsi/${c.slug}/#iscrizione` : `/corsi/${c.slug}/`}>
               <span class="striscia-offerta__cod">{c.cod}</span>
-              <span class="striscia-offerta__nome">{c.offerta.breve}</span>
-              <span class="striscia-offerta__prezzo"><s>{c.offerta.listino} €</s> {c.offerta.prezzo} €</span>
+              <span class="striscia-offerta__nome">{c.breve}</span>
+              <span class="striscia-offerta__prezzo">{c.prezzi ? (<><s>{c.prezzi.listino} €</s> {c.prezzi.prezzo} €</>) : 'In offerta'}</span>
               <svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg>
             </a>
           </li>

@@ -19,6 +19,25 @@ export function offerta(cod) {
   return { ...voce, scadenza: promozione.scadenza, sconto: Math.round((1 - voce.prezzo / voce.listino) * 100) };
 }
 export const offertaAttiva = promozione.attiva === true;
+// Corsi in offerta a posti esauriti (F2, F3): da fuori si vedono come offerta,
+// entrando nella scheda c'e' la frase di promozione.json (decisione degli amministratori, 16/11).
+export function esaurita(cod) {
+  return promozione.attiva && promozione.esaurite && promozione.esaurite[cod] ? promozione.esaurite[cod] : null;
+}
+// Prezzo mostrato da fuori per F2 e F3 (uguale a F1, deciso il 16/11).
+export function vetrina(cod) {
+  const v = esaurita(cod) && promozione.vetrinaEsaurite ? promozione.vetrinaEsaurite[cod] : null;
+  return v ? { ...v, sconto: Math.round((1 - v.prezzo / v.listino) * 100) } : null;
+}
+// Prezzo da mostrare nelle schede riassuntive: offerta vera o vetrina degli esauriti.
+export const prezzoPromo = (cod) => offerta(cod) || vetrina(cod);
+// Riquadro giallo e bollino: corso in offerta o a posti esauriti.
+export const inPromozione = (cod) => Boolean(offerta(cod) || esaurita(cod));
+// Sconto piu' alto fra i corsi in offerta di un'area (per il bollino della scheda area).
+export function scontoArea(area) {
+  const sconti = area.corsi.map((c) => offerta(c.cod)).filter(Boolean).map((o) => o.sconto);
+  return sconti.length ? Math.max(...sconti) : null;
+}
 export const scadenzaOfferta = promozione.scadenza;
 // Nell'ordine dello schema degli amministratori (F1, I1, I2, D2, D3).
 export const corsiInOfferta = () => Object.keys(promozione.corsi)

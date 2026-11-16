@@ -200,3 +200,26 @@ body:has(.policy) .page-hero{background:var(--soft)}body:has(.policy) .page-hero
 .striscia-offerta .icon{width:16px;height:16px}
 @media(max-width:900px){.striscia-offerta__dentro{grid-template-columns:1fr;gap:28px}.striscia-offerta{padding-block:42px}}
 @media(max-width:480px){.striscia-offerta__corsi a{grid-template-columns:30px minmax(0,1fr) 16px}.striscia-offerta__prezzo{grid-column:2;grid-row:2}.striscia-offerta .icon{grid-column:3;grid-row:1}}
+
+/* Offerta 2027 (16/11): riquadro giallo e bollino tondo sulle schede di area e di corso */
+:root{--giallo:#f2cd48}
+.course-area--offerta{background:var(--giallo);margin:-14px -14px 0;padding:14px 14px 20px;border-bottom:0}
+.course-area--offerta .course-card-meta,.course-area--offerta .course-card-meta>span:first-child,.course-area--offerta p{color:var(--ink)}
+.course-cover{position:relative}
+.bollino-offerta{position:absolute;top:12px;left:12px;z-index:2;width:96px;height:96px;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;transform:rotate(-8deg);box-shadow:0 10px 24px -12px color-mix(in srgb,var(--ink) 60%,transparent);pointer-events:none}
+.bollino-offerta strong{font-size:26px;font-weight:700;letter-spacing:-.03em}
+.bollino-offerta small{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.corso--offerta{position:relative;background:var(--giallo);border-top-color:var(--ink)}
+.corso--offerta .corso__sotto,.corso--offerta .badge,.corso--offerta .corso__area,.corso--offerta .prezzo-offerta__nota,.corso--offerta .prezzo-offerta__cifre s,.corso--offerta .prezzo-offerta__cifre small{color:var(--ink)}
+.corso--offerta .corso__link{border-top-color:color-mix(in srgb,var(--ink) 25%,transparent)}
+.corso--offerta .bollino-offerta{top:16px;left:auto;right:16px;width:84px;height:84px}
+.corso--offerta .bollino-offerta strong{font-size:22px}
+.corso--offerta .corso__top{padding-right:96px;min-height:76px}
+@media(max-width:600px){.course-area--offerta{margin:-8px -8px 0;padding:8px 8px 16px}.bollino-offerta{width:72px;height:72px;top:8px;left:8px}.bollino-offerta strong{font-size:20px}.bollino-offerta small{font-size:9px}}
+.striscia-offerta{margin-bottom:96px!important}@media(max-width:600px){.striscia-offerta{margin-bottom:56px!important}}
+.avviso-esaurita{display:flex;gap:16px;align-items:flex-start;max-width:760px;margin:22px 0 28px;padding:18px 22px;background:var(--red);color:#fff;box-shadow:0 18px 40px -28px color-mix(in srgb,var(--ink) 60%,transparent)}
+.avviso-esaurita .ico{flex:none;width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;margin-top:2px}
+.avviso-esaurita strong{display:block;font-size:var(--text-body);font-weight:600;letter-spacing:.01em;margin-bottom:4px}
+.avviso-esaurita p{margin:0;font-size:var(--text-ui);line-height:1.6;color:#fff}
+.side-card__esaurita{background:var(--red);color:#fff;border-left:0;font-weight:500}
+.correlato.corso--offerta h3,.correlato.corso--offerta .badge{padding-right:100px}.correlato.corso--offerta .badge{color:var(--ink)}
