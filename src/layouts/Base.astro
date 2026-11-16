@@ -5,6 +5,8 @@ const path = Astro.url.pathname;
 const coursesActive = ['/formazione/', '/corsi/', '/su-misura/'].some(p => path.startsWith(p));
 const canonical = new URL(path, Astro.site).href;
 const preview = import.meta.env.MSF_PREVIEW === '1';
+// Versione dei fogli di stile e degli script: cambia a ogni build, cosi' i browser non tengono il CSS vecchio per 4 ore.
+const V = Date.now().toString(36);
 ---
 <!doctype html>
 <html lang="it"><head>
@@ -19,16 +21,16 @@ const preview = import.meta.env.MSF_PREVIEW === '1';
 <link rel="icon" href="/favicon.png" />
 <link rel="preload" href="/assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/assets/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/style.css" />
-<link rel="stylesheet" href="/depth.css" />
-<link rel="stylesheet" href="/details.css" />
-<link rel="stylesheet" href="/design-system.css" />
-<link rel="stylesheet" href="/pages.css" />
-<link rel="stylesheet" href="/complete.css" />
-<script is:inline src="/script.js" defer></script>
-<script is:inline src="/depth.js" defer></script>
-<script is:inline src="/details.js" defer></script>
-<script is:inline src="/forms.js" defer></script>
+<link rel="stylesheet" href={`/style.css?v=${V}`} />
+<link rel="stylesheet" href={`/depth.css?v=${V}`} />
+<link rel="stylesheet" href={`/details.css?v=${V}`} />
+<link rel="stylesheet" href={`/design-system.css?v=${V}`} />
+<link rel="stylesheet" href={`/pages.css?v=${V}`} />
+<link rel="stylesheet" href={`/complete.css?v=${V}`} />
+<script is:inline src={`/script.js?v=${V}`} defer></script>
+<script is:inline src={`/depth.js?v=${V}`} defer></script>
+<script is:inline src={`/details.js?v=${V}`} defer></script>
+<script is:inline src={`/forms.js?v=${V}`} defer></script>
 </head><body>
 
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
