@@ -103,6 +103,8 @@ export function controllaPromo(promo, catalogo) {
   if (!promo || typeof promo !== 'object') return ['L\'offerta non e\' leggibile'];
   if (typeof promo.attiva !== 'boolean') errori.push('Offerta: manca l\'interruttore generale');
   if (!/^\d{2}\/\d{2}\/\d{4}$/.test(String(promo.scadenza || ''))) errori.push('Offerta: la scadenza va scritta come 31/12/2026');
+  if (promo.condizioni !== undefined && (!Array.isArray(promo.condizioni) || promo.condizioni.some((c) => typeof c !== 'string'))) errori.push('Offerta: le condizioni vanno scritte una per riga');
+  if (promo.fascia !== undefined && typeof promo.fascia !== 'string') errori.push('Offerta: la frase della fascia non e\' leggibile');
   const codici = new Set((catalogo && catalogo.corsi ? catalogo.corsi : []).map((c) => c.cod));
   const corsi = promo.corsi || {};
   const esaurite = promo.esaurite || {};

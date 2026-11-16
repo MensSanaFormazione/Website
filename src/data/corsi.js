@@ -39,6 +39,8 @@ export function scontoArea(area) {
   return sconti.length ? Math.max(...sconti) : null;
 }
 export const scadenzaOfferta = promozione.scadenza;
+// Frase centrale della fascia in home, modificabile dal pannello.
+export const testoFascia = promozione.fascia || '';
 // La scadenza si scrive una volta sola in promozione.json (gg/mm/aaaa, modificabile dal pannello)
 // e da qui esce nelle due forme usate dal sito: "31 dicembre 2026" e "31/12".
 const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
