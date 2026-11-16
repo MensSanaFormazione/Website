@@ -315,7 +315,7 @@ export const paginaAdmin = `<!doctype html>
       el('span', { testo: corso.titolo || 'Corso senza titolo' }),
     ]);
     var corpo = el('div', { class: 'corpo' });
-    var T = 8;
+    var T = promo ? 9 : 8;
 
     // 1. Sul sito
     corpo.appendChild(passo(1, T, 'Sul sito', 'Decidi se il corso si vede sul sito e se mostrare il suo prezzo di listino.', [
@@ -324,6 +324,36 @@ export const paginaAdmin = `<!doctype html>
         interruttore(corso, 'mostraPrezzo', 'Mostra il prezzo', true),
       ]),
     ]));
+
+    // Offerta del corso (al posto della sezione Offerta separata)
+    if (promo) {
+      var st = corso.cod ? statoOfferta(corso.cod) : 'no';
+      var sel = el('select', { disabled: !corso.cod });
+      [['no', 'No, prezzo normale'], ['offerta', 'Sì, è in offerta'], ['esaurito', 'Era in offerta, posti esauriti']].forEach(function (o) {
+        var opt = el('option', { value: o[0], testo: o[1] }); if (o[0] === st) opt.selected = true; sel.appendChild(opt);
+      });
+      sel.addEventListener('change', function () { cambiaStato(corso, sel.value); });
+      var figliOfferta = [campo('Questo corso è in offerta?', corso.cod ? null : 'prima scrivi il codice del corso', sel)];
+      if (st === 'offerta') {
+        var v = promo.corsi[corso.cod];
+        figliOfferta.push(el('div', { class: 'due' }, [
+          numero(v, 'listino', 'Prezzo pieno', 'euro, IVA esclusa: compare barrato'),
+          numero(v, 'prezzo', 'Prezzo in offerta', 'euro, IVA esclusa'),
+        ]));
+        figliOfferta.push(testo(v, 'breve', 'Nome breve', 'come compare nella fascia della home'));
+        figliOfferta.push(testo(v, 'durata', 'Durata'));
+        figliOfferta.push(elencoTesti(v, 'edizioni', 'Date delle edizioni', 'una per riga, es. 20 e 27 gennaio 2027, ore 14-18 (due mercoledì)', 3));
+      } else if (st === 'esaurito') {
+        var w = promo.vetrinaEsaurite[corso.cod] = promo.vetrinaEsaurite[corso.cod] || { breve: corso.titolo || '', listino: null, prezzo: null };
+        figliOfferta.push(el('div', { class: 'due' }, [
+          numero(w, 'listino', 'Prezzo pieno mostrato', 'barrato'),
+          numero(w, 'prezzo', 'Prezzo in offerta mostrato', 'vuoto = solo "In offerta"'),
+        ]));
+        figliOfferta.push(testo(w, 'breve', 'Nome breve', 'come compare nella fascia della home'));
+        figliOfferta.push(areaTesto(promo.esaurite, corso.cod, 'Frase dentro la scheda', 'compare sotto la scritta POSTI ESAURITI', 3));
+      }
+      corpo.appendChild(passo(2, T, 'Offerta', 'Se scegli "Sì", sul sito il corso diventa giallo con il bollino dello sconto e il prezzo barrato, e anche la sua area diventa gialla. "Posti esauriti" lo lascia giallo, ma dentro la scheda dice che i posti sono finiti.', figliOfferta));
+    }
 
     // 2. Dati principali
     var aree = el('select');
@@ -342,22 +372,22 @@ export const paginaAdmin = `<!doctype html>
       campoCod.querySelector('input').addEventListener('input', aggiorna);
       campoTit.querySelector('input').addEventListener('input', aggiorna);
     }
-    corpo.appendChild(passo(2, T, 'Dati principali', 'Il codice e il titolo compaiono ovunque sul sito. Il prezzo è IVA esclusa: lascialo vuoto se il corso è "su richiesta".', [
+    corpo.appendChild(passo(2 + (promo ? 1 : 0), T, 'Dati principali', 'Il codice e il titolo compaiono ovunque sul sito. Il prezzo è IVA esclusa: lascialo vuoto se il corso è "su richiesta".', [
       el('div', { class: 'due' }, [campoCod, numero(corso, 'prezzo', 'Prezzo di listino in euro', 'IVA esclusa, vuoto = su richiesta')]),
       campoTit, campo('Area', null, aree), campoSlug,
     ]));
 
     // 3. Presentazione
-    corpo.appendChild(passo(3, T, 'Presentazione', 'La frase sotto al titolo e la durata. Per i corsi su Teams scrivi la durata così: "8 ore online su Microsoft Teams".', [
+    corpo.appendChild(passo(3 + (promo ? 1 : 0), T, 'Presentazione', 'La frase sotto al titolo e la durata. Per i corsi su Teams scrivi la durata così: "8 ore online su Microsoft Teams".', [
       areaTesto(corso, 'sottotitolo', 'Sottotitolo', 'una o due frasi', 3),
       el('div', { class: 'due' }, [testo(corso, 'durataVideo', 'Durata e formato'), testo(corso, 'durataStudio', 'Studio individuale', 'facoltativo, di solito vuoto')]),
     ]));
 
     // 4. Descrizione
-    corpo.appendChild(passo(4, T, 'Descrizione', 'Di cosa parla il corso. Un paragrafo per riga. Per un elenco puntato, inizia la riga con un trattino e uno spazio: "- ".', [descrizione(corso)]));
+    corpo.appendChild(passo(4 + (promo ? 1 : 0), T, 'Descrizione', 'Di cosa parla il corso. Un paragrafo per riga. Per un elenco puntato, inizia la riga con un trattino e uno spazio: "- ".', [descrizione(corso)]));
 
     // 5. A chi si rivolge
-    corpo.appendChild(passo(5, T, 'A chi si rivolge', 'Una figura per riga, per esempio: Uffici legali, Responsabili HR, Imprenditori.', [
+    corpo.appendChild(passo(5 + (promo ? 1 : 0), T, 'A chi si rivolge', 'Una figura per riga, per esempio: Uffici legali, Responsabili HR, Imprenditori.', [
       elencoTesti(corso, 'destinatari', 'Destinatari', 'una voce per riga', 5),
     ]));
 
@@ -368,7 +398,7 @@ export const paginaAdmin = `<!doctype html>
     elencoBlocchi(perche, corso.perche,
       [{ chiave: 'titolo', etichetta: 'Titolo del motivo' }, { chiave: 'testo', etichetta: 'Spiegazione', multiriga: true }],
       'Aggiungi un motivo', function () { return { titolo: '', testo: '' }; });
-    corpo.appendChild(passo(6, T, 'Perché iscriversi', 'Tre motivi concreti: un titolo breve e due righe di spiegazione ciascuno. I riquadri lasciati vuoti non vengono pubblicati.', [perche]));
+    corpo.appendChild(passo(6 + (promo ? 1 : 0), T, 'Perché iscriversi', 'Tre motivi concreti: un titolo breve e due righe di spiegazione ciascuno. I riquadri lasciati vuoti non vengono pubblicati.', [perche]));
 
     // 7. Programma
     var programma = el('div');
@@ -377,10 +407,10 @@ export const paginaAdmin = `<!doctype html>
     elencoBlocchi(programma, corso.programma,
       [{ chiave: 'sezione', etichetta: 'Titolo del modulo' }, { chiave: 'voci', etichetta: 'Argomenti del modulo', elenco: true }],
       'Aggiungi un modulo', function () { return { sezione: '', voci: [] }; });
-    corpo.appendChild(passo(7, T, 'Programma', 'Un riquadro per ogni modulo: il titolo e gli argomenti, uno per riga.', [programma]));
+    corpo.appendChild(passo(7 + (promo ? 1 : 0), T, 'Programma', 'Un riquadro per ogni modulo: il titolo e gli argomenti, uno per riga.', [programma]));
 
     // 8. Nota finale
-    corpo.appendChild(passo(8, T, 'Nota finale', 'Facoltativa: una riga che compare in fondo alla scheda, per esempio sul materiale o sull’attestato.', [
+    corpo.appendChild(passo(8 + (promo ? 1 : 0), T, 'Nota finale', 'Facoltativa: una riga che compare in fondo alla scheda, per esempio sul materiale o sull’attestato.', [
       areaTesto(corso, 'plus', 'Nota finale', null, 3),
     ]));
 
@@ -535,16 +565,6 @@ export const paginaAdmin = `<!doctype html>
       t2.appendChild(tessera('area-' + sigla, sigla, dati.nomiAree[sigla], det, inPromo ? 'tessera--offerta' : ''));
     });
     elContenuto.appendChild(t2);
-    var t1 = el('div', { class: 'tessere' });
-    if (promo) {
-      var n = dati.corsi.filter(function (c) { return c.cod && statoOfferta(c.cod) !== 'no'; }).length;
-      t1.appendChild(tessera('offerta', '%', 'Offerta e corsi in promozione',
-        el('span', { class: 'dettaglio', testo: (promo.attiva ? 'Attiva' : 'Spenta') + ' · ' + n + ' corsi · scade il ' + promo.scadenza }), 'tessera--offerta'));
-    }
-    t1.appendChild(tessera('consulenza', '§', 'Consulenza', el('span', { class: 'dettaglio', testo: 'le materie della pagina Consulenza' })));
-    t1.appendChild(tessera('impostazioni', '⚙', 'Impostazioni', el('span', { class: 'dettaglio', testo: 'prezzi di listino, aree su richiesta' })));
-    elContenuto.appendChild(el('h2', { class: 'sezione-titolo', testo: 'Offerta e altro' }));
-    elContenuto.appendChild(t1);
   }
 
   function intestazione(titolo, sotto) {
@@ -555,7 +575,7 @@ export const paginaAdmin = `<!doctype html>
     var aperti = {};
     elContenuto.querySelectorAll('details.corso').forEach(function (d) { aperti[d.getAttribute('data-i')] = d.open; });
     if (vista === 'offerta' && !promo) vista = 'inizio';
-    if (['inizio', 'offerta', 'consulenza', 'impostazioni'].indexOf(vista) < 0 && vista.slice(0, 5) !== 'area-' && vista.slice(0, 6) !== 'corso-') vista = 'inizio';
+    if (vista !== 'inizio' && vista.slice(0, 5) !== 'area-' && vista.slice(0, 6) !== 'corso-') vista = 'inizio';
     if (vista.slice(0, 5) === 'area-' && !Object.prototype.hasOwnProperty.call(dati.nomiAree, vista.slice(5))) vista = 'area-' + Object.keys(dati.nomiAree)[0];
     disegnaMenu();
     elContenuto.innerHTML = '';
