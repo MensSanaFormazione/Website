@@ -1,0 +1,315 @@
+---
+// Modulo di iscrizione in fondo a ogni scheda corso (richiesto dagli
+// amministratori il 16/11/2026, modelli Cegos e Valeo).
+// Spedisce a /api/iscrizione (functions/api/iscrizione.js), che inoltra via
+// Brevo come il modulo contatti. Nessun dato viene salvato sul sito.
+// Senza JavaScript funziona lo stesso, con un partecipante solo.
+interface Props { corso: any; promo: any; }
+const { corso, promo } = Astro.props;
+const MAX_PARTECIPANTI = 10;
+---
+<section class="section iscrizione" id="iscrizione" aria-labelledby="iscrizione-titolo">
+  <div class="container iscrizione__griglia">
+    <form class="contact-form iscrizione__form" method="post" action="/api/iscrizione" data-iscrizione data-prezzo={promo ? promo.prezzo : ''}>
+      <input type="text" name="azienda" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="hidden" name="corso" value={corso.cod} />
+      <input type="hidden" name="corso_titolo" value={corso.titolo} />
+      <input type="hidden" name="offerta" value={promo ? 'si' : 'no'} />
+
+      <p class="eyebrow">Iscrizione</p>
+      <h2 id="iscrizione-titolo">Iscriviti al corso {corso.cod}</h2>
+      <p class="form-intro">
+        {corso.titolo}.
+        {promo
+          ? ` Quota in offerta: ${promo.prezzo} € + IVA a partecipante, per le iscrizioni entro il ${promo.scadenza}.`
+          : ' Compila il modulo: ti scriviamo entro un giorno lavorativo con le date disponibili e la conferma.'}
+      </p>
+
+      <fieldset class="iscrizione__blocco">
+        <legend><span>01</span> Edizione</legend>
+        <div class="form-fields">
+          <label class="form-field full"><span>Quale edizione?</span>
+            <select name="edizione" required>
+              {promo ? (
+                <>
+                  <option value="">Scegli la data…</option>
+                  {promo.edizioni.map((e) => <option>{e}</option>)}
+                </>
+              ) : (
+                <>
+                  <option>Prima edizione disponibile: contattatemi per la data</option>
+                  <option>Edizione dedicata alla mia azienda</option>
+                </>
+              )}
+            </select>
+          </label>
+          {promo && <p class="iscrizione__nota full">{promo.modalita}, {promo.durata}. Il link per collegarsi arriva con la conferma.</p>}
+        </div>
+      </fieldset>
+
+      <fieldset class="iscrizione__blocco">
+        <legend><span>02</span> Chi effettua l'iscrizione</legend>
+        <div class="form-fields">
+          <label class="form-field"><span>Nome</span><input name="ref_nome" autocomplete="given-name" required maxlength="80"></label>
+          <label class="form-field"><span>Cognome</span><input name="ref_cognome" autocomplete="family-name" required maxlength="80"></label>
+          <label class="form-field"><span>Email</span><input type="email" name="ref_email" autocomplete="email" required maxlength="200"></label>
+          <label class="form-field"><span>Telefono</span><input type="tel" name="ref_telefono" autocomplete="tel" required maxlength="40"></label>
+          <label class="form-field full"><span>Ruolo in azienda <span class="field-optional">(facoltativo)</span></span><input name="ref_ruolo" autocomplete="organization-title" maxlength="80"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="iscrizione__blocco">
+        <legend><span>03</span> Partecipanti</legend>
+        <p class="iscrizione__nota">Indica chi seguirà il corso. Puoi iscrivere fino a {MAX_PARTECIPANTI} persone con un solo modulo.</p>
+        <button type="button" class="iscrizione__io" data-partecipo-io hidden>Partecipo io: copia i miei dati</button>
+        <ol class="iscrizione__partecipanti" data-partecipanti data-max={MAX_PARTECIPANTI}>
+          <li class="iscrizione__partecipante" data-partecipante>
+            <p class="iscrizione__num">Partecipante <span data-numero>1</span></p>
+            <div class="form-fields">
+              <label class="form-field"><span>Nome</span><input name="p_nome" required maxlength="80"></label>
+              <label class="form-field"><span>Cognome</span><input name="p_cognome" required maxlength="80"></label>
+              <label class="form-field"><span>Email</span><input type="email" name="p_email" required maxlength="200"></label>
+              <label class="form-field"><span>Ruolo <span class="field-optional">(facoltativo)</span></span><input name="p_ruolo" maxlength="80"></label>
+            </div>
+            <button type="button" class="iscrizione__togli" data-togli hidden>Togli questo partecipante</button>
+          </li>
+        </ol>
+        <button type="button" class="iscrizione__aggiungi" data-aggiungi hidden>+ Aggiungi un partecipante</button>
+      </fieldset>
+
+      <fieldset class="iscrizione__blocco">
+        <legend><span>04</span> Dati per la fattura</legend>
+        <div class="iscrizione__tipo" role="radiogroup" aria-label="Chi riceve la fattura">
+          <label><input type="radio" name="tipo" value="azienda" checked> Azienda o professionista</label>
+          <label><input type="radio" name="tipo" value="ente"> Ente pubblico</label>
+          <label><input type="radio" name="tipo" value="privato"> Privato</label>
+        </div>
+        <div class="form-fields">
+          <label class="form-field full"><span data-etichetta-ragione>Ragione sociale</span><input name="ragione_sociale" autocomplete="organization" required maxlength="160"></label>
+          <label class="form-field full"><span>Indirizzo della sede legale</span><input name="indirizzo" autocomplete="street-address" required maxlength="160"></label>
+          <div class="iscrizione__terna full">
+            <label class="form-field"><span>CAP</span><input name="cap" autocomplete="postal-code" inputmode="numeric" required maxlength="10"></label>
+            <label class="form-field"><span>Città</span><input name="citta" autocomplete="address-level2" required maxlength="80"></label>
+            <label class="form-field"><span>Provincia</span><input name="provincia" maxlength="2" required placeholder="MI"></label>
+          </div>
+          <label class="form-field" data-solo-impresa><span>Partita IVA</span><input name="piva" maxlength="20" required></label>
+          <label class="form-field"><span>Codice fiscale</span><input name="cf" maxlength="20" required></label>
+          <label class="form-field" data-solo-impresa><span>Codice destinatario SDI <span class="field-optional">(o PEC)</span></span><input name="sdi" maxlength="10"></label>
+          <label class="form-field" data-solo-impresa><span>PEC <span class="field-optional">(o codice SDI)</span></span><input type="email" name="pec" maxlength="200"></label>
+        </div>
+        <label class="consent-field iscrizione__spunta" data-solo-impresa>
+          <input type="checkbox" name="finanziata" value="si">
+          <span>L'iscrizione rientra in un piano di formazione finanziata (fondi interprofessionali): vorrei essere ricontattato per gestirla.</span>
+        </label>
+      </fieldset>
+
+      <fieldset class="iscrizione__blocco">
+        <legend><span>05</span> Note <span class="field-optional">(facoltativo)</span></legend>
+        <div class="form-fields">
+          <label class="form-field full"><span class="sr-only">Note</span><textarea name="note" rows="3" maxlength="2000" placeholder="Esigenze particolari, un ordine d'acquisto da citare in fattura…"></textarea></label>
+        </div>
+      </fieldset>
+
+      <details class="iscrizione__condizioni" open>
+        <summary>Condizioni di iscrizione</summary>
+        <ul>
+          <li>Le quote si intendono a partecipante, IVA esclusa.</li>
+          {promo && promo.condizioni.map((c) => <li>{c}</li>)}
+          <li>L'iscrizione è confermata quando ti scriviamo noi: con la conferma ricevi i dati per il bonifico e, prima del corso, il link per collegarti su Teams.</li>
+          <li>Pagamento con bonifico bancario: per le iscrizioni in offerta entro il 31/12/2026, negli altri casi almeno 5 giorni lavorativi prima dell'inizio del corso.</li>
+          <li>Puoi disdire senza penali con almeno 36 ore di preavviso, scrivendo a info@mensanaformazione.com; con un preavviso più breve si applica una penale del 30%.</li>
+          <li>Se una classe è al completo ti proponiamo l'edizione successiva o una nuova classe.</li>
+          <li>Se ti iscrivi come privato (consumatore) puoi recedere entro 14 giorni dall'iscrizione, senza spese.</li>
+          <li>Per tutto il resto valgono le <a href="/termini/">Condizioni generali di contratto</a>.</li>
+        </ul>
+      </details>
+
+      <label class="consent-field">
+        <input type="checkbox" name="condizioni" value="si" required>
+        <span>Ho letto e accetto le condizioni di iscrizione e le <a href="/termini/">Condizioni generali di contratto</a>.</span>
+      </label>
+      <label class="consent-field">
+        <input type="checkbox" name="privacy" value="si" required>
+        <span>Ho letto l'<a href="/privacy/">Informativa Privacy</a> e acconsento al trattamento dei dati per gestire l'iscrizione e la fatturazione (art. 13 GDPR). Se iscrivo altre persone, confermo di essere autorizzato a comunicare i loro dati.</span>
+      </label>
+
+      <button class="button button-red" type="submit">Invia l'iscrizione <svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg></button>
+      <p class="iscrizione__nota iscrizione__dopo">Nessun pagamento online: ti scriviamo noi entro un giorno lavorativo per confermare.</p>
+    </form>
+
+    <aside class="riepilogo" aria-label="Riepilogo dell'iscrizione">
+      <div class="riepilogo__carta">
+        <img class="riepilogo__foto" src="/iscrizione.webp" alt="" width="1440" height="1080" loading="lazy" />
+        <div class="riepilogo__corpo">
+          {promo && <p class="riepilogo__offerta">Offerta fino al {promo.scadenza}</p>}
+          <p class="riepilogo__label">Il tuo riepilogo</p>
+          <p class="riepilogo__corso"><span class="badge">{corso.cod}</span> {corso.titolo}</p>
+          <dl class="riepilogo__righe">
+            <div><dt>Edizione</dt><dd data-r-edizione>{promo ? 'da scegliere' : 'la concordiamo insieme'}</dd></div>
+            {promo && <div><dt>Formato</dt><dd>Teams, {promo.durata.replace(', in', ' in')}</dd></div>}
+            <div><dt>Partecipanti</dt><dd data-r-partecipanti>1</dd></div>
+            {promo && (
+              <div><dt>Quota a persona</dt><dd><s>{promo.listino} €</s> {promo.prezzo} €</dd></div>
+            )}
+          </dl>
+          <div class="riepilogo__totale">
+            <span>Totale</span>
+            {promo ? (
+              <strong><span data-r-totale>{promo.prezzo}</span> € <small>+ IVA</small></strong>
+            ) : (
+              <strong class="riepilogo__su-richiesta">Ti mandiamo il preventivo</strong>
+            )}
+          </div>
+          <ul class="riepilogo__promesse">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Risposta entro un giorno lavorativo</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Nessun pagamento online: bonifico dopo la conferma</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Disdetta senza penali fino a 36 ore prima</li>
+          </ul>
+        </div>
+      </div>
+      <p class="riepilogo__aiuto">Preferisci il telefono? <a href="tel:+390281558505">02 8155 8505</a></p>
+    </aside>
+  </div>
+</section>
+
+<script is:inline>
+(() => {
+  const form = document.querySelector('[data-iscrizione]');
+  if (!form) return;
+  const lista = form.querySelector('[data-partecipanti]');
+  const aggiungi = form.querySelector('[data-aggiungi]');
+  const io = form.querySelector('[data-partecipo-io]');
+  const max = Number(lista.dataset.max) || 10;
+  const modello = lista.querySelector('[data-partecipante]').cloneNode(true);
+
+  // Riepilogo a destra: partecipanti, totale ed edizione scelta.
+  const prezzo = Number(form.dataset.prezzo) || 0;
+  const rPartecipanti = document.querySelector('[data-r-partecipanti]');
+  const rTotale = document.querySelector('[data-r-totale]');
+  const rEdizione = document.querySelector('[data-r-edizione]');
+  const migliaia = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  form.elements.edizione.addEventListener('change', () => {
+    const scelta = form.elements.edizione.value;
+    if (scelta && rEdizione) rEdizione.textContent = scelta.replace(/\s*\(.*\)$/, '');
+  });
+
+  const rinumera = () => {
+    const righe = lista.querySelectorAll('[data-partecipante]');
+    righe.forEach((riga, i) => {
+      riga.querySelector('[data-numero]').textContent = i + 1;
+      riga.querySelector('[data-togli]').hidden = righe.length === 1;
+    });
+    aggiungi.hidden = righe.length >= max;
+    if (rPartecipanti) rPartecipanti.textContent = righe.length;
+    if (rTotale && prezzo) {
+      rTotale.textContent = migliaia(prezzo * righe.length);
+      rTotale.closest('.riepilogo__totale').classList.remove('is-aggiornato');
+      void rTotale.offsetWidth;
+      rTotale.closest('.riepilogo__totale').classList.add('is-aggiornato');
+    }
+  };
+  aggiungi.addEventListener('click', () => {
+    const nuova = modello.cloneNode(true);
+    nuova.querySelectorAll('input').forEach((i) => { i.value = ''; });
+    lista.append(nuova);
+    rinumera();
+    nuova.querySelector('input').focus();
+  });
+  lista.addEventListener('click', (e) => {
+    const bottone = e.target.closest('[data-togli]');
+    if (!bottone) return;
+    bottone.closest('[data-partecipante]').remove();
+    rinumera();
+  });
+  io.hidden = false;
+  io.addEventListener('click', () => {
+    const prima = lista.querySelector('[data-partecipante]');
+    const copia = { p_nome: 'ref_nome', p_cognome: 'ref_cognome', p_email: 'ref_email', p_ruolo: 'ref_ruolo' };
+    Object.entries(copia).forEach(([dove, da]) => { prima.querySelector(`[name="${dove}"]`).value = form.elements[da].value; });
+  });
+  rinumera();
+
+  // Privato: niente partita IVA, SDI, PEC e formazione finanziata.
+  const etichetta = form.querySelector('[data-etichetta-ragione]');
+  const aggiornaTipo = () => {
+    const privato = form.elements.tipo.value === 'privato';
+    form.querySelectorAll('[data-solo-impresa]').forEach((el) => {
+      el.hidden = privato;
+      el.querySelectorAll('input').forEach((i) => { i.disabled = privato; });
+    });
+    form.elements.piva.required = !privato;
+    etichetta.textContent = privato ? 'Nome e cognome' : form.elements.tipo.value === 'ente' ? 'Denominazione dell’ente' : 'Ragione sociale';
+    form.elements.ragione_sociale.autocomplete = privato ? 'name' : 'organization';
+  };
+  form.querySelectorAll('[name="tipo"]').forEach((r) => r.addEventListener('change', aggiornaTipo));
+  aggiornaTipo();
+})();
+</script>
+
+<style>
+  .iscrizione { background: linear-gradient(180deg, var(--paper) 0, var(--soft) 100%); }
+  .iscrizione__griglia { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
+  .iscrizione__form { margin: 0; box-shadow: 0 30px 60px -40px color-mix(in srgb, var(--ink) 35%, transparent); }
+  .iscrizione__form h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; }
+  .iscrizione__form .form-intro { max-width: 620px; line-height: 1.7; }
+  .iscrizione__dopo { margin-top: 16px; }
+
+  .riepilogo { position: sticky; top: 100px; }
+  .riepilogo__carta { background: var(--ink); color: var(--paper); overflow: hidden; }
+  .riepilogo__foto { display: block; width: 100%; height: 190px; object-fit: cover; }
+  .riepilogo__corpo { padding: 26px 28px 28px; }
+  .riepilogo__offerta { display: inline-block; background: var(--red); color: #fff; font-size: var(--text-small); text-transform: uppercase; letter-spacing: .1em; padding: 6px 10px; margin: 0 0 18px; }
+  .riepilogo__label { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .12em; color: var(--on-dark); margin: 0 0 10px; }
+  .riepilogo__corso { font-family: var(--serif); font-size: 21px; line-height: 1.3; margin: 0 0 20px; color: var(--paper); }
+  .riepilogo__corso .badge { font-family: var(--sans); vertical-align: middle; margin-right: 6px; color: #ff8a92; }
+  .riepilogo__righe { margin: 0; border-top: 1px solid var(--rule-dark); }
+  .riepilogo__righe div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--rule-dark); font-size: var(--text-ui); }
+  .riepilogo__righe dt { color: var(--on-dark); flex: none; }
+  .riepilogo__righe dd { margin: 0; text-align: right; }
+  .riepilogo__righe s { color: var(--on-dark); margin-right: 6px; }
+  .riepilogo__totale { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 20px 0 22px; }
+  .riepilogo__totale > span { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .12em; color: var(--on-dark); }
+  .riepilogo__totale strong { font-size: var(--text-card); font-weight: 500; letter-spacing: -.03em; }
+  .riepilogo__totale strong small { font-size: var(--text-small); color: var(--on-dark); letter-spacing: 0; }
+  .riepilogo__totale .riepilogo__su-richiesta { font-size: var(--text-body); }
+  .riepilogo__totale.is-aggiornato strong { animation: guizzo .5s ease; }
+  @keyframes guizzo { 0% { color: var(--paper); } 30% { color: #ff8a92; } 100% { color: var(--paper); } }
+  .riepilogo__promesse { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: var(--text-small); line-height: 1.5; color: var(--on-dark); }
+  .riepilogo__promesse li { display: flex; gap: 10px; align-items: flex-start; }
+  .riepilogo__promesse svg { flex: none; width: 16px; height: 16px; margin-top: 1px; fill: none; stroke: #ff8a92; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .riepilogo__aiuto { font-size: var(--text-ui); color: var(--muted); margin: 16px 0 0; text-align: center; }
+  .riepilogo__aiuto a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .riepilogo__totale.is-aggiornato strong { animation: none; } }
+  @media (max-width: 1000px) {
+    .iscrizione__griglia { grid-template-columns: 1fr; }
+    .riepilogo { position: static; order: -1; }
+    .riepilogo__foto { height: 150px; }
+  }
+  .iscrizione__form > .eyebrow { margin-bottom: 8px; }
+  .iscrizione__blocco { border: 0; padding: 0; margin: 34px 0 0; min-width: 0; }
+  .iscrizione__blocco legend { font-size: var(--text-subtitle); font-weight: 500; letter-spacing: -.02em; margin-bottom: 18px; padding: 0; }
+  .iscrizione__blocco legend span:first-child { color: var(--red); font-size: var(--text-ui); margin-right: 8px; vertical-align: middle; }
+  .iscrizione__nota { font-size: var(--text-ui); color: var(--muted); line-height: 1.6; margin: 0 0 14px; }
+  .iscrizione__nota.full { grid-column: 1/-1; margin: 0; }
+  .iscrizione__partecipanti { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+  .iscrizione__partecipante { border-left: 2px solid var(--rule); padding-left: 18px; }
+  .iscrizione__num { font-size: var(--text-small); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0 0 12px; }
+  .iscrizione__aggiungi, .iscrizione__togli, .iscrizione__io { font: inherit; font-size: var(--text-ui); background: none; border: 0; padding: 10px 0; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; min-height: 44px; }
+  .iscrizione__aggiungi { margin-top: 10px; font-weight: 500; }
+  .iscrizione__io { margin: -6px 0 6px; }
+  .iscrizione__togli { color: var(--muted); }
+  .iscrizione__tipo { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-bottom: 20px; font-size: var(--text-ui); }
+  .iscrizione__tipo label { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+  .iscrizione__tipo input { width: 18px; height: 18px; accent-color: var(--red); margin: 0; }
+  .iscrizione__terna { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 22px; }
+  .iscrizione__spunta { margin-block: 20px 0; }
+  .iscrizione__condizioni { margin-top: 34px; background: var(--paper); border: 1px solid var(--rule); padding: 18px 22px; font-size: var(--text-small); line-height: 1.7; color: var(--muted); }
+  .iscrizione__condizioni summary { font-size: var(--text-ui); font-weight: 500; color: var(--ink); cursor: pointer; }
+  .iscrizione__condizioni ul { margin: 12px 0 0; padding-left: 18px; }
+  .iscrizione__condizioni a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .iscrizione__form [hidden] { display: none !important; }
+  @media (max-width: 600px) {
+    .iscrizione__terna { grid-template-columns: 1fr; }
+    .iscrizione__partecipante { padding-left: 12px; }
+  }
+</style>

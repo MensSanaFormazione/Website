@@ -5,16 +5,18 @@ export function getStaticPaths() {
     ['richiesta-inviata','Richiesta inviata.','Grazie per averci scritto. Ti rispondiamo entro un giorno lavorativo.','/contatti/'],
     ['candidatura-inviata','Candidatura ricevuta.','Grazie. La leggiamo e vi facciamo sapere.','/candidatura/'],
     ['errore-contatti','Invio non riuscito.','La richiesta non è stata inviata. Controlla i campi e riprova, oppure scrivici direttamente a info@mensanaformazione.com.','/contatti/'],
+    ['iscrizione-inviata','Iscrizione ricevuta.','Grazie. Entro un giorno lavorativo ti scriviamo per confermare l\'iscrizione, con le coordinate per il bonifico. Il link per collegarti su Teams arriva prima del corso.','/formazione/','Torna al catalogo'],
+    ['errore-iscrizione','Invio non riuscito.','L\'iscrizione non è stata inviata. Torna indietro, controlla i campi e riprova, oppure chiamaci allo 02 8155 8505 o scrivici a info@mensanaformazione.com.','javascript:history.back()','Torna al modulo'],
     ['errore-candidatura','Invio non riuscito.','La candidatura non è stata inviata. Controlla i campi e riprova, oppure scrivici direttamente a info@mensanaformazione.com.','/candidatura/'],
   ];
-  return pages.map(([stato,title,text,back]) => ({params:{stato},props:{title,text,back}}));
+  return pages.map(([stato,title,text,back,label='Torna al modulo']) => ({params:{stato},props:{title,text,back,label}}));
 }
-const {title,text,back}=Astro.props;
+const {title,text,back,label}=Astro.props;
 ---
 <Base title={`${title} | Mens Sana Formazione`} description={text}>
   <section class="page-hero result-page"><div class="container">
     <p class="eyebrow">Mens Sana Formazione</p><h1>{title}</h1><p>{text}</p>
-    <a class="button button-red" href={back}>Torna al modulo</a>
+    <a class="button button-red" href={back}>{label}</a>
     <a class="text-link" href="/">Vai alla home <svg class="icon" aria-hidden="true"><use href="#diagonal"/></svg></a>
   </div></section>
 </Base>

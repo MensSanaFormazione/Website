@@ -693,7 +693,7 @@
       "titolo": "Recupero dei Crediti II: la Fase Giudiziale ed Esecutiva",
       "sottotitolo": "Dal decreto ingiuntivo al pignoramento: come si porta un credito in tribunale e come lo si trasforma in denaro.",
       "prezzo": null,
-      "durataVideo": "14 ore di videolezione",
+      "durataVideo": "8 ore, in 2 mezze giornate da 4 ore",
       "durataStudio": "60 ore di studio individuale",
       "descrizione": [
         "Il corso copre il recupero del credito davanti agli organi giudiziari: natura e tipologie del titolo esecutivo, ricorso per decreto ingiuntivo ordinario e provvisoriamente esecutivo, atto di precetto e fase esecutiva, con tutte le forme di pignoramento (mobiliare, presso terzi, dello stipendio, immobiliare).",
@@ -789,7 +789,7 @@
       "titolo": "La Gestione del Credito Commerciale",
       "sottotitolo": "Il credito come leva finanziaria: credit policy, rischio cliente, fidi e KPI per trasformare i crediti in cassa.",
       "prezzo": null,
-      "durataVideo": "16 ore di videolezione",
+      "durataVideo": "8 ore, in 2 mezze giornate da 4 ore",
       "durataStudio": "80 ore di studio individuale",
       "descrizione": [
         "Il corso guarda al credito commerciale con gli occhi del management: quanto costa il ritardo negli incassi, come si definisce una Credit Policy aziendale, come si valuta il rischio cliente con scoring, rating e analisi di bilancio, come si collega il credito a EBITDA, working capital e cash flow operativo.",
@@ -1206,7 +1206,7 @@
       "titolo": "Data Protection Officer e GDPR nell'Era Digitale: Privacy, IA, Data Strategy e Cyber Security",
       "sottotitolo": "Dal GDPR a una governance integrata dei dati: il DPO davanti a Data Act, NIS2, DORA e AI Act, con un laboratorio pratico su data breach, audit e ispezioni.",
       "prezzo": null,
-      "durataVideo": "21 ore, in 3 giornate da 7 ore o in 5-6 moduli",
+      "durataVideo": "8 ore, in 2 mezze giornate da 4 ore",
       "descrizione": [
         "Il corso porta il percorso tradizionale sul Regolamento UE 2016/679 (GDPR) dentro le sfide che oggi riguardano le imprese e la figura del Data Protection Officer. L'attenzione si sposta dall'adempimento burocratico a una governance integrata dei dati, che comprende la sicurezza informatica, i nuovi quadri normativi europei e l'impatto dei sistemi di intelligenza artificiale.",
         "Accanto ai fondamenti del GDPR e alle priorità ispettive del Garante, il programma affronta:",
@@ -1219,11 +1219,11 @@
             "i più recenti provvedimenti del Garante e della Corte di giustizia dell'Unione europea"
           ]
         },
-        "Il corso si chiude con un laboratorio di cinque ore: la simulazione di un data breach da ransomware, un audit privacy interno e la preparazione a un'ispezione del Garante o della Guardia di Finanza."
+        "Il corso si chiude con un laboratorio pratico: la simulazione di un data breach da ransomware, un audit privacy interno e la preparazione a un'ispezione del Garante o della Guardia di Finanza."
       ],
       "programma": [
         {
-          "sezione": "Modulo 1 (4 ore). Fondamenti del GDPR, governance dei dati e nuovi orientamenti ispettivi",
+          "sezione": "Modulo 1. Fondamenti del GDPR, governance dei dati e nuovi orientamenti ispettivi",
           "voci": [
             "Principi chiave: accountability, privacy by design e privacy by default nell'era del cloud e del lavoro agile",
             "Basi giuridiche, gestione del consenso digitale e informativa multilivello",
@@ -1232,7 +1232,7 @@
           ]
         },
         {
-          "sezione": "Modulo 2 (4 ore). Il DPO nel nuovo quadro dell'European Data Strategy",
+          "sezione": "Modulo 2. Il DPO nel nuovo quadro dell'European Data Strategy",
           "voci": [
             "Designazione, requisiti, compiti e responsabilità del DPO: interno o esterno, conflitti di interesse e giurisprudenza",
             "Il DPO alla prova dell'European Data Strategy: interazioni con Data Act, Data Governance Act e Digital Services Act",
@@ -1240,7 +1240,7 @@
           ]
         },
         {
-          "sezione": "Modulo 3 (4 ore). Cybersecurity, data breach e integrazione con NIS2 e DORA",
+          "sezione": "Modulo 3. Cybersecurity, data breach e integrazione con NIS2 e DORA",
           "voci": [
             "Misure di sicurezza tecniche e organizzative: cifratura, pseudonimizzazione, controllo degli accessi e gestione delle credenziali",
             "Procedura di data breach: identificazione, contenimento, notifica al Garante entro 72 ore e comunicazione agli interessati",
@@ -1249,7 +1249,7 @@
           ]
         },
         {
-          "sezione": "Modulo 4 (4 ore). Privacy e intelligenza artificiale: gli effetti dell'AI Act sui trattamenti",
+          "sezione": "Modulo 4. Privacy e intelligenza artificiale: gli effetti dell'AI Act sui trattamenti",
           "voci": [
             "Addestramento dei modelli di IA e uso di dati personali: basi giuridiche e rischio di bias discriminatori",
             "Valutazione d'impatto (DPIA) specifica per algoritmi ad alto rischio e sistemi di profilazione avanzata",
@@ -1258,7 +1258,7 @@
           ]
         },
         {
-          "sezione": "Modulo 5 (5 ore). Laboratorio pratico: audit e gestione delle ispezioni",
+          "sezione": "Modulo 5. Laboratorio pratico: audit e gestione delle ispezioni",
           "voci": [
             "Simulazione guidata di un data breach da ransomware: redazione del registro delle violazioni e della notifica al Garante",
             "Pianificazione ed esecuzione di un audit privacy interno: checklist di verifica e reporting di compliance",

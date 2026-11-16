@@ -1,7 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Freccia from '../../components/Freccia.astro';
+import ModuloIscrizione from '../../components/ModuloIscrizione.astro';
 import { corsi, aree, LINKEDIN_URL, mostraPrezzo } from '../../data/corsi.js';
+import promozione from '../../data/promozione.json';
 
 export function getStaticPaths() {
   return corsi.map((corso) => ({ params: { slug: corso.slug }, props: { corso } }));
@@ -11,6 +13,14 @@ const { corso } = Astro.props;
 const area = aree.find(a => a.sigla === corso.area);
 const correlati = corsi.filter((c) => c.area === corso.area && c.cod !== corso.cod);
 const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+// Offerta di fine 2026 (src/data/promozione.json). Un corso e' "in offerta"
+// solo se la promozione e' attiva e il corso ha la sua riga; "esaurito" se
+// sta nell'elenco delle offerte chiuse.
+const voce = promozione.attiva ? promozione.corsi[corso.cod] : null;
+const promo = voce ? { ...voce, scadenza: promozione.scadenza, modalita: promozione.modalita, condizioni: promozione.condizioni } : null;
+const sconto = promo ? Math.round((1 - promo.prezzo / promo.listino) * 100) : 0;
+const esaurita = promozione.attiva ? promozione.esaurite[corso.cod] : null;
 ---
 
 
@@ -25,6 +35,7 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       <div class="scheda-hero__badges rise" style="--r: 1">
         <span class="badge">{corso.cod}</span>
         <span class="scheda-hero__area">{corso.areaNome}</span>
+        {promo && <span class="badge badge--offerta">In offerta fino al {promo.scadenza}</span>}
       </div>
       <h1 class="rise" style="--r: 2">{corso.titolo}</h1>
       <p class="scheda-hero__sub rise" style="--r: 3">{corso.sottotitolo}</p>
@@ -104,20 +115,42 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       
       <aside class="scheda-side reveal">
         <img class="course-side-image" src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy" />
-        <div class="side-card spot">
-          <p class="side-card__label">Quota di iscrizione</p>
-          {mostraPrezzo(corso) ? (
-            <p class="side-card__prezzo">{fmtPrezzo(corso.prezzo)} € <small>+ IVA</small></p>
-          ) : (
-            <p class="side-card__prezzo side-card__prezzo--richiesta">Su richiesta</p>
-          )}
-          <ul class="side-card__meta">
-            <li>{corso.durataVideo}</li>
-            <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
-          </ul>
-          <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="button button-red side-card__cta">Richiedi informazioni</a>
-          <a href="/contatti/" class="side-card__link">Ti serve un'edizione aziendale? Parliamone <Freccia /></a>
-        </div>
+        {promo ? (
+          <div class="side-card side-card--offerta spot">
+            <p class="side-card__label">Offerta iscrizioni 2027</p>
+            <p class="side-card__prezzo">
+              <s class="side-card__listino">{fmtPrezzo(promo.listino)} €</s>
+              {fmtPrezzo(promo.prezzo)} € <small>+ IVA</small>
+              <span class="side-card__sconto">-{sconto}%</span>
+            </p>
+            <ul class="side-card__meta">
+              <li>{promo.modalita}</li>
+              <li>{promo.durata}</li>
+            </ul>
+            <p class="side-card__label">Le date</p>
+            <ul class="side-card__date">
+              {promo.edizioni.map((e) => <li>{e}</li>)}
+            </ul>
+            <a href="#iscrizione" class="button button-red side-card__cta">Iscriviti al corso</a>
+            <p class="side-card__scadenza">Iscrizioni in offerta entro il {promo.scadenza}, fino a esaurimento dei posti di ogni classe.</p>
+          </div>
+        ) : (
+          <div class="side-card spot">
+            <p class="side-card__label">Quota di iscrizione</p>
+            {mostraPrezzo(corso) ? (
+              <p class="side-card__prezzo">{fmtPrezzo(corso.prezzo)} € <small>+ IVA</small></p>
+            ) : (
+              <p class="side-card__prezzo side-card__prezzo--richiesta">Su richiesta</p>
+            )}
+            {esaurita && <p class="side-card__esaurita">{esaurita}</p>}
+            <ul class="side-card__meta">
+              <li>{corso.durataVideo}</li>
+              <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
+            </ul>
+            <a href="#iscrizione" class="button button-red side-card__cta">Iscriviti al corso</a>
+            <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="side-card__link">Prima vuoi qualche informazione? Scrivici <Freccia /></a>
+          </div>
+        )}
         {corso.destinatari && corso.destinatari.length > 0 && (
           <div class="side-card side-card--dest">
             <h3>A chi si rivolge</h3>
@@ -135,6 +168,8 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   </section>
 
   
+  <ModuloIscrizione corso={corso} promo={promo} />
+
   {correlati.length > 0 && (
     <section class="section section--tinted">
       <div class="container">
@@ -163,16 +198,6 @@ const fmtPrezzo = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   )}
 
   
-  <section class="section cta-scheda">
-    <div class="container reveal">
-      <h2>Vuoi iscriverti o saperne di più?</h2>
-      <p>
-        Scrivici indicando il corso {corso.cod}: ti rispondiamo entro un giorno lavorativo
-        con date, modalità e tutto ciò che serve.
-      </p>
-      <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="button button-red">Contattaci per il corso {corso.cod}</a>
-    </div>
-  </section>
 </Base>
 
 
