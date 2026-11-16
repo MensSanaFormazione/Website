@@ -223,3 +223,10 @@ body:has(.policy) .page-hero{background:var(--soft)}body:has(.policy) .page-hero
 .avviso-esaurita p{margin:0;font-size:var(--text-ui);line-height:1.6;color:#fff}
 .side-card__esaurita{background:var(--red);color:#fff;border-left:0;font-weight:500}
 .correlato.corso--offerta h3,.correlato.corso--offerta .badge{padding-right:100px}.correlato.corso--offerta .badge{color:var(--ink)}
+.avviso-esaurita{max-width:none;padding:26px 30px;margin:26px 0 30px;align-items:center;gap:22px}
+.avviso-esaurita .ico{width:44px;height:44px;margin:0}
+.avviso-esaurita strong{font-size:clamp(26px,3.2vw,38px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;line-height:1.05;margin-bottom:8px}
+.avviso-esaurita p{font-size:var(--text-body)}
+.immagine-esaurita{position:relative}
+.timbro-esaurito{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);padding:10px 26px;border:5px solid var(--red);color:var(--red);background:color-mix(in srgb,var(--paper) 82%,transparent);font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+@media(max-width:600px){.avviso-esaurita{padding:20px;gap:14px;align-items:flex-start}.avviso-esaurita .ico{width:30px;height:30px}}

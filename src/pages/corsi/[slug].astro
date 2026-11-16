@@ -47,7 +47,7 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
       {esaurita && (
         <div class="avviso-esaurita rise" style="--r: 2" role="note">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-          <div><strong>Posti in offerta esauriti</strong><p>{esaurita}</p></div>
+          <div><strong>Posti esauriti</strong><p>{esaurita}</p></div>
         </div>
       )}
       <h1 class="rise" style="--r: 2">{corso.titolo}</h1>
@@ -127,7 +127,14 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
 
       
       <aside class="scheda-side reveal">
-        <img class="course-side-image" src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy" />
+        {esaurita ? (
+          <div class="immagine-esaurita">
+            <img class="course-side-image" src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy" />
+            <span class="timbro-esaurito" aria-hidden="true">Esaurito</span>
+          </div>
+        ) : (
+          <img class="course-side-image" src={`/aree/${area.slug}.webp`} alt="" width="1440" height="1080" loading="lazy" />
+        )}
         {promo ? (
           <div class="side-card side-card--offerta spot">
             <p class="side-card__label">Offerta iscrizioni 2027</p>
