@@ -21,6 +21,11 @@ const voce = promozione.attiva ? promozione.corsi[corso.cod] : null;
 const promo = voce ? { ...voce, scadenza: promozione.scadenza, modalita: promozione.modalita, condizioni: promozione.condizioni } : null;
 const sconto = promo ? Math.round((1 - promo.prezzo / promo.listino) * 100) : 0;
 const esaurita = promozione.attiva ? promozione.esaurite[corso.cod] : null;
+// ⛔ Interruttore del modulo di iscrizione (16/11/2026): spento finche' gli
+// amministratori non danno l'ok (decisione di Nicola). Spento, i pulsanti
+// tornano a portare alla pagina contatti come prima.
+const conModulo = promozione.moduloIscrizione === true;
+const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`;
 ---
 
 
@@ -131,7 +136,7 @@ const esaurita = promozione.attiva ? promozione.esaurite[corso.cod] : null;
             <ul class="side-card__date">
               {promo.edizioni.map((e) => <li>{e}</li>)}
             </ul>
-            <a href="#iscrizione" class="button button-red side-card__cta">Iscriviti al corso</a>
+            <a href={linkIscrizione} class="button button-red side-card__cta">{conModulo ? 'Iscriviti al corso' : 'Richiedi informazioni'}</a>
             <p class="side-card__scadenza">Iscrizioni in offerta entro il {promo.scadenza}, fino a esaurimento dei posti di ogni classe.</p>
           </div>
         ) : (
@@ -147,8 +152,12 @@ const esaurita = promozione.attiva ? promozione.esaurite[corso.cod] : null;
               <li>{corso.durataVideo}</li>
               <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
             </ul>
-            <a href="#iscrizione" class="button button-red side-card__cta">Iscriviti al corso</a>
-            <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="side-card__link">Prima vuoi qualche informazione? Scrivici <Freccia /></a>
+            <a href={linkIscrizione} class="button button-red side-card__cta">{conModulo ? 'Iscriviti al corso' : 'Richiedi informazioni'}</a>
+            {conModulo ? (
+              <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="side-card__link">Prima vuoi qualche informazione? Scrivici <Freccia /></a>
+            ) : (
+              <a href="/contatti/" class="side-card__link">Ti serve un'edizione aziendale? Parliamone <Freccia /></a>
+            )}
           </div>
         )}
         {corso.destinatari && corso.destinatari.length > 0 && (
@@ -168,7 +177,20 @@ const esaurita = promozione.attiva ? promozione.esaurite[corso.cod] : null;
   </section>
 
   
-  <ModuloIscrizione corso={corso} promo={promo} />
+  {conModulo ? (
+    <ModuloIscrizione corso={corso} promo={promo} />
+  ) : (
+    <section class="section cta-scheda">
+      <div class="container reveal">
+        <h2>Vuoi iscriverti o saperne di più?</h2>
+        <p>
+          Scrivici indicando il corso {corso.cod}: ti rispondiamo entro un giorno lavorativo
+          con date, modalità e tutto ciò che serve.
+        </p>
+        <a href={`/contatti/?interesse=corsi&corso=${encodeURIComponent(corso.cod)}`} class="button button-red">Contattaci per il corso {corso.cod}</a>
+      </div>
+    </section>
+  )}
 
   {correlati.length > 0 && (
     <section class="section section--tinted">
