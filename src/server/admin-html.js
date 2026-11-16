@@ -226,7 +226,7 @@ export const paginaAdmin = `<!doctype html>
       'non si cambia: e\\'l\\'indirizzo gia\\' online e nei risultati di Google', !corso.nuovo));
 
     var due2 = el('div', { class: 'due' }, [
-      testo(corso, 'durataVideo', 'Durata videolezione'),
+      testo(corso, 'durataVideo', 'Durata e formato'),
       testo(corso, 'durataStudio', 'Studio individuale'),
     ]);
     corpo.appendChild(due2);

@@ -1,4 +1,4 @@
-// Catalogo corsi Mens Sana Formazione. Prezzi +IVA, formato videolezione + studio individuale.
+// Catalogo corsi Mens Sana Formazione. Prezzi +IVA, corsi online su Microsoft Teams (16/11/2026).
 // Contenuti e programmi ripresi dal sito storico mensanaformazione.com (lug 2026),
 // riscritti e integrati con i riferimenti normativi piu recenti.
 //
@@ -95,7 +95,7 @@ const SCHEDE_AREE = {
     slug: 'business-coaching',
     occhiello: 'Percorsi individuali per chi guida persone.',
     intro:
-      "Non sono videolezioni ma percorsi di incontri con un coach, costruiti sugli obiettivi concordati insieme alla committenza e alla persona.",
+      "Non sono lezioni di gruppo ma percorsi di incontri con un coach, online su Microsoft Teams, costruiti sugli obiettivi concordati insieme alla committenza e alla persona.",
   },
   H: {
     slug: 'digitalizzazione-pa',
