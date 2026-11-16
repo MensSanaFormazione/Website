@@ -150,7 +150,7 @@ const linkIscrizione = conModulo ? '#iscrizione' : `/contatti/?interesse=corsi&c
             {esaurita && <p class="side-card__esaurita">{esaurita}</p>}
             <ul class="side-card__meta">
               <li>{corso.durataVideo}</li>
-              <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : 'Formato: incontri a distanza'}</li>
+              <li>{corso.durataStudio ? 'Formato: videolezione + studio guidato' : corso.durataStudio === '' ? 'Formato: in diretta su Microsoft Teams' : 'Formato: incontri a distanza'}</li>
             </ul>
             <a href={linkIscrizione} class="button button-red side-card__cta">{conModulo ? 'Iscriviti al corso' : 'Richiedi informazioni'}</a>
             {conModulo ? (
